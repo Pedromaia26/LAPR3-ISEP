@@ -1,0 +1,164 @@
+package lapr.project.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BSTDynData<E extends Comparable<E>> {
+
+
+    /** Nested static class for a binary search tree node. */
+
+    protected static class Node<E> {
+        private ShipDynData element;          // an element stored at this node
+        private Node<E> left;       // a reference to the left child (if any)
+        private Node<E> right;      // a reference to the right child (if any)
+
+        /**
+         * Constructs a node with the given element and neighbors.
+         *
+         * @param e  the element to be stored
+         * @param leftChild   reference to a left child node
+         * @param rightChild  reference to a right child node
+         */
+        public Node(ShipDynData e, Node<E> leftChild, Node<E> rightChild) {
+            element = e;
+            left = leftChild;
+            right = rightChild;
+        }
+
+        // accessor methods
+        public ShipDynData getElement() { return element; }
+        public Node<E> getLeft() { return left; }
+        public Node<E> getRight() { return right; }
+
+        // update methods
+        public void setElement(ShipDynData e) { element = e; }
+        public void setLeft(Node<E> leftChild) { left = leftChild; }
+        public void setRight(Node<E> rightChild) { right = rightChild; }
+    }
+
+    //----------- end of nested Node class -----------
+
+    protected Node<E> root = null;     // root of the tree
+
+
+    /* Constructs an empty binary search tree. */
+    public BSTDynData() {
+        root = null;
+    }
+
+    /*
+     * @return root Node of the tree (or null if tree is empty)
+     */
+    protected Node<E> root() {
+        return root;
+    }
+
+    /*
+     * Verifies if the tree is empty
+     * @return true if the tree is empty, false otherwise
+     */
+    public boolean isEmpty(){
+        return root==null;
+    }
+
+    /**
+     * Returns the Node containing a specific Element, or null otherwise.
+     *
+     * @param element    the element to find
+     * @return the Node that contains the Element, or null otherwise
+     *
+     * This method despite not being essential is very useful.
+     * It is written here in order to be used by this class and its
+     * subclasses avoiding recoding.
+     * So its access level is protected
+     */
+    protected Node<E> find(Node<E> node, ShipDynData element){
+        if (node==null || node.getElement().getBaseDateTime().equals(element.getBaseDateTime()))
+            return root;
+        if (element.getBaseDateTime().after(node.getElement().getBaseDateTime())){
+            return find(node.getRight(), element);
+        }
+        return find(node.getLeft(), element);
+    }
+
+    /*
+     * Inserts an element in the tree.
+     */
+    public void insert(ShipDynData element){
+        root = insert(element, root);
+    }
+
+    private Node<E> insert(ShipDynData element, Node<E> node){
+        if (node == null)
+        {
+            node = new Node<>(element, null, null);
+            return node;
+        }
+
+        if (element.getBaseDateTime().before(node.getElement().getBaseDateTime()))
+            node.left = insert(element, node.getLeft());
+        else if (element.getBaseDateTime().after(node.getElement().getBaseDateTime()))
+            node.right = insert(element, node.getRight());
+
+        /* return the (unchanged) node pointer */
+        return node;
+    }
+    /*
+     * Returns an iterable collection of elements of the tree, reported in in-order.
+     * @return iterable collection of the tree's elements reported in in-order
+     */
+    public Iterable<ShipDynData> inOrder(){
+        List<ShipDynData> snapshot = new ArrayList<>();
+        if (root!=null)
+            inOrderSubtree(root, snapshot);   // fill the snapshot recursively
+        return snapshot;
+    }
+    /**
+     * Adds elements of the subtree rooted at Node node to the given
+     * snapshot using an in-order traversal
+     * @param node       Node serving as the root of a subtree
+     * @param snapshot  a list to which results are appended
+     */
+    private void inOrderSubtree(Node<E> node, List<ShipDynData> snapshot) {
+        if (node == null)
+            return;
+        inOrderSubtree(node.getLeft(), snapshot);
+        snapshot.add(node.getElement());
+        inOrderSubtree(node.getRight(), snapshot);
+    }
+
+//#########################################################################
+
+    /**
+     * Returns a string representation of the tree.
+     * Draw the tree horizontally
+     */
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        toStringRec(root, 0, sb);
+        return sb.toString();
+    }
+
+    private void toStringRec(Node<E> root, int level, StringBuilder sb){
+        if(root==null)
+            return;
+        toStringRec(root.getRight(), level+1, sb);
+        if (level!=0){
+            for(int i=0;i<level-1;i++)
+                sb.append("|\t");
+            sb.append("|-------"+root.getElement()+"\n");
+        }
+        else
+            sb.append(root.getElement()+"\n");
+        toStringRec(root.getLeft(), level+1, sb);
+    }
+
+} //----------- end of BST class -----------
+
+
+
+
+
+
+
