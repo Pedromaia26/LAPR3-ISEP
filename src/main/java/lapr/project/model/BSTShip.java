@@ -64,6 +64,14 @@ public class BSTShip<E extends Comparable<E>> {
         return root==null;
     }
 
+    /*
+     * Finds an element in the tree.
+     */
+    public Ship find(Ship element){
+        if (find(root, element) == null) return null;
+        return find(root, element).getElement();
+    }
+
     /**
      * Returns the Node containing a specific Element, or null otherwise.
      *
@@ -77,7 +85,7 @@ public class BSTShip<E extends Comparable<E>> {
      */
     protected Node<E> find(Node<E> node, Ship element){
         if (node==null || node.getElement().getMmsi()==element.getMmsi())
-            return root;
+            return node;
         if (element.getMmsi() > node.getElement().getMmsi()){
             return find(node.getRight(), element);
         }
@@ -150,9 +158,12 @@ public class BSTShip<E extends Comparable<E>> {
             for(int i=0;i<level-1;i++)
                 sb.append("|\t");
             sb.append("|-------"+root.getElement()+"\n");
+            sb.append(""+root.getElement().getBstDynData() + "\n");
         }
-        else
-            sb.append(root.getElement()+"\n");
+        else {
+            sb.append(root.getElement() + "\n");
+            sb.append("" + root.getElement().getBstDynData() + "\n");
+        }
         toStringRec(root.getLeft(), level+1, sb);
     }
 

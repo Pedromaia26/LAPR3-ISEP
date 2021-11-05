@@ -16,21 +16,21 @@ public class Ship implements Comparable<Ship> {
     private int width;
     private int capacity;
     private float draft;
-    private BSTDynData bstDynData = new BSTDynData();
+    private BSTDynData bstDynData;
 
     public Ship(String mmsi, String shipName, String imo, String callSign, String vesselType, String lenght, String width, String draft) {
         this.mmsi = Integer.parseInt(mmsi);
         this.shipName = shipName;
         this.imo = imo;
-        this.generators = generators;
-        this.genertorPowerOutput = genertorPowerOutput;
+        //this.generators = generators;
+        //this.genertorPowerOutput = genertorPowerOutput;
         this.callSign = callSign;
         this.vesselType = vesselType;
         this.lenght = Integer.parseInt(lenght);
         this.width = Integer.parseInt(width);
         //this.capacity = capacity;
         this.draft = Float.parseFloat(draft);
-        //this.aisMessage = aisMessage;
+        bstDynData = new BSTDynData();
     }
 
 
@@ -83,6 +83,13 @@ public class Ship implements Comparable<Ship> {
         return draft;
     }
 
+    public BSTDynData getBstDynData() {
+        return bstDynData;
+    }
+
+    public void setBstDynData(BSTDynData bstDynData) {
+        this.bstDynData = bstDynData;
+    }
 
     @Override
     public int compareTo(Ship o) {
@@ -91,8 +98,7 @@ public class Ship implements Comparable<Ship> {
 
     @Override
     public String toString() {
-        return "Ships{" +
-                "mmsi='" + mmsi + '\'' +
-                '}';
+        Iterable<BSTDynData> it = bstDynData.inOrder();
+        return "Ships{" + "mmsi='" + mmsi + it + '\'' + "}\n";
     }
 }
