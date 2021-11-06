@@ -12,30 +12,30 @@ public class Ship implements Comparable<Ship> {
     private int genertorPowerOutput;
     private String callSign;
     private String vesselType;
-    private int lenght;
+    private int length;
     private int width;
     private int capacity;
     private float draft;
     private BSTDynData bstDynData;
 
-    public Ship(String mmsi, String shipName, String imo, String callSign, String vesselType, String lenght, String width, String draft) {
+    public Ship(String mmsi, String shipName, String imo, String callSign, String vesselType, String length, String width, String draft) {
         this.mmsi = Integer.parseInt(mmsi);
         this.shipName = shipName;
         this.imo = imo;
-        //this.generators = generators;
-        //this.genertorPowerOutput = genertorPowerOutput;
+        this.generators = 0;
+        this.genertorPowerOutput = 0;
         this.callSign = callSign;
         this.vesselType = vesselType;
-        this.lenght = Integer.parseInt(lenght);
+        this.length = Integer.parseInt(length);
         this.width = Integer.parseInt(width);
-        //this.capacity = capacity;
+        this.capacity = 0;
         this.draft = Float.parseFloat(draft);
         bstDynData = new BSTDynData();
     }
 
 
 
-    public void setDraft(int draft) {
+    public void setDraft(float draft) {
         this.draft = draft;
     }
 
@@ -67,8 +67,8 @@ public class Ship implements Comparable<Ship> {
         return vesselType;
     }
 
-    public int getLenght() {
-        return lenght;
+    public int getLength() {
+        return length;
     }
 
     public int getWidth() {
