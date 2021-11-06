@@ -18,4 +18,8 @@ public class Company {
     public BSTShip getBstShips() {
         return bstShips;
     }
+
+    public void setBstShips(BSTShip shipBST) {
+        bstShips = shipBST;
+    }
 }
