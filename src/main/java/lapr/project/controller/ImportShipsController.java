@@ -41,12 +41,15 @@ public class ImportShipsController {
                     shipBST.insert(ship);
                 }
                 line = br.readLine();
+                br.close();
             }
             //Iterable<Ship> it = shipBST.inOrder();
             //System.out.println(it);
+
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         company.setBstShips(shipBST);
+
     }
 }
