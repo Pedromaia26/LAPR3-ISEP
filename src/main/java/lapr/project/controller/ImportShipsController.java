@@ -2,19 +2,20 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
 public class ImportShipsController {
 
-    public void importFromCSV(String file, Company company){
+    public void importFromCSV(String file, Company company) throws IOException {
         String line = "";
         BSTShip shipBST = new BSTShip();
         BSTDynData shipdyndataBST;
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String splitBy = ",";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
             br.readLine();
             line = br.readLine();
             while (line != null) {
@@ -41,13 +42,15 @@ public class ImportShipsController {
                     shipBST.insert(ship);
                 }
                 line = br.readLine();
-                br.close();
             }
             //Iterable<Ship> it = shipBST.inOrder();
             //System.out.println(it);
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
+        }
+        finally {
+            br.close();
         }
         company.setBstShips(shipBST);
 
