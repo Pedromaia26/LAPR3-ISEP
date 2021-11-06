@@ -8,7 +8,7 @@ import java.text.ParseException;
 
 public class ImportShipsController {
 
-    public void importFromCSV(String file){
+    public void importFromCSV(String file, Company company){
         String line = "";
         BSTShip shipBST = new BSTShip();
         BSTDynData shipdyndataBST;
@@ -47,5 +47,6 @@ public class ImportShipsController {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        company.setBstShips(shipBST);
     }
 }
