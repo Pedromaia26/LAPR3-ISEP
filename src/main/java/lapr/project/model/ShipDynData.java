@@ -13,7 +13,7 @@ public class ShipDynData implements Comparable<ShipDynData> {
     private String latitude;
     private String longitude;
     private float sog;
-    private String cog;
+    private float cog;
     private String heading;
     private int position;
     private String cargo;
@@ -21,24 +21,25 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     public ShipDynData(String baseDateTime, String latitude, String longitude, String sog, String cog, String heading, String cargo, String transceiver) throws ParseException {
         this.baseDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(baseDateTime);
-        if (Float.parseFloat(latitude) < -90 && Float.parseFloat(latitude) > 90)
+        if (Float.parseFloat(latitude) < -90 || Float.parseFloat(latitude) > 90)
             this.latitude = "NA";
         else
             this.latitude = latitude;
 
-        if (Float.parseFloat(longitude) < -180 && Float.parseFloat(longitude) > 180)
+        if (Float.parseFloat(longitude) < -180 || Float.parseFloat(longitude) > 180)
             this.longitude = "NA";
         else
             this.longitude = longitude;
 
         this.sog = Float.parseFloat(sog);
 
-        if (Float.parseFloat(cog) < 0 && Float.parseFloat(cog) > 359)
-            this.cog = "NA";
-        else
-            this.cog = cog;
+        if (Float.parseFloat(cog) < 0)
+            this.cog = Float.parseFloat(cog) + 360;
+        else if (Float.parseFloat(cog) > 359)
+            this.cog = Float.parseFloat(cog) - 360;
+        else this.cog = Float.parseFloat(cog);
 
-        if (Integer.parseInt(heading) < 0 && Integer.parseInt(heading) > 359)
+        if (Integer.parseInt(heading) < 0 || Integer.parseInt(heading) > 359)
             this.heading = "NA";
         else
             this.heading = heading;
@@ -59,7 +60,7 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     @Override
     public String toString() {
-        return this.latitude + this.longitude;
+        return this.latitude + ";" + this.longitude;
     }
 
     @Override
