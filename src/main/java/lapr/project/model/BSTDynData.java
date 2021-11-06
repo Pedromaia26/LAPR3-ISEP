@@ -6,7 +6,9 @@ import java.util.List;
 public class BSTDynData<E extends Comparable<E>> {
 
 
-    /** Nested static class for a binary search tree node. */
+    /**
+     * Nested static class for a binary search tree node.
+     */
 
     protected static class Node<E> {
         private ShipDynData element;          // an element stored at this node
@@ -16,9 +18,9 @@ public class BSTDynData<E extends Comparable<E>> {
         /**
          * Constructs a node with the given element and neighbors.
          *
-         * @param e  the element to be stored
-         * @param leftChild   reference to a left child node
-         * @param rightChild  reference to a right child node
+         * @param e          the element to be stored
+         * @param leftChild  reference to a left child node
+         * @param rightChild reference to a right child node
          */
         public Node(ShipDynData e, Node<E> leftChild, Node<E> rightChild) {
             element = e;
@@ -27,14 +29,30 @@ public class BSTDynData<E extends Comparable<E>> {
         }
 
         // accessor methods
-        public ShipDynData getElement() { return element; }
-        public Node<E> getLeft() { return left; }
-        public Node<E> getRight() { return right; }
+        public ShipDynData getElement() {
+            return element;
+        }
+
+        public Node<E> getLeft() {
+            return left;
+        }
+
+        public Node<E> getRight() {
+            return right;
+        }
 
         // update methods
-        public void setElement(ShipDynData e) { element = e; }
-        public void setLeft(Node<E> leftChild) { left = leftChild; }
-        public void setRight(Node<E> rightChild) { right = rightChild; }
+        public void setElement(ShipDynData e) {
+            element = e;
+        }
+
+        public void setLeft(Node<E> leftChild) {
+            left = leftChild;
+        }
+
+        public void setRight(Node<E> rightChild) {
+            right = rightChild;
+        }
     }
 
     //----------- end of nested Node class -----------
@@ -58,40 +76,62 @@ public class BSTDynData<E extends Comparable<E>> {
      * Verifies if the tree is empty
      * @return true if the tree is empty, false otherwise
      */
-    public boolean isEmpty(){
-        return root==null;
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    /*
+     * Finds an element in the tree.
+     */
+    public ShipDynData find(ShipDynData element) {
+        if (find(root, element) == null) return null;
+        return find(root, element).getElement();
     }
 
     /**
      * Returns the Node containing a specific Element, or null otherwise.
      *
-     * @param element    the element to find
+     * @param element the element to find
      * @return the Node that contains the Element, or null otherwise
-     *
+     * <p>
      * This method despite not being essential is very useful.
      * It is written here in order to be used by this class and its
      * subclasses avoiding recoding.
      * So its access level is protected
      */
-    protected Node<E> find(Node<E> node, ShipDynData element){
-        if (node==null || node.getElement().getBaseDateTime().equals(element.getBaseDateTime()))
+    protected Node<E> find(Node<E> node, ShipDynData element) {
+        if (node == null || node.getElement().getBaseDateTime().equals(element.getBaseDateTime()))
             return root;
-        if (element.getBaseDateTime().after(node.getElement().getBaseDateTime())){
+        if (element.getBaseDateTime().after(node.getElement().getBaseDateTime())) {
             return find(node.getRight(), element);
         }
         return find(node.getLeft(), element);
     }
 
     /*
+     * Returns the number of nodes in the tree.
+     * @return number of nodes in the tree
+     */
+    public int size() {
+        return size(root);
+    }
+
+    private int size(Node<E> node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + size(node.getLeft()) + size(node.getRight());
+    }
+
+    /*
      * Inserts an element in the tree.
      */
-    public void insert(ShipDynData element){
+    public void insert(ShipDynData element) {
         root = insert(element, root);
     }
 
-    private Node<E> insert(ShipDynData element, Node<E> node){
-        if (node == null)
-        {
+    private Node<E> insert(ShipDynData element, Node<E> node) {
+        if (node == null) {
             node = new Node<>(element, null, null);
             return node;
         }
@@ -104,21 +144,24 @@ public class BSTDynData<E extends Comparable<E>> {
         /* return the (unchanged) node pointer */
         return node;
     }
+
     /*
      * Returns an iterable collection of elements of the tree, reported in in-order.
      * @return iterable collection of the tree's elements reported in in-order
      */
-    public Iterable<ShipDynData> inOrder(){
+    public Iterable<ShipDynData> inOrder() {
         List<ShipDynData> snapshot = new ArrayList<>();
-        if (root!=null)
+        if (root != null)
             inOrderSubtree(root, snapshot);   // fill the snapshot recursively
         return snapshot;
     }
+
     /**
      * Adds elements of the subtree rooted at Node node to the given
      * snapshot using an in-order traversal
-     * @param node       Node serving as the root of a subtree
-     * @param snapshot  a list to which results are appended
+     *
+     * @param node     Node serving as the root of a subtree
+     * @param snapshot a list to which results are appended
      */
     private void inOrderSubtree(Node<E> node, List<ShipDynData> snapshot) {
         if (node == null)
@@ -127,13 +170,10 @@ public class BSTDynData<E extends Comparable<E>> {
         snapshot.add(node.getElement());
         inOrderSubtree(node.getRight(), snapshot);
     }
-
+}
 //#########################################################################
 
-    /**
-     * Returns a string representation of the tree.
-     * Draw the tree horizontally
-     */
+    /*
     public String toString(){
         StringBuilder sb = new StringBuilder();
         toStringRec(root, 0, sb);
@@ -154,7 +194,7 @@ public class BSTDynData<E extends Comparable<E>> {
         toStringRec(root.getLeft(), level+1, sb);
     }
 
-} //----------- end of BST class -----------
+} */
 
 
 
