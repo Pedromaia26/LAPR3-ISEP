@@ -29,6 +29,7 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     public ShipDynData(String baseDateTime, String latitude, String longitude, String sog, String cog, String heading, String cargo, String transceiver) throws ParseException {
         this.baseDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(baseDateTime);
+
         if (Float.parseFloat(latitude) < -90 || Float.parseFloat(latitude) > 90)
             this.latitude = "NA";
         else
@@ -56,6 +57,14 @@ public class ShipDynData implements Comparable<ShipDynData> {
         this.cargo = cargo;
         this.transceiver = transceiver;
     }
+    
+    public float getSog() {
+        return sog;
+    }
+
+    public float getCog() {
+        return cog;
+    }
 
     public Date getBaseDateTime() {
         return baseDateTime;
@@ -68,12 +77,13 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     @Override
     public String toString() {
-        return this.latitude + ";" + this.longitude;
+        return this.baseDateTime + "\t" + "LATITUDE: " + this.latitude + "; " + "LONGITUDE: " + this.longitude;
     }
-
     @Override
     public int compareTo(ShipDynData o) {
-        return 0;
+            return 0;
     }
+
+
 }
 
