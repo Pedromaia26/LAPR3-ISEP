@@ -19,6 +19,14 @@ public class ShipDynData implements Comparable<ShipDynData> {
     private String cargo;
     private String transceiver;
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
     public ShipDynData(String baseDateTime, String latitude, String longitude, String sog, String cog, String heading, String cargo, String transceiver) throws ParseException {
         this.baseDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(baseDateTime);
         if (Float.parseFloat(latitude) < -90 || Float.parseFloat(latitude) > 90)
