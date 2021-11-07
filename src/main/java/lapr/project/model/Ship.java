@@ -5,17 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 public class Ship implements Comparable<Ship> {
-    private int mmsi;
-    private String shipName;
-    private String imo;
-    private int generators;
-    private int genertorPowerOutput;
-    private String callSign;
-    private String vesselType;
-    private int length;
-    private int width;
-    private int capacity;
-    private float draft;
+    private final int mmsi;
+    private final String shipName;
+    private final String imo;
+    private final int generators;
+    private final int genertorPowerOutput;
+    private final String callSign;
+    private final String vesselType;
+    private final int length;
+    private final int width;
+    private final int capacity;
+    private final float draft;
     private BSTDynData bstDynData;
 
     public Ship(String mmsi, String shipName, String imo, String callSign, String vesselType, String length, String width, String draft) {

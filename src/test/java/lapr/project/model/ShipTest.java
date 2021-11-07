@@ -9,25 +9,23 @@ public class ShipTest {
     Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
 
     @Test(expected = IllegalArgumentException.class)
-    public void ShipInstanceIllegalArgumentMMSI(){
+    public void ShipInstanceIllegalArgumentMMSIUnder(){
         Ship ship2 = new Ship("12345678", "ship", "1000000000", "callSign", "A", "100", "500", "3");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void ShipInstanceIllegalArgumentIMO(){
+    public void ShipInstanceIllegalArgumentIMOUnder(){
         Ship ship2 = new Ship("123456789", "ship", "100000000", "callSign", "A", "100", "500", "3");
     }
 
-    @Test
-    public void ShipInstanceCorrectMMSI(){
-        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
-        assertEquals(123456789, ship2.getMmsi());
+    @Test(expected = IllegalArgumentException.class)
+    public void ShipInstanceIllegalArgumentMMSIAbove(){
+        Ship ship2 = new Ship("1234567890", "ship", "1000000000", "callSign", "A", "100", "500", "3");
     }
 
-    @Test
-    public void ShipInstanceCorrectIMO(){
-        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
-        assertEquals("1000000000", ship2.getImo());
+    @Test(expected = IllegalArgumentException.class)
+    public void ShipInstanceIllegalArgumentIMOAbove(){
+        Ship ship2 = new Ship("123456789", "ship", "10000000000", "callSign", "A", "100", "500", "3");
     }
 
     @Test
