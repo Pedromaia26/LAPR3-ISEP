@@ -19,8 +19,10 @@ public class Ship implements Comparable<Ship> {
     private BSTDynData bstDynData;
 
     public Ship(String mmsi, String shipName, String imo, String callSign, String vesselType, String length, String width, String draft) {
+        if (mmsi.length() != 9) throw new IllegalArgumentException("Invalid mmsi");
         this.mmsi = Integer.parseInt(mmsi);
         this.shipName = shipName;
+        if (imo.length() != 10) throw new IllegalArgumentException("Invalid imo: should be imo more 7 characters");
         this.imo = imo;
         this.generators = 0;
         this.genertorPowerOutput = 0;
