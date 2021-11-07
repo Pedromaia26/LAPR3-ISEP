@@ -82,7 +82,8 @@ public class Ship implements Comparable<Ship> {
 
     @Override
     public String toString() {
-        Iterable<BSTDynData> it = bstDynData.inOrder();
-        return "Ships{" + "mmsi='" + mmsi + '\'' + it + "}\n";
+        return "Ships{" +
+                "mmsi='" + mmsi + '\'' +
+                '}';
     }
 }

@@ -88,7 +88,7 @@ class BSTShipTest {
     void inOrder() {
         Ship ship1 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
         bst.insert(ship1);
-        String lExpected = "[Ships{mmsi='123455789'[]}\n]";
+        String lExpected = "[Ships{mmsi='123455789'}]";
         assertEquals(lExpected, bst.inOrder().toString());
     }
 }
