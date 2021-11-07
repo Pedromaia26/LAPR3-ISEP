@@ -11,31 +11,33 @@ public class PairController {
 
         List<Ship> shipList = (List<Ship>) company.getBstShips().inOrder();
         Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
-        float latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, departureDistance, arrivalDistance, dist1, dist2, dist3;
+        double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
 
         for (int i = 0; i < shipList.size()-1; i++) {
 
             boolean exists = false;
             List<Ship> teste = new ArrayList<>();
-            List<Float> distances = new ArrayList<>();
+            List<Double> distances = new ArrayList<>();
 
             for (int j = i+1; j < shipList.size() ; j++) {
 
                 System.out.println("------------");
                 System.out.println(shipList.get(i).getMmsi()  + "/" + shipList.get(j).getMmsi());
 
-                latD1 = Float.parseFloat(shipList.get(i).getBstDynData().departure().getLatitude());
-                lngD1 = Float.parseFloat(shipList.get(i).getBstDynData().departure().getLongitude());
-                latA1 = Float.parseFloat(shipList.get(i).getBstDynData().arrival().getLatitude());
-                lngA1 = Float.parseFloat(shipList.get(i).getBstDynData().arrival().getLongitude());
-
-                latD2 = Float.parseFloat(shipList.get(j).getBstDynData().departure().getLatitude());
-                lngD2 = Float.parseFloat(shipList.get(j).getBstDynData().departure().getLongitude());
-                latA2 = Float.parseFloat(shipList.get(j).getBstDynData().arrival().getLatitude());
-                lngA2 = Float.parseFloat(shipList.get(j).getBstDynData().arrival().getLongitude());
 
 
-                dist1 = shipList.get(i).getBstDynData().travelledDistance(latD1, lngD1, latA1, lngA1);
+                latD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLatitude());
+                lngD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLongitude());
+                latA1 = Double.parseDouble(shipList.get(i).getBstDynData().arrival().getLatitude());
+                lngA1 = Double.parseDouble(shipList.get(i).getBstDynData().arrival().getLongitude());
+
+                latD2 = Double.parseDouble(shipList.get(j).getBstDynData().departure().getLatitude());
+                lngD2 = Double.parseDouble(shipList.get(j).getBstDynData().departure().getLongitude());
+                latA2 = Double.parseDouble(shipList.get(j).getBstDynData().arrival().getLatitude());
+                lngA2 = Double.parseDouble(shipList.get(j).getBstDynData().arrival().getLongitude());
+
+
+                dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance();
                 System.out.printf("Travelled distance between departure and arrival (Ship1): %.0f m\n", dist1);
 
                 if (dist1 < 10000){
@@ -43,7 +45,7 @@ public class PairController {
                     break;
                 }
 
-                dist2 = shipList.get(i).getBstDynData().travelledDistance(latD2, lngD2, latA2, lngA2);
+                dist2 = shipList.get(i).getBstDynData().inorderCalculateDistance();
                 System.out.printf("Travelled distance between departure and arrival (Ship2): %.0f m\n", dist2);
 
                 if (dist2 < 10000){

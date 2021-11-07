@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class BSTDynData<E extends Comparable<E>> {
@@ -216,15 +217,15 @@ public class BSTDynData<E extends Comparable<E>> {
     }
 
 
-    public float travelledDistance (float lat1, float lng1, float lat2, float lng2){
+    public double travelledDistance (double lat1, double lng1, double lat2, double lng2){
 
-        float dist = distFrom(lat1, lng1, lat2, lng2);
+        double dist = distFrom(lat1, lng1, lat2, lng2);
 
         return dist;
 
     }
 
-    public float distFrom(float lat1, float lng1, float lat2, float lng2) {
+    public double distFrom(double lat1, double lng1, double lat2, double lng2) {
         double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
@@ -236,10 +237,56 @@ public class BSTDynData<E extends Comparable<E>> {
 
         return dist;
     }
-}
+
+
+    public double inorderCalculateDistance() {
+        Iterable<ShipDynData> messages = inOrder();
+
+        Iterator<ShipDynData> iterator = messages.iterator();
+
+        ShipDynData aux = iterator.next();
+
+        double totalDistance = 0;
+        while (iterator.hasNext()){
+            ShipDynData naux= iterator.next();
+            if(aux.getLatitude().equals("NA") || aux.getLongitude().equals("NA") || naux.getLatitude().equals("NA") || naux.getLongitude().equals("NA")){
+                totalDistance=totalDistance+0;
+            }
+            else {
+                totalDistance = totalDistance + travelledDistance(Float.parseFloat(aux.getLatitude()), Float.parseFloat(aux.getLongitude()), Float.parseFloat(naux.getLatitude()), Float.parseFloat(naux.getLongitude()));
+            }
+            aux=naux;
+        }
+        return totalDistance;
+    }
+
+    public double inorderCalculateDistance(String lat1, String lng1, String lat2, String lng2) {
+        Iterable<ShipDynData> messages = inOrder();
+
+        Iterator<ShipDynData> iterator = messages.iterator();
+
+        ShipDynData aux = iterator.next();
+
+        double totalDistance = 0;
+        while (iterator.hasNext()){
+            ShipDynData naux= iterator.next();
+            if(aux.getLatitude().equals("NA") || aux.getLongitude().equals("NA") || naux.getLatitude().equals("NA") || naux.getLongitude().equals("NA")){
+                totalDistance=totalDistance+0;
+            }
+            else {
+                totalDistance = totalDistance + travelledDistance(Float.parseFloat(aux.getLatitude()), Float.parseFloat(aux.getLongitude()), Float.parseFloat(naux.getLatitude()), Float.parseFloat(naux.getLongitude()));
+            }
+            aux=naux;
+        }
+        return totalDistance;
+    }
+
 //#########################################################################
 
-    /*
+
+
+
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
         toStringRec(root, 0, sb);
@@ -249,18 +296,17 @@ public class BSTDynData<E extends Comparable<E>> {
     private void toStringRec(Node<E> root, int level, StringBuilder sb){
         if(root==null)
             return;
-        toStringRec(root.getRight(), level+1, sb);
+        toStringRec(root.getLeft(), level+1, sb);
         if (level!=0){
-            for(int i=0;i<level-1;i++)
-                sb.append("|\t");
-            sb.append("|-------"+root.getElement()+"\n");
+            sb.append(root.getElement()+"\n");
         }
         else
             sb.append(root.getElement()+"\n");
-        toStringRec(root.getLeft(), level+1, sb);
+
+        toStringRec(root.getRight(), level+1, sb);
     }
 
-} */
+}
 
 
 
