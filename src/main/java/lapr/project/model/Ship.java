@@ -35,12 +35,6 @@ public class Ship implements Comparable<Ship> {
         bstDynData = new BSTDynData();
     }
 
-
-
-    public void setDraft(float draft) {
-        this.draft = draft;
-    }
-
     public int getMmsi() {
         return mmsi;
     }
@@ -51,14 +45,6 @@ public class Ship implements Comparable<Ship> {
 
     public String getImo() {
         return imo;
-    }
-
-    public int getGenerators() {
-        return generators;
-    }
-
-    public int getGenertorPowerOutput() {
-        return genertorPowerOutput;
     }
 
     public String getCallSign() {
@@ -75,10 +61,6 @@ public class Ship implements Comparable<Ship> {
 
     public int getWidth() {
         return width;
-    }
-
-    public int getCapacity() {
-        return capacity;
     }
 
     public float getDraft() {

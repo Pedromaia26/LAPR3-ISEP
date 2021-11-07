@@ -19,10 +19,15 @@ public class ShipTest {
     }
 
     @Test
-    public void setDraft() {
-        float draft = 5;
-        ship.setDraft(draft);
-        assertEquals(draft, ship.getDraft());
+    public void ShipInstanceCorrectMMSI(){
+        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        assertEquals(123456789, ship2.getMmsi());
+    }
+
+    @Test
+    public void ShipInstanceCorrectIMO(){
+        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        assertEquals("1000000000", ship2.getImo());
     }
 
     @Test
@@ -37,20 +42,6 @@ public class ShipTest {
         String imoExpected = "1000000000";
         String imo = ship.getImo();
         assertEquals(imoExpected, imo);
-    }
-
-    @Test
-    public void getGenerators() {
-        int generatorExpected = 0;
-        int generator = ship.getGenerators();
-        assertEquals(generatorExpected, generator);
-    }
-
-    @Test
-    public void getGenertorPowerOutput() {
-        int generatorPowerOutputExpected = 0;
-        int generatorPowerOutput = ship.getGenertorPowerOutput();
-        assertEquals(generatorPowerOutputExpected, generatorPowerOutput);
     }
 
     @Test
@@ -79,13 +70,6 @@ public class ShipTest {
         int widthExpected = 500;
         int width = ship.getWidth();
         assertEquals(widthExpected, width);
-    }
-
-    @Test
-    public void getCapacity() {
-        int capacityExpected = 0;
-        int capacity = ship.getCapacity();
-        assertEquals(capacityExpected, capacity);
     }
 
     @Test
