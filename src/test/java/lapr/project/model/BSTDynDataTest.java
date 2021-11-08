@@ -3,7 +3,9 @@ package lapr.project.model;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -57,8 +59,7 @@ class BSTDynDataTest {
         bst.insert(sdd3);
         bst.insert(sdd4);
         ShipDynData sdd5 = bst.find(sdd4);
-        //assertEquals(sdd5, sdd4);
-        assertEquals(sdd5.toString(),sdd4.toString());
+        assertEquals(sdd4.toString(),sdd5.toString());
     }
 
     @Test
@@ -95,8 +96,8 @@ class BSTDynDataTest {
     void inOrder() throws ParseException {
         ShipDynData sdd = new ShipDynData("01/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
         bst.insert(sdd);
-        String lExpected = "[50;50]";
-        assertEquals(lExpected, bst.inOrder().toString());
+        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("01/01/2021 13:50");
+        assertEquals("[" + date + "\tLATITUDE: 50; LONGITUDE: 50]", bst.inOrder().toString());
     }
 
     @Test

@@ -106,12 +106,15 @@ public class BSTDynData<E extends Comparable<E>> {
      * So its access level is protected
      */
     protected Node<E> find(Node<E> node, ShipDynData element) {
-        if (node == null || node.getElement().getBaseDateTime().equals(element.getBaseDateTime()))
-            return root;
-        if (element.getBaseDateTime().after(node.getElement().getBaseDateTime())) {
+
+        if (node == null || node.getElement().getBaseDateTime().compareTo(element.getBaseDateTime()) == 0)
+            return node;
+        if (element.getBaseDateTime().compareTo(node.getElement().getBaseDateTime()) > 0) {
             return find(node.getRight(), element);
         }
-        return find(node.getLeft(), element);
+        else {
+            return find(node.getLeft(), element);
+        }
     }
 
     /*
@@ -265,6 +268,7 @@ public class BSTDynData<E extends Comparable<E>> {
         return totalDistance;
     }
 
+
     public ShipDynData searchSpecificDate(Date date){
 
         ShipDynData sdd;
@@ -313,10 +317,7 @@ public class BSTDynData<E extends Comparable<E>> {
         searchSpecificDatePeriod(node.getRight(),date1,date2);
 
     }
-
-
-
-
+    
 //#########################################################################
 
 

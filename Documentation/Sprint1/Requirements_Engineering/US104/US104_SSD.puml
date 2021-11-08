@@ -1,0 +1,30 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":System" as System
+
+autonumber
+activate Adm
+Adm -> System: Requires a summary of a ship's movements.
+activate System
+System --> Adm: shows the list of codes to identify the ship and request to select one of them
+deactivate System
+Adm -> System: selects an code
+activate System
+alt code = 'MMSI'
+    System --> Adm: request data(MMSI)
+else code = 'IMO'
+    System --> Adm: request data(IMO)
+else code = 'Call Sign'
+    System --> Adm: request data(callSign)
+end
+deactivate System
+Adm -> System: types requested data
+activate System
+System --> Adm: shows the summary of the selected ship
+deactivate System
+Adm -> System: confirms the data
+activate System
+System --> Adm: informs operation success
+deactivate System
+deactivate Adm
+@enduml
