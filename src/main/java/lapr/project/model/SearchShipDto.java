@@ -134,7 +134,7 @@ public class SearchShipDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SearchShipDto that = (SearchShipDto) o;
-        return mmsi == that.mmsi && Objects.equals(imo, that.imo) && Objects.equals(callSign, that.callSign);
+        return mmsi == that.mmsi;
     }
 }
 
