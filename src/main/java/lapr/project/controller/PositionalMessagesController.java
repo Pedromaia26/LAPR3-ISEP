@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.model.BSTDynData;
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
 import lapr.project.model.ShipDynData;
@@ -16,6 +17,7 @@ public class PositionalMessagesController {
     int mmsi;
     String date, date1, date2;
     Ship selected;
+    BSTDynData bstDynData = new BSTDynData();
 
     public void message (Company c) throws ParseException {
         List<Ship> ships = (List<Ship>) c.getBstShips().inOrder();
@@ -28,6 +30,7 @@ public class PositionalMessagesController {
         System.out.print("\nSelect the ship whose positional messages you want to access (MMSI): ");
         mmsi = sc.nextInt();
 
+
         for (Ship s: ships) {
             if (mmsi == s.getMmsi()) {
                 System.out.printf("Ship selected: %s\n", s);
@@ -36,37 +39,38 @@ public class PositionalMessagesController {
             }
         }
 
+        System.out.println("Choose an option:");
+        System.out.println("1 - Date");
+        System.out.println("2 - Period");
 
+        int opt = sc.nextInt();
 
+        if (opt==1){
 
-        /*System.out.print("\nSelect the date: ");
-        sc.nextLine();
-        date = sc.nextLine();
-        Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date);
+            sc.nextLine();
 
-        for (Ship s: ships) {
-            for (ShipDynData d: (List<ShipDynData>) s.getBstDynData().inOrder()){
-                if (newDate.equals(d.getBaseDateTime())){
-                    System.out.println(d);
-                }
-            }
-        }*/
+            System.out.print("\nSelect the date: ");
+            date = sc.nextLine();
+            Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date);
 
+            System.out.println(selected.getBstDynData().searchSpecificDate(newDate).getBaseDateTime());
 
-        System.out.print("\nSelect the period: ");
-        sc.nextLine();
-        date1 = sc.nextLine();
-        date2 = sc.nextLine();
+        }else if (opt==2) {
 
-        Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date1);
-        Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date2);
+            sc.nextLine();
 
-        for (ShipDynData d: (List<ShipDynData>) selected.getBstDynData().inOrder()){
-            if (dateN.before(d.getBaseDateTime()) && dateM.after(d.getBaseDateTime())){
-                    System.out.println(d);
+            System.out.print("\nSelect the period: ");
+            date1 = sc.nextLine();
+            date2 = sc.nextLine();
+
+            Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date1);
+            Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date2);
+
+            List<ShipDynData> list = selected.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
+
+            for (ShipDynData l : list) {
+                System.out.println(l.getBaseDateTime());
             }
         }
-
-
     }
 }
