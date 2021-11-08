@@ -57,8 +57,7 @@ class BSTDynDataTest {
         bst.insert(sdd3);
         bst.insert(sdd4);
         ShipDynData sdd5 = bst.find(sdd4);
-        //assertEquals(sdd5, sdd4);
-        assertEquals(sdd5.toString(),sdd4.toString());
+        assertEquals(sdd4.toString(),sdd5.toString());
     }
 
     @Test
@@ -95,7 +94,7 @@ class BSTDynDataTest {
     void inOrder() throws ParseException {
         ShipDynData sdd = new ShipDynData("01/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
         bst.insert(sdd);
-        String lExpected = "[50;50]";
+        String lExpected = "[Fri Jan 01 13:50:00 WET 2021\tLATITUDE: 50; LONGITUDE: 50]";
         assertEquals(lExpected, bst.inOrder().toString());
     }
 
