@@ -1,0 +1,65 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":MakeSummaryUI" as Interface
+participant ":SearchShipController" as Controller
+participant ":Company" as Company
+participant "shipBST \n :BSTShip" as shipBST
+participant "myWriter \n :FileWriter" as fileWriter
+participant "bstDynData \n :BSTDynData" as bstdyndata
+
+autonumber
+activate Adm
+Adm -> Interface: requires a summary of a ship's movements
+activate Interface
+alt code = 'MMSI'
+    Interface -> Controller: request data(mmsi)
+    activate Controller
+    Controller -> Company: shipBST = getBstShips()
+    activate Company
+    deactivate Company
+    Controller -> shipBST: ship = ShipSearchByMmsi(mmsi)
+    activate shipBST
+    deactivate shipBST
+    Controller --> Interface
+    deactivate Controller
+else code = 'IMO'
+    Interface -> Controller: request data(IMO)
+    activate Controller
+    Controller -> Company: shipBST = getBstShips()
+    activate Company
+    deactivate Company
+    Controller -> shipBST: ship = ShipSearchByImo(imo)
+    activate shipBST
+    deactivate shipBST
+    Controller --> Interface
+    deactivate Controller
+else code = 'Call Sign'
+    Interface -> Controller: request data(callSign)
+    activate Controller
+    Controller -> Company: shipBST = getBstShips()
+    activate Company
+    deactivate Company
+    Controller -> shipBST: ship = ShipSearchByCallSign(callsign)
+    activate shipBST
+    deactivate shipBST
+    Controller --> Interface
+    deactivate Controller
+end
+deactivate Controller
+activate Interface
+Interface -> Controller: searchDeatils(ship)
+activate Controller
+Controller -> bstdyndata: get general info
+activate bstdyndata
+bstdyndata --> Controller: info
+deactivate bstdyndata
+Controller -> fileWriter: write the info in a file
+activate fileWriter
+fileWriter --> Controller: file with the info
+deactivate fileWriter
+Controller --> Interface: file
+deactivate Controller
+Interface --> Adm: file
+deactivate Interface
+deactivate Adm
+@enduml
