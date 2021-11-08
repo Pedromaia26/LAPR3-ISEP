@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import oracle.jdbc.driver.Message;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
