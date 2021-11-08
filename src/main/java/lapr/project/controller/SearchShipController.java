@@ -54,9 +54,9 @@ public class SearchShipController {
         return SearchShipMapper.toDto(this.ship).toString();
     }
 
-    public void searchDeatils(Ship ship){
+    public void searchDeatils(Ship ship) throws IOException {
+        FileWriter myWriter = new FileWriter(String.valueOf(ship.getMmsi()) + "details.txt");
         try {
-            FileWriter myWriter = new FileWriter(String.valueOf(ship.getMmsi()) + "details.txt");
             myWriter.write("Details of the ship " + String.valueOf(ship.getMmsi()) + ":\n");
             myWriter.write("Vessel Name: " + ship.getVesselType() + "\n");
             myWriter.write("Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n");
@@ -97,6 +97,9 @@ public class SearchShipController {
             myWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            myWriter.close();
         }
     }
 
