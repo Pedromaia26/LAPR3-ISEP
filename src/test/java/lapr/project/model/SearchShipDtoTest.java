@@ -159,4 +159,11 @@ class SearchShipDtoTest {
         int num = 10;
         assertNotEquals(shipdto1, num);
     }
+
+    @Test
+    void testEqualsSameObject() {
+        Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto1 = new SearchShipDto(ship);
+        assertEquals(shipdto1, shipdto1);
+    }
 }
