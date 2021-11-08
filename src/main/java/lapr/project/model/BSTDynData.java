@@ -1,10 +1,15 @@
 package lapr.project.model;
 
+import oracle.jdbc.driver.Message;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 public class BSTDynData<E extends Comparable<E>> {
+
+    List<ShipDynData> list = new ArrayList<>();
 
 
     /**
@@ -260,26 +265,57 @@ public class BSTDynData<E extends Comparable<E>> {
         return totalDistance;
     }
 
-    public double inorderCalculateDistance(String lat1, String lng1, String lat2, String lng2) {
-        Iterable<ShipDynData> messages = inOrder();
+    public ShipDynData searchSpecificDate(Date date){
 
-        Iterator<ShipDynData> iterator = messages.iterator();
+        ShipDynData sdd;
+        sdd = searchSpecificDatePeriod(root, date);
+        return sdd;
 
-        ShipDynData aux = iterator.next();
-
-        double totalDistance = 0;
-        while (iterator.hasNext()){
-            ShipDynData naux= iterator.next();
-            if(aux.getLatitude().equals("NA") || aux.getLongitude().equals("NA") || naux.getLatitude().equals("NA") || naux.getLongitude().equals("NA")){
-                totalDistance=totalDistance+0;
-            }
-            else {
-                totalDistance = totalDistance + travelledDistance(Float.parseFloat(aux.getLatitude()), Float.parseFloat(aux.getLongitude()), Float.parseFloat(naux.getLatitude()), Float.parseFloat(naux.getLongitude()));
-            }
-            aux=naux;
-        }
-        return totalDistance;
     }
+
+    public ShipDynData searchSpecificDatePeriod(Node<E> node, Date date) {
+
+        if (node==null){
+            return null;
+        }
+
+        if(date.compareTo(node.getElement().getBaseDateTime())<0){
+            searchSpecificDatePeriod(node.getLeft(), date);
+        }
+
+        if(date.compareTo(node.getElement().getBaseDateTime())==0) {
+            return node.getElement();
+        }
+
+        return searchSpecificDatePeriod(node.getRight(),date);
+
+    }
+
+    public List<ShipDynData> searchSpecificDatePeriodcall(Date date1, Date date2){
+
+        searchSpecificDatePeriod(root, date1, date2);
+        return list;
+    }
+
+    public void searchSpecificDatePeriod(Node<E> node, Date date1, Date date2) {
+
+        if(node == null){
+            return;
+        }
+        if(date1.before(node.getElement().getBaseDateTime())){
+            searchSpecificDatePeriod(node.getLeft(),date1,date2);
+        }
+
+        if(date1.compareTo(node.getElement().getBaseDateTime())<=0 && date2.compareTo(node.getElement().getBaseDateTime())>=0){
+            list.add(node.getElement());
+        }
+
+        searchSpecificDatePeriod(node.getRight(),date1,date2);
+
+    }
+
+
+
 
 //#########################################################################
 
