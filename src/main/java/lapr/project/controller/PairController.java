@@ -38,15 +38,15 @@ public class PairController {
 
 
                 dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance();
-                System.out.printf("Travelled distance between departure and arrival (Ship1): %.0f m\n", dist1);
+                System.out.printf("Travelled distance between departure and arrival (Ship1): %.2f m\n", dist1);
 
                 if (dist1 < 10000){
                     System.out.println("Ship1 travelled less than 10 km.");
                     break;
                 }
 
-                dist2 = shipList.get(i).getBstDynData().inorderCalculateDistance();
-                System.out.printf("Travelled distance between departure and arrival (Ship2): %.0f m\n", dist2);
+                dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance();
+                System.out.printf("Travelled distance between departure and arrival (Ship2): %.2f m\n", dist2);
 
                 if (dist2 < 10000){
                     System.out.println("Ship2 travelled less than 10 km.");
@@ -55,12 +55,15 @@ public class PairController {
 
 
                 dist3 = Math.abs(dist2-dist1);
-                System.out.println("Distance between ships: " + dist3 + "km");
+
 
                 departureDistance = shipList.get(i).getBstDynData().travelledDistance(latD1, lngD1, latD2, lngD2);
                 arrivalDistance = shipList.get(i).getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
 
-                if (departureDistance < 5000000 || arrivalDistance < 5000000) {
+                System.out.printf("Distance between ships departure: %.2f m\n", Math.abs(departureDistance));
+                System.out.printf("Distance between ships arrival: %.2f m\n", Math.abs(arrivalDistance));
+
+                if (dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)) {
 
                     distances.add(dist3);
                     teste.add(shipList.get(j));
@@ -73,8 +76,6 @@ public class PairController {
                     System.out.println("Distant coordinates between departures/arrivals");
 
             }
-
-
 
             if (exists == true){
                 for(int l=0; l < distances.size(); l++){
@@ -99,8 +100,6 @@ public class PairController {
                     }
                 }
             }
-
         }
-
     }
 }
