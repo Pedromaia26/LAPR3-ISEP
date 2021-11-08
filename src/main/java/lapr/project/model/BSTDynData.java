@@ -260,27 +260,6 @@ public class BSTDynData<E extends Comparable<E>> {
         return totalDistance;
     }
 
-    public double inorderCalculateDistance(String lat1, String lng1, String lat2, String lng2) {
-        Iterable<ShipDynData> messages = inOrder();
-
-        Iterator<ShipDynData> iterator = messages.iterator();
-
-        ShipDynData aux = iterator.next();
-
-        double totalDistance = 0;
-        while (iterator.hasNext()){
-            ShipDynData naux= iterator.next();
-            if(aux.getLatitude().equals("NA") || aux.getLongitude().equals("NA") || naux.getLatitude().equals("NA") || naux.getLongitude().equals("NA")){
-                totalDistance=totalDistance+0;
-            }
-            else {
-                totalDistance = totalDistance + travelledDistance(Float.parseFloat(aux.getLatitude()), Float.parseFloat(aux.getLongitude()), Float.parseFloat(naux.getLatitude()), Float.parseFloat(naux.getLongitude()));
-            }
-            aux=naux;
-        }
-        return totalDistance;
-    }
-
 //#########################################################################
 
 
