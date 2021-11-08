@@ -126,4 +126,40 @@ class SearchShipDtoTest {
         shipdto.setDraft(draft);
         assertEquals(draft, shipdto.getDraft());
     }
+
+    @Test
+    void testNotEqualsMMSI() {
+        Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto1 = new SearchShipDto(ship);
+        Ship ship2 = new Ship("123456789", "ship", "1000000001", "callSign1", "A", "100", "500", "3");
+        SearchShipDto shipdto2 = new SearchShipDto(ship2);
+        assertNotEquals(shipdto2, shipdto1);
+    }
+
+    @Test
+    void testNotEqualsIMO() {
+        Ship ship = new Ship("123456788", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto1 = new SearchShipDto(ship);
+        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign1", "A", "100", "500", "3");
+        SearchShipDto shipdto2 = new SearchShipDto(ship2);
+        assertNotEquals(shipdto2, shipdto1);
+    }
+
+    @Test
+    void testNotEqualsCallSign() {
+        Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto1 = new SearchShipDto(ship);
+        Ship ship2 = new Ship("123456788", "ship", "1000000001", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto2 = new SearchShipDto(ship2);
+        assertNotEquals(shipdto2, shipdto1);
+    }
+
+    @Test
+    void testEquals() {
+        Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto1 = new SearchShipDto(ship);
+        Ship ship2 = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        SearchShipDto shipdto2 = new SearchShipDto(ship2);
+        assertEquals(shipdto2, shipdto1);
+    }
 }

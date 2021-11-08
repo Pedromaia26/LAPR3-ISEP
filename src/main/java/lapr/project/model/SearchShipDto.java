@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import java.util.Objects;
+
 public class SearchShipDto {
 
     private int mmsi;
@@ -125,6 +127,14 @@ public class SearchShipDto {
 
     public void setDraft(float draft) {
         this.draft = draft;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SearchShipDto that = (SearchShipDto) o;
+        return mmsi == that.mmsi && Objects.equals(imo, that.imo) && Objects.equals(callSign, that.callSign);
     }
 }
 
