@@ -18,24 +18,24 @@ class MakeSummaryUI {
 
     public static void main(String[] args) throws IOException, SQLException{
         Scanner ler = new Scanner(System.in);
-        SearchShipController createSearchShipController = new SearchShipController();
+        //SearchShipController createSearchShipController = new SearchShipController();
 
         System.out.println("Select the parameter you want to search --> 1 - MMSI || 2 - IMO || 3 - Call Sign");
         int a = ler.nextInt();
         if(a==1){
             System.out.println("Insert the ship MMSI:");
             int mmsi = ler.nextInt();
-            createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByMmsi(mmsi));
+            //createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByMmsi(mmsi));
         }
         if(a==2){
             System.out.println("Insert the ship IMO:");
             String imo = ler.next();
-            createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByImo(imo));
+            //createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByImo(imo));
         }
         if(a==3){
             System.out.println("Insert the ship Call Sign:");
             String callsign = ler.next();
-            createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByCallSign(callsign));
+            //createSearchShipController.searchDeatils(createSearchShipController.ShipSearchByCallSign(callsign));
         }
     }
 }

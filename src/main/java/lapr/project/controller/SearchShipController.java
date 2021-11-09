@@ -14,6 +14,10 @@ public class SearchShipController {
     BSTShip shipBST = new BSTShip();
     private Ship ship;
 
+    public SearchShipController(BSTShip shipBST) {
+        this.shipBST = shipBST;
+    }
+
     public Ship ShipSearchByMmsi(int mmsi){
         Iterable<Ship> ships = shipBST.inOrder();
         for(Ship a : ships ){
@@ -50,9 +54,9 @@ public class SearchShipController {
         return (null);
     }
 
-    public String getSearchShipData(){
+    /*public String getSearchShipData(){
         return SearchShipMapper.toDto(this.ship).toString();
-    }
+    }*/
 
     public void searchDeatils(Ship ship) throws IOException {
         FileWriter myWriter = new FileWriter(String.valueOf(ship.getMmsi()) + "details.txt");
@@ -88,10 +92,10 @@ public class SearchShipController {
             float departureLongitude = Float.parseFloat(ship.getBstDynData().departure().getLongitude());
             float arrivalLatitude = Float.parseFloat(ship.getBstDynData().arrival().getLatitude());
             float arrivalLongitude = Float.parseFloat(ship.getBstDynData().arrival().getLongitude());
-            myWriter.write("Departure Latitude: " + departureLatitude);
-            myWriter.write("Departure Longitude: " + departureLongitude);
-            myWriter.write("Arrival Latitude: " + arrivalLatitude);
-            myWriter.write("Arrival Longitude: " + arrivalLongitude);
+            myWriter.write("Departure Latitude: " + departureLatitude + "\n");
+            myWriter.write("Departure Longitude: " + departureLongitude + "\n");
+            myWriter.write("Arrival Latitude: " + arrivalLatitude + "\n");
+            myWriter.write("Arrival Longitude: " + arrivalLongitude + "\n");
             myWriter.write("Travelled distance: " + ship.getBstDynData().inorderCalculateDistance() + "m\n");
             myWriter.write("Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n");
             myWriter.close();
