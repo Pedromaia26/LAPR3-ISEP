@@ -69,9 +69,25 @@ public class ShipDynDataTest {
     }
 
     @Test
+    public void latitudeEqualsNegative90() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-90", "22.81780",  "14.4", "11.2", "347", "NA", "B");;
+        String expectedLatitude = "-90";
+        String latitude = sdd.getLatitude();
+        assertEquals(expectedLatitude, latitude);
+    }
+
+    @Test
     public void latitudeOver90() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "96.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");;
         String expectedLatitude = "NA";
+        String latitude = sdd.getLatitude();
+        assertEquals(expectedLatitude, latitude);
+    }
+
+    @Test
+    public void latitudeEquals90() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "90", "22.81780",  "14.4", "11.2", "347", "NA", "B");;
+        String expectedLatitude = "90";
         String latitude = sdd.getLatitude();
         assertEquals(expectedLatitude, latitude);
     }
