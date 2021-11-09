@@ -44,6 +44,13 @@ public class ShipDynDataTest {
     }
 
     @Test
+    public void getHeading() {
+        String expectedHeading = "347";
+        String heading = sdd.getHeading();
+        assertEquals(expectedHeading, heading);
+    }
+
+    @Test
     public void getBaseDateTime() throws ParseException {
         String expectedBaseDateTime = "31/12/2020 19:25";
         Date expectedBaseDateTime2 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(expectedBaseDateTime);
