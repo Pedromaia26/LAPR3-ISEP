@@ -66,6 +66,10 @@ public class ShipDynData implements Comparable<ShipDynData> {
         return cog;
     }
 
+    public String getHeading() {
+        return heading;
+    }
+
     public Date getBaseDateTime() {
         return baseDateTime;
     }
