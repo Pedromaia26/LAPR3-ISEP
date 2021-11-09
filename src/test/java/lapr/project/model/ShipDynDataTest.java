@@ -99,6 +99,15 @@ public class ShipDynDataTest {
         String longitude = sdd.getLongitude();
         assertEquals(expectedLongitude, longitude);
     }
+
+    @Test
+    public void longitudeEqualsNegative180() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "-180",  "14.4", "11.2", "347", "NA", "B");;
+        String expectedLongitude = "-180";
+        String longitude = sdd.getLongitude();
+        assertEquals(expectedLongitude, longitude);
+    }
+
     @Test
     public void longitudeOver180() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "200.13121",  "14.4", "11.2", "347", "NA", "B");;
@@ -106,6 +115,15 @@ public class ShipDynDataTest {
         String longitude = sdd.getLongitude();
         assertEquals(expectedLongitude, longitude);
     }
+
+    @Test
+    public void longitudeEquals180() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "180",  "14.4", "11.2", "347", "NA", "B");;
+        String expectedLongitude = "180";
+        String longitude = sdd.getLongitude();
+        assertEquals(expectedLongitude, longitude);
+    }
+
     @Test
     public void cogUnder0() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "-4.0", "347", "NA", "B");;
@@ -113,10 +131,27 @@ public class ShipDynDataTest {
         float cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
+
+    @Test
+    public void cogEquals0() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "0", "347", "NA", "B");;
+        float expectedCog = 0;
+        float cog = sdd.getCog();
+        assertEquals(expectedCog, cog);
+    }
+
     @Test
     public void cogOver359() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "374.0", "347", "NA", "B");;
         float expectedCog = 14f;
+        float cog = sdd.getCog();
+        assertEquals(expectedCog, cog);
+    }
+
+    @Test
+    public void cogEquals359() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "359.0", "347", "NA", "B");;
+        float expectedCog = 359f;
         float cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
@@ -129,6 +164,16 @@ public class ShipDynDataTest {
         assertEquals(expectedHeading, heading);
 
     }
+
+    @Test
+    public void headingEquals0() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "11.2", "0", "NA", "B");;
+        String expectedHeading = "0";
+        String heading = sdd.getHeading();
+        assertEquals(expectedHeading, heading);
+
+    }
+
     @Test
     public void headingOver359() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "11.2", "-10", "NA", "B");;
@@ -138,7 +183,13 @@ public class ShipDynDataTest {
 
     }
 
+    @Test
+    public void headingEquals359() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "11.2", "359", "NA", "B");;
+        String expectedHeading = "359";
+        String heading = sdd.getHeading();
+        assertEquals(expectedHeading, heading);
 
-
+    }
 
 }
