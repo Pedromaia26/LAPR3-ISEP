@@ -71,11 +71,6 @@ public class ShipDynData implements Comparable<ShipDynData> {
     }
 
     @Override
-    public int hashCode() {
-        return cargo.hashCode();
-    }
-
-    @Override
     public String toString() {
         return this.baseDateTime + "\t" + "LATITUDE: " + this.latitude + "; " + "LONGITUDE: " + this.longitude;
     }
