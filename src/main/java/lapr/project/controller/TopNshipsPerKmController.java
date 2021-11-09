@@ -31,13 +31,14 @@ public class TopNshipsPerKmController {
 
     public void printNshipsMostKm(int n, HashMap<Ship, Double> map){
         Map<Ship, Double> orderMap = sortByValue(map);
-
+        int i =0;
             for (Map.Entry<Ship, Double> me : orderMap.entrySet()) {
-                for (int i = 0; i < n; i++) {
-                    System.out.println("Key = " + me.getKey() + ", Value = " + me.getValue());
+                while(i<n) {
+                System.out.println("Key = " + me.getKey() + ", Value = " + me.getValue());
+                i++;
                 }
             }
-        }
+    }
 
     public static HashMap<Ship, Double> sortByValue(HashMap<Ship, Double> hm)
     {
