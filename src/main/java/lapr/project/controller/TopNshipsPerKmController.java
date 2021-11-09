@@ -30,6 +30,9 @@ public class TopNshipsPerKmController {
     }
 
     public void printNshipsMostKm(int n, HashMap<Ship, Double> map){
+        if(n<=0){
+            throw new IllegalArgumentException("Parametrer invalid");
+        }
         Map<Ship, Double> orderMap = sortByValue(map);
         int i =0;
             for (Map.Entry<Ship, Double> me : orderMap.entrySet()) {
