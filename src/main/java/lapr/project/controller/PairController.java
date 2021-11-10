@@ -2,12 +2,18 @@ package lapr.project.controller;
 
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
+import lapr.project.utils.FileOperation;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class PairController {
+    public void returnPair () throws IOException {
 
-    public void returnPair (){
+        String data = "";
 
         List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
         Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
@@ -21,8 +27,8 @@ public class PairController {
 
             for (int j = i+1; j < shipList.size() ; j++) {
 
-                System.out.println("------------");
-                System.out.println(shipList.get(i).getMmsi()  + "/" + shipList.get(j).getMmsi());
+               // System.out.println("------------");
+               // System.out.println(shipList.get(i).getMmsi()  + "/" + shipList.get(j).getMmsi());
 
 
 
@@ -38,18 +44,18 @@ public class PairController {
 
 
                 dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance();
-                System.out.printf("Travelled distance between departure and arrival (Ship1): %.2f m\n", dist1);
+               // System.out.printf("Travelled distance between departure and arrival (Ship1): %.2f m\n", dist1);
 
                 if (dist1 < 10000){
-                    System.out.println("Ship1 travelled less than 10 km.");
+                 // System.out.println("Ship1 travelled less than 10 km.");
                     break;
                 }
 
                 dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance();
-                System.out.printf("Travelled distance between departure and arrival (Ship2): %.2f m\n", dist2);
+                // System.out.printf("Travelled distance between departure and arrival (Ship2): %.2f m\n", dist2);
 
                 if (dist2 < 10000){
-                    System.out.println("Ship2 travelled less than 10 km.");
+                    // System.out.println("Ship2 travelled less than 10 km.");
                     continue;
                 }
 
@@ -60,20 +66,20 @@ public class PairController {
                 departureDistance = shipList.get(i).getBstDynData().travelledDistance(latD1, lngD1, latD2, lngD2);
                 arrivalDistance = shipList.get(i).getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
 
-                System.out.printf("Distance between ships departure: %.2f m\n", Math.abs(departureDistance));
-                System.out.printf("Distance between ships arrival: %.2f m\n", Math.abs(arrivalDistance));
+                // System.out.printf("Distance between ships departure: %.2f m\n", Math.abs(departureDistance));
+                // System.out.printf("Distance between ships arrival: %.2f m\n", Math.abs(arrivalDistance));
 
-                if (dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)) {
+                if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
 
                     distances.add(dist3);
                     teste.add(shipList.get(j));
 
-                    System.out.println("Close departure or arrival: " + shipList.get(i) + " ----- " + shipList.get(j));
+                    // System.out.println("Close departure or arrival: " + shipList.get(i) + " ----- " + shipList.get(j));
 
                     exists = true;
 
-                }else
-                    System.out.println("Distant coordinates between departures/arrivals");
+                }
+                    // System.out.println("Distant coordinates between departures/arrivals");
 
             }
 
@@ -91,14 +97,15 @@ public class PairController {
 
 
             if (i==shipList.size()-2 && teste!=null){
-                System.out.println("\nPairs of ships with routes with close departure/arrival coordinates:\n");
 
+                data+= "Pairs of ships with routes with close departure/arrival coordinates:\n\n";
 
                 for(Ship key : pair.keySet()) {
                     for (Ship value : pair.get(key)) {
-                        System.out.println(key + " / " + value);
+                        data+=key + " / " + value + "\n";
                     }
                 }
+                FileOperation.writeToAFile("closeShips.txt", data);
             }
         }
     }
