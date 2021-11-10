@@ -205,4 +205,34 @@ class BSTDynDataTest {
         double lon2 = 22.81780;
         assertEquals(bst.distFrom(lat2,lon2,lat1,lon1), bst.distFrom(lat1,lon1,lat2,lon2));
     }
+
+    @Test
+    void inorderCalculateDistanceEquals0() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        bst.insert(sdd);
+        double expected = 0;
+        assertEquals(expected, bst.inorderCalculateDistance());
+    }
+
+    @Test
+    void inorderCalculateDistanceEquals02() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+
+        bst.insert(sdd1);
+        bst.insert(sdd2);
+        double expected = 0;
+        assertEquals(expected, bst.inorderCalculateDistance());
+    }
+
+    @Test
+    void inorderCalculateDistanceNAElements() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 18:10", "-91.97000", "219.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 18:10", "-92.97000", "220.81780",  "14.4", "11.2", "347", "NA", "B");
+
+        bst.insert(sdd1);
+        bst.insert(sdd2);
+        double expected = 0;
+        assertEquals(expected, bst.inorderCalculateDistance());
+    }
 }
