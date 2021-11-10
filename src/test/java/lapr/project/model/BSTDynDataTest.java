@@ -103,10 +103,6 @@ class BSTDynDataTest {
     }
 
     @Test
-    void testToString() {
-    }
-
-    @Test
     void searchSpecificDate() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
         bst.insert(sdd);
@@ -147,5 +143,37 @@ class BSTDynDataTest {
         List<ShipDynData> expected = newList;
         List<ShipDynData> actual = bst.searchSpecificDatePeriodcall(date, date2);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testToString() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        bst.insert(sdd);
+        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:10");
+        String expected = date + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        assertEquals(expected, bst.toString());
+    }
+
+    @Test
+    void testToStringEmpty(){
+        assertEquals("", bst.toString());
+    }
+
+    @Test
+    void testToStringTwoMoreElements() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 18:09", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 18:11", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+
+        bst.insert(sdd1);
+        bst.insert(sdd2);
+        bst.insert(sdd3);
+        Date date2 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:10");
+        Date date1 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:09");
+        Date date3 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:11");
+        String expected = date1 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        expected += date2 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        expected += date3 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        assertEquals(expected, bst.toString());
     }
 }
