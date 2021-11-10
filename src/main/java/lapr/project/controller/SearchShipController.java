@@ -66,19 +66,27 @@ public class SearchShipController {
     public void IdentifyTheShip(String path) throws IOException {
         String line = "";
         BufferedReader br = new BufferedReader(new FileReader(path));
-        line = br.readLine();
-        if (line != null){
-            switch (line){
-                case "mmsi":
-                    ship = ShipSearchByMmsi(Integer.parseInt(br.readLine()));
-                    break;
-                case "imo":
-                    ship = ShipSearchByImo(br.readLine());
-                    break;
-                case "call sign":
-                    ship = ShipSearchByCallSign(br.readLine());
-                    break;
+        try {
+            line = br.readLine();
+            if (line != null) {
+                switch (line) {
+                    case "mmsi":
+                        ship = ShipSearchByMmsi(Integer.parseInt(br.readLine()));
+                        break;
+                    case "imo":
+                        ship = ShipSearchByImo(br.readLine());
+                        break;
+                    case "call sign":
+                        ship = ShipSearchByCallSign(br.readLine());
+                        break;
+                }
             }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            br.close();
         }
     }
 
