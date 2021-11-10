@@ -20,6 +20,10 @@ public class SearchShipController {
         this.shipBST = shipBST;
     }
 
+    public SearchShipController() {
+        this.shipBST = App.getInstance().getCompany().getBstShips();
+    }
+
     public Ship ShipSearchByMmsi(int mmsi){
         Iterable<Ship> ships = shipBST.inOrder();
         for(Ship a : ships ){
@@ -28,7 +32,6 @@ public class SearchShipController {
                 return a;
             }
         }
-
         return (null);
     }
 
@@ -60,7 +63,27 @@ public class SearchShipController {
         return SearchShipMapper.toDto(this.ship).toString();
     }*/
 
-    public void searchDeatils(Ship ship) throws IOException {
+    public void IdentifyTheShip(String path) throws IOException {
+        String line = "";
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        line = br.readLine();
+        if (line != null){
+            switch (line){
+                case "mmsi":
+                    ship = ShipSearchByMmsi(Integer.parseInt(br.readLine()));
+                    break;
+                case "imo":
+                    ship = ShipSearchByImo(br.readLine());
+                    break;
+                case "call sign":
+                    ship = ShipSearchByCallSign(br.readLine());
+                    break;
+            }
+        }
+    }
+
+    public void searchDeatils(String path) throws IOException {
+        IdentifyTheShip(path);
         String data = "";
         long diff = ship.getBstDynData().arrival().getBaseDateTime().getTime() - ship.getBstDynData().departure().getBaseDateTime().getTime();
         TimeUnit time = TimeUnit.MINUTES;
@@ -88,7 +111,7 @@ public class SearchShipController {
         data+="Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n";
         data+="End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n";
         data+="Total Movement Time: " + difference + " minutes\n";
-        data+="Total Number of Movements: " + ship.getBstDynData().size() + "\n";
+        data+="Total Number of Movements: " + (ship.getBstDynData().size()-1) + "\n";
         data+="Max COG: " + maxCOG + "\n";
         data+="Max SOG: " + maxSOG + "\n";
         data+="Mean COG: " + sumCOG/ship.getBstDynData().size() + "\n";
@@ -99,7 +122,7 @@ public class SearchShipController {
         data+="Arrival Longitude: " + arrivalLongitude + "\n";
         data+="Travelled distance: " + ship.getBstDynData().inorderCalculateDistance() + "m\n";
         data+="Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n";
-        FileOperation.writeToAFile(String.valueOf(ship.getMmsi()) + "details.txt", data);
+        FileOperation.writeToAFile(String.valueOf("Output/" + ship.getMmsi()) + "details.txt", data);
     }
 
 }

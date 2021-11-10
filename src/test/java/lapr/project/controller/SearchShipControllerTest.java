@@ -107,6 +107,6 @@ class SearchShipControllerTest {
         bstship.insert(ship1);
         bstship.insert(ship2);
         SearchShipController controller = new SearchShipController(bstship);
-        controller.searchDeatils(ship);
+        controller.searchDeatils("TestFiles/test104.txt");
     }
 }
