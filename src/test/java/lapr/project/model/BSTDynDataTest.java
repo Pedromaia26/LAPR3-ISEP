@@ -235,4 +235,16 @@ class BSTDynDataTest {
         double expected = 0;
         assertEquals(expected, bst.inorderCalculateDistance());
     }
+
+    @Test
+    void inorderCalculateDistance3Elements() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 18:10", "-85.97000", "150.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 18:11", "-86.97000", "151.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 18:12", "-86.57000", "152.81780",  "14.4", "11.2", "347", "NA", "B");
+        bst.insert(sdd1);
+        bst.insert(sdd2);
+        bst.insert(sdd3);
+        double expected = 156316.8203125;
+        assertEquals(expected, bst.inorderCalculateDistance());
+    }
 }
