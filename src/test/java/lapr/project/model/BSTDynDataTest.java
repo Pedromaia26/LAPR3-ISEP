@@ -112,10 +112,9 @@ class BSTDynDataTest {
         bst.insert(sdd);
         Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 19:25");
 
-        String expected = "Thu Dec 31 19:25:00 WET 2020\tLATITUDE: -66.97000; LONGITUDE: 22.81780";
         ShipDynData actual = bst.searchSpecificDate(date);
         String actual2 = actual.toString();
-        assertEquals(expected, actual2);
+        assertEquals( date + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780", actual2);
 
     }
 
