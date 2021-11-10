@@ -97,7 +97,11 @@ class SearchShipControllerTest {
     @Test
     void searchDeatils() throws IOException, ParseException {
         ShipDynData data = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
-        ShipDynData data1 = new ShipDynData("31/12/2020 19:42","24.34750","-85.12250","10.5","110.9","115", "NA", "A");
+        ShipDynData data1 = new ShipDynData("31/12/2020 19:42","24.34750","-85.12250","10.5","110.9","115", "3", "A");
+        ShipDynData data2 = new ShipDynData("31/12/2020 19:43","24.34775","-85.12400","9.5","130.9","110", "NA", "A");
+        ShipDynData data3 = new ShipDynData("31/12/2020 19:40","24.34800","-85.12550","12","103.4","119", "NA", "A");
+        ShipDynData data4 = new ShipDynData("31/12/2020 19:20","24.34900","-85.12523","11.7","130.9","117", "NA", "A");
+        ShipDynData data5 = new ShipDynData("31/12/2020 20:08","24.34750","-85.12523","12","119.5","115", "NA", "A");
         BSTDynData bstdyndata = new BSTDynData();
         bstdyndata.insert(data);
         bstdyndata.insert(data1);
