@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BSTDynDataTest {
 
     BSTDynData bst = new BSTDynData();
+    List<ShipDynData> list = new ArrayList<>();
 
     @Test
     void rootIsNotNull() throws ParseException {
@@ -102,5 +104,48 @@ class BSTDynDataTest {
 
     @Test
     void testToString() {
+    }
+
+    @Test
+    void searchSpecificDate() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        bst.insert(sdd);
+        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 19:25");
+
+        ShipDynData actual = bst.searchSpecificDate(date);
+        String actual2 = actual.toString();
+        assertEquals( date + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780", actual2);
+
+    }
+
+    @Test
+    void searchSpecificDatePeriod() throws ParseException {
+
+        ShipDynData sdd = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 19:45", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd4 = new ShipDynData("31/12/2020 20:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        list.add(sdd);
+        list.add(sdd2);
+        list.add(sdd3);
+        list.add(sdd4);
+
+        bst.insert(sdd);
+        bst.insert(sdd2);
+        bst.insert(sdd3);
+        bst.insert(sdd4);
+
+        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:24");
+        Date date2 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 20:15");
+
+
+        List<ShipDynData> newList = new ArrayList<>();
+        newList.add(sdd2);
+        newList.add(sdd3);
+
+
+        List<ShipDynData> expected = newList;
+        List<ShipDynData> actual = bst.searchSpecificDatePeriodcall(date, date2);
+        assertEquals(expected, actual);
     }
 }
