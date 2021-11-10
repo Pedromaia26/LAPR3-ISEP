@@ -1,6 +1,8 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
+import lapr.project.utils.FileOperation;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -59,52 +61,45 @@ public class SearchShipController {
     }*/
 
     public void searchDeatils(Ship ship) throws IOException {
-        FileWriter myWriter = new FileWriter(String.valueOf(ship.getMmsi()) + "details.txt");
-        try {
-            myWriter.write("Details of the ship " + String.valueOf(ship.getMmsi()) + ":\n");
-            myWriter.write("Vessel Name: " + ship.getVesselType() + "\n");
-            myWriter.write("Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n");
-            myWriter.write("End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n");
-            long diff = ship.getBstDynData().arrival().getBaseDateTime().getTime() - ship.getBstDynData().departure().getBaseDateTime().getTime();
-            TimeUnit time = TimeUnit.HOURS;
-            long difference = time.convert(diff, TimeUnit.MILLISECONDS);
-            myWriter.write("Total Movement Time: " + difference + "\n");
-            myWriter.write("Total Number of Movements: " + ship.getBstDynData().size() + "\n");
-            double maxCOG = Double.NEGATIVE_INFINITY;
-            double maxSOG = Double.NEGATIVE_INFINITY;
-            double sumCOG = 0;
-            double sumSOG = 0;
-            for (ShipDynData sdd: (List<ShipDynData>) ship.getBstDynData().inOrder()){
-                if (sdd.getCog() > maxCOG){
-                    maxCOG = sdd.getCog();
-                }
-                if (sdd.getSog() > maxSOG){
-                    maxSOG = sdd.getSog();
-                }
-                sumCOG += sdd.getCog();
-                sumSOG += sdd.getSog();
+        String data = "";
+        long diff = ship.getBstDynData().arrival().getBaseDateTime().getTime() - ship.getBstDynData().departure().getBaseDateTime().getTime();
+        TimeUnit time = TimeUnit.MINUTES;
+        long difference = time.convert(diff, TimeUnit.MILLISECONDS);
+        double maxCOG = Double.NEGATIVE_INFINITY;
+        double maxSOG = Double.NEGATIVE_INFINITY;
+        double sumCOG = 0;
+        double sumSOG = 0;
+        for (ShipDynData sdd: (List<ShipDynData>) ship.getBstDynData().inOrder()){
+            if (sdd.getCog() > maxCOG){
+                maxCOG = sdd.getCog();
             }
-            myWriter.write("Max COG: " + maxCOG + "\n");
-            myWriter.write("Max SOG: " + maxSOG + "\n");
-            myWriter.write("Mean COG: " + sumCOG/ship.getBstDynData().size() + "\n");
-            myWriter.write("Mean SOG: " + sumSOG/ship.getBstDynData().size() + "\n");
-            float departureLatitude = Float.parseFloat(ship.getBstDynData().departure().getLatitude());
-            float departureLongitude = Float.parseFloat(ship.getBstDynData().departure().getLongitude());
-            float arrivalLatitude = Float.parseFloat(ship.getBstDynData().arrival().getLatitude());
-            float arrivalLongitude = Float.parseFloat(ship.getBstDynData().arrival().getLongitude());
-            myWriter.write("Departure Latitude: " + departureLatitude + "\n");
-            myWriter.write("Departure Longitude: " + departureLongitude + "\n");
-            myWriter.write("Arrival Latitude: " + arrivalLatitude + "\n");
-            myWriter.write("Arrival Longitude: " + arrivalLongitude + "\n");
-            myWriter.write("Travelled distance: " + ship.getBstDynData().inorderCalculateDistance() + "m\n");
-            myWriter.write("Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n");
-            myWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (sdd.getSog() > maxSOG){
+                maxSOG = sdd.getSog();
+            }
+            sumCOG += sdd.getCog();
+            sumSOG += sdd.getSog();
         }
-        finally {
-            myWriter.close();
-        }
+        float departureLatitude = Float.parseFloat(ship.getBstDynData().departure().getLatitude());
+        float departureLongitude = Float.parseFloat(ship.getBstDynData().departure().getLongitude());
+        float arrivalLatitude = Float.parseFloat(ship.getBstDynData().arrival().getLatitude());
+        float arrivalLongitude = Float.parseFloat(ship.getBstDynData().arrival().getLongitude());
+        data+="Details of the ship " + String.valueOf(ship.getMmsi()) + ":\n";
+        data+="Vessel Name: " + ship.getVesselType() + "\n";
+        data+="Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n";
+        data+="End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n";
+        data+="Total Movement Time: " + difference + "\n";
+        data+="Total Number of Movements: " + ship.getBstDynData().size() + "\n";
+        data+="Max COG: " + maxCOG + "\n";
+        data+="Max SOG: " + maxSOG + "\n";
+        data+="Mean COG: " + sumCOG/ship.getBstDynData().size() + "\n";
+        data+="Mean SOG: " + sumSOG/ship.getBstDynData().size() + "\n";
+        data+="Departure Latitude: " + departureLatitude + "\n";
+        data+="Departure Longitude: " + departureLongitude + "\n";
+        data+="Arrival Latitude: " + arrivalLatitude + "\n";
+        data+="Arrival Longitude: " + arrivalLongitude + "\n";
+        data+="Travelled distance: " + ship.getBstDynData().inorderCalculateDistance() + "m\n";
+        data+="Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n";
+        FileOperation.writeToAFile(String.valueOf(ship.getMmsi()) + "details.txt", data);
     }
 
 }
