@@ -109,4 +109,61 @@ class SearchShipControllerTest {
         SearchShipController controller = new SearchShipController(bstship);
         controller.searchDeatils("TestFiles/test104.txt");
     }
+
+    @Test
+    void identifyTheShipImo() throws IOException {
+        BSTShip bstship = new BSTShip();
+        bstship.insert(ship);
+        bstship.insert(ship1);
+        bstship.insert(ship2);
+        SearchShipController controller = new SearchShipController(bstship);
+        Ship shipt = controller.IdentifyTheShip("TestFiles/test104_imo");
+        assertEquals(ship, shipt);
+    }
+
+    @Test
+    void identifyTheShipCallSign() throws IOException {
+        BSTShip bstship = new BSTShip();
+        bstship.insert(ship);
+        bstship.insert(ship1);
+        bstship.insert(ship2);
+        SearchShipController controller = new SearchShipController(bstship);
+        Ship shipt = controller.IdentifyTheShip("TestFiles/test104_callSign");
+        assertEquals(ship, shipt);
+    }
+
+    @Test
+    void searchDeatilsNull() throws IOException, ParseException {
+        SearchShipController controller = new SearchShipController();
+        controller.searchDeatils("TestFiles/test104_null");
+    }
+
+    @Test
+    void searchDeatilsEmpty() throws IOException, ParseException {
+        SearchShipController controller = new SearchShipController();
+        controller.searchDeatils("TestFiles/test104_empty");
+    }
+
+    @Test
+    void identifyTheShipNull() throws IOException {
+        BSTShip bstship = new BSTShip();
+        bstship.insert(ship);
+        bstship.insert(ship1);
+        bstship.insert(ship2);
+        SearchShipController controller = new SearchShipController(bstship);
+        Ship shipt = controller.IdentifyTheShip("TestFiles/test104_null");
+        assertNull(shipt);
+    }
+
+    @Test
+    void identifyTheShipEmpty() throws IOException {
+        BSTShip bstship = new BSTShip();
+        bstship.insert(ship);
+        bstship.insert(ship1);
+        bstship.insert(ship2);
+        SearchShipController controller = new SearchShipController(bstship);
+        Ship shipt = controller.IdentifyTheShip("TestFiles/test104_empty");
+        assertNull(shipt);
+    }
+
 }
