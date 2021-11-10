@@ -29,11 +29,11 @@ public class PositionalMessagesController {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
 
+        try{
+            mmsi = Integer.parseInt(br.readLine());
 
-        mmsi = Integer.parseInt(br.readLine());
-
-        String d = br.readLine();
-        String dates[] = d.split(";");
+            String d = br.readLine();
+            String dates[] = d.split(";");
 
 
         /*do{
@@ -44,30 +44,37 @@ public class PositionalMessagesController {
         }while (d!=null);*/
 
 
-        if (dates[1]==null) {
-            Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
-            for (Ship s : ships) {
-                if (mmsi == s.getMmsi()) {
+            if (dates[1]==null) {
+                Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+                for (Ship s : ships) {
+                    if (mmsi == s.getMmsi()) {
 
-                    data += s.getBstDynData().searchSpecificDate(newDate);
+                        data += s.getBstDynData().searchSpecificDate(newDate);
+
+                    }
+                }
+            }else {
+
+                Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+                Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
+
+                for (Ship s : ships) {
+                    if (mmsi == s.getMmsi()) {
+                        datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
+                        for (ShipDynData l : datesShip) {
+                            data+=l+"\n";
+                        }
+                    }
 
                 }
             }
-        }else {
-
-            Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
-            Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
-
-            for (Ship s : ships) {
-                if (mmsi == s.getMmsi()) {
-                    datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
-                    for (ShipDynData l : datesShip) {
-                        data+=l+"\n";
-                    }
-                }
-
-                }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
+        finally {
+            br.close();
+        }
+
 
         FileOperation.writeToAFile("posMsg.txt", data);
 
