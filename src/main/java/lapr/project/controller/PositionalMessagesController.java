@@ -4,23 +4,79 @@ import lapr.project.model.BSTDynData;
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
 import lapr.project.model.ShipDynData;
+import lapr.project.utils.FileOperation;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PositionalMessagesController {
 
-    Scanner sc = new Scanner(System.in);
     int mmsi;
-    String date, date1, date2;
-    Ship selected;
-    BSTDynData bstDynData = new BSTDynData();
+    String data = "";
 
-    public void message () throws ParseException {
+    public void message (String file) throws ParseException, IOException {
         List<Ship> ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
+        for (Ship s: ships){
+            System.out.println(s);
+        }
+        List<ShipDynData> datesShip;
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+
+
+        mmsi = Integer.parseInt(br.readLine());
+
+        String d = br.readLine();
+        String dates[] = d.split(";");
+
+
+        /*do{
+            dates[position] = d;
+            System.out.println("DATA NA POSIÇAO I: " + dates[position]);
+            d = br.readLine();
+            System.out.println(d);
+        }while (d!=null);*/
+
+
+        if (dates[1]==null) {
+            Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+            for (Ship s : ships) {
+                if (mmsi == s.getMmsi()) {
+
+                    data += s.getBstDynData().searchSpecificDate(newDate);
+
+                }
+            }
+        }else {
+
+            Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+            Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
+
+            for (Ship s : ships) {
+                if (mmsi == s.getMmsi()) {
+                    datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
+                    for (ShipDynData l : datesShip) {
+                        data+=l+"\n";
+                    }
+                }
+
+                }
+        }
+
+        FileOperation.writeToAFile("posMsg.txt", data);
+
+        /*List<ShipDynData> list = selected.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
+
+        for (ShipDynData l : list) {
+            System.out.println(l.getBaseDateTime());
+        }
+
 
         System.out.println("\n------------------------------\n");
         for (Ship s: ships) {
@@ -47,13 +103,7 @@ public class PositionalMessagesController {
 
         if (opt==1){
 
-            sc.nextLine();
 
-            System.out.print("\nSelect the date: ");
-            date = sc.nextLine();
-            Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date);
-
-            System.out.println(selected.getBstDynData().searchSpecificDate(newDate).getBaseDateTime());
 
         }else if (opt==2) {
 
@@ -71,6 +121,6 @@ public class PositionalMessagesController {
             for (ShipDynData l : list) {
                 System.out.println(l.getBaseDateTime());
             }
-        }
+        }*/
     }
 }
