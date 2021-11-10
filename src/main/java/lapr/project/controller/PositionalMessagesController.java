@@ -19,8 +19,8 @@ public class PositionalMessagesController {
     Ship selected;
     BSTDynData bstDynData = new BSTDynData();
 
-    public void message (Company c) throws ParseException {
-        List<Ship> ships = (List<Ship>) c.getBstShips().inOrder();
+    public void message () throws ParseException {
+        List<Ship> ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
 
         System.out.println("\n------------------------------\n");
         for (Ship s: ships) {

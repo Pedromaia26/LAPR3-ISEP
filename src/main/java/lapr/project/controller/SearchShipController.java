@@ -87,7 +87,7 @@ public class SearchShipController {
         data+="Vessel Name: " + ship.getVesselType() + "\n";
         data+="Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n";
         data+="End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n";
-        data+="Total Movement Time: " + difference + "\n";
+        data+="Total Movement Time: " + difference + " minutes\n";
         data+="Total Number of Movements: " + ship.getBstDynData().size() + "\n";
         data+="Max COG: " + maxCOG + "\n";
         data+="Max SOG: " + maxSOG + "\n";

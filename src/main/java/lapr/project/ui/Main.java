@@ -36,9 +36,8 @@ class Main {
         String file = "sships.csv";
         ImportShipsController controller = new ImportShipsController();
         PairController pController = new PairController();
-        Company c = new Company();
-        controller.importFromCSV(file, c);
-        pController.returnPair(c);
+        controller.importFromCSV(file);
+        pController.returnPair();
 
 
 

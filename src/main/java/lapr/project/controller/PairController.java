@@ -7,9 +7,9 @@ import java.util.*;
 
 public class PairController {
 
-    public void returnPair (Company company){
+    public void returnPair (){
 
-        List<Ship> shipList = (List<Ship>) company.getBstShips().inOrder();
+        List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
         Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
         double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
 
