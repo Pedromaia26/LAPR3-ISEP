@@ -37,7 +37,7 @@ public class PrintingShipsInfoController {
             int numberOfMovements = bstDynData.size();
             ShipDynData firstDate = bstDynData.arrival();
             ShipDynData lastDate = bstDynData.departure();
-            double deltaDistance = bstDynData.travelledDistance((firstDate.getLatitude(), firstDate.getLongitude(), lastDate.getLatitude(), lastDate.getLongitude());
+            double deltaDistance = bstDynData.travelledDistance(Float.parseFloat(firstDate.getLatitude()), Float.parseFloat(firstDate.getLongitude()), Float.parseFloat(lastDate.getLatitude()), Float.parseFloat(lastDate.getLongitude()));
 
             PrintShipsInfo printShipsInf = new PrintShipsInfo(mmsi, numberOfMovements, deltaDistance, realDist);
             printShipsInfos.add(printShipsInf);
