@@ -11,7 +11,8 @@ public class FileOperationTest {
     @Test
     public void writeToAFile() throws IOException {
         String file = "ficheiro";
-        String data = "informação";
+        StringBuilder data = new StringBuilder();
+        data.append("informação");
         FileOperation.writeToAFile(file, data);
     }
 }

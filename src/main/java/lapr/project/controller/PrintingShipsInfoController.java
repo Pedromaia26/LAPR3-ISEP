@@ -13,7 +13,7 @@ import java.util.List;
 public class PrintingShipsInfoController {
 
     private Ship ships;
-    String data = "";
+    StringBuilder data = new StringBuilder();;
     private BSTShip bstShip;
     private Iterable<Ship> shipsIterable;
     private List<PrintShipsInfo> printShipsInfos;
@@ -33,11 +33,11 @@ public class PrintingShipsInfoController {
 
         organizeInformation();
 
-        data += "Ascending\n";
+        data.append("Ascending\n");
 
         organizeAsc();
 
-        data += "Descending\n";
+        data.append("Descending\n");
 
         organizeDesc();
 
@@ -76,7 +76,7 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        data += printShipsInfos;
+        data.append(printShipsInfos);
     }
 
     public void organizeDesc(){
@@ -96,7 +96,7 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        data += printShipsInfos;
+        data.append(printShipsInfos);
     }
 }
 

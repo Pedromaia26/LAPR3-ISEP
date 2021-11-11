@@ -17,7 +17,7 @@ import java.util.*;
 public class PositionalMessagesController {
 
     int mmsi;
-    String data = "";
+    StringBuilder data = null;
 
     public void message (String file) throws ParseException, IOException {
         List<Ship> ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
@@ -49,7 +49,7 @@ public class PositionalMessagesController {
                 for (Ship s : ships) {
                     if (mmsi == s.getMmsi()) {
 
-                        data += s.getBstDynData().searchSpecificDate(newDate);
+                        data.append(s.getBstDynData().searchSpecificDate(newDate));
 
                     }
                 }
@@ -62,7 +62,7 @@ public class PositionalMessagesController {
                     if (mmsi == s.getMmsi()) {
                         datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
                         for (ShipDynData l : datesShip) {
-                            data+=l+"\n";
+                            data.append(l+"\n");
                         }
                     }
 

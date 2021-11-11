@@ -31,13 +31,12 @@ public class TopNshipsPerKmController {
             dataBst = a.getBstDynData();
             totalKm = dataBst.inorderCalculateDistance();
             map.put(a, totalKm);
-            totalKm = 0;
         }
         return map;
     }
 
     public void printNshipsMostKm(String path) throws IOException {
-        String data = "";
+        StringBuilder data = new StringBuilder();
         HashMap<Ship, Double> map = shipsAndKm();
         String line = "";
         BufferedReader br = new BufferedReader(new FileReader(path));
@@ -51,8 +50,8 @@ public class TopNshipsPerKmController {
                 Map<Ship, Double> orderMap = sortByValue(map);
                 int i =0;
                 for (Map.Entry<Ship, Double> me : orderMap.entrySet()) {
-                    while(i<n) {
-                        data+="Key = " + me.getKey() + ", Value = " + me.getValue() + "\n";
+                    if(i<n) {
+                        data.append("Ship: " + me.getKey() + " with " + me.getValue() + "km\n");
                         i++;
                     }
                 }

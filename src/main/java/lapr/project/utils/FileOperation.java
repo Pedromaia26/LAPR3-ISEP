@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class FileOperation {
 
-    public static void writeToAFile(String path, String data) throws IOException {
+    public static void writeToAFile(String path, StringBuilder data) throws IOException {
         try (PrintWriter pw = new PrintWriter(path)) {
             pw.println(data);
         }

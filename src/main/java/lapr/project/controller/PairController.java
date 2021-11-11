@@ -13,7 +13,7 @@ import java.util.*;
 public class PairController {
     public void returnPair () throws IOException {
 
-        String data = "";
+        StringBuilder data = new StringBuilder();;
 
         List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
         Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
@@ -98,11 +98,11 @@ public class PairController {
 
             if (i==shipList.size()-2 && teste!=null){
 
-                data+= "Pairs of ships with routes with close departure/arrival coordinates:\n\n";
+                data.append("Pairs of ships with routes with close departure/arrival coordinates:\n\n");
 
                 for(Ship key : pair.keySet()) {
                     for (Ship value : pair.get(key)) {
-                        data+=key + " / " + value + "\n";
+                        data.append(key + " / " + value + "\n");
                     }
                 }
                 FileOperation.writeToAFile("closeShips.txt", data);
