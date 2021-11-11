@@ -54,16 +54,18 @@ We created the Domain Model that we would follow in the development of our sprin
 Then we have elaborated some of the relevant SSDs diagrams.\
 Sprint 1:
 
-![US101_SSD](./Documentation/Requirements_Engineering/US101/US101_SSD.jpg)
-![US104_SSD](./Documentation/Requirements_Engineering/US104/US104_SSD.svg)
-![UC106_SSD](./Documentation/Requirements_Engineering/US106/UC106_SSD.jpg)
+![US101_SSD](./Documentation/Sprint1/Requirements_Engineering/US101/US101_SSD.jpg)
+![SSD_US103](./Documentation/Sprint1/Requirements_Engineering/US103/SSD_US103.svg)
+![US104_SSD](./Documentation/Sprint1/Requirements_Engineering/US104/US104_SSD.svg)
+![UC106_SSD](./Documentation/Sprint1/Requirements_Engineering/US106/UC106_SSD.jpg)
 
 ### SDs Diagrams ###
 Then we have elaborated some of the relevant SDs diagrams.\
 
-![US101_SD](./Documentation/Engineering_Design/US101/US101_SD.jpg)
-![US104_SD](./Documentation/Engineering_Design/US104/US104_SD.svg)
-![UC106_SD](./Documentation/Engineering_Design/US106/UC106_SD.jpg)
+![US101_SD](./Documentation/Sprint1/Engineering_Design/US101/US101_SD.jpg)
+![SD_US013](./Documentation/Sprint1/Engineering_Design/US103/SD_US013.svg)
+![US104_SD](./Documentation/Sprint1/Engineering_Design/US104/US104_SD.svg)
+![UC106_SD](./Documentation/Sprint1/Engineering_Design/US106/UC106_SD.jpg)
 
 
 #################################################################################
