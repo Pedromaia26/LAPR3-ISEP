@@ -19,7 +19,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByMmsi() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -32,7 +32,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByMmsiDontExists() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -43,7 +43,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByImo() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -56,7 +56,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByImoDontExists() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -67,7 +67,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByCallSign() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -80,7 +80,7 @@ class SearchShipControllerTest {
 
     @Test
     void shipSearchByCallSignDontExists() {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -106,7 +106,7 @@ class SearchShipControllerTest {
         bstdyndata.insert(data);
         bstdyndata.insert(data1);
         ship.setBstDynData(bstdyndata);
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -116,7 +116,7 @@ class SearchShipControllerTest {
 
     @Test
     void identifyTheShipImo() throws IOException {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -127,7 +127,7 @@ class SearchShipControllerTest {
 
     @Test
     void identifyTheShipCallSign() throws IOException {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -150,7 +150,7 @@ class SearchShipControllerTest {
 
     @Test
     void identifyTheShipNull() throws IOException {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
@@ -161,7 +161,7 @@ class SearchShipControllerTest {
 
     @Test
     void identifyTheShipEmpty() throws IOException {
-        BSTShip bstship = new BSTShip();
+        BSTShip bstship = new AVLShip();
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);

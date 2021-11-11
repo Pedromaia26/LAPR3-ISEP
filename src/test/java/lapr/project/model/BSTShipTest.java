@@ -2,13 +2,15 @@ package lapr.project.model;
 
 import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.text.ParseException;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTShipTest {
 
-    BSTShip bst = new BSTShip();
+    BSTShip bst = new AVLShip();
 
     @Test
     void rootIsNotNull() throws ParseException {
@@ -41,7 +43,6 @@ class BSTShipTest {
 
     @Test
     void findIsTrue() throws ParseException {
-
         Ship ship1 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
         Ship ship2 = new Ship("123456789", "ship", "1002000000", "callSign", "A", "100", "500", "3.0");
         Ship ship3 = new Ship("123453789", "ship", "1003000000", "callSign", "A", "100", "500", "3.0");
@@ -51,8 +52,7 @@ class BSTShipTest {
         bst.insert(ship3);
         bst.insert(ship4);
         Ship ship5 = bst.find(ship4);
-        //assertEquals(sdd5, sdd4);
-        assertEquals(ship5.toString(),ship4.toString());
+        assertEquals(ship5,ship4);
     }
 
     @Test
@@ -71,7 +71,7 @@ class BSTShipTest {
         Ship ship3 = new Ship("123453789", "ship", "1003000000", "callSign", "A", "100", "500", "3.0");
         Ship ship4 = new Ship("123454789", "ship", "1004000000", "callSign", "A", "100", "500", "3.0");
 
-        BSTShip<Ship> instance = new BSTShip<>();
+        BSTShip<Ship> instance = new AVLShip();
 
         assertEquals(0, instance.size());
         instance.insert(ship1);

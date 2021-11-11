@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SearchShipController {
 
-    BSTShip shipBST = new BSTShip();
+    BSTShip shipBST = new AVLShip();
     private Ship ship;
 
     public SearchShipController(BSTShip shipBST) {

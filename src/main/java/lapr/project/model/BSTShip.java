@@ -1,21 +1,18 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class BSTShip<E extends Comparable<E>> {
-
+public abstract class BSTShip<E> {
 
     /**
      * Nested static class for a binary search tree node.
      */
 
-    protected static class Node<E> {
+    protected static class Node<Ship> {
         private Ship element;          // an element stored at this node
-        private Node<E> left;       // a reference to the left child (if any)
-        private Node<E> right;      // a reference to the right child (if any)
+        private Node<Ship> left;       // a reference to the left child (if any)
+        private Node<Ship> right;      // a reference to the right child (if any)
 
         /**
          * Constructs a node with the given element and neighbors.
@@ -24,7 +21,7 @@ public class BSTShip<E extends Comparable<E>> {
          * @param leftChild  reference to a left child node
          * @param rightChild reference to a right child node
          */
-        public Node(Ship e, Node<E> leftChild, Node<E> rightChild) {
+        public Node(Ship e, Node<Ship> leftChild, Node<Ship> rightChild) {
             element = e;
             left = leftChild;
             right = rightChild;
@@ -35,11 +32,11 @@ public class BSTShip<E extends Comparable<E>> {
             return element;
         }
 
-        public Node<E> getLeft() {
+        public Node<Ship> getLeft() {
             return left;
         }
 
-        public Node<E> getRight() {
+        public Node<Ship> getRight() {
             return right;
         }
 
@@ -48,18 +45,18 @@ public class BSTShip<E extends Comparable<E>> {
             element = e;
         }
 
-        public void setLeft(Node<E> leftChild) {
+        public void setLeft(Node<Ship> leftChild) {
             left = leftChild;
         }
 
-        public void setRight(Node<E> rightChild) {
+        public void setRight(Node<Ship> rightChild) {
             right = rightChild;
         }
     }
 
     //----------- end of nested Node class -----------
 
-    protected Node<E> root = null;     // root of the tree
+    protected Node<Ship> root = null;     // root of the tree
 
 
     /* Constructs an empty binary search tree. */
@@ -70,8 +67,40 @@ public class BSTShip<E extends Comparable<E>> {
     /*
      * @return root Node of the tree (or null if tree is empty)
      */
-    protected Node<E> root() {
+    protected Node<Ship> root() {
         return root;
+    }
+
+    public int height(){
+        return height(root);
+    }
+
+    protected int height(Node<Ship> node){
+        if(node == null)
+            return -1;
+
+        int lDepth = height(node.getLeft());
+        int rDepth = height(node.getRight());
+
+        if(lDepth > rDepth)
+            return (lDepth + 1);
+        else
+            return (rDepth + 1);
+    }
+
+    public Ship smallestElement(){
+        return smallestElement(root);
+    }
+
+    protected Ship smallestElement(Node<Ship> node) {
+        if (node == null)
+            return null;
+
+        Node<Ship> auxNode;
+
+        for (auxNode = node; auxNode.getLeft() != null; auxNode = auxNode.getLeft());
+
+        return auxNode.getElement();
     }
 
     /*
@@ -101,9 +130,10 @@ public class BSTShip<E extends Comparable<E>> {
      * subclasses avoiding recoding.
      * So its access level is protected
      */
-    protected Node<E> find(Node<E> node, Ship element) {
-        if (node == null || node.getElement().getMmsi() == element.getMmsi())
+    protected Node<Ship> find(Node<Ship> node, Ship element) {
+        if (node == null || node.getElement().getMmsi() == element.getMmsi()) {
             return node;
+        }
         if (element.getMmsi() > node.getElement().getMmsi()) {
             return find(node.getRight(), element);
         }
@@ -113,24 +143,7 @@ public class BSTShip<E extends Comparable<E>> {
     /*
      * Inserts an element in the tree.
      */
-    public void insert(Ship element) {
-        root = insert(element, root);
-    }
-
-    private Node<E> insert(Ship element, Node<E> node) {
-        if (node == null) {
-            node = new Node<>(element, null, null);
-            return node;
-        }
-
-        if (element.getMmsi() < node.getElement().getMmsi())
-            node.left = insert(element, node.getLeft());
-        else if (element.getMmsi() > node.getElement().getMmsi())
-            node.right = insert(element, node.getRight());
-
-        /* return the (unchanged) node pointer */
-        return node;
-    }
+    public abstract void insert(Ship element);
 
     /*
      * Returns the number of nodes in the tree.
@@ -140,7 +153,7 @@ public class BSTShip<E extends Comparable<E>> {
         return size(root);
     }
 
-    private int size(BSTShip.Node<E> node) {
+    private int size(BSTShip.Node<Ship> node) {
         if (node == null) {
             return 0;
         }
@@ -165,7 +178,7 @@ public class BSTShip<E extends Comparable<E>> {
      * @param node     Node serving as the root of a subtree
      * @param snapshot a list to which results are appended
      */
-    private void inOrderSubtree(Node<E> node, List<Ship> snapshot) {
+    private void inOrderSubtree(Node<Ship> node, List<lapr.project.model.Ship> snapshot) {
         if (node == null)
             return;
         inOrderSubtree(node.getLeft(), snapshot);

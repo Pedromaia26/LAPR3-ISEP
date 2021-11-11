@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CompanyTest {
 
     Company c = new Company();
-    BSTShip bst = new BSTShip();
+    BSTShip bst = new AVLShip();
 
     @Test
     void getBstShips() {

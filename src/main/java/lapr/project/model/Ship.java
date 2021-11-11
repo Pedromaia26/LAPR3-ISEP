@@ -3,6 +3,7 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Ship implements Comparable<Ship> {
     private int mmsi;
@@ -85,5 +86,13 @@ public class Ship implements Comparable<Ship> {
         return "Ships{" +
                 "mmsi='" + mmsi + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ship ship = (Ship) o;
+        return mmsi == ship.mmsi;
     }
 }

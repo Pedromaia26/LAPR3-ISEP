@@ -8,7 +8,7 @@ public class Company {
 
     public Company()
     {
-        this.bstShips = new BSTShip();
+        this.bstShips = new AVLShip();
     }
 
     /**

@@ -25,7 +25,7 @@ class TopNshipsPerKmControllerTest {
 
     @Test
     void TopNshipsPerKmControllerTestApp(){
-        BSTShip bst = new BSTShip();
+        BSTShip bst = new AVLShip();
         bst.insert(ship);
         bst.insert(ship1);
         bst.insert(ship2);
@@ -37,7 +37,7 @@ class TopNshipsPerKmControllerTest {
     @Test
     void TopNshipsPerKmControllerTestWBST(){
         Company c = new Company();
-        BSTShip bst = new BSTShip();
+        BSTShip bst = new AVLShip();
         bst.insert(ship);
         bst.insert(ship1);
         bst.insert(ship2);
