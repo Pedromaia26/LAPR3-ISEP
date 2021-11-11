@@ -21,7 +21,7 @@ Nuno Bettencourt - NMB
 
 ### Abstract ###
 In this report we start by explaining the initial problem that was presented to us, which consists of building a Java application that tracked the fastest routes from one point to another in the world so that the delivery of containers is more efficient.
-The application must follow a Test Driven Development approach using SonarQube® servers.
+The application must follow a Test Driven Development approach using SonarQube® and Jenkins® servers.
 Before coding development, we focused our work on the engineering software artifacts that would be relevant during coding.
 All our work was distributed among the seven members of the group and we tried to follow an even distribution, however imperfect.
 
@@ -54,16 +54,16 @@ We created the Domain Model that we would follow in the development of our sprin
 Then we have elaborated some of the relevant SSDs diagrams.\
 Sprint 1:
 
-![Domain-Model](./Documentation/Requirements_Engineering/US101/US101_SSD.jpg)
-![Domain-Model](./Documentation/Requirements_Engineering/US104/US104_SSD.svg)
-![Domain-Model](./Documentation/Requirements_Engineering/US106/UC106_SSD.jpg)
+![US101_SSD](./Documentation/Requirements_Engineering/US101/US101_SSD.jpg)
+![US104_SSD](./Documentation/Requirements_Engineering/US104/US104_SSD.svg)
+![UC106_SSD](./Documentation/Requirements_Engineering/US106/UC106_SSD.jpg)
 
 ### SDs Diagrams ###
 Then we have elaborated some of the relevant SDs diagrams.\
 
-![Domain-Model](./Documentation/Engineering_Design/US101/US101_SD.jpg)
-![Domain-Model](./Documentation/Engineering_Design/US104/US104_SD.svg)
-![Domain-Model](./Documentation/Engineering_Design/US106/UC106_SD.jpg)
+![US101_SD](./Documentation/Engineering_Design/US101/US101_SD.jpg)
+![US104_SD](./Documentation/Engineering_Design/US104/US104_SD.svg)
+![UC106_SD](./Documentation/Engineering_Design/US106/UC106_SD.jpg)
 
 
 #################################################################################
