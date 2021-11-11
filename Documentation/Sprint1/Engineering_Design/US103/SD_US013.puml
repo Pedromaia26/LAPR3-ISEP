@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":PositionalMessagesUI" as UI
+participant ":PositionalMessagesController" as CTRL
+participant ":Company" as C
+participant "ships\n:List<Ship>" as LIST
+participant "ship\n:Ship" as S
+participant ":BSTDynData" as BST
+participant "positionsList\n:List<ShipDynData>" as POS
+participant "position\n:ShipDynData" as P
+participant ":FileOperation" as FILE
+participant "info\n:String"
+participant "date\n:String"
+participant "date1\n:String"
+participant "date2\n:String"
+
+activate TM
+
+TM -> UI: asks to receive the positional messages \n temporally organized of a given ship
+activate UI
+UI --> CTRL: data
+activate CTRL
+CTRL --> C: ships = getBstShips()
+activate C
+deactivate C
+
+deactivate CTRL
+UI --> TM: asks for the mmsi of the wanted ship
+deactivate UI
+TM --> UI: types the requested data
+activate UI
+UI --> CTRL: requestedData(mmsi)
+activate CTRL
+CTRL --> LIST: ship = shipByMMSI(mmsi)
+activate LIST
+deactivate LIST
+deactivate CTRL
+UI --> TM: requests a date or period to access
+deactivate UI
+TM --> UI: types the requested data
+activate UI
+alt data = date
+UI --> CTRL: requested data
+activate CTRL
+CTRL --> S: getBstDynData()
+activate S
+S --> BST: position = searchSpecificDate(date)
+activate BST
+deactivate BST
+deactivate S
+CTRL --> UI: info
+deactivate CTRL
+else data = period
+UI --> CTRL: requested data
+activate CTRL
+CTRL --> S: getBstDynData()
+activate S
+S --> BST: positionsList = searchSpecificDatecall(date1 , date2)
+activate BST
+deactivate BST
+deactivate S
+CTRL --> UI: info
+deactivate CTRL
+end
+UI -> CTRL: message(info)
+activate CTRL
+CTRL --> FILE: writeToAFile(info)
+activate FILE
+FILE --> CTRL: file with the info
+deactivate FILE
+CTRL --> UI: file
+deactivate CTRL
+
+UI -> TM: file
+deactivate UI
+
+
+
+
+
+
+
+@enduml

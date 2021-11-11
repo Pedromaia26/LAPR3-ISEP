@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant "System" as S
+activate TM
+
+TM -> S: asks to receive the positional messages \n temporally organized of a given ship
+activate S
+S --> TM: asks for the mmsi of the wanted ship
+deactivate S
+TM -> S: types the requested data
+activate S
+TM <-- S: requests a date or period to access \nthe position of the ship in that date or period
+deactivate S
+TM --> S: types the requested data
+activate S
+TM <-- S: shows the positional messages for the selected ship
+@enduml
