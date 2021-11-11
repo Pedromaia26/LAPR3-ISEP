@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import lapr.project.model.*;
 
 import java.io.IOException;
@@ -8,14 +9,14 @@ import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TopNshipsPerKmControllerTest {
+class TopNshipsPerKmControllerTest {
 
     Ship ship = new Ship("212180000", "SAITA I","IMO9643544","5BBA4","70","228","32","14.4");
     Ship ship1 = new Ship("228339600","CMA CGM ALMAVIVA","IMO9450648","FLSU","70","334","42","15");
     Ship ship2 = new Ship("212351000","HYUNDAI SINGAPORE","IMO9305685","5BZP3","70","303","40","14.5");
 
     @Test
-    public void TopNshipsPerKmControllertest() throws ParseException, IOException {
+    void TopNshipsPerKmControllertest() throws ParseException, IOException {
         ImportShipsController controller = new ImportShipsController();
         controller.importFromCSV("sships.csv");
         TopNshipsPerKmController controller2 = new TopNshipsPerKmController();
@@ -23,7 +24,7 @@ public class TopNshipsPerKmControllerTest {
     }
 
     @Test
-    public void TopNshipsPerKmControllerTestApp(){
+    void TopNshipsPerKmControllerTestApp(){
         BSTShip bst = new BSTShip();
         bst.insert(ship);
         bst.insert(ship1);
@@ -34,7 +35,7 @@ public class TopNshipsPerKmControllerTest {
     }
 
     @Test
-    public void TopNshipsPerKmControllerTestWBST(){
+    void TopNshipsPerKmControllerTestWBST(){
         Company c = new Company();
         BSTShip bst = new BSTShip();
         bst.insert(ship);
@@ -46,7 +47,7 @@ public class TopNshipsPerKmControllerTest {
     }
 
     @Test
-    public void shipsAndKm() throws ParseException {
+    void shipsAndKm() throws ParseException {
         BSTShip bst = new BSTShip();
         bst.insert(ship);
         bst.insert(ship1);
@@ -60,20 +61,22 @@ public class TopNshipsPerKmControllerTest {
         controller.shipsAndKm();
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void TopNshipsPerKmControllertest_null() throws IOException {
+    @Test
+    void TopNshipsPerKmControllertest_null() throws IOException {
         ImportShipsController controller = new ImportShipsController();
         controller.importFromCSV("sships.csv");
         TopNshipsPerKmController controller2 = new TopNshipsPerKmController();
-        controller2.printNshipsMostKm("TestFiles/test106_null");
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> { controller2.printNshipsMostKm("TestFiles/test106_null"); });
+        assertEquals("Parameter invalid", thrown.getMessage());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void TopNshipsPerKmControllertest_negative() throws IOException {
+    @Test
+    void TopNshipsPerKmControllertest_negative() throws IOException {
         ImportShipsController controller = new ImportShipsController();
         controller.importFromCSV("sships.csv");
         TopNshipsPerKmController controller2 = new TopNshipsPerKmController();
-        controller2.printNshipsMostKm("TestFiles/test106_negative");
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> { controller2.printNshipsMostKm("TestFiles/test106_null"); });
+        assertEquals("Parameter invalid", thrown.getMessage());
     }
 
     @Test
