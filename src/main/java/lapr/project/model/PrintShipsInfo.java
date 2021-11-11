@@ -25,11 +25,11 @@ public class PrintShipsInfo {
 
     @Override
     public String toString() {
-        return "PrintShipsInfo{" +
+        return "Ship: " +
                 "mmsi=" + mmsi +
-                ", numberofMovements=" + numberofMovements +
-                ", deltadistance=" + deltadistance +
-                ", realdistance=" + realdistance +
-                '}';
+                "; numberofMovements=" + numberofMovements +
+                "; deltadistance=" + deltadistance +
+                "; realdistance=" + realdistance +
+                "\n";
     }
 }
