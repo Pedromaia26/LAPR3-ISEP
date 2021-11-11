@@ -16,7 +16,7 @@ class TopNshipsPerKmControllerTest {
     Ship ship2 = new Ship("212351000","HYUNDAI SINGAPORE","IMO9305685","5BZP3","70","303","40","14.5");
 
     @Test
-    void TopNshipsPerKmControllertest() throws ParseException, IOException {
+    void TopNshipsPerKmControllertest() throws IOException {
         ImportShipsController controller = new ImportShipsController();
         controller.importFromCSV("sships.csv");
         TopNshipsPerKmController controller2 = new TopNshipsPerKmController();
@@ -44,21 +44,6 @@ class TopNshipsPerKmControllerTest {
         c.setBstShips(bst);
         TopNshipsPerKmController controller = new TopNshipsPerKmController(c);
         assertEquals(c.getBstShips(), controller.shipBst);
-    }
-
-    @Test
-    void shipsAndKm() throws ParseException {
-        BSTShip bst = new BSTShip();
-        bst.insert(ship);
-        bst.insert(ship1);
-        bst.insert(ship2);
-        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
-        BSTDynData bstd = new BSTDynData();
-        bstd.insert(sdd);
-        ship.setBstDynData(bstd);
-        App.getInstance().getCompany().setBstShips(bst);
-        TopNshipsPerKmController controller = new TopNshipsPerKmController();
-        controller.shipsAndKm();
     }
 
     @Test

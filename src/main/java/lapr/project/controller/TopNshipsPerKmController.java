@@ -1,9 +1,6 @@
 package lapr.project.controller;
 
-import lapr.project.model.BSTDynData;
-import lapr.project.model.BSTShip;
-import lapr.project.model.Company;
-import lapr.project.model.Ship;
+import lapr.project.model.*;
 import lapr.project.utils.FileOperation;
 
 import java.io.BufferedReader;
@@ -30,12 +27,9 @@ public class TopNshipsPerKmController {
         HashMap<Ship, Double> map = new HashMap<>();
 
         Iterable<Ship> ships = shipBst.inOrder();
-        Iterable<BSTDynData> viagens = dataBst.inOrder();
         for (Ship a : ships) {
             dataBst = a.getBstDynData();
-            for (BSTDynData v : viagens) {
-                totalKm = v.inorderCalculateDistance();
-            }
+            totalKm = dataBst.inorderCalculateDistance();
             map.put(a, totalKm);
             totalKm = 0;
         }
