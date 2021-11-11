@@ -1,7 +1,10 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
+import lapr.project.utils.FileOperation;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,23 +13,35 @@ import java.util.List;
 public class PrintingShipsInfoController {
 
     private Ship ships;
+    String data = "";
     private BSTShip bstShip;
     private Iterable<Ship> shipsIterable;
     private List<PrintShipsInfo> printShipsInfos;
 
-    public void getShips(){
+    public PrintingShipsInfoController(Company c) {
+        this.bstShip = c.getBstShips();
+    }
+
+    public PrintingShipsInfoController() {
+        this.bstShip = App.getInstance().getCompany().getBstShips();
+    }
+
+    public void getShips() throws IOException {
+
         this.shipsIterable = bstShip.inOrder();
         printShipsInfos = new ArrayList<>();
 
         organizeInformation();
 
+        data += "Ascending\n";
+
         organizeAsc();
 
-        System.out.println(printShipsInfos);
+        data += "Descending\n";
 
         organizeDesc();
 
-        System.out.println(printShipsInfos);
+        FileOperation.writeToAFile("Output/listAllShips.txt", data);
     }
 
     public void organizeInformation(){
@@ -44,46 +59,46 @@ public class PrintingShipsInfoController {
         }
     }
 
-        public void organizeAsc(){
-            Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
-                @Override
-                public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
-                    if(p1.getNumberofMovements() > p2.getNumberofMovements()){
-                        return 1;
+    public void organizeAsc(){
+        Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
+            @Override
+            public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
+                if(p1.getNumberofMovements() > p2.getNumberofMovements()){
+                    return 1;
+                }
+                else{
+                    if(p1.getNumberofMovements() < p2.getNumberofMovements()){
+                        return -1;
                     }
                     else{
-                        if(p1.getNumberofMovements() < p2.getNumberofMovements()){
-                            return -1;
-                        }
-                        else{
-                            return 0;
-                        }
+                        return 0;
                     }
                 }
-            });
-        }
-
-        public void organizeDesc(){
-            Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
-                @Override
-                public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
-                    if(p1.getRealdistance() > p2.getRealdistance()){
-                        return 1;
-                    }
-                    else{
-                        if(p1.getRealdistance() < p2.getRealdistance()){
-                            return -1;
-                        }
-                        else{
-                            return 0;
-                        }
-                    }
-                }
-            });
-        }
-
-
+            }
+        });
+        data += printShipsInfos;
     }
+
+    public void organizeDesc(){
+        Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
+            @Override
+            public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
+                if(p1.getRealdistance() > p2.getRealdistance()){
+                    return 1;
+                }
+                else{
+                    if(p1.getRealdistance() < p2.getRealdistance()){
+                        return -1;
+                    }
+                    else{
+                        return 0;
+                    }
+                }
+            }
+        });
+        data += printShipsInfos;
+    }
+}
 
 
 
