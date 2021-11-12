@@ -83,4 +83,22 @@ public class ShipTest {
         ship.setBstDynData(bst);
         assertEquals(bst, ship.getBstDynData());
     }
+
+    @Test
+    public void testEqualsDifferentClasses(){
+        int a = 10;
+        assertFalse(ship.equals(a));
+    }
+
+    @Test
+    public void testEqualsDifferentNull(){
+        Ship ship2 = null;
+        assertFalse(ship.equals(ship2));
+    }
+
+    @Test
+    public void testEqualsDifferentMMSI(){
+        Ship ship2 = new Ship("123456779", "ship", "1000000000", "callSign", "A", "100", "500", "3");
+        assertFalse(ship.equals(ship2));
+    }
 }
