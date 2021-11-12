@@ -16,6 +16,8 @@ class PairControllerTest {
     void returnPair() throws IOException {
         String file = "sships.csv";
         icontroller.importFromCSV(file);
-        pcontroller.returnPair();
+        pcontroller.pair();
     }
+
+
 }
