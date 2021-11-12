@@ -11,11 +11,11 @@ public class InfoShip implements Comparable<InfoShip>{
 
     public InfoShip(Ship ship, Date date1 , Date date2) {
         this.mmsi = ship.getMmsi();
-        this.averageSpeed = getAverageSpeed(ship, date1, date2);
+        this.averageSpeed = calculateAverageSpeed(ship, date1, date2);
         this.travelledDistance = ship.getBstDynData().inorderCalculateDistance(date1, date2);
     }
 
-    public double getAverageSpeed(Ship ship, Date date1 , Date date2){
+    public double calculateAverageSpeed(Ship ship, Date date1 , Date date2){
         int size = 0;
         double sumSOG = 0;
         for (ShipDynData sdd: (List<ShipDynData>) ship.getBstDynData().inOrder()){
@@ -52,8 +52,8 @@ public class InfoShip implements Comparable<InfoShip>{
 
     @Override
     public int compareTo(InfoShip o){
-        if (this.travelledDistance > o.getTravelledDistance()) return 1;
-        else if (this.travelledDistance == o.getTravelledDistance()) return 0;
+        if (this.mmsi > o.getMmsi()) return 1;
+        else if (this.mmsi == o.getMmsi()) return 0;
         return -1;
     }
 }
