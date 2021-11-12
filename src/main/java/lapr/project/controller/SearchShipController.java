@@ -96,7 +96,7 @@ public class SearchShipController {
 
     public void searchDeatils(String path) throws IOException {
         Ship ship = IdentifyTheShip(path);
-        StringBuilder data = new StringBuilder();;
+        StringBuilder data = new StringBuilder();
         if (ship != null){
             long diff = ship.getBstDynData().arrival().getBaseDateTime().getTime() - ship.getBstDynData().departure().getBaseDateTime().getTime();
             TimeUnit time = TimeUnit.MINUTES;
@@ -133,7 +133,7 @@ public class SearchShipController {
             data.append("Departure Longitude: " + departureLongitude + "\n");
             data.append("Arrival Latitude: " + arrivalLatitude + "\n");
             data.append("Arrival Longitude: " + arrivalLongitude + "\n");
-            data.append("Travelled distance: " + ship.getBstDynData().inorderCalculateDistance() + "m\n");
+            data.append("Travelled distance: " + ship.getBstDynData().inorderCalculateDistance(ship.getBstDynData().departure().getBaseDateTime(), ship.getBstDynData().arrival().getBaseDateTime()) + "m\n");
             data.append("Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n");
             FileOperation.writeToAFile(String.valueOf("Output/" + ship.getMmsi()) + "details.txt", data);
         }

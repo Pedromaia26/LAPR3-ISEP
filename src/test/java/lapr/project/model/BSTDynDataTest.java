@@ -211,7 +211,7 @@ class BSTDynDataTest {
         ShipDynData sdd = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
         bst.insert(sdd);
         double expected = 0;
-        assertEquals(expected, bst.inorderCalculateDistance());
+        assertEquals(expected, bst.inorderCalculateDistance(sdd.getBaseDateTime(), sdd.getBaseDateTime()));
     }
 
     @Test
@@ -222,7 +222,7 @@ class BSTDynDataTest {
         bst.insert(sdd1);
         bst.insert(sdd2);
         double expected = 0;
-        assertEquals(expected, bst.inorderCalculateDistance());
+        assertEquals(expected, bst.inorderCalculateDistance(sdd1.getBaseDateTime(), sdd2.getBaseDateTime()));
     }
 
     @Test
@@ -233,7 +233,7 @@ class BSTDynDataTest {
         bst.insert(sdd1);
         bst.insert(sdd2);
         double expected = 0;
-        assertEquals(expected, bst.inorderCalculateDistance());
+        assertEquals(expected, bst.inorderCalculateDistance(sdd1.getBaseDateTime(), sdd2.getBaseDateTime()));
     }
 
     @Test
@@ -245,6 +245,6 @@ class BSTDynDataTest {
         bst.insert(sdd2);
         bst.insert(sdd3);
         double expected = 156316.8203125;
-        assertEquals(expected, bst.inorderCalculateDistance());
+        assertEquals(expected, bst.inorderCalculateDistance(sdd1.getBaseDateTime(), sdd3.getBaseDateTime()));
     }
 }

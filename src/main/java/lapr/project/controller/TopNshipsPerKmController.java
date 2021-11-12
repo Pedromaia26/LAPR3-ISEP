@@ -6,6 +6,8 @@ import lapr.project.utils.FileOperation;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TopNshipsPerKmController {
@@ -21,69 +23,67 @@ public class TopNshipsPerKmController {
         shipBst = c.getBstShips();
     }
 
-    public HashMap<Ship, Double> shipsAndKm() {
-
-        double totalKm = 0;
-        HashMap<Ship, Double> map = new HashMap<>();
+    public HashMap<String, ArrayList<InfoShip>> shipsAndKm(Date date1, Date date2) {
+        HashMap<String, ArrayList<InfoShip>> map = new HashMap<>();
 
         Iterable<Ship> ships = shipBst.inOrder();
         for (Ship a : ships) {
-            dataBst = a.getBstDynData();
-            totalKm = dataBst.inorderCalculateDistance();
-            map.put(a, totalKm);
+            if (map.get(a.getVesselType()) == null){
+                map.put(a.getVesselType(), new ArrayList<>());
+            }
+            map.get(a.getVesselType()).add(new InfoShip(a, date1, date2));
         }
         return map;
     }
 
     public void printNshipsMostKm(String path) throws IOException {
         StringBuilder data = new StringBuilder();
-        HashMap<Ship, Double> map = shipsAndKm();
-        String line = "";
+        Date dateN = null;
+        Date dateM = null;
+        int n = 0;
         BufferedReader br = new BufferedReader(new FileReader(path));
+        String line = "";
         try {
             line = br.readLine();
             if (line != null) {
-                int n = Integer.parseInt(line);
-                if(n<=0){
+                n = Integer.parseInt(line);
+                if (n <= 0) {
                     throw new IllegalArgumentException("Parameter invalid");
                 }
-                Map<Ship, Double> orderMap = sortByValue(map);
-                int i =0;
-                for (Map.Entry<Ship, Double> me : orderMap.entrySet()) {
-                    if(i<n) {
-                        data.append("Ship: " + me.getKey() + " with " + me.getValue() + "km\n");
-                        i++;
-                    }
-                }
-                FileOperation.writeToAFile("Output/TopNShips.txt", data);
+                line = br.readLine();
+                String dates[] = line.split(";");
+                dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+                dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
             }
-        }
-        catch (IOException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-        finally {
-            br.close();
+        HashMap<String, ArrayList<InfoShip>> map = shipsAndKm(dateN, dateM);
+        HashMap<String, ArrayList<InfoShip>> orderMap = sortByValue(map);
+        int i =0;
+        int j = 0;
+        for (String key : orderMap.keySet()) {
+            i = 0;
+            j = 0;
+            data.append("Vessel type: " + key + "\n");
+            ArrayList<InfoShip> value = orderMap.get(key);
+            while(i<n && j<value.size()) {
+                if(!value.get(j).toString().contains("NaN")){
+                    data.append(value.get(j));
+                    i++;
+                }
+                j++;
+            }
         }
+        FileOperation.writeToAFile("Output/TopNShips.txt", data);
     }
 
-    public static HashMap<Ship, Double> sortByValue(HashMap<Ship, Double> hm)
+    public static HashMap<String, ArrayList<InfoShip>> sortByValue(HashMap<String, ArrayList<InfoShip>> hm)
     {
-        // creating list from elements of HashMap
-        List<Map.Entry<Ship, Double>> list = new LinkedList<Map.Entry<Ship, Double>>(hm.entrySet());
-        // sorting list
-        Collections.sort(list, new Comparator<Map.Entry<Ship, Double>>()
-        {
-            public int compare(Map.Entry<Ship, Double> o1, Map.Entry<Ship, Double> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-        HashMap<Ship, Double> ha = new LinkedHashMap<Ship, Double>();
-        for(Map.Entry<Ship, Double> me : list)
-        {
-            ha.put(me.getKey(), me.getValue());
+        for (String vessel: hm.keySet()){
+            Collections.sort(hm.get(vessel));
         }
-        return ha;
+        return hm;
     }
 
 }

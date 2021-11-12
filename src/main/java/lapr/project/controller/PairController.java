@@ -43,7 +43,7 @@ public class PairController {
                 lngA2 = Double.parseDouble(shipList.get(j).getBstDynData().arrival().getLongitude());
 
 
-                dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance();
+                dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance(shipList.get(i).getBstDynData().departure().getBaseDateTime(), shipList.get(i).getBstDynData().arrival().getBaseDateTime());
                // System.out.printf("Travelled distance between departure and arrival (Ship1): %.2f m\n", dist1);
 
                 if (dist1 < 10000){
@@ -51,7 +51,7 @@ public class PairController {
                     break;
                 }
 
-                dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance();
+                dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance(shipList.get(j).getBstDynData().departure().getBaseDateTime(), shipList.get(j).getBstDynData().arrival().getBaseDateTime());
                 // System.out.printf("Travelled distance between departure and arrival (Ship2): %.2f m\n", dist2);
 
                 if (dist2 < 10000){

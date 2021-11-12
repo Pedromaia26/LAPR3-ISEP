@@ -48,7 +48,7 @@ public class PrintingShipsInfoController {
         for(Ship s : shipsIterable){
             BSTDynData bstDynData = s.getBstDynData();
             int mmsi = s.getMmsi();
-            double realDist = bstDynData.inorderCalculateDistance();
+            double realDist = bstDynData.inorderCalculateDistance(bstDynData.departure().getBaseDateTime(), bstDynData.arrival().getBaseDateTime());
             int numberOfMovements = bstDynData.size();
             ShipDynData firstDate = bstDynData.arrival();
             ShipDynData lastDate = bstDynData.departure();
