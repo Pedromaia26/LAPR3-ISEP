@@ -57,6 +57,8 @@ public class TopNshipsPerKmController {
             }
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+            br.close();
         }
         HashMap<String, ArrayList<InfoShip>> map = shipsAndKm(dateN, dateM);
         HashMap<String, ArrayList<InfoShip>> orderMap = sortByValue(map);
