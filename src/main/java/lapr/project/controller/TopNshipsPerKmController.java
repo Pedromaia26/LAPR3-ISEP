@@ -70,7 +70,7 @@ public class TopNshipsPerKmController {
             data.append("Vessel type: " + key + "\n");
             ArrayList<InfoShip> value = orderMap.get(key);
             while(i<n && j<value.size()) {
-                if(!value.get(j).toString().contains("NaN")){
+                if(!value.get(j).toString().contains("-1")){
                     data.append(value.get(j));
                     i++;
                 }

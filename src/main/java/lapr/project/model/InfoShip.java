@@ -24,7 +24,9 @@ public class InfoShip implements Comparable<InfoShip>{
                 size++;
             }
         }
-        return sumSOG/size;
+        if (size != 0) return sumSOG/size;
+        else return -1;
+
     }
 
     public int getMmsi() {
