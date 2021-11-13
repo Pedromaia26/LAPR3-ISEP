@@ -36,6 +36,7 @@ public class PairController {
     }
 
     public void pair() throws IOException {
+
         List<Ship> shipList = (List<Ship>) company.getBstShips().inOrder();
         for (int i = 0; i < shipList.size() - 1; i++) {
             teste = new ArrayList<>();
@@ -61,7 +62,9 @@ public class PairController {
                 Date date2S2 = shipList.get(j).getBstDynData().arrival().getBaseDateTime();
 
                 dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance(date1S1, date2S1);
+                System.out.println(dist1);
                 dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance(date1S2, date2S2);
+                System.out.println(dist2);
 
 
                 int less = checkTravelledDistance(dist1, dist2);
@@ -78,7 +81,7 @@ public class PairController {
                 Ship ship2 = shipList.get(j);
 
 
-                exists = checkRequirements(ship1, ship2, dist3, latD1, lngD1, latD2, lngD2, latA1, lngA1, latA2, lngA2);
+                exists = checkRequirements(ship1, ship2);
 
                 if (exists)
                     getPairs(ship1);
@@ -96,12 +99,15 @@ public class PairController {
     }
 
 
-    public boolean checkRequirements(Ship ship1, Ship ship2, double dist3, double latD1, double lngD1, double latD2, double lngD2, double latA1, double lngA1, double latA2, double lngA2){
+    public boolean checkRequirements(Ship ship1, Ship ship2){
         departureDistance = ship1.getBstDynData().travelledDistance(latD1, lngD1, latD2, lngD2);
         arrivalDistance = ship2.getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
         boolean f = false;
 
-        if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
+        System.out.println(departureDistance);
+        System.out.println(arrivalDistance);
+
+        if (dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)) {
 
             distances.add(dist3);
             teste.add(ship2);
