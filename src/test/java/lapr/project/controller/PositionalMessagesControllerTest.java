@@ -16,7 +16,7 @@ class PositionalMessagesControllerTest {
         String importFile = "sships.csv";
         importShipsController.importFromCSV(importFile);
         PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
-        String file = "positionalMsg.txt";
+        String file = "TestFiles/positionalMsg.txt";
         positionalMessagesController.message(file);
     }
 
