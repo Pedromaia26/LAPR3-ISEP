@@ -5,9 +5,9 @@ import java.util.List;
 
 public class InfoShip implements Comparable<InfoShip>{
 
-    private int mmsi;
-    private double averageSpeed;
-    private double travelledDistance;
+    private final int mmsi;
+    private final double averageSpeed;
+    private final double travelledDistance;
 
     public InfoShip(Ship ship, Date date1 , Date date2) {
         this.mmsi = ship.getMmsi();
