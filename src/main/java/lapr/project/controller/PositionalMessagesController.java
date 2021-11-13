@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -17,24 +18,41 @@ import java.util.*;
 public class PositionalMessagesController {
 
     int mmsi;
-    StringBuilder data = null;
+    StringBuilder data = new StringBuilder();
+    List<Ship> ships;
+    List<ShipDynData> datesShip;
+    String dates[];
+
 
     public void message (String file) throws ParseException, IOException {
-        List<Ship> ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
-        for (Ship s: ships){
-            System.out.println(s);
-        }
-        List<ShipDynData> datesShip;
+
+        ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
+        try {
 
-        try{
             mmsi = Integer.parseInt(br.readLine());
 
             String d = br.readLine();
-            String dates[] = d.split(";");
+            dates = d.split(";");
 
+
+
+
+            if (dates.length == 1) {
+                date(dates, ships);
+            } else
+                period(dates, ships);
+        }catch (IOException e){
+            e.printStackTrace();
+
+        }finally {
+            br.close();
+        }
+
+
+    }
 
         /*do{
             dates[position] = d;
@@ -44,39 +62,40 @@ public class PositionalMessagesController {
         }while (d!=null);*/
 
 
-            if (dates[1]==null) {
-                Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
-                for (Ship s : ships) {
-                    if (mmsi == s.getMmsi()) {
+    public void date(String dates[], List<Ship> ships) throws ParseException, IOException {
 
-                        data.append(s.getBstDynData().searchSpecificDate(newDate));
 
-                    }
-                }
-            }else {
 
-                Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
-                Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
+        Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+        for (Ship s : ships) {
+            if (mmsi == s.getMmsi()) {
+                data.append(s.getBstDynData().searchSpecificDate(newDate));
+                System.out.println(data);
+            }
+        }
+        FileOperation.writeToAFile("posMsg.txt", data);
+    }
 
-                for (Ship s : ships) {
-                    if (mmsi == s.getMmsi()) {
-                        datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
-                        for (ShipDynData l : datesShip) {
-                            data.append(l+"\n");
-                        }
-                    }
+    public void period(String dates[], List<Ship> ships) throws ParseException, IOException {
+        Date dateN = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
+        Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
 
+        for (Ship s : ships) {
+            if (mmsi == s.getMmsi()) {
+                datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
+                for (ShipDynData l : datesShip) {
+                    data.append(l+"\n");
                 }
             }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
         }
-        finally {
-            br.close();
-        }
-
-
         FileOperation.writeToAFile("posMsg.txt", data);
+    }
+
+
+
+
+
+
 
         /*List<ShipDynData> list = selected.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
 
@@ -129,5 +148,4 @@ public class PositionalMessagesController {
                 System.out.println(l.getBaseDateTime());
             }
         }*/
-    }
 }

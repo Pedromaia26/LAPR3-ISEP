@@ -2,11 +2,13 @@ package lapr.project.ui;
 
 import lapr.project.controller.ImportShipsController;
 import lapr.project.controller.PairController;
+import lapr.project.controller.PositionalMessagesController;
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,12 +34,16 @@ class Main {
      *
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException, ParseException {
         String file = "sships.csv";
+        String file2 = "positionalMsg.txt";
         ImportShipsController controller = new ImportShipsController();
         PairController pController = new PairController();
+        PositionalMessagesController pmController = new PositionalMessagesController();
         controller.importFromCSV(file);
-        pController.returnPair();
+        pController.pair();
+        pmController.message(file2);
+
 
 
 

@@ -11,27 +11,25 @@ import java.io.IOException;
 import java.util.*;
 
 public class PairController {
-    public void returnPair () throws IOException {
 
-        StringBuilder data = new StringBuilder();;
+    private double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
+    private Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
+    private boolean exists;
+    private List<Ship> teste;
+    private List<Double> distances = new ArrayList<>();
+    private StringBuilder data = new StringBuilder();
+    int cont = -1;
 
+    public void pair() throws IOException {
         List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
-        Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
-        double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
-
-        for (int i = 0; i < shipList.size()-1; i++) {
-
-            boolean exists = false;
-            List<Ship> teste = new ArrayList<>();
-            List<Double> distances = new ArrayList<>();
-
-            for (int j = i+1; j < shipList.size() ; j++) {
-
-               // System.out.println("------------");
-               // System.out.println(shipList.get(i).getMmsi()  + "/" + shipList.get(j).getMmsi());
-
-
-
+        for (int i = 0; i < shipList.size() - 1; i++) {
+            teste = new ArrayList<>();
+            distances = new ArrayList<>();
+            cont++;
+            if (cont==shipList.size()-2){
+                print();
+            }
+            for (int j = i + 1; j < shipList.size(); j++) {
                 latD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLatitude());
                 lngD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLongitude());
                 latA1 = Double.parseDouble(shipList.get(i).getBstDynData().arrival().getLatitude());
@@ -42,71 +40,89 @@ public class PairController {
                 latA2 = Double.parseDouble(shipList.get(j).getBstDynData().arrival().getLatitude());
                 lngA2 = Double.parseDouble(shipList.get(j).getBstDynData().arrival().getLongitude());
 
+                Date date1S1 = shipList.get(i).getBstDynData().departure().getBaseDateTime();
+                Date date2S1 = shipList.get(i).getBstDynData().arrival().getBaseDateTime();
+                Date date1S2 = shipList.get(j).getBstDynData().departure().getBaseDateTime();
+                Date date2S2 = shipList.get(j).getBstDynData().arrival().getBaseDateTime();
 
-                dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance(shipList.get(i).getBstDynData().departure().getBaseDateTime(), shipList.get(i).getBstDynData().arrival().getBaseDateTime());
-               // System.out.printf("Travelled distance between departure and arrival (Ship1): %.2f m\n", dist1);
+                dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance(date1S1, date2S1);
+                dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance(date1S2, date2S2);
 
-                if (dist1 < 10000){
-                 // System.out.println("Ship1 travelled less than 10 km.");
+
+                int less = checkTravelledDistance(dist1, dist2);
+
+                if (less == 1) {
                     break;
-                }
-
-                dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance(shipList.get(j).getBstDynData().departure().getBaseDateTime(), shipList.get(j).getBstDynData().arrival().getBaseDateTime());
-                // System.out.printf("Travelled distance between departure and arrival (Ship2): %.2f m\n", dist2);
-
-                if (dist2 < 10000){
-                    // System.out.println("Ship2 travelled less than 10 km.");
+                } else if (less == 2) {
                     continue;
                 }
 
-
                 dist3 = Math.abs(dist2-dist1);
 
-
-                departureDistance = shipList.get(i).getBstDynData().travelledDistance(latD1, lngD1, latD2, lngD2);
-                arrivalDistance = shipList.get(i).getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
-
-                // System.out.printf("Distance between ships departure: %.2f m\n", Math.abs(departureDistance));
-                // System.out.printf("Distance between ships arrival: %.2f m\n", Math.abs(arrivalDistance));
-
-                if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
-
-                    distances.add(dist3);
-                    teste.add(shipList.get(j));
-
-                    // System.out.println("Close departure or arrival: " + shipList.get(i) + " ----- " + shipList.get(j));
-
-                    exists = true;
-
-                }
-                    // System.out.println("Distant coordinates between departures/arrivals");
-
-            }
-
-            if (exists == true){
-                for(int l=0; l < distances.size(); l++){
-                    for(int j=1; j < distances.size()-l; j++){
-                        if(distances.get(j-1) < distances.get(j)){
-                            Collections.swap(distances, j-1, j);
-                            Collections.swap(teste, j-1, j);
-                        }
-                    }
-                }
-                pair.put(shipList.get(i), teste);
-            }
+                Ship ship1 = shipList.get(i);
+                Ship ship2 = shipList.get(j);
 
 
-            if (i==shipList.size()-2 && teste!=null){
+                exists = checkRequirements(ship1, ship2, dist3, latD1, lngD1, latD2, lngD2, latA1, lngA1, latA2, lngA2);
 
-                data.append("Pairs of ships with routes with close departure/arrival coordinates:\n\n");
-
-                for(Ship key : pair.keySet()) {
-                    for (Ship value : pair.get(key)) {
-                        data.append(key + " / " + value + "\n");
-                    }
-                }
-                FileOperation.writeToAFile("closeShips.txt", data);
+                if (exists)
+                    getPairs(ship1);
             }
         }
+    }
+
+    public int checkTravelledDistance(double dist1, double dist2) {
+        if (dist1 < 10000) {
+            return 1;
+        }else if (dist2 < 10000) {
+            return 2;
+        }
+        return 0;
+    }
+
+
+    public boolean checkRequirements(Ship ship1, Ship ship2, double dist3, double latD1, double lngD1, double latD2, double lngD2, double latA1, double lngA1, double latA2, double lngA2){
+        departureDistance = ship1.getBstDynData().travelledDistance(latD1, lngD1, latD2, lngD2);
+        arrivalDistance = ship2.getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
+        boolean f = false;
+
+        if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
+
+            distances.add(dist3);
+            teste.add(ship2);
+
+            // System.out.println("Close departure or arrival: " + shipList.get(i) + " ----- " + shipList.get(j));
+
+            f = true;
+        }
+        // System.out.println("Distant coordinates between departures/arrivals");
+
+        return f;
+    }
+
+
+    public void getPairs(Ship ship1) throws IOException {
+
+        for (int l = 0; l < distances.size(); l++) {
+            for (int j = 1; j < distances.size() - l; j++) {
+                if (distances.get(j - 1) < distances.get(j)) {
+                    Collections.swap(distances, j - 1, j);
+                    Collections.swap(teste, j - 1, j);
+                }
+            }
+        }
+        pair.put(ship1, teste);
+    }
+
+    public void print() throws IOException {
+
+        data.append("Pairs of ships with routes with close departure/arrival coordinates:\n\n");
+
+        for(Ship key : pair.keySet()) {
+            for (Ship value : pair.get(key)) {
+                data.append(key + " / " + value + "\n");
+            }
+        }
+        FileOperation.writeToAFile("Output/closeShips.txt", data);
     }
 }
