@@ -62,6 +62,7 @@ public class TopNshipsPerKmController {
         }
         HashMap<String, ArrayList<InfoShip>> map = shipsAndKm(dateN, dateM);
         HashMap<String, ArrayList<InfoShip>> orderMap = sortByValue(map);
+        System.out.println(orderMap);
         int i =0;
         int j = 0;
         for (String key : orderMap.keySet()) {
@@ -83,7 +84,22 @@ public class TopNshipsPerKmController {
     public static HashMap<String, ArrayList<InfoShip>> sortByValue(HashMap<String, ArrayList<InfoShip>> hm)
     {
         for (String vessel: hm.keySet()){
-            Collections.sort(hm.get(vessel));
+            Collections.sort(hm.get(vessel), new Comparator<InfoShip>() {
+                @Override
+                public int compare(InfoShip o1, InfoShip o2) {
+                    if(o1.getTravelledDistance()<o2.getTravelledDistance()){
+                        return 1;
+                    }
+                    else {
+                        if (o1.getTravelledDistance()>o2.getTravelledDistance()){
+                            return -1;
+                        }
+                        else {
+                            return 0;
+                        }
+                    }
+                }
+            });
         }
         return hm;
     }
