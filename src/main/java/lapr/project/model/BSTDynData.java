@@ -184,8 +184,6 @@ public class BSTDynData<E extends Comparable<E>> {
 
         if (root!=null) {
             dep = checkDeparture(root);
-            // System.out.print("Departure: ");
-            // System.out.println(dep.getBaseDateTime());
         }
 
         return dep;
@@ -207,8 +205,6 @@ public class BSTDynData<E extends Comparable<E>> {
 
         if (root!=null) {
             dep = checkArrival(root);
-            //  System.out.print("Arrival: ");
-            //  System.out.println(dep.getBaseDateTime());
         }
 
         return dep;
