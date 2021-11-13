@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -173,4 +174,63 @@ class SearchShipControllerTest {
         assertNull(shipt);
     }
 
+    @Test
+    void getmaxCog() throws ParseException {
+        SearchShipController controller = new SearchShipController();
+        ShipDynData data1 = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
+        ShipDynData data2 = new ShipDynData("31/12/2020 19:38","24.34573","-85.12394","10.7","118.9","117", "NA", "A");
+        ShipDynData data3 = new ShipDynData("31/12/2020 19:39","24.34573","-85.12394","12.7","120.9","117", "NA", "A");
+        BSTDynData bst = new BSTDynData();
+        bst.insert(data1);
+        bst.insert(data2);
+        bst.insert(data3);
+        ship.setBstDynData(bst);
+        Iterable<ShipDynData> list = ship.getBstDynData().inOrder();
+        assertEquals(120.9, controller.getmaxCog(list));
+    }
+
+    @Test
+    void getmaxSog() throws ParseException {
+        SearchShipController controller = new SearchShipController();
+        ShipDynData data1 = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
+        ShipDynData data2 = new ShipDynData("31/12/2020 19:38","24.34573","-85.12394","10.7","118.9","117", "NA", "A");
+        ShipDynData data3 = new ShipDynData("31/12/2020 19:39","24.34573","-85.12394","12.7","120.9","117", "NA", "A");
+        BSTDynData bst = new BSTDynData();
+        bst.insert(data1);
+        bst.insert(data2);
+        bst.insert(data3);
+        ship.setBstDynData(bst);
+        Iterable<ShipDynData> list = ship.getBstDynData().inOrder();
+        assertEquals(12.7, controller.getmaxSog(list));
+    }
+
+//    @Test
+//    void getsumSog() throws ParseException {
+//        SearchShipController controller = new SearchShipController();
+//        ShipDynData data1 = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
+//        ShipDynData data2 = new ShipDynData("31/12/2020 19:38","24.34573","-85.12394","10.7","118.9","117", "NA", "A");
+//        ShipDynData data3 = new ShipDynData("31/12/2020 19:39","24.34573","-85.12394","12.7","120.9","117", "NA", "A");
+//        BSTDynData bst = new BSTDynData();
+//        bst.insert(data1);
+//        bst.insert(data2);
+//        bst.insert(data3);
+//        ship.setBstDynData(bst);
+//        Iterable<ShipDynData> list = ship.getBstDynData().inOrder();
+//        assertEquals(35.4, controller.getsumSog(list));
+//    }
+//
+//    @Test
+//    void getsumCog() throws ParseException {
+//        SearchShipController controller = new SearchShipController();
+//        ShipDynData data1 = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
+//        ShipDynData data2 = new ShipDynData("31/12/2020 19:38","24.34573","-85.12394","10.7","118.9","117", "NA", "A");
+//        ShipDynData data3 = new ShipDynData("31/12/2020 19:39","24.34573","-85.12394","12.7","120.9","117", "NA", "A");
+//        BSTDynData bst = new BSTDynData();
+//        bst.insert(data1);
+//        bst.insert(data2);
+//        bst.insert(data3);
+//        ship.setBstDynData(bst);
+//        Iterable<ShipDynData> list = ship.getBstDynData().inOrder();
+//        assertEquals(359.7, controller.getsumCog(list));
+//    }
 }

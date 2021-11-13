@@ -97,6 +97,43 @@ public class SearchShipController {
         return ship;
     }
 
+    public double getmaxCog(Iterable<ShipDynData> list){
+        double maxCOG = Double.NEGATIVE_INFINITY;
+        for (ShipDynData sdd: list){
+            if (sdd.getCog() > maxCOG){
+                maxCOG = sdd.getCog();
+            }
+        }
+        return maxCOG;
+    }
+
+    public double getmaxSog(Iterable<ShipDynData> list){
+        double maxSOG = Double.NEGATIVE_INFINITY;
+        for (ShipDynData sdd: list){
+            if (sdd.getSog() > maxSOG){
+                maxSOG = sdd.getSog();
+            }
+        }
+        return maxSOG;
+    }
+
+    public double getsumSog(Iterable<ShipDynData> list){
+        double sumSOG = 0;
+        for (ShipDynData sdd: list){
+            sumSOG += sdd.getSog();
+            System.out.println(sdd.getSog());
+        }
+        return sumSOG;
+    }
+
+    public double getsumCog(Iterable<ShipDynData> list){
+        double sumCOG = 0;
+        for (ShipDynData sdd: list){
+            sumCOG += sdd.getCog();
+        }
+        return sumCOG;
+    }
+
     public void searchDeatils(String path) throws IOException {
         Ship ship = IdentifyTheShip(path);
         StringBuilder data = new StringBuilder();
@@ -104,20 +141,6 @@ public class SearchShipController {
             long diff = ship.getBstDynData().arrival().getBaseDateTime().getTime() - ship.getBstDynData().departure().getBaseDateTime().getTime();
             TimeUnit time = TimeUnit.MINUTES;
             long difference = time.convert(diff, TimeUnit.MILLISECONDS);
-            double maxCOG = Double.NEGATIVE_INFINITY;
-            double maxSOG = Double.NEGATIVE_INFINITY;
-            double sumCOG = 0;
-            double sumSOG = 0;
-            for (ShipDynData sdd: (List<ShipDynData>) ship.getBstDynData().inOrder()){
-                if (sdd.getCog() > maxCOG){
-                    maxCOG = sdd.getCog();
-                }
-                if (sdd.getSog() > maxSOG){
-                    maxSOG = sdd.getSog();
-                }
-                sumCOG += sdd.getCog();
-                sumSOG += sdd.getSog();
-            }
             float departureLatitude = Float.parseFloat(ship.getBstDynData().departure().getLatitude());
             float departureLongitude = Float.parseFloat(ship.getBstDynData().departure().getLongitude());
             float arrivalLatitude = Float.parseFloat(ship.getBstDynData().arrival().getLatitude());
@@ -128,10 +151,10 @@ public class SearchShipController {
             data.append("End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n");
             data.append("Total Movement Time: " + difference + " minutes\n");
             data.append("Total Number of Movements: " + (ship.getBstDynData().size()-1) + "\n");
-            data.append("Max COG: " + maxCOG + "\n");
-            data.append("Max SOG: " + maxSOG + "\n");
-            data.append("Mean COG: " + sumCOG/ship.getBstDynData().size() + "\n");
-            data.append("Mean SOG: " + sumSOG/ship.getBstDynData().size() + "\n");
+            data.append("Max COG: " + getmaxCog(ship.getBstDynData().inOrder()) + "\n");
+            data.append("Max SOG: " + getmaxSog(ship.getBstDynData().inOrder()) + "\n");
+            data.append("Mean COG: " + getsumCog(ship.getBstDynData().inOrder())/ship.getBstDynData().size() + "\n");
+            data.append("Mean SOG: " + getmaxSog(ship.getBstDynData().inOrder())/ship.getBstDynData().size() + "\n");
             data.append("Departure Latitude: " + departureLatitude + "\n");
             data.append("Departure Longitude: " + departureLongitude + "\n");
             data.append("Arrival Latitude: " + arrivalLatitude + "\n");

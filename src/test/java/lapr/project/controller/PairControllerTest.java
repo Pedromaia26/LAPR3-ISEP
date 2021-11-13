@@ -84,6 +84,7 @@ class PairControllerTest {
         Assert.assertEquals(dist, 1);
     }
 
+    @Test
     void dist2GreaterThan10000(){
         int dist = pcontroller.checkTravelledDistance(1231231, 131232);
         Assert.assertEquals(dist, 0);

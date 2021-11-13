@@ -91,4 +91,32 @@ class BSTShipTest {
         String lExpected = "[Ships{mmsi='123455789'}]";
         assertEquals(lExpected, bst.inOrder().toString());
     }
+
+    @Test
+    void heightEmpty() {
+        int expected = -1;
+        assertEquals(expected, bst.height());
+    }
+
+    @Test
+    void heightOneElement() {
+        Ship ship1 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        bst.insert(ship1);
+        int expected = 0;
+        assertEquals(expected, bst.height());
+    }
+
+    @Test
+    void heightTwoMoreElement() {
+        Ship ship1 = new Ship("123455769", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship2 = new Ship("123455779", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship3 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship4 = new Ship("123455799", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        bst.insert(ship1);
+        bst.insert(ship2);
+        bst.insert(ship3);
+        bst.insert(ship4);
+        int expected = 2;
+        assertEquals(expected, bst.height());
+    }
 }

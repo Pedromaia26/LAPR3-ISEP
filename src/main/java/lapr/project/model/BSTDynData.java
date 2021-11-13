@@ -143,9 +143,9 @@ public class BSTDynData<E extends Comparable<E>> {
             return node;
         }
 
-        if (element.getBaseDateTime().before(node.getElement().getBaseDateTime()))
+        if (node.getElement().getBaseDateTime().compareTo(element.getBaseDateTime())>0)
             node.left = insert(element, node.getLeft());
-        else if (element.getBaseDateTime().after(node.getElement().getBaseDateTime()))
+        else if (node.getElement().getBaseDateTime().compareTo(element.getBaseDateTime())<0)
             node.right = insert(element, node.getRight());
 
         /* return the (unchanged) node pointer */

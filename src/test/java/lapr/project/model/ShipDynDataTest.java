@@ -31,15 +31,15 @@ public class ShipDynDataTest {
 
     @Test
     public void getSog() {
-        float expectedsog = 14.4f;
-        float sog = sdd.getSog();
+        double expectedsog = 14.4;
+        double sog = sdd.getSog();
         assertEquals(expectedsog, sog);
     }
 
     @Test
     public void getCog() {
-        float expectedcog = 11.2f;
-        float cog = sdd.getCog();
+        double expectedcog = 11.2;
+        double cog = sdd.getCog();
         assertEquals(expectedcog, cog);
     }
 
@@ -127,32 +127,32 @@ public class ShipDynDataTest {
     @Test
     public void cogUnder0() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "-4.0", "347", "NA", "B");;
-        float expectedCog = 356f;
-        float cog = sdd.getCog();
+        double expectedCog = 356;
+        double cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
 
     @Test
     public void cogEquals0() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "0", "347", "NA", "B");;
-        float expectedCog = 0;
-        float cog = sdd.getCog();
+        double expectedCog = 0;
+        double cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
 
     @Test
     public void cogOver359() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "374.0", "347", "NA", "B");;
-        float expectedCog = 14f;
-        float cog = sdd.getCog();
+        double expectedCog = 14;
+        double cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
 
     @Test
     public void cogEquals359() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "76.97000", "22.13121",  "14.4", "359.0", "347", "NA", "B");;
-        float expectedCog = 359f;
-        float cog = sdd.getCog();
+        double expectedCog = 359;
+        double cog = sdd.getCog();
         assertEquals(expectedCog, cog);
     }
 
