@@ -13,15 +13,18 @@ import java.util.concurrent.TimeUnit;
 
 public class SearchShipController {
 
-    BSTShip shipBST = new AVLShip();
+    BSTShip shipBST;
     private Ship ship;
+    private Company c;
 
-    public SearchShipController(BSTShip shipBST) {
-        this.shipBST = shipBST;
+    public SearchShipController(Company c) {
+        this.c = c;
+        shipBST = c.getBstShips();
     }
 
     public SearchShipController() {
-        this.shipBST = App.getInstance().getCompany().getBstShips();
+        this.c = App.getInstance().getCompany();
+        shipBST = c.getBstShips();
     }
 
     public Ship ShipSearchByMmsi(int mmsi){

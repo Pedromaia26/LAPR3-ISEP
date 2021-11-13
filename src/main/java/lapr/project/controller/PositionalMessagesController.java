@@ -18,27 +18,33 @@ import java.util.*;
 public class PositionalMessagesController {
 
     int mmsi;
-    StringBuilder data = new StringBuilder();
+    StringBuilder data;
     List<Ship> ships;
     List<ShipDynData> datesShip;
     String dates[];
+    Company company;
 
+    public PositionalMessagesController(){
+        data = new StringBuilder();
+        company = App.getInstance().getCompany();
+    }
+
+    public PositionalMessagesController(Company company){
+        data = new StringBuilder();
+        this.company = company;
+    }
 
     public void message (String file) throws ParseException, IOException {
 
-        ships = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
+        ships = (List<Ship>) company.getBstShips().inOrder();
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         try {
 
             mmsi = Integer.parseInt(br.readLine());
-
             String d = br.readLine();
             dates = d.split(";");
-
-
-
 
             if (dates.length == 1) {
                 date(dates, ships);
@@ -64,13 +70,10 @@ public class PositionalMessagesController {
 
     public void date(String dates[], List<Ship> ships) throws ParseException, IOException {
 
-
-
         Date newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[0]);
         for (Ship s : ships) {
             if (mmsi == s.getMmsi()) {
                 data.append(s.getBstDynData().searchSpecificDate(newDate));
-                System.out.println(data);
             }
         }
         FileOperation.writeToAFile("posMsg.txt", data);

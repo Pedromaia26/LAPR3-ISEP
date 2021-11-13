@@ -9,9 +9,18 @@ import java.text.ParseException;
 
 public class ImportShipsController {
 
+    private Company company;
+    public ImportShipsController(Company company){
+        this.company = company;
+    }
+
+    public ImportShipsController(){
+        this.company = App.getInstance().getCompany();
+    }
+
     public void importFromCSV(String file) throws IOException {
         String line = "";
-        BSTShip shipBST = App.getInstance().getCompany().getBstShips();
+        BSTShip shipBST = company.getBstShips();
         BSTDynData shipdyndataBST;
         BufferedReader br = new BufferedReader(new FileReader(file));
         String splitBy = ",";
@@ -52,7 +61,7 @@ public class ImportShipsController {
         finally {
             br.close();
         }
-        App.getInstance().getCompany().setBstShips(shipBST);
+        company.setBstShips(shipBST);
 
     }
 }
