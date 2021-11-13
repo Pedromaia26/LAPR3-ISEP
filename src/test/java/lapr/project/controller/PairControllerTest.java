@@ -110,35 +110,11 @@ class PairControllerTest {
 
     @Test
     void checkNotMeetingRequirements() throws IOException, ParseException {
-       Company company = new Company();
-       PairController pairController = new PairController(company);
-        BSTShip bstShip = new AVLShip();
-        BSTDynData bstDD = new BSTDynData();
-        BSTDynData bstDD2 = new BSTDynData();
-
-        Ship ship1 = new Ship("210950000", "ship1", "IMO9395044", "C4SQ2", "70", "166", "25", "9.5");
-        Ship ship2 = new Ship("249047000", "ship2", "IMO9192387", "9HJC9", "60", "294", "32", "8");
-        ShipDynData sdd1 = new ShipDynData("31/12/2020 16:00", "42.69577", "-66.97808", "13.7", "-54.8", "357","NA", "B");
-        ShipDynData sdd2 = new ShipDynData("31/12/2020 16:12", "42.73879", "-66.97726", "13.4", "3.4", "357","NA", "B");
-        ShipDynData sdd3 = new ShipDynData("31/12/2020 09:05", "25.74763", "-78.29975", "0", "-91.7", "130","NA", "A");
-        ShipDynData sdd4 = new ShipDynData("31/12/2020 18:59", "25.74774", "-78.29988", "0.1", "-58", "139","NA", "A");
-        bstDD.insert(sdd1);
-        bstDD.insert(sdd2);
-        bstDD2.insert(sdd3);
-        bstDD2.insert(sdd4);
-        ship1.setBstDynData(bstDD);
-        ship2.setBstDynData(bstDD2);
-        bstShip.insert(ship1);
-        bstShip.insert(ship2);
-        company.setBstShips(bstShip);
+        ImportShipsController importShipsController = new ImportShipsController();
+        String importFile = "TestFiles/test107_sameTravelledDistance";
+        importShipsController.importFromCSV(importFile);
+        PairController pairController = new PairController();
 
         pairController.pair();
     }
-
-
-
-
-
-
-
 }
