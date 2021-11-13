@@ -13,15 +13,30 @@ import java.util.*;
 public class PairController {
 
     private double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
-    private Map<Ship, List<Ship>> pair = new LinkedHashMap<>();
+    private Map<Ship, List<Ship>> pair;
     private boolean exists;
     private List<Ship> teste;
-    private List<Double> distances = new ArrayList<>();
-    private StringBuilder data = new StringBuilder();
-    int cont = -1;
+    private List<Double> distances;
+    private StringBuilder data;
+    private int cont = -1;
+    private Company company;
+
+    public PairController(Company company){
+        pair = new LinkedHashMap<>();
+        distances = new ArrayList<>();
+        data = new StringBuilder();
+        this.company = company;
+    }
+
+    public PairController(){
+        pair = new LinkedHashMap<>();
+        distances = new ArrayList<>();
+        data = new StringBuilder();
+        this.company = App.getInstance().getCompany();
+    }
 
     public void pair() throws IOException {
-        List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
+        List<Ship> shipList = (List<Ship>) company.getBstShips().inOrder();
         for (int i = 0; i < shipList.size() - 1; i++) {
             teste = new ArrayList<>();
             distances = new ArrayList<>();
