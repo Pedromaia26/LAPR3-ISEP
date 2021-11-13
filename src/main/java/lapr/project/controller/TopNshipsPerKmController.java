@@ -86,12 +86,12 @@ public class TopNshipsPerKmController {
         for (String vessel: hm.keySet()){
             Collections.sort(hm.get(vessel), new Comparator<InfoShip>() {
                 @Override
-                public int compare(InfoShip o1, InfoShip o2) {
-                    if(o1.getTravelledDistance()<o2.getTravelledDistance()){
+                public int compare(InfoShip info1, InfoShip info2) {
+                    if(info1.getTravelledDistance()<info2.getTravelledDistance()){
                         return 1;
                     }
                     else {
-                        if (o1.getTravelledDistance()>o2.getTravelledDistance()){
+                        if (info1.getTravelledDistance()>info2.getTravelledDistance()){
                             return -1;
                         }
                         else {
