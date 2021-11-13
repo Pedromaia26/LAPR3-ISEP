@@ -260,12 +260,15 @@ class BSTDynDataTest {
 
     @Test
     void searchSpecificDateEquals() throws ParseException {
+        BSTDynData bst1 = new BSTDynData();
         ShipDynData sdd1 = new ShipDynData("01/12/2020 01:00", "50", "50", "30.0", "50.0", "50", "40", "B");
-        bst.insert(sdd1);
+        ShipDynData sdd2 = new ShipDynData("01/12/2020 01:02", "50", "50", "30.0", "50.0", "50", "40", "B");
+        bst1.insert(sdd2);
+        bst1.insert(sdd1);
         String date_string2 = "01/12/2020 01:00";
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date2 = formatter.parse(date_string2);
-        assertEquals(bst.searchSpecificDate(date2), sdd1);
+        assertEquals(sdd1, bst1.searchSpecificDate(date2));
     }
 
     @Test

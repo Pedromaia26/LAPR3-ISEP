@@ -280,15 +280,15 @@ public class BSTDynData<E extends Comparable<E>> {
             return null;
         }
 
-        if(date.compareTo(node.getElement().getBaseDateTime())<0){
-            searchSpecificDatePeriod(node.getLeft(), date);
-        }
-
         if(date.compareTo(node.getElement().getBaseDateTime())==0) {
             return node.getElement();
         }
-
-        return searchSpecificDatePeriod(node.getRight(),date);
+        if(date.compareTo(node.getElement().getBaseDateTime())<0){
+            return searchSpecificDatePeriod(node.getLeft(), date);
+        }
+        else {
+            return searchSpecificDatePeriod(node.getRight(), date);
+        }
 
     }
 
