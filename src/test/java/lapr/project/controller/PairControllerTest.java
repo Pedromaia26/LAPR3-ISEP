@@ -5,10 +5,12 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,26 +46,29 @@ class PairControllerTest {
     }
 
     @Test
-    void pair() throws IOException, ParseException {
-        Ship ship = new Ship("123456789", "ship", "1000000000", "callSign", "A", "100", "500", "3");
-        Ship ship2 = new Ship("123434289", "ship2", "1045000000", "callSign", "A", "100", "500", "3");
-        ShipDynData sdd1 = new ShipDynData("01/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
-        ShipDynData sdd2 = new ShipDynData("02/01/2020 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
-        ShipDynData sdd3 = new ShipDynData("03/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
-        ShipDynData sdd4 = new ShipDynData("02/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
+    void checkRequirements() throws IOException, ParseException {
+
+       Company company = new Company();
+       PairController pairController = new PairController(company);
+        Ship ship1 = new Ship("210950000", "ship1", "IMO9395044", "C4SQ2", "70", "166", "25", "9.5");
+        Ship ship2 = new Ship("228339600", "ship2", "IMO9450648", "FLSU", "70", "334", "42", "15");
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 16:00", "42.69577", "-66.97808", "13.7", "-54.8", "357","NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 18:31", "43.22513", "-66.96725", "11.7", "5.5", "355", "40", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 00:00", "28.37458", "-88.88584", "11.8", "124.6", "128","79", "B");
+        ShipDynData sdd4 = new ShipDynData("31/12/2020 03:56", "27.87869", "-88.22321", "11.7", "127.9", "128","79", "B");
         BSTDynData bstDynData = new BSTDynData();
         BSTDynData bstDynData2 = new BSTDynData();
         bstDynData.insert(sdd1);
         bstDynData.insert(sdd2);
         bstDynData2.insert(sdd3);
         bstDynData2.insert(sdd4);
-        ship.setBstDynData(bstDynData);
+        ship1.setBstDynData(bstDynData);
         ship2.setBstDynData(bstDynData2);
         BSTShip bst = new AVLShip();
-        bst.insert(ship);
+        bst.insert(ship1);
         bst.insert(ship2);
-        App.getInstance().getCompany().setBstShips(bst);
-        pcontroller.pair();
+        company.setBstShips(bst);
+        pairController.pair();
     }
 
     @Test
@@ -98,14 +103,41 @@ class PairControllerTest {
 
     @Test
     void dist2LessThan10000(){
-        int dist = pcontroller.checkTravelledDistance(9999, 1000);
-        Assert.assertEquals(dist, 1);
+        int dist = pcontroller.checkTravelledDistance(12212, 1000);
+        Assert.assertEquals(dist, 2);
     }
+
 
     @Test
-    void checkRequirements(){
+    void checkNotMeetingRequirements() throws IOException, ParseException {
+       Company company = new Company();
+       PairController pairController = new PairController(company);
+        BSTShip bstShip = new AVLShip();
+        BSTDynData bstDD = new BSTDynData();
+        BSTDynData bstDD2 = new BSTDynData();
 
+        Ship ship1 = new Ship("210950000", "ship1", "IMO9395044", "C4SQ2", "70", "166", "25", "9.5");
+        Ship ship2 = new Ship("249047000", "ship2", "IMO9192387", "9HJC9", "60", "294", "32", "8");
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 16:00", "42.69577", "-66.97808", "13.7", "-54.8", "357","NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 16:12", "42.73879", "-66.97726", "13.4", "3.4", "357","NA", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 09:05", "25.74763", "-78.29975", "0", "-91.7", "130","NA", "A");
+        ShipDynData sdd4 = new ShipDynData("31/12/2020 18:59", "25.74774", "-78.29988", "0.1", "-58", "139","NA", "A");
+        bstDD.insert(sdd1);
+        bstDD.insert(sdd2);
+        bstDD2.insert(sdd3);
+        bstDD2.insert(sdd4);
+        ship1.setBstDynData(bstDD);
+        ship2.setBstDynData(bstDD2);
+        bstShip.insert(ship1);
+        bstShip.insert(ship2);
+        company.setBstShips(bstShip);
+
+        pairController.pair();
     }
+
+
+
+
 
 
 

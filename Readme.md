@@ -48,7 +48,7 @@ With these Use Cases in mind, we strive to build the Software Engineering diagra
 
 We created the Domain Model that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-(...)
+![Domain-Model](./Documentation/Sprint1/Engineering_Analysis/Domain_Model.jpg)
 
 ### SSDs Diagrams ###
 Then we have elaborated some of the relevant SSDs diagrams.\
