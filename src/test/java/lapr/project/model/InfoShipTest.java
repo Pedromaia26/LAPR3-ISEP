@@ -59,7 +59,7 @@ class InfoShipTest {
         bst.insert(sdd);
         ship1.setBstDynData(bst);
         InfoShip infoship = new InfoShip(ship1, date1,date2);
-        assertEquals(14.4, infoship.calculateAverageSpeed(ship1, date2, date1));
+        assertEquals(14.4f, infoship.calculateAverageSpeed(ship1, date2, date1));
     }
 
     @Test
@@ -89,7 +89,7 @@ class InfoShipTest {
         bst.insert(sdd);
         ship1.setBstDynData(bst);
         InfoShip infoship = new InfoShip(ship1, date1,date2);
-        assertEquals(14.4, infoship.calculateAverageSpeed(ship1, date2, date1));
+        assertEquals(14.4f, infoship.calculateAverageSpeed(ship1, date2, date1));
     }
 
     @Test
@@ -119,7 +119,7 @@ class InfoShipTest {
         bst.insert(sdd);
         ship1.setBstDynData(bst);
         InfoShip infoship = new InfoShip(ship1, date1,date2);
-        assertEquals(14.4, infoship.calculateAverageSpeed(ship1, date2, date1));
+        assertEquals(14.4f, infoship.calculateAverageSpeed(ship1, date2, date1));
     }
 
     @Test

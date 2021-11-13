@@ -108,6 +108,32 @@ class BSTShipTest {
 
     @Test
     void heightTwoMoreElement() {
+        Ship ship1 = new Ship("123455749", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship2 = new Ship("123455779", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship3 = new Ship("123455729", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship4 = new Ship("123455719", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship5 = new Ship("123455739", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship6 = new Ship("123455769", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship7 = new Ship("123455799", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship8 = new Ship("123455759", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship9 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        Ship ship10 = new Ship("123455699", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
+        bst.insert(ship1);
+        bst.insert(ship2);
+        bst.insert(ship3);
+        bst.insert(ship4);
+        bst.insert(ship5);
+        bst.insert(ship6);
+        bst.insert(ship7);
+        bst.insert(ship8);
+        bst.insert(ship9);
+        bst.insert(ship10);
+        int expected = 3;
+        assertEquals(expected, bst.height());
+    }
+
+    @Test
+    void smallestElement(){
         Ship ship1 = new Ship("123455769", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
         Ship ship2 = new Ship("123455779", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
         Ship ship3 = new Ship("123455789", "ship", "1001000000", "callSign", "A", "100", "500", "3.0");
@@ -116,7 +142,7 @@ class BSTShipTest {
         bst.insert(ship2);
         bst.insert(ship3);
         bst.insert(ship4);
-        int expected = 2;
-        assertEquals(expected, bst.height());
+        Ship expected = ship1;
+        assertEquals(ship1, bst.smallestElement());
     }
 }

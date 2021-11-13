@@ -12,8 +12,8 @@ public class ShipDynData implements Comparable<ShipDynData> {
     private Date baseDateTime;
     private String latitude;
     private String longitude;
-    private double sog;
-    private double cog;
+    private float sog;
+    private float cog;
     private String heading;
     private int position;
     private String cargo;
@@ -40,13 +40,13 @@ public class ShipDynData implements Comparable<ShipDynData> {
         else
             this.longitude = longitude;
 
-        this.sog = Double.parseDouble(sog);
+        this.sog = Float.parseFloat(sog);
 
         if (Double.parseDouble(cog) < 0)
-            this.cog = Double.parseDouble(cog) + 360;
+            this.cog = Float.parseFloat(cog) + 360;
         else if (Double.parseDouble(cog) > 359)
-            this.cog = Double.parseDouble(cog) - 360;
-        else this.cog = Double.parseDouble(cog);
+            this.cog = Float.parseFloat(cog) - 360;
+        else this.cog = Float.parseFloat(cog);
 
         if (Integer.parseInt(heading) < 0 || Integer.parseInt(heading) > 359)
             this.heading = "NA";
@@ -58,11 +58,11 @@ public class ShipDynData implements Comparable<ShipDynData> {
         this.transceiver = transceiver;
     }
     
-    public double getSog() {
+    public float getSog() {
         return sog;
     }
 
-    public double getCog() {
+    public float getCog() {
         return cog;
     }
 

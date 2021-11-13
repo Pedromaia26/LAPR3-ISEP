@@ -117,17 +117,16 @@ public class SearchShipController {
         return maxSOG;
     }
 
-    public double getsumSog(Iterable<ShipDynData> list){
-        double sumSOG = 0;
+    public float getsumSog(Iterable<ShipDynData> list){
+        float sumSOG = 0f;
         for (ShipDynData sdd: list){
             sumSOG += sdd.getSog();
-            System.out.println(sdd.getSog());
         }
         return sumSOG;
     }
 
-    public double getsumCog(Iterable<ShipDynData> list){
-        double sumCOG = 0;
+    public float getsumCog(Iterable<ShipDynData> list){
+        float sumCOG = 0f;
         for (ShipDynData sdd: list){
             sumCOG += sdd.getCog();
         }

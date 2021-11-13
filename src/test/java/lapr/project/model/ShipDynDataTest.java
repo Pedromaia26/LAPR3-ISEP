@@ -31,15 +31,15 @@ public class ShipDynDataTest {
 
     @Test
     public void getSog() {
-        double expectedsog = 14.4;
-        double sog = sdd.getSog();
+        float expectedsog = 14.4f;
+        float sog = sdd.getSog();
         assertEquals(expectedsog, sog);
     }
 
     @Test
     public void getCog() {
-        double expectedcog = 11.2;
-        double cog = sdd.getCog();
+        float expectedcog = 11.2f;
+        float cog = sdd.getCog();
         assertEquals(expectedcog, cog);
     }
 
