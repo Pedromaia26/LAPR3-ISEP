@@ -247,4 +247,52 @@ class BSTDynDataTest {
         double expected = 156316.8203125;
         assertEquals(expected, bst.inorderCalculateDistance(sdd1.getBaseDateTime(), sdd3.getBaseDateTime()));
     }
+
+    @Test
+    void searchSpecificDateUnder() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("01/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
+        bst.insert(sdd1);
+        String date_string2 = "01/12/2020 01:00";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date2 = formatter.parse(date_string2);
+        assertNull(bst.searchSpecificDate(date2));
+    }
+
+    @Test
+    void searchSpecificDateEquals() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("01/12/2020 01:00", "50", "50", "30.0", "50.0", "50", "40", "B");
+        bst.insert(sdd1);
+        String date_string2 = "01/12/2020 01:00";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date2 = formatter.parse(date_string2);
+        assertEquals(bst.searchSpecificDate(date2), sdd1);
+    }
+
+    @Test
+    void searchSpecificDatePeriodOver() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("01/12/2020 01:00", "50", "50", "30.0", "50.0", "50", "40", "B");
+        bst.insert(sdd1);
+        List<ShipDynData> list = new ArrayList<>();
+        list.add(sdd1);
+        String date_string1 = "01/12/2020 01:00";
+        String date_string2 = "01/12/2020 02:00";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date2 = formatter.parse(date_string2);
+        Date date1 = formatter.parse(date_string1);
+        assertEquals(bst.searchSpecificDatePeriodcall(date1, date2), list);
+    }
+
+    @Test
+    void searchSpecificDatePeriodUnder() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("01/12/2020 02:00", "50", "50", "30.0", "50.0", "50", "40", "B");
+        bst.insert(sdd1);
+        List<ShipDynData> list = new ArrayList<>();
+        list.add(sdd1);
+        String date_string1 = "01/12/2020 01:00";
+        String date_string2 = "01/12/2020 02:00";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date2 = formatter.parse(date_string2);
+        Date date1 = formatter.parse(date_string1);
+        assertEquals(bst.searchSpecificDatePeriodcall(date1, date2), list);
+    }
 }

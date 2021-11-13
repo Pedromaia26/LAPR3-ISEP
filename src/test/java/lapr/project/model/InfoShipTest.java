@@ -26,6 +26,17 @@ class InfoShipTest {
     }
 
     @Test
+    void getTravelledDistance() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        BSTDynData bst = new BSTDynData();
+        bst.insert(sdd);
+        ship1.setBstDynData(bst);
+        InfoShip infoship = new InfoShip(ship1, date1,date2);
+        double expected = 0;
+        assertEquals(expected, infoship.getTravelledDistance());
+    }
+
+    @Test
     void getMmsi() throws ParseException {
         ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
         BSTDynData bst = new BSTDynData();

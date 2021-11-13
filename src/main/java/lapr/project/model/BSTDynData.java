@@ -256,9 +256,7 @@ public class BSTDynData<E extends Comparable<E>> {
         while (iterator.hasNext()) {
             ShipDynData naux = iterator.next();
             if (date1.compareTo(aux.getBaseDateTime()) <= 0 && date2.compareTo(naux.getBaseDateTime()) >= 0){
-                if (aux.getLatitude().equals("NA") || aux.getLongitude().equals("NA") || naux.getLatitude().equals("NA") || naux.getLongitude().equals("NA")) {
-                    totalDistance = totalDistance + 0;
-                } else {
+                if (!aux.getLatitude().equals("NA") && !aux.getLongitude().equals("NA") && !naux.getLatitude().equals("NA") && !naux.getLongitude().equals("NA")) {
                     totalDistance = totalDistance + travelledDistance(Float.parseFloat(aux.getLatitude()), Float.parseFloat(aux.getLongitude()), Float.parseFloat(naux.getLatitude()), Float.parseFloat(naux.getLongitude()));
                 }
             }
