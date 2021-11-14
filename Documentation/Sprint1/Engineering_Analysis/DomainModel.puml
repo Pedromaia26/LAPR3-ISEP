@@ -1,0 +1,104 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Company
+class Ship
+class ShipDynData
+class Container
+class Cargo_Manifest
+class Destination
+class Location
+class Country
+class Truck
+class Vehicle
+class Port
+class Warehouse
+
+Company "1" -- "*" Ship: contains >
+Ship "1" -- "*" ShipDynData: has >
+Ship "*" -- "*" Container: transports >
+Truck "1" -- "1" Container: transports >
+Container "*" -- "*" Cargo_Manifest: associated to >
+Cargo_Manifest "*" -- "1" Destination: assigned to >
+Destination "1" -- "1" Location: belongs >
+Location "*" -- "1" Country: belongs >
+Ship --|> Vehicle
+Truck --|> Vehicle
+Port --|> Destination
+Warehouse --|> Destination
+
+class Company {
+
+}
+
+class Ship{
+ - mmsi
+ - shipName
+ - imo
+ - callSign
+ - vesselType
+ - length
+ - width
+ - capacity
+ - draft
+}
+
+class ShipDynData{
+ - baseDateTime
+ - latitude
+ -longitude
+ -sog
+ -cog
+ -heading
+ -position
+ -cargo
+ -transceiver
+}
+
+class Container{
+-id
+-check_digit
+-iso
+-weight
+-max_weight
+-max_weight_incl
+-max_volume
+-refrigerated
+-certificate
+-repair_recomendation
+}
+
+class Cargo_Manifest{
+-container_id
+-container_position
+-container_gross_weight
+}
+
+class Destination{
+-id
+-name
+}
+
+class Location{
+-latitude
+-longitude
+}
+
+class Country{
+-name
+-continent
+}
+
+class Truck{
+
+}
+
+class Vehicle{
+
+}
+
+@enduml
