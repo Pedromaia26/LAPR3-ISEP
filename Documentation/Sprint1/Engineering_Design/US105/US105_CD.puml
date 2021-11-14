@@ -1,0 +1,37 @@
+@startuml
+PrintingShipsInfoController ..>BSTShip
+PrintingShipsInfoController ..>Company
+PrintingShipsInfoController ..>Ship
+PrintingShipsInfoController ..>BSTDynData
+PrintingShipsInfoController ..>PrintShipsInfo
+
+PrintingShipsInfoController : +getShips()
+PrintingShipsInfoController : +organizeInformation()
+PrintingShipsInfoController : +organizeAsc()
+PrintingShipsInfoController : +printInformation()
+PrintingShipsInfoController : +organizeDesc()
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+BSTDynData : +Departure()
+BSTDynData : +Arrival()
+BSTDynData : +inOrder()
+BSTDynData : +size()
+BSTDynData : +travelledDistance()
+BSTDynData : +inorderCalculateDistance()
+BSTDynData : +shipDynData()
+
+BSTShip : +inOrder()
+
+PrintShipsInfo : +getNumberofMovements()
+PrintShipsInfo : +getRealdistance()
+PrintShipsInfo : +getMmsi()
+PrintShipsInfo : +getDeltadistance()
+
+Ship : +ShipSearchByMmsi(mmsi)
+@enduml

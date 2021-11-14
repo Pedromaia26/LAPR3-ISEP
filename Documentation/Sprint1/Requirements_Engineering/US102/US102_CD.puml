@@ -1,0 +1,27 @@
+@startuml
+SearchShipController ..>BSTShip
+SearchShipController ..>Company
+SearchShipController ..>Ship
+
+
+SearchShipController : +ShipSearchByMmsi(mmsi)
+SearchShipController : +ShipSearchByImo(imo)
+SearchShipController : +ShipSearchByCallSign(callsign)
+SearchShipController : +SearchDetails(path)
+SearchShipController : +IdentifyTheShip(path)
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+
+
+BSTShip : +inOrder()
+
+Ship : +getMmsi(mmsi)
+Ship : +getImo(imo)
+Ship : +getCallSign(callsign)
+@enduml

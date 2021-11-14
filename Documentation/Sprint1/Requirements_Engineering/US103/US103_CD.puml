@@ -1,0 +1,24 @@
+@startuml
+PositionalMessagesController ..>BSTShip
+PositionalMessagesController ..>Company
+PositionalMessagesController ..>Ship
+PositionalMessagesController ..>BSTDynData
+
+PositionalMessagesController : +message(file)
+PositionalMessagesController : +date(dates, ships)
+PositionalMessagesController : +period(dates, ships)
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+BSTDynData : +searchSpecificDatePeriodcall(dateN, dateM)
+BSTDynData : +searchSpecificDate(newDate)
+
+BSTShip : +inOrder()
+
+Ship : +getBSTDynData()
+@enduml

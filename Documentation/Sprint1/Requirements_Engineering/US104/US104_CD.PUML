@@ -1,0 +1,35 @@
+@startuml
+SearchShipController ..>BSTShip
+SearchShipController ..>Company
+SearchShipController ..>Ship
+SearchShipController ..>BSTDynData
+
+
+SearchShipController : +getMaxCog(list)
+SearchShipController : +getMaxSog(list)
+SearchShipController : +getSumCog(list)
+SearchShipController : +getSumSog(list)
+SearchShipController : +makeSummary(path)
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+BSTDynData : +Departure()
+BSTDynData : +Arrival()
+BSTDynData : +inOrder()
+BSTDynData : +size()
+BSTDynData : +travelledDistance()
+BSTDynData : +inorderCalculateDistance()
+BSTDynData : +shipDynData()
+
+BSTShip : +inOrder()
+
+Ship : +IdentifyTheShip(path)
+Ship : +ShipSearchByMmsi(mmsi)
+Ship : +ShipSearchByImo(imo)
+Ship : +ShipSearchByCallSign(callsign)
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+PairController ..>BSTShip
+PairController ..>Company
+PairController ..>Ship
+PairController ..>BSTDynData
+
+PairController : +pair()
+PairController : +checkTravelledDistance(dist1, dist2)
+PairController : +checkRequirements(ship1, ship2)
+PairController : +getPairs(ship1, ship2, distances)
+PairController : +print()
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+BSTDynData : +inOrder()
+BSTDynData : +departure()
+BSTDynData : +arrival()
+BSTDynData : +travelledDistance()
+BSTDynData : +inorderCalculateDistance(date1S1, date2S1)
+
+BSTShip : +inOrder()
+
+Ship : +getBstDynData()
+@enduml

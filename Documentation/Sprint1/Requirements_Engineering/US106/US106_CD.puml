@@ -1,0 +1,30 @@
+@startuml
+TopNshipsPerKmController ..>BSTShip
+TopNshipsPerKmController ..>Company
+TopNshipsPerKmController ..>Ship
+TopNshipsPerKmController ..>BSTDynData
+TopNshipsPerKmController ..>InfoShip
+
+TopNshipsPerKmController : +printNshipsMostKm(path)
+TopNshipsPerKmController : +sortByValue(hm)
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getBstShips()
+Company : +setBstShips(ShipBST)
+
+Company ..>BSTShip
+
+BSTDynData : +inOrder()
+BSTDynData : +inorderCalculateDistance()
+BSTDynData : +shipDynData()
+
+BSTShip : +inOrder()
+
+InfoShip : +calculateAverageSpeed(ship, date1, date2)
+InfoShip : +getAverageSpeed()
+InfoShip : +getTravelledDistance()
+InfoShip : +getMmsi()
+
+Ship : +getVesselType()
+@enduml
