@@ -80,7 +80,6 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        //data.append(printShipsInfos);
     }
 
     public void organizeDesc(){
@@ -100,7 +99,6 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        //data.append(printShipsInfos);
     }
 
     public void printInformation(){
