@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S: asks to receive the pairs of ships \nwith routes with close departure/arrival coordinates \n(no more than 5 Kms away) and with different Travelled Distance.
+activate S
+S --> TM: returns a list of the pairs that meet the requirements
+deactivate S
+
+@enduml

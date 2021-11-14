@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor "Traffic Manager" as TM
+participant ":PairUI" as UI
+participant ":PairController" as CTRL
+participant ":Company" as C
+participant ":BSTShip" as BST
+participant "shipList\n:List<Ship>" as SL
+participant ":ShipDynData" as SDD
+participant ":BSTDynData" as BSTDD
+participant "ships2\n:List<Ship>" as SL2
+participant "pair\n:Map<Ship, List<Ship>>" as PAIR
+participant ":FileOperation" as FILE
+participant "ship1\n:Ship"
+participant "ship2\n:Ship"
+participant "dist1\n:Double"
+participant "dist2\n:Double"
+participant "departureDistance\n:Double"
+participant "arrivalDistance\n:Double"
+participant "info\n:String"
+
+activate TM
+
+
+TM -> UI: asks to receive the pairs of ships \nwith routes with close departure/arrival coordinates \n(no more than 5 Kms away) and with different Travelled Distance.
+activate UI
+UI --> CTRL: pair()
+activate CTRL
+CTRL --> C: shipList = getBstships()
+activate C
+deactivate C
+
+CTRL --> BST: inOrder()
+activate BST
+deactivate BST
+loop for each shipList ship until second from last
+loop for each shipList ship starting from the second until last
+CTRL --> SDD: get coordinates
+activate SDD
+deactivate SDD
+CTRL --> BSTDD: distances (dist1, dist2) between departure and arrival for both ships (ship1, ship2)
+activate BSTDD
+deactivate BSTDD
+CTRL --> CTRL: checkTravelledDistance(dist1, dist2)
+activate CTRL
+deactivate CTRL
+alt dist1 && dist2 >= 10000
+CTRL --> CTRL: checkRequirements(ship1, ship2)
+activate CTRL
+deactivate CTRL
+alt dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)
+CTRL --> SL2: add(ship2)
+activate SL2
+deactivate SL2
+CTRL --> CTRL: getPairs(ship1)
+activate CTRL
+deactivate CTRL
+CTRL --> PAIR: put(ship1, ships2)
+activate PAIR
+deactivate PAIR
+end
+end
+end
+end
+CTRL --> CTRL: print()
+activate CTRL
+deactivate CTRL
+CTRL -> FILE: writeToAFile(info)
+activate FILE
+FILE --> CTRL: file with the info
+deactivate FILE
+CTRL --> UI: file
+deactivate CTRL
+UI --> TM: file
+deactivate UI
+deactivate TM
+
+@enduml

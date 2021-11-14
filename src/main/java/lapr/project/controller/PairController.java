@@ -15,7 +15,7 @@ public class PairController {
     private double departureDistance, arrivalDistance, latD1, lngD1, latA1, lngA1, latD2, lngD2, latA2, lngA2, dist1, dist2, dist3;
     private Map<Ship, List<Ship>> pair;
     private boolean exists;
-    private List<Ship> teste;
+    private List<Ship> ships2;
     private List<Double> distances;
     private StringBuilder data;
     private int cont = -1;
@@ -39,12 +39,9 @@ public class PairController {
 
         List<Ship> shipList = (List<Ship>) company.getBstShips().inOrder();
         for (int i = 0; i < shipList.size() - 1; i++) {
-            teste = new ArrayList<>();
+            ships2 = new ArrayList<>();
             distances = new ArrayList<>();
             cont++;
-            if (cont==shipList.size()-2){
-                print();
-            }
             for (int j = i + 1; j < shipList.size(); j++) {
                 latD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLatitude());
                 lngD1 = Double.parseDouble(shipList.get(i).getBstDynData().departure().getLongitude());
@@ -62,9 +59,7 @@ public class PairController {
                 Date date2S2 = shipList.get(j).getBstDynData().arrival().getBaseDateTime();
 
                 dist1 = shipList.get(i).getBstDynData().inorderCalculateDistance(date1S1, date2S1);
-                System.out.println(dist1);
                 dist2 = shipList.get(j).getBstDynData().inorderCalculateDistance(date1S2, date2S2);
-                System.out.println(dist2);
 
 
                 int less = checkTravelledDistance(dist1, dist2);
@@ -85,6 +80,9 @@ public class PairController {
 
                 if (exists)
                     getPairs(ship1);
+                if (cont==shipList.size()-2){
+                    print();
+                }
             }
         }
     }
@@ -104,35 +102,29 @@ public class PairController {
         arrivalDistance = ship2.getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
         boolean f = false;
 
-        System.out.println(departureDistance);
-        System.out.println(arrivalDistance);
-
-        if (dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)) {
+        if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
 
             distances.add(dist3);
-            teste.add(ship2);
-
-            // System.out.println("Close departure or arrival: " + shipList.get(i) + " ----- " + shipList.get(j));
+            ships2.add(ship2);
 
             f = true;
         }
-        // System.out.println("Distant coordinates between departures/arrivals");
 
         return f;
     }
 
 
-    public void getPairs(Ship ship1) throws IOException {
+    public void getPairs(Ship ship1) {
 
         for (int l = 0; l < distances.size(); l++) {
             for (int j = 1; j < distances.size() - l; j++) {
                 if (distances.get(j - 1) < distances.get(j)) {
                     Collections.swap(distances, j - 1, j);
-                    Collections.swap(teste, j - 1, j);
+                    Collections.swap(ships2, j - 1, j);
                 }
             }
         }
-        pair.put(ship1, teste);
+        pair.put(ship1, ships2);
     }
 
     public void print() throws IOException {
