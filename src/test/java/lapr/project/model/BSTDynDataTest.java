@@ -99,7 +99,7 @@ class BSTDynDataTest {
         ShipDynData sdd = new ShipDynData("01/01/2021 13:50", "50", "50", "30.0", "50.0", "50", "40", "B");
         bst.insert(sdd);
         Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("01/01/2021 13:50");
-        assertEquals("[" + date + "\tLATITUDE: 50; LONGITUDE: 50]", bst.inOrder().toString());
+        assertEquals("[01/01/2021 13:50 | LATITUDE: 50; LONGITUDE: 50]", bst.inOrder().toString());
     }
 
     @Test
@@ -110,7 +110,7 @@ class BSTDynDataTest {
 
         ShipDynData actual = bst.searchSpecificDate(date);
         String actual2 = actual.toString();
-        assertEquals( date + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780", actual2);
+        assertEquals( "31/12/2020 19:25 | LATITUDE: -66.97000; LONGITUDE: 22.81780", actual2);
 
     }
 
@@ -150,7 +150,7 @@ class BSTDynDataTest {
         ShipDynData sdd = new ShipDynData("31/12/2020 18:10", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
         bst.insert(sdd);
         Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:10");
-        String expected = date + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        String expected = "31/12/2020 18:10 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n";
         assertEquals(expected, bst.toString());
     }
 
@@ -171,9 +171,9 @@ class BSTDynDataTest {
         Date date2 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:10");
         Date date1 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:09");
         Date date3 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse("31/12/2020 18:11");
-        String expected = date1 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
-        expected += date2 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
-        expected += date3 + "\tLATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        String expected = "31/12/2020 18:09 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        expected += "31/12/2020 18:10 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        expected += "31/12/2020 18:11 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n";
         assertEquals(expected, bst.toString());
     }
 

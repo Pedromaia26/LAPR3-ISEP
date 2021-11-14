@@ -33,13 +33,17 @@ public class PrintingShipsInfoController {
 
         organizeInformation();
 
-        data.append("Ascending\n");
+        data.append("----Order by number of movements ascending----\n\n");
 
         organizeAsc();
 
-        data.append("Descending\n");
+        printInformation();
+
+        data.append("\n----Order by number of movements descending----\n\n");
 
         organizeDesc();
+
+        printInformation();
 
         FileOperation.writeToAFile("Output/listAllShips.txt", data);
     }
@@ -49,7 +53,7 @@ public class PrintingShipsInfoController {
             BSTDynData bstDynData = s.getBstDynData();
             int mmsi = s.getMmsi();
             double realDist = bstDynData.inorderCalculateDistance(bstDynData.departure().getBaseDateTime(), bstDynData.arrival().getBaseDateTime());
-            int numberOfMovements = bstDynData.size();
+            int numberOfMovements = bstDynData.size()-1;
             ShipDynData firstDate = bstDynData.arrival();
             ShipDynData lastDate = bstDynData.departure();
             double deltaDistance = bstDynData.travelledDistance(Float.parseFloat(firstDate.getLatitude()), Float.parseFloat(firstDate.getLongitude()), Float.parseFloat(lastDate.getLatitude()), Float.parseFloat(lastDate.getLongitude()));
@@ -76,18 +80,18 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        data.append(printShipsInfos);
+        //data.append(printShipsInfos);
     }
 
     public void organizeDesc(){
         Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
             @Override
             public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
-                if(p1.getRealdistance() > p2.getRealdistance()){
+                if(p1.getRealdistance() < p2.getRealdistance()){
                     return 1;
                 }
                 else{
-                    if(p1.getRealdistance() < p2.getRealdistance()){
+                    if(p1.getRealdistance() > p2.getRealdistance()){
                         return -1;
                     }
                     else{
@@ -96,7 +100,13 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-        data.append(printShipsInfos);
+        //data.append(printShipsInfos);
+    }
+
+    public void printInformation(){
+        for (PrintShipsInfo info : printShipsInfos){
+            data.append("MMSI: " + info.getMmsi() + " - Number of movements: " + info.getNumberofMovements() + " - Travelled distance: " + String.format("%.2f", info.getRealdistance()) + "m - Delta distance: " + String.format("%.2f", info.getDeltadistance()) + "m\n");
+        }
     }
 }
 

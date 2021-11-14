@@ -64,11 +64,11 @@ public class PositionalMessagesController {
         for (Ship s : ships) {
 
             if (mmsi == s.getMmsi()) {
-
+                data.append("Positional value of the ship " + s.getMmsi() + ":\n");
                 data.append(s.getBstDynData().searchSpecificDate(newDate));
             }
         }
-        FileOperation.writeToAFile("posMsg.txt", data);
+        FileOperation.writeToAFile("Output/posMsg.txt", data);
     }
 
     public void period(String dates[], List<Ship> ships) throws ParseException, IOException {
@@ -76,6 +76,7 @@ public class PositionalMessagesController {
         Date dateM = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dates[1]);
         for (Ship s : ships) {
             if (mmsi == s.getMmsi()) {
+                data.append("Positional values of the ship " + s.getMmsi() + ":\n");
                 datesShip = s.getBstDynData().searchSpecificDatePeriodcall(dateN, dateM);
                 for (ShipDynData l : datesShip) {
                     data.append(l+"\n");
@@ -83,6 +84,6 @@ public class PositionalMessagesController {
                 }
             }
         }
-        FileOperation.writeToAFile("posMsg.txt", data);
+        FileOperation.writeToAFile("Output/posMsg.txt", data);
     }
 }

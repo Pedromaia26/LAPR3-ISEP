@@ -23,6 +23,14 @@ public class PrintShipsInfo {
         return realdistance;
     }
 
+    public int getMmsi() {
+        return mmsi;
+    }
+
+    public double getDeltadistance() {
+        return deltadistance;
+    }
+
     @Override
     public String toString() {
         return "Ship: " +

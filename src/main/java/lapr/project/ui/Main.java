@@ -36,7 +36,7 @@ class Main {
      */
     public static void main(String[] args) throws IOException, SQLException, ParseException {
         String file = "sships.csv";
-        String file2 = "positionalMsg.txt";
+        String file2 = "TestFiles/positionalMsg.txt";
         ImportShipsController controller = new ImportShipsController();
         PairController pController = new PairController();
         PositionalMessagesController pmController = new PositionalMessagesController();

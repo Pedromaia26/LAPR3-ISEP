@@ -76,7 +76,9 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     @Override
     public String toString() {
-        return this.baseDateTime + "\t" + "LATITUDE: " + this.latitude + "; " + "LONGITUDE: " + this.longitude;
+        String pattern = "dd/MM/yyyy HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(this.baseDateTime) + " | LATITUDE: " + this.latitude + "; " + "LONGITUDE: " + this.longitude;
     }
     @Override
     public int compareTo(ShipDynData o) {

@@ -71,7 +71,7 @@ public class TopNshipsPerKmController {
             ArrayList<InfoShip> value = orderMap.get(key);
             while(i<n && j<value.size()) {
                 if(!value.get(j).toString().contains("-1")){
-                    data.append(value.get(j));
+                    data.append(j+1 + " | MMSI: " + value.get(j).getMmsi() + " - Travelled distance: " + String.format("%.2f", value.get(j).getTravelledDistance()) + "m - Average speed: " + String.format("%.2f", value.get(j).getAverageSpeed()) + "m\n");
                     i++;
                 }
                 j++;

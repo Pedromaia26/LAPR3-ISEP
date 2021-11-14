@@ -80,9 +80,9 @@ public class PairController {
 
                 if (exists)
                     getPairs(ship1);
-                if (cont==shipList.size()-2){
-                    print();
-                }
+            }
+            if (cont==shipList.size()-2){
+                print();
             }
         }
     }
@@ -102,7 +102,7 @@ public class PairController {
         arrivalDistance = ship2.getBstDynData().travelledDistance(latA1, lngA1, latA2, lngA2);
         boolean f = false;
 
-        if (dist1!=dist2 && (departureDistance < 5000000 || arrivalDistance < 5000000)) {
+        if (dist1!=dist2 && (departureDistance < 5000 || arrivalDistance < 5000)) {
 
             distances.add(dist3);
             ships2.add(ship2);
@@ -133,7 +133,7 @@ public class PairController {
 
         for(Ship key : pair.keySet()) {
             for (Ship value : pair.get(key)) {
-                data.append(key + " / " + value + "\n");
+                data.append(key.getMmsi() + " / " + value.getMmsi() + "\n");
             }
         }
         FileOperation.writeToAFile("Output/closeShips.txt", data);
