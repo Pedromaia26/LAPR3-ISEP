@@ -1,0 +1,194 @@
+@startuml
+actor TrafficManager as Adm
+participant ":SearchShipUI" as System
+participant ":SearchShipCrontroller" as SSC
+participant ":Company" as c
+participant ":BstShip" as bst
+participant "SearchShipMapper" as mp
+participant "ship" as ship
+participant "SearchShipDto" as dto
+
+autonumber
+
+activate Adm
+
+Adm -> System: search details of a ship
+
+activate System
+
+System --> Adm: request to choose filter(MMSI, IMO, Call Sign)
+
+deactivate System
+
+Adm -> System: choose filter
+
+activate System
+
+System --> Adm: request data
+
+deactivate System
+
+
+
+alt
+
+else MMSI code
+
+Adm -> System: types requested data
+
+activate System
+
+System-->SSC: ShipSearchByMmsi(mmsi)
+
+activate SSC
+
+SSC-->c: a=getMmsi()
+
+activate c
+
+deactivate c
+
+SSC-->bst: ships = inOrder()
+
+activate bst
+
+deactivate bst
+
+deactivate System
+
+deactivate SSC
+
+
+
+else IMO code
+
+Adm -> System: types requested data
+
+activate System
+
+System-->SSC: ShipSearchByImo(imo)
+
+activate SSC
+
+SSC-->c: a=getImo()
+
+activate c
+
+deactivate c
+
+SSC-->bst: ships = inOrder()
+
+activate bst
+
+deactivate bst
+
+deactivate System
+
+deactivate SSC
+
+
+
+else Call Sign
+
+Adm -> System: types requested data
+
+activate System
+
+System-->SSC: ShipSearchByCallSign(callsign)
+
+activate SSC
+
+SSC-->c: a=getCallSign()
+
+activate c
+
+deactivate c
+
+SSC-->bst: ships = inOrder()
+
+activate bst
+
+deactivate bst
+
+deactivate System
+
+deactivate SSC
+
+end
+
+
+
+Adm --> System: types requested data
+
+activate System
+
+System-->SSC: getSearchShipData()
+
+activate SSC
+
+SSC-->mp: toDto()
+
+deactivate SSC
+
+mp-->ship: mmsi = getMmsi()
+
+activate ship
+
+deactivate ship
+
+mp-->ship: shipName = getShipName()
+
+activate ship
+
+deactivate ship
+
+mp-->ship: imo = getImo()
+
+activate ship
+
+deactivate ship
+
+mp-->ship: callSign = getCallSign
+
+activate ship
+
+deactivate ship
+
+mp-->ship: vesselType = getVesselType
+
+activate ship
+
+deactivate ship
+
+mp-->ship: length = getLength()
+
+activate ship
+
+deactivate ship
+
+mp-->ship: width = getWidth()
+
+activate ship
+
+deactivate ship
+
+mp-->ship: draft = getDraft()
+
+activate ship
+
+deactivate ship
+
+mp-->dto: create(mmsi, shipName, imo, callSign, vesselType, length, width, draft)
+
+activate dto
+
+deactivate dto
+
+deactivate c
+
+System-->Adm: shows requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
