@@ -7,9 +7,10 @@ actor "Traffic Manager" as TM
 participant ":PositionalMessagesUI" as UI
 participant ":PositionalMessagesController" as CTRL
 participant ":Company" as C
+participant ":BSTShip" as BST
 participant "ships\n:List<Ship>" as LIST
 participant "ship\n:Ship" as S
-participant ":BSTDynData" as BST
+participant ":BSTDynData" as BSTDD
 participant "positionsList\n:List<ShipDynData>" as POS
 participant "position\n:ShipDynData" as P
 participant ":FileOperation" as FILE
@@ -22,11 +23,14 @@ activate TM
 
 TM -> UI: asks to receive the positional messages \n temporally organized of a given ship
 activate UI
-UI --> CTRL: data
+UI --> CTRL: message()
 activate CTRL
 CTRL --> C: ships = getBstShips()
 activate C
 deactivate C
+CTRL --> BST: inOrder()
+activate BST
+deactivate BST
 
 deactivate CTRL
 UI --> TM: asks for the mmsi of the wanted ship
@@ -46,22 +50,24 @@ activate UI
 alt data = date
 UI --> CTRL: requested data
 activate CTRL
+CTRL --> CTRL: date(date, ships)
 CTRL --> S: getBstDynData()
 activate S
-S --> BST: position = searchSpecificDate(date)
-activate BST
-deactivate BST
+S --> BSTDD: position = searchSpecificDate(date)
+activate BSTDD
+deactivate BSTDD
 deactivate S
 CTRL --> UI: info
 deactivate CTRL
 else data = period
 UI --> CTRL: requested data
 activate CTRL
+CTRL --> CTRL: date(period, ships)
 CTRL --> S: getBstDynData()
 activate S
-S --> BST: positionsList = searchSpecificDatecall(date1 , date2)
-activate BST
-deactivate BST
+S --> BSTDD: positionsList = searchSpecificDatecall(date1 , date2)
+activate BSTDD
+deactivate BSTDD
 deactivate S
 CTRL --> UI: info
 deactivate CTRL
