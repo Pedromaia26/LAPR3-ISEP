@@ -1,0 +1,39 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":System" as System
+
+autonumber
+activate Adm
+Adm -> System: Search details of a ship
+activate System
+System --> Adm: request to choose filter (MMSI, ISO, Call Sign)
+deactivate System
+Adm -> System: choose filter
+activate System
+System --> Adm: request data
+deactivate System
+alt
+
+else MMSI code
+Adm -> System: types requested data
+activate System
+System --> Adm: shows all requested data
+deactivate System
+
+else IMO code
+Adm -> System: types requested data
+activate System
+System --> Adm: shows all requested data
+deactivate System
+
+else Call Sign code
+Adm -> System: types requested data
+activate System
+System --> Adm: shows all requested data
+deactivate System
+
+end
+
+deactivate System
+deactivate Adm
+@enduml
