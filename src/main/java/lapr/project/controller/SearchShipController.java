@@ -62,10 +62,6 @@ public class SearchShipController {
         return (null);
     }
 
-    /*public String getSearchShipData(){
-        return SearchShipMapper.toDto(this.ship).toString();
-    }*/
-
     public Ship IdentifyTheShip(String path) throws IOException {
         String line = "";
         BufferedReader br = new BufferedReader(new FileReader(path));
@@ -133,7 +129,28 @@ public class SearchShipController {
         return sumCOG;
     }
 
-    public void searchDeatils(String path) throws IOException {
+    public void searchDetails(String path) throws IOException {
+        Ship ship = IdentifyTheShip(path);
+        StringBuilder data = new StringBuilder();
+        if (ship != null) {
+            data.append("Details of the ship " + String.valueOf(ship.getMmsi()) + ":\n");
+            data.append("MMSI: " + ship.getMmsi() + "\n");
+            data.append("Name: " + ship.getShipName() + "\n");
+            data.append("IMO: " + ship.getImo() + "\n");
+            data.append("Call Sign: " + ship.getCallSign() + "\n");
+            data.append("Vessel type: " + ship.getVesselType() + "\n");
+            data.append("Length: " + ship.getLength() + "m\n");
+            data.append("Width: " + ship.getWidth() + "m\n");
+            data.append("Draft: " + ship.getDraft() + "\n");
+            FileOperation.writeToAFile("Output/ShipDetails.txt", data);
+        }
+        else {
+            data.append("Incorrect input");
+            FileOperation.writeToAFile("Output/ShipDetails.txt", data);
+        }
+    }
+
+    public void makeSummary(String path) throws IOException {
         Ship ship = IdentifyTheShip(path);
         StringBuilder data = new StringBuilder();
         if (ship != null){
@@ -144,7 +161,7 @@ public class SearchShipController {
             float departureLongitude = Float.parseFloat(ship.getBstDynData().departure().getLongitude());
             float arrivalLatitude = Float.parseFloat(ship.getBstDynData().arrival().getLatitude());
             float arrivalLongitude = Float.parseFloat(ship.getBstDynData().arrival().getLongitude());
-            data.append("Details of the ship " + String.valueOf(ship.getMmsi()) + ":\n");
+            data.append("Summary of the ship " + String.valueOf(ship.getMmsi()) + ":\n");
             data.append("Vessel Name: " + ship.getVesselType() + "\n");
             data.append("Start Base Date Time: " + ship.getBstDynData().departure().getBaseDateTime() + "\n");
             data.append("End Base Date Time: " + ship.getBstDynData().arrival().getBaseDateTime() + "\n");
@@ -160,11 +177,11 @@ public class SearchShipController {
             data.append("Arrival Longitude: " + arrivalLongitude + "\n");
             data.append("Travelled distance: " + ship.getBstDynData().inorderCalculateDistance(ship.getBstDynData().departure().getBaseDateTime(), ship.getBstDynData().arrival().getBaseDateTime()) + "m\n");
             data.append("Delta distance: " + ship.getBstDynData().travelledDistance(departureLatitude, departureLongitude, arrivalLatitude, arrivalLongitude) + "m\n");
-            FileOperation.writeToAFile(String.valueOf("Output/" + ship.getMmsi()) + "details.txt", data);
+            FileOperation.writeToAFile("Output/SummaryShipMovements.txt", data);
         }
         else {
             data.append("Incorrect input");
-            FileOperation.writeToAFile("Output/details.txt", data);
+            FileOperation.writeToAFile("Output/SummaryShipMovements.txt", data);
         }
 
     }
