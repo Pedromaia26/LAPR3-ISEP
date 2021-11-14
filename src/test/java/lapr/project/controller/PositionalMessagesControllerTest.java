@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.model.Company;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -11,19 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class PositionalMessagesControllerTest {
 
     @Test
-    void messagePeriod() throws ParseException, IOException {
-        ImportShipsController importShipsController = new ImportShipsController();
-        String importFile = "sships.csv";
-        importShipsController.importFromCSV(importFile);
-        PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
-        String file = "TestFiles/positionalMsg.txt";
-        positionalMessagesController.message(file);
-    }
-
-    @Test
     void messageDate() throws ParseException, IOException {
         ImportShipsController importShipsController = new ImportShipsController();
-        String importFile = "sships.csv";
+        String importFile = "bships.csv";
         importShipsController.importFromCSV(importFile);
         PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
         String file = "TestFiles/positionalMsgDate.txt";
@@ -60,6 +49,4 @@ class PositionalMessagesControllerTest {
         String file = "TestFiles/positionalMsg3Dates";
         positionalMessagesController.message(file);
     }
-
-
 }
