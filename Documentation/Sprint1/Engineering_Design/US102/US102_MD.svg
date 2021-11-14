@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="185px" preserveAspectRatio="none" style="width:302px;height:185px;" version="1.1" viewBox="0 0 302 185" width="302px" zoomAndPan="magnify"><defs><filter height="300%" id="fzxp24mvhng2t" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[02e4b9b7573f1156f41e60aa5b4e25a4]
+class Company--><rect codeLine="12" fill="#FEFECE" filter="url(#fzxp24mvhng2t)" height="40" id="Company" style="stroke:#A80036;stroke-width:1.5;" width="85" x="7" y="69.5"/><ellipse cx="22" cy="85.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M24,82 Q24.2031,81.5 24.4375,81.25 Q24.6719,81 24.9375,81 Q25.4063,81 25.7031,81.2813 Q26,81.5625 26,82.2188 L26,83.7813 Q26,84.4375 25.7188,84.7188 Q25.4375,85 25,85 Q24.6094,85 24.3594,84.8281 Q24.1094,84.6563 24,84.2031 Q23.9531,83.8906 23.7813,83.7188 Q23.4688,83.3906 22.9063,83.2031 Q22.3438,83 21.7813,83 Q21.0781,83 20.4844,83.2813 Q19.9063,83.5625 19.4531,84.1875 Q19,84.8125 19,85.6719 L19,86.5938 Q19,87.625 19.8438,88.3125 Q20.6875,89 22.1875,89 Q23.0781,89 23.7031,88.7969 Q24.0625,88.6875 24.4688,88.3281 Q24.7344,88.125 24.875,88.0625 Q25.0156,88 25.1875,88 Q25.5156,88 25.75,88.2656 Q26,88.5156 26,88.875 Q26,89.2188 25.6563,89.625 Q25.1563,90.2188 24.3594,90.5469 Q23.3125,91 22.0313,91 Q20.5313,91 19.3281,90.4063 Q18.3594,89.9375 17.6719,88.9219 Q17,87.9063 17,86.7031 L17,85.6094 Q17,84.3594 17.5938,83.2656 Q18.2031,82.1719 19.25,81.5938 Q20.3125,81 21.5,81 Q22.2188,81 22.8438,81.25 Q23.4688,81.5 24,82 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="36" y="90.4102">Company</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="91" y1="101.5" y2="101.5"/><!--MD5=[0dc7f2ddb409b58bcf52b12238c25399]
+class Ship--><rect codeLine="16" fill="#FEFECE" filter="url(#fzxp24mvhng2t)" height="164.5234" id="Ship" style="stroke:#A80036;stroke-width:1.5;" width="72" x="216" y="7"/><ellipse cx="237.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M239.75,19.5 Q239.9531,19 240.1875,18.75 Q240.4219,18.5 240.6875,18.5 Q241.1563,18.5 241.4531,18.7813 Q241.75,19.0625 241.75,19.7188 L241.75,21.2813 Q241.75,21.9375 241.4688,22.2188 Q241.1875,22.5 240.75,22.5 Q240.3594,22.5 240.1094,22.3281 Q239.8594,22.1563 239.75,21.7031 Q239.7031,21.3906 239.5313,21.2188 Q239.2188,20.8906 238.6563,20.7031 Q238.0938,20.5 237.5313,20.5 Q236.8281,20.5 236.2344,20.7813 Q235.6563,21.0625 235.2031,21.6875 Q234.75,22.3125 234.75,23.1719 L234.75,24.0938 Q234.75,25.125 235.5938,25.8125 Q236.4375,26.5 237.9375,26.5 Q238.8281,26.5 239.4531,26.2969 Q239.8125,26.1875 240.2188,25.8281 Q240.4844,25.625 240.625,25.5625 Q240.7656,25.5 240.9375,25.5 Q241.2656,25.5 241.5,25.7656 Q241.75,26.0156 241.75,26.375 Q241.75,26.7188 241.4063,27.125 Q240.9063,27.7188 240.1094,28.0469 Q239.0625,28.5 237.7813,28.5 Q236.2813,28.5 235.0781,27.9063 Q234.1094,27.4375 233.4219,26.4219 Q232.75,25.4063 232.75,24.2031 L232.75,23.1094 Q232.75,21.8594 233.3438,20.7656 Q233.9531,19.6719 235,19.0938 Q236.0625,18.5 237.25,18.5 Q237.9688,18.5 238.5938,18.75 Q239.2188,19 239.75,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="25" x="253.25" y="27.9102">Ship</text><line style="stroke:#A80036;stroke-width:1.5;" x1="217" x2="287" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="28" x="222" y="54.4189">-mmsi</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="51" x="222" y="68.2549">-shipName</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="20" x="222" y="82.0908">-imo</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="41" x="222" y="95.9268">-callSign</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="222" y="109.7627">-vesselType</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="33" x="222" y="123.5986">-length</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31" x="222" y="137.4346">-width</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="45" x="222" y="151.2705">-capacity</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="222" y="165.1064">-draft</text><!--MD5=[37a14a5de6d6fd738aee271300f4b5c8]
+link Company to Ship--><path codeLine="10" d="M92.04,89.5 C128.63,89.5 181.33,89.5 215.87,89.5 " fill="none" id="Company-Ship" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="132,80.6758,122.9549,77.7369,122.9549,83.6147,132,80.6758" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="136" y="85.9951">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="99.9531" y="104.4003">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="202.9026" y="104.7305">*</text><!--MD5=[fb4b924e54ffa4ba53542d136d18e3f5]
+@startuml
+'https://plantuml.com/class-diagram
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Company
+class Ship
+
+Company "1" - - "*" Ship: contains >
+
+class Company {
+
+}
+
+class Ship{
+ - mmsi
+ - shipName
+ - imo
+ - callSign
+ - vesselType
+ - length
+ - width
+ - capacity
+ - draft
+}
+
+@enduml
+
+@startuml
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Company
+class Ship
+
+Company "1" - - "*" Ship: contains >
+
+class Company {
+
+}
+
+class Ship{
+ - mmsi
+ - shipName
+ - imo
+ - callSign
+ - vesselType
+ - length
+ - width
+ - capacity
+ - draft
+}
+
+@enduml
+
+PlantUML version 1.2021.5(Sun Apr 25 12:20:28 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
