@@ -94,12 +94,7 @@ class SearchShipControllerTest {
     }
 
     @Test
-    void getSearchShipData() {
-
-    }
-
-    @Test
-    void searchDeatils() throws IOException, ParseException {
+    void makeSummary() throws IOException, ParseException {
         ShipDynData data = new ShipDynData("31/12/2020 19:37","24.34573","-85.12394","11.7","119.9","117", "NA", "A");
         ShipDynData data1 = new ShipDynData("31/12/2020 19:42","24.34750","-85.12250","10.5","110.9","115", "3", "A");
         ShipDynData data2 = new ShipDynData("31/12/2020 19:43","24.34775","-85.12400","9.5","130.9","110", "NA", "A");
@@ -114,8 +109,20 @@ class SearchShipControllerTest {
         bstship.insert(ship);
         bstship.insert(ship1);
         bstship.insert(ship2);
+        company.setBstShips(bstship);
         SearchShipController controller = new SearchShipController(company);
-        controller.searchDeatils("TestFiles/test104.txt");
+        controller.makeSummary("TestFiles/test104.txt");
+    }
+
+    @Test
+    void searchDetails() throws IOException {
+        BSTShip bstship = new AVLShip();
+        bstship.insert(ship);
+        bstship.insert(ship1);
+        bstship.insert(ship2);
+        company.setBstShips(bstship);
+        SearchShipController controller = new SearchShipController(company);
+        controller.searchDetails("TestFiles/test104.txt");
     }
 
     @Test
@@ -141,15 +148,27 @@ class SearchShipControllerTest {
     }
 
     @Test
+    void makeSummaryNull() throws IOException, ParseException {
+        SearchShipController controller = new SearchShipController();
+        controller.makeSummary("TestFiles/test104_null");
+    }
+
+    @Test
     void searchDeatilsNull() throws IOException, ParseException {
         SearchShipController controller = new SearchShipController();
-        controller.searchDeatils("TestFiles/test104_null");
+        controller.searchDetails("TestFiles/test104_null");
+    }
+
+    @Test
+    void makeSummaryEmpty() throws IOException, ParseException {
+        SearchShipController controller = new SearchShipController();
+        controller.makeSummary("TestFiles/test104_empty");
     }
 
     @Test
     void searchDeatilsEmpty() throws IOException, ParseException {
         SearchShipController controller = new SearchShipController();
-        controller.searchDeatils("TestFiles/test104_empty");
+        controller.searchDetails("TestFiles/test104_empty");
     }
 
     @Test

@@ -62,7 +62,6 @@ public class TopNshipsPerKmController {
         }
         HashMap<String, ArrayList<InfoShip>> map = shipsAndKm(dateN, dateM);
         HashMap<String, ArrayList<InfoShip>> orderMap = sortByValue(map);
-        System.out.println(orderMap);
         int i =0;
         int j = 0;
         for (String key : orderMap.keySet()) {
