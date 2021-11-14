@@ -2,10 +2,10 @@ package lapr.project.model;
 
 public class PrintShipsInfo {
 
-    private int mmsi;
-    private int numberofMovements;
-    private double deltadistance;
-    private double realdistance;
+    private final int mmsi;
+    private final int numberofMovements;
+    private final double deltadistance;
+    private final double realdistance;
 
 
     public PrintShipsInfo(int mmsi, int numberofMovements, double deltadistance, double realdistance){
