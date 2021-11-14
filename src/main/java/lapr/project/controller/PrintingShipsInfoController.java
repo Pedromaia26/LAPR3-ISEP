@@ -39,7 +39,7 @@ public class PrintingShipsInfoController {
 
         printInformation();
 
-        data.append("\n----Order by number of movements descending----\n\n");
+        data.append("\n----Order by travelled distance descending----\n\n");
 
         organizeDesc();
 
