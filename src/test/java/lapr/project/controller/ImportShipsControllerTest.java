@@ -27,4 +27,13 @@ class ImportShipsControllerTest {
         });
         assertEquals("Invalid mmsi", thrown.getMessage());
     }
+
+    @Test
+    void importFromCSV2() throws IOException {
+        String file = "TestFiles/test105_2";
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            controller.importFromCSV(file);
+        });
+        assertEquals("For input string: \"a166\"", thrown.getMessage());
+    }
 }

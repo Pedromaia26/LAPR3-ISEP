@@ -117,4 +117,26 @@ class PairControllerTest {
 
         pairController.pair();
     }
+
+    @Test
+    void getPairs() throws ParseException {
+        List<Ship> ships2 = new ArrayList<>();
+        List<Double> distances = new ArrayList<>();
+        Ship ship1 = new Ship("210950000", "ship1", "IMO9395044", "C4SQ2", "70", "166", "25", "9.5");
+        Ship ship2 = new Ship("228339600", "ship2", "IMO9450648", "FLSU", "70", "334", "42", "15");
+        Ship ship3 = new Ship("228339601", "ship2", "IMO9450648", "FLSU", "70", "334", "42", "15");
+        Ship ship4 = new Ship("228339602", "ship2", "IMO9450648", "FLSU", "70", "334", "42", "15");
+        Ship ship5 = new Ship("228339603", "ship2", "IMO9450648", "FLSU", "70", "334", "42", "15");
+        ships2.add(ship1);
+        ships2.add(ship2);
+        ships2.add(ship3);
+        ships2.add(ship4);
+        ships2.add(ship5);
+        distances.add(20.0);
+        distances.add(30.0);
+        distances.add(40.0);
+        distances.add(50.0);
+        distances.add(20.0);
+        pcontroller.getPairs(ship1, ships2, distances);
+    }
 }

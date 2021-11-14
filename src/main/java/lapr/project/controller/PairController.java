@@ -79,7 +79,7 @@ public class PairController {
                 exists = checkRequirements(ship1, ship2);
 
                 if (exists)
-                    getPairs(ship1);
+                    getPairs(ship1, ships2, distances);
             }
             if (cont==shipList.size()-2){
                 print();
@@ -114,7 +114,7 @@ public class PairController {
     }
 
 
-    public void getPairs(Ship ship1) {
+    public void getPairs(Ship ship1, List<Ship> ships2, List<Double> distances) {
 
         for (int l = 0; l < distances.size(); l++) {
             for (int j = 1; j < distances.size() - l; j++) {
@@ -124,6 +124,8 @@ public class PairController {
                 }
             }
         }
+        this.distances = distances;
+        this.ships2 = ships2;
         pair.put(ship1, ships2);
     }
 

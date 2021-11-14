@@ -192,4 +192,30 @@ class ShipDynDataTest {
 
     }
 
+    @Test
+    void toStringTest() throws ParseException {
+        ShipDynData sdd1 = new ShipDynData("31/12/2020 19:26", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd2 = new ShipDynData("31/12/2020 19:24", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd3 = new ShipDynData("31/12/2020 19:23", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd4 = new ShipDynData("31/12/2020 19:22", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd5 = new ShipDynData("31/12/2020 19:27", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        ShipDynData sdd6 = new ShipDynData("31/12/2020 19:28", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        BSTDynData<ShipDynData> bst = new BSTDynData<>();
+        bst.insert(sdd);
+        bst.insert(sdd1);
+        bst.insert(sdd2);
+        bst.insert(sdd3);
+        bst.insert(sdd4);
+        bst.insert(sdd5);
+        bst.insert(sdd6);
+        String expected = "31/12/2020 19:22 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:23 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:24 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:25 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:26 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:27 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n" +
+                "31/12/2020 19:28 | LATITUDE: -66.97000; LONGITUDE: 22.81780\n";
+        assertEquals(expected, bst.toString());
+    }
+
 }
