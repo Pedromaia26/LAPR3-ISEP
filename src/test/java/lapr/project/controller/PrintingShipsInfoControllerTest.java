@@ -18,4 +18,12 @@ class PrintingShipsInfoControllerTest {
         PrintingShipsInfoController controller2 = new PrintingShipsInfoController(c);
         controller2.getShips();
     }
+
+    @Test
+    void getShips2() throws IOException {
+        ImportShipsController controller = new ImportShipsController(c);
+        controller.importFromCSV("TestFiles/test107_sameTravelledDistance");
+        PrintingShipsInfoController controller2 = new PrintingShipsInfoController(c);
+        controller2.getShips();
+    }
 }
