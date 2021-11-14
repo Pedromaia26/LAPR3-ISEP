@@ -5,7 +5,7 @@ imo varchar(255) constraint nn_ship_imo not null,
 constraint un_ship_imo unique (imo),
 num_energy_gen integer constraint nn_ship_num_energy_gen not null,
 gen_pow_out integer constraint nn_ship_gen_pow_out not null,
-callsign varchar(255) constraint un_ship_callsign unique,
+callsign varchar(255) constraint un_ship_callsign unique
 constraint nn_ship_callsign not null,
 vessel varchar(255) constraint nn_ship_vessel not null,
 lenght float constraint nn_ship_lenght not null,
@@ -101,3 +101,11 @@ constraint pk_cont_cargo primary key (container_id, cargo_manifest_destination_i
 constraint ck_cont_cargo_x check (container_x>=0),
 constraint ck_cont_cargo_y check (container_y>=0)
 )
+--drop table container_cargoManifest--
+--drop table container--
+--drop table ship_positioning_data--
+--drop table ship--
+--drop table cargo_manifest--
+--drop table destination--
+--drop table location--
+--drop table country--
