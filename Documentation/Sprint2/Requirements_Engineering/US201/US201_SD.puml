@@ -1,0 +1,65 @@
+@startuml
+actor PortManager as Adm
+participant ":ImportPortsUI" as System
+participant ":ImportPortsCrontroller" as SSC
+participant ":Company" as c
+participant ":KDTPort" as bst
+participant "BufferedReader" as mp
+participant "Port" as port
+
+autonumber
+
+activate Adm
+
+Adm -> System: asks to import ports from a text file
+
+activate System
+
+System --> Adm: asks the path of the file
+
+deactivate System
+
+Adm -> System: types the path of the file
+
+activate System
+
+System -> SSC: ImportFromCsv(file)
+
+activate SSC
+
+SSC -> c: kdt = getKdtPorts()
+
+activate c
+
+deactivate c
+
+loop
+
+SSC -> mp: line = readLine()
+
+activate mp
+
+deactivate mp
+
+SSC -> port: port = new Port(data)
+
+activate port
+
+deactivate port
+
+end
+
+SSC -> c: kdt = setKdtPorts(portKDT)
+
+activate c
+
+deactivate c
+
+deactivate SSC
+
+System --> Adm: shows operation successful
+
+deactivate System
+
+deactivate Adm
+@enduml
