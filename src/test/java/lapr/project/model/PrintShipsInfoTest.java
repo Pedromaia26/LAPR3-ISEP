@@ -21,6 +21,18 @@ class PrintShipsInfoTest {
     }
 
     @Test
+    void getMmsi() {
+        int expected = 123456789;
+        assertEquals(expected, info.getMmsi());
+    }
+
+    @Test
+    void getDeltadistance() {
+        double expected = 120;
+        assertEquals(expected, info.getDeltadistance());
+    }
+
+    @Test
     void testToString() {
         String expected = "Ship: mmsi=123456789; numberofMovements=5; deltadistance=120.0; realdistance=150.0\n";
         assertEquals(expected, info.toString());

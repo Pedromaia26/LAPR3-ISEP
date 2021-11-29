@@ -163,4 +163,15 @@ class InfoShipTest {
         int expected = 0;
         assertEquals(expected, infoship2.compareTo(infoship1));
     }
+
+    @Test
+    void testToString() throws ParseException {
+        ShipDynData sdd = new ShipDynData("31/12/2020 19:25", "-66.97000", "22.81780",  "14.4", "11.2", "347", "NA", "B");
+        BSTDynData bst = new BSTDynData();
+        bst.insert(sdd);
+        ship1.setBstDynData(bst);
+        InfoShip infoship = new InfoShip(ship1, date1,date2);
+        String expected = "Ship: mmsi=123456789; averageSpeed=-1.0; travelledDistance=0.0\n";
+        assertEquals(expected, infoship.toString());
+    }
 }
