@@ -20,14 +20,6 @@ class KDTPortTest {
     }
 
     @Test
-    void rootIsNull() {
-        NullPointerException thrown = Assertions.assertThrows(NullPointerException.class, () -> {
-            tree.root();
-        });
-        assertEquals("Cannot invoke \"lapr.project.model.KDTPort$Node.getPort()\" because \"this.root\" is null", thrown.getMessage());
-    }
-
-    @Test
     void isEmpty() {
         assertTrue(tree.isEmpty());
     }
