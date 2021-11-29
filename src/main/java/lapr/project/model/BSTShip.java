@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.controller.App;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,6 +186,17 @@ public abstract class BSTShip<E> {
         inOrderSubtree(node.getLeft(), snapshot);
         snapshot.add(node.getElement());
         inOrderSubtree(node.getRight(), snapshot);
+    }
+
+    public Ship searchShipByCallSign(String callsign){
+        List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
+        for(Ship s: shipList){
+            if(s.getCallSign().equals(callsign)){
+                return s;
+            }
+        }
+
+        return (null);
     }
 }
 

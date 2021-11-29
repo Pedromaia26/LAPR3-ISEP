@@ -1,5 +1,7 @@
 package lapr.project.utils;
 
+import lapr.project.model.Port;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,4 +18,12 @@ public class FileOperation {
         }
 
     }
+
+    public static void writeToAFileNearestPort(String path, Port nearestPort) throws IOException {
+        try (PrintWriter pw = new PrintWriter(path)) {
+            pw.println("Nearest port: " + nearestPort);
+        }
+
+    }
+
 }

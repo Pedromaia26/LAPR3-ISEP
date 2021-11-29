@@ -1,15 +1,10 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ImportShipsController;
-import lapr.project.controller.PairController;
-import lapr.project.controller.PositionalMessagesController;
-import lapr.project.model.Company;
-import lapr.project.model.Ship;
+import lapr.project.controller.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -43,15 +38,10 @@ class Main {
         controller.importFromCSV(file);
         pController.pair();
         pmController.message(file2);
-
-
-
-
-
-
-        /*if (LOGGER.isLoggable(Level.INFO)) {
-            LOGGER.log(Level.INFO, String.valueOf(value));
-        }*/
+        ImportPortsController ipc = new ImportPortsController();
+        ipc.importFromCSV("sports.csv");
+        NearestPortController cpc = new NearestPortController();
+        cpc.getClosestPort("Input/US202.txt");
     }
 }
 
