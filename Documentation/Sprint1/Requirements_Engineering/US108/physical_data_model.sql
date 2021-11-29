@@ -50,7 +50,6 @@ max_volume float constraint nn_cont_max_volume not null,
 refrigerated integer constraint nn_cont_refrigerated not null,
 certificate varchar(255) constraint nn_cont_certificate not null,
 repairRecommendation varchar(255) constraint nn_cont_repair not null,
-ship_mmsi references ship(mmsi) constraint nn_cont_ship_mmsi not null,
 
 constraint pk_container primary key (id),
 constraint ck_weight check (weight>0),
@@ -85,7 +84,8 @@ constraint pk_destination primary key (id)
 )
 
 create table cargo_manifest(
-destination_id varchar(255) primary key,
+id varchar(255) primary key,
+destination_id varchar(255),
 constraint fk_cargo_manifest foreign key (destination_id) references destination(id)
 )
 
@@ -95,11 +95,18 @@ container_y integer constraint nn_cont_cargo_y not null,
 container_z integer constraint nn_cont_cargo_z not null,
 container_weight float constraint nn_cont_cargo_weight not null,
 container_id integer references container(id),
-cargo_manifest_destination_id varchar(255) references cargo_manifest(destination_id) constraint nn_cont_cargo_dest_id not null,
+cargo_manifest_id varchar(255) references cargo_manifest(id) constraint nn_cont_cargo_id not null,
 
-constraint pk_cont_cargo primary key (container_id, cargo_manifest_destination_id),
+constraint pk_cont_cargo primary key (container_id, cargo_manifest_id),
 constraint ck_cont_cargo_x check (container_x>=0),
 constraint ck_cont_cargo_y check (container_y>=0)
+)
+
+create table ship_cargoManifest(
+ship_mmsi varchar(255) references ship(mmsi),
+cargo_manifest_id varchar(255) references cargo_manifest(id),
+
+constraint pk_ship_cargo primary key (ship_mmsi, cargo_manifest_id)
 )
 --drop table container_cargoManifest--
 --drop table container--
