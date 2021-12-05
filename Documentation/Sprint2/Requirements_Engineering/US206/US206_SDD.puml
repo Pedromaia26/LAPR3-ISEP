@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know the the list of containers to be loaded in the next port
+activate S
+PM <-- S: shows the containers details
+deactivate S
+deactivate PM
+@enduml
