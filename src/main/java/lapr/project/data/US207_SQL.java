@@ -42,20 +42,16 @@ public class US207_SQL {
 
             this.avgContainer = statement.getFloat(4);
 
-            System.out.println(statement.getInt(3));
-
-            System.out.println(statement.getFloat(4));
-
             StringBuilder data = new StringBuilder();
-            data.append(numberOfCargoManifest);
-            data.append(avgContainer);
-            fileOperation.writeToAFile("US207_" + mmsi, data);
+            data.append("Number of cargo manifests: " + numberOfCargoManifest + "\n");
+            data.append("Number of containers per cargo manifest: " + avgContainer + "\n");
+            fileOperation.writeToAFile("Output/US207_" + mmsi, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US207_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US207_" + mmsi, data);
         }
     }
 
