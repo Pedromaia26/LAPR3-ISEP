@@ -1,0 +1,53 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":OccupanceRateGivenShipCargoUI" as System
+participant ":OccupanceRateGivenShipCargoController" as SSC
+participant ":US208" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: request to know how many cargo manifests I have transported
+
+activate System
+
+System --> Adm: asks for a ship and a cargo manifest
+
+deactivate System
+
+Adm -> System: types the data requested
+
+activate System
+
+System -> SSC: createUS208
+
+activate SSC
+
+SSC -> us: demo(mmsi, cargoid)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml

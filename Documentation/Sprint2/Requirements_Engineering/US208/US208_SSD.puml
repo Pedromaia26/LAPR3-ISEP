@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know how many cargo manifests I have transported
+activate S
+PM <-- S: asks for a ship and a cargo manifest
+deactivate S
+PM -> S: types the data requested
+activate S
+PM <-- S: shows the requested data
+deactivate S
+deactivate PM
+@enduml
