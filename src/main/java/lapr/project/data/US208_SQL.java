@@ -14,7 +14,7 @@ import java.sql.Types;
 public class US208_SQL {
 
     private Connection databaseConnection;
-    private float ocRate;
+    private String ocRate;
     private FileOperation fileOperation;
 
     public US208_SQL() throws SQLException, IOException {
@@ -31,23 +31,21 @@ public class US208_SQL {
 
             statement.setInt(2, cargoid);
 
-            statement.registerOutParameter(3, Types.FLOAT);
+            statement.registerOutParameter(3, Types.LONGVARCHAR);
 
             statement.executeUpdate();
 
-            this.ocRate = statement.getFloat(3);
-
-            System.out.println(statement.getFloat(3));
+            this.ocRate = statement.getString(3);
 
             StringBuilder data = new StringBuilder();
             data.append(ocRate);
-            fileOperation.writeToAFile("US208_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US208_" + mmsi, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US208_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US208_" + mmsi, data);
         }
     }
 
