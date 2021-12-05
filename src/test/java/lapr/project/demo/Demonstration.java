@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,5 +32,40 @@ class Demonstration {
         pairController.pair();
         NearestPortController nearestPortController = new NearestPortController();
         nearestPortController.getClosestPort("Input/US202.txt");
+    }
+
+    @Test
+    void US204() throws IOException, SQLException {
+        CurrentSpecificationGivenContainerController controller = new CurrentSpecificationGivenContainerController();
+    }
+
+    @Test
+    void US205() throws IOException, SQLException {
+        ListOfContainersOffloadedController controller = new ListOfContainersOffloadedController();
+    }
+
+    @Test
+    void US206() throws IOException, SQLException {
+        ListOfContainersLoadedController controller = new ListOfContainersLoadedController();
+    }
+
+    @Test
+    void US207() throws IOException, SQLException {
+        NumberCargoManifestAvgContainerController controller = new NumberCargoManifestAvgContainerController();
+    }
+
+    @Test
+    void US208() throws IOException, SQLException {
+        OccupanceRateGivenShipCargoController controller = new OccupanceRateGivenShipCargoController();
+    }
+
+    @Test
+    void US209() throws IOException, SQLException {
+        OccupanceRateGivenShipDateController controller = new OccupanceRateGivenShipDateController();
+    }
+
+    @Test
+    void US210() throws IOException, SQLException {
+        ShipsAvailableNextMondayController controller = new ShipsAvailableNextMondayController();
     }
 }
