@@ -9,7 +9,7 @@ begin
         WHERE ccm.cargo_manifest_id=cml.id
         AND cml.ship_mmsi = mmsi
         AND cml.id=s.cargo_load_id
-        AND ccm.stage_id<=s.id
+        AND ccm.stage_id=s.id
         AND extract(YEAR FROM s.departure_date)=yearC
         GROUP BY ccm.cargo_manifest_id
         ORDER BY ccm.cargo_manifest_id
