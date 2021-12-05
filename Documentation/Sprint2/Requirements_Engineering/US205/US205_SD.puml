@@ -1,0 +1,45 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":ListOfContainersOffloadedUI" as System
+participant ":ListOfContainersOffloadedController" as SSC
+participant ":US205" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: request to know the the list of containers to be offloaded in the next port
+
+activate System
+
+System -> SSC: createUS205
+
+activate SSC
+
+SSC -> us: demo(id)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the containers details
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml

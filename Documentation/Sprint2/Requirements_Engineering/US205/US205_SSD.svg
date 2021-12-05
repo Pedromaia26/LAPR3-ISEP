@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="250px" preserveAspectRatio="none" style="width:611px;height:250px;background:#FFFFFF;" version="1.1" viewBox="0 0 611 250" width="611px" zoomAndPan="magnify"><defs><filter height="300%" id="f17y2u3j3c9cdb" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f17y2u3j3c9cdb)" height="50.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="49" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f17y2u3j3c9cdb)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="560" y="119.4297"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="54" x2="54" y1="88.2969" y2="166.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="565" x2="565" y1="88.2969" y2="166.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="5" y="84.9951">Ship Captain</text><ellipse cx="54" cy="15" fill="#FEFECE" filter="url(#f17y2u3j3c9cdb)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M54,23 L54,50 M41,31 L67,31 M54,50 L41,65 M54,50 L67,65 " fill="none" filter="url(#f17y2u3j3c9cdb)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="5" y="178.5576">Ship Captain</text><ellipse cx="54" cy="191.8594" fill="#FEFECE" filter="url(#f17y2u3j3c9cdb)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M54,199.8594 L54,226.8594 M41,207.8594 L67,207.8594 M54,226.8594 L41,241.8594 M54,226.8594 L67,241.8594 " fill="none" filter="url(#f17y2u3j3c9cdb)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f17y2u3j3c9cdb)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="68" x="529" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="536" y="72.9951">System</text><rect fill="#FEFECE" filter="url(#f17y2u3j3c9cdb)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="68" x="529" y="165.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="536" y="185.5576">System</text><rect fill="#FFFFFF" filter="url(#f17y2u3j3c9cdb)" height="50.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="49" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f17y2u3j3c9cdb)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="560" y="119.4297"/><polygon fill="#A80036" points="548,115.4297,558,119.4297,548,123.4297,552,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="59" x2="554" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="66" y="114.3638">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="469" x="79" y="114.3638">request to know the the list of containers to be offloaded in the next port</text><polygon fill="#A80036" points="65,144.5625,55,148.5625,65,152.5625,61,148.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="59" x2="564" y1="148.5625" y2="148.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="71" y="143.4966">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="183" x="84" y="143.4966">shows the containers details</text><!--MD5=[43946be8f381657a0f3bee076cea2bc5]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know the the list of containers to be offloaded in the next port
+activate S
+PM <- - S: shows the containers details
+deactivate S
+deactivate PM
+@enduml
+
+@startuml
+
+autonumber
+
+actor "Ship Captain" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know the the list of containers to be offloaded in the next port
+activate S
+PM <- - S: shows the containers details
+deactivate S
+deactivate PM
+@enduml
+
+PlantUML version 1.2021.16beta1(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
