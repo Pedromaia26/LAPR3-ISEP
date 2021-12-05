@@ -108,60 +108,49 @@ We created the Global Class Diagram that we would follow in the development of o
 
 ![US201_SSD](./Documentation/Sprint2/Requirements_Engineering/US201/US201_SSD.svg)
 ![US201_SD](./Documentation/Sprint2/Requirements_Engineering/US201/US201_SD.svg)
-![US201_CD](./Documentation/Sprint2/Requirements_Engineering/US201/US201_CD.svg)
 
 ### Use Case 202 - Find the closest port of a ship given its CallSign, on a certain DateTime. 
 
 ![US202_SSD](./Documentation/Sprint2/Requirements_Engineering/US202/US202_SSD.svg)
 ![US202_SD](./Documentation/Sprint2/Requirements_Engineering/US202/US202_SD.svg)
-![US202_CD](./Documentation/Sprint2/Requirements_Engineering/US202/US202_CD.svg)
 
 ### Use Case 203 - Want the team to review the relational data model in view of the new user stories so it can support all the requirements to fulfil the purpose of the system being developed. 
 
-![US203_SSD](./Documentation/Sprint2/Requirements_Engineering/US203/US203_SSD.svg)
-![US203_SD](./Documentation/Sprint2/Requirements_Engineering/US203/US203_SD.svg)
-![US203_CD](./Documentation/Sprint2/Requirements_Engineering/US203/US203_CD.svg)
+![US203_PDM](./Documentation/Sprint2/Requirements_Engineering/US203/physical_data_model.jpg)
 
 ### Use Case 204 - Want to know the current situation of a specific container being used to transport my goods.
 
 ![US204_SSD](./Documentation/Sprint2/Requirements_Engineering/US204/US204_SSD.svg)
 ![US204_SD](./Documentation/Sprint2/Requirements_Engineering/US204/US204_SD.svg)
-![US204_CD](./Documentation/Sprint2/Requirements_Engineering/US204/US204_CD.svg)
 
 ### Use Case 205 - Want the list of containers to be offloaded in the next port, including container identifier, type, position, and load.
 
 ![US205_SSD](./Documentation/Sprint2/Requirements_Engineering/US205/US205_SSD.svg)
 ![US205_SD](./Documentation/Sprint2/Requirements_Engineering/US205/US205_SD.svg)
-![US205_CD](./Documentation/Sprint2/Requirements_Engineering/US205/US205_CD.svg)
 
 ### Use Case 206 - Want the list of containers to be loaded in the next port, including container identifier, type, and load.
 
 ![US206_SSD](./Documentation/Sprint2/Requirements_Engineering/US206/US206_SSD.svg)
 ![US206_SD](./Documentation/Sprint2/Requirements_Engineering/US206/US206_SD.svg)
-![US206_CD](./Documentation/Sprint2/Requirements_Engineering/US206/US206_CD.svg)
 
 ### Use Case 207 - Want to know how many cargo manifests I have transported during a given year and the average number of containers per manifest.
 
 ![US207_SSD](./Documentation/Sprint2/Requirements_Engineering/US207/US207_SSD.svg)
 ![US207_SD](./Documentation/Sprint2/Requirements_Engineering/US207/US207_SD.svg)
-![US207_CD](./Documentation/Sprint2/Requirements_Engineering/US207/US207_CD.svg)
 
 ### Use Case 208 - Want to know the occupancy rate (percentage) of a given ship for a given cargo manifest. Occupancy rate is the ratio between total number of containers in the ship coming from a given manifest and the total capacity of the ship, i.e.,the maximum number of containers the ship can load.
 
 ![US208_SSD](./Documentation/Sprint2/Requirements_Engineering/US208/US208_SSD.svg)
 ![US208_SD](./Documentation/Sprint2/Requirements_Engineering/US208/US208_SD.svg)
-![US208_CD](./Documentation/Sprint2/Requirements_Engineering/US208/US208_CD.svg)
 
 ### Use Case 209 - Want to know the occupancy rate of a given ship at a given moment.
 
 ![US209_SSD](./Documentation/Sprint2/Requirements_Engineering/US209/US209_SSD.svg)
 ![US209_SD](./Documentation/Sprint2/Requirements_Engineering/US209/US209_SD.svg)
-![US209_CD](./Documentation/Sprint2/Requirements_Engineering/US209/US209_CD.svg)
 
 ### Use Case 210 -  Need to know which ships will be available on Monday next week and their location.
 
 ![US210_SSD](./Documentation/Sprint2/Requirements_Engineering/US210/US210_SSD.svg)
 ![US210_SD](./Documentation/Sprint2/Requirements_Engineering/US210/US210_SD.svg)
-![US210_CD](./Documentation/Sprint2/Requirements_Engineering/US210/US210_CD.svg)
 
 #################################################################################
