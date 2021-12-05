@@ -1,11 +1,13 @@
 package lapr.project.controller;
 
+import lapr.project.data.DatabaseOperations;
 import lapr.project.model.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 public class ImportShipsController {
 
@@ -50,6 +52,12 @@ public class ImportShipsController {
             br.close();
         }
         company.setBstShips(shipBST);
-
+        DatabaseOperations databaseOperations = new DatabaseOperations();
+        for(Ship ship : (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder()){
+            databaseOperations.saveShip(App.getInstance().getDatabaseConnection(), ship);
+            for (ShipDynData data : (List<ShipDynData>)ship.getBstDynData().inOrder()){
+                databaseOperations.saveShipDynData(App.getInstance().getDatabaseConnection(), data, String.valueOf(ship.getMmsi()));
+            }
+        }
     }
 }

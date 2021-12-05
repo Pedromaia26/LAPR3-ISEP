@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.data.CountryStore;
+
 public class Company {
     /**
      * BST that contains the ships

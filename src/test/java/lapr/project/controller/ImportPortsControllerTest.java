@@ -14,7 +14,5 @@ class ImportPortsControllerTest {
         Company c = new Company();
         ImportPortsController controller = new ImportPortsController(c);
         controller.importFromCSV("sports.csv");
-        System.out.println(c.getKdtPorts().inOrder());
-
     }
 }

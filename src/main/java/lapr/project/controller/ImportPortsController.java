@@ -1,11 +1,14 @@
 package lapr.project.controller;
 
+import lapr.project.data.DatabaseConnection;
+import lapr.project.data.DatabaseOperations;
 import lapr.project.model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 public class ImportPortsController {
     private Company company;
@@ -38,5 +41,14 @@ public class ImportPortsController {
             br.close();
         }
         company.setKdtPorts(portKDT);
+        DatabaseOperations databaseOperations = new DatabaseOperations();
+        for (Country country : App.getInstance().getCompany().getCountryStore().getCountries()){
+            App.getInstance().getCompany().getCountryStore().save(App.getInstance().getDatabaseConnection(), country);
+        }
+
+        for(Port port : (List<Port>) App.getInstance().getCompany().getKdtPorts().inOrder()){
+            databaseOperations.saveLocation(App.getInstance().getDatabaseConnection(), port);
+            databaseOperations.savePort(App.getInstance().getDatabaseConnection(), port);
+        }
     }
 }

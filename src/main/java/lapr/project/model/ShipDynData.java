@@ -53,7 +53,6 @@ public class ShipDynData implements Comparable<ShipDynData> {
         else
             this.heading = heading;
 
-        this.position = position;
         this.cargo = cargo;
         this.transceiver = transceiver;
     }
@@ -72,6 +71,16 @@ public class ShipDynData implements Comparable<ShipDynData> {
 
     public Date getBaseDateTime() {
         return baseDateTime;
+    }
+
+    public int getPosition(){return position;}
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public String getTransceiver() {
+        return transceiver;
     }
 
     @Override

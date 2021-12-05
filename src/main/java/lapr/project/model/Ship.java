@@ -31,7 +31,7 @@ public class Ship implements Comparable<Ship> {
         this.vesselType = vesselType;
         this.length = Integer.parseInt(length);
         this.width = Integer.parseInt(width);
-        //this.capacity = capacity;
+        this.capacity = 500;
         this.draft = Float.parseFloat(draft);
         bstDynData = new BSTDynData();
     }
@@ -70,6 +70,18 @@ public class Ship implements Comparable<Ship> {
 
     public BSTDynData getBstDynData() {
         return bstDynData;
+    }
+
+    public int getGenerators() {
+        return generators;
+    }
+
+    public int getGenertorPowerOutput() {
+        return genertorPowerOutput;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     public void setBstDynData(BSTDynData bstDynData) {

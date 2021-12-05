@@ -16,6 +16,8 @@ class Demonstration {
     void Demonstration() throws IOException, ParseException {
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
+        ImportPortsController importPortsController = new ImportPortsController();
+        importPortsController.importFromCSV("sports.csv");
         SearchShipController searchShipController = new SearchShipController();
         searchShipController.searchDetails("Input/US102.txt");
         PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
@@ -27,5 +29,7 @@ class Demonstration {
         topNshipsPerKmController.printNshipsMostKm("Input/US106.txt");
         PairController pairController = new PairController();
         pairController.pair();
+        NearestPortController nearestPortController = new NearestPortController();
+        nearestPortController.getClosestPort("Input/US202.txt");
     }
 }
