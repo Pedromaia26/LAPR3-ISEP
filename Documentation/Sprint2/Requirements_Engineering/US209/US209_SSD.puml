@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know the occupancy rate of a ship
+activate S
+PM <-- S: asks for a ship
+deactivate S
+PM -> S: types the data requested
+activate S
+PM <-- S: shows the requested data
+deactivate S
+deactivate PM
+@enduml

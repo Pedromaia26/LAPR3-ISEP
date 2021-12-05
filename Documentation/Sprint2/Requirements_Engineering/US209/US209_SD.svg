@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="496px" preserveAspectRatio="none" style="width:1154px;height:496px;background:#FFFFFF;" version="1.1" viewBox="0 0 1154 496" width="1154px" zoomAndPan="magnify"><defs><filter height="300%" id="f9a9y095n4l6o" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="296.3281" style="stroke:#A80036;stroke-width:1.0;" width="10" x="49" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="382" y="119.4297"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="216.9297" style="stroke:#A80036;stroke-width:1.0;" width="10" x="382" y="177.6953"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="187.7969" style="stroke:#A80036;stroke-width:1.0;" width="10" x="679" y="206.8281"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="881" y="235.9609"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1079" y="307.2266"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="54" x2="54" y1="88.2969" y2="412.625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="386.5" x2="386.5" y1="88.2969" y2="412.625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="683.5" x2="683.5" y1="88.2969" y2="412.625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="885.5" x2="885.5" y1="88.2969" y2="412.625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1083.5" x2="1083.5" y1="88.2969" y2="412.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="5" y="84.9951">Ship Captain</text><ellipse cx="54" cy="15" fill="#FEFECE" filter="url(#f9a9y095n4l6o)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M54,23 L54,50 M41,31 L67,31 M54,50 L41,65 M54,50 L67,65 " fill="none" filter="url(#f9a9y095n4l6o)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="5" y="424.6201">Ship Captain</text><ellipse cx="54" cy="437.9219" fill="#FEFECE" filter="url(#f9a9y095n4l6o)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M54,445.9219 L54,472.9219 M41,453.9219 L67,453.9219 M54,472.9219 L41,487.9219 M54,472.9219 L67,487.9219 " fill="none" filter="url(#f9a9y095n4l6o)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="253" x="258.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="239" x="265.5" y="72.9951">:OccupanceRateGivenShipDateUI</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="253" x="258.5" y="411.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="239" x="265.5" y="431.6201">:OccupanceRateGivenShipDateUI</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="313" x="525.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="299" x="532.5" y="72.9951">:OccupanceRateGivenShipDateController</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="313" x="525.5" y="411.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="299" x="532.5" y="431.6201">:OccupanceRateGivenShipDateController</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="63" x="852.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="859.5" y="72.9951">:US209</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="63" x="852.5" y="411.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="859.5" y="431.6201">:US209</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="117" x="1023.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103" x="1030.5" y="72.9951">:FileOperation</text><rect fill="#FEFECE" filter="url(#f9a9y095n4l6o)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="117" x="1023.5" y="411.625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103" x="1030.5" y="431.6201">:FileOperation</text><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="296.3281" style="stroke:#A80036;stroke-width:1.0;" width="10" x="49" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="382" y="119.4297"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="216.9297" style="stroke:#A80036;stroke-width:1.0;" width="10" x="382" y="177.6953"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="187.7969" style="stroke:#A80036;stroke-width:1.0;" width="10" x="679" y="206.8281"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="71.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="881" y="235.9609"/><rect fill="#FFFFFF" filter="url(#f9a9y095n4l6o)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1079" y="307.2266"/><polygon fill="#A80036" points="370,115.4297,380,119.4297,370,123.4297,374,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="59" x2="376" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="66" y="114.3638">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="291" x="79" y="114.3638">request to know the occupancy rate of a ship</text><polygon fill="#A80036" points="70,144.5625,60,148.5625,70,152.5625,66,148.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="64" x2="386" y1="148.5625" y2="148.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="76" y="143.4966">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93" x="89" y="143.4966">asks for a ship</text><polygon fill="#A80036" points="370,173.6953,380,177.6953,370,181.6953,374,177.6953" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="59" x2="376" y1="177.6953" y2="177.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="8" x="66" y="172.6294">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="78" y="172.6294">types the data requested</text><polygon fill="#A80036" points="667,202.8281,677,206.8281,667,210.8281,671,206.8281" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="392" x2="673" y1="206.8281" y2="206.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="399" y="201.7622">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="412" y="201.7622">createUS209</text><polygon fill="#A80036" points="869,231.9609,879,235.9609,869,239.9609,873,235.9609" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="689" x2="875" y1="235.9609" y2="235.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="696" y="230.895">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="709" y="230.895">demo(mmsi, date)</text><line style="stroke:#A80036;stroke-width:1.0;" x1="891" x2="933" y1="265.0938" y2="265.0938"/><line style="stroke:#A80036;stroke-width:1.0;" x1="933" x2="933" y1="265.0938" y2="278.0938"/><line style="stroke:#A80036;stroke-width:1.0;" x1="892" x2="933" y1="278.0938" y2="278.0938"/><polygon fill="#A80036" points="902,274.0938,892,278.0938,902,282.0938,898,278.0938" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="898" y="260.0278">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="911" y="260.0278">initialize</text><polygon fill="#A80036" points="1067,303.2266,1077,307.2266,1067,311.2266,1071,307.2266" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="886" x2="1073" y1="307.2266" y2="307.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="893" y="302.1606">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="156" x="906" y="302.1606">WriteToAFile(path, data)</text><polygon fill="#A80036" points="700,332.3594,690,336.3594,700,340.3594,696,336.3594" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="694" x2="1083" y1="336.3594" y2="336.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="706" y="331.2935">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="19" x="719" y="331.2935">file</text><polygon fill="#A80036" points="403,361.4922,393,365.4922,403,369.4922,399,365.4922" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="397" x2="678" y1="365.4922" y2="365.4922"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="409" y="360.4263">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="19" x="422" y="360.4263">file</text><polygon fill="#A80036" points="65,390.625,55,394.625,65,398.625,61,394.625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="59" x2="386" y1="394.625" y2="394.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="71" y="389.5591">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168" x="94" y="389.5591">shows the requested data</text><!--MD5=[cde122a0409571f0ed85086084d7589c]
+@startuml
+actor "Ship Captain" as Adm
+participant ":OccupanceRateGivenShipDateUI" as System
+participant ":OccupanceRateGivenShipDateController" as SSC
+participant ":US209" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: request to know the occupancy rate of a ship
+
+activate System
+
+System - -> Adm: asks for a ship
+
+deactivate System
+
+Adm -> System: types the data requested
+
+activate System
+
+System -> SSC: createUS209
+
+activate SSC
+
+SSC -> us: demo(mmsi, date)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f - -> SSC: file
+
+deactivate f
+
+SSC - -> System: file
+
+System - -> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml
+
+PlantUML version 1.2021.16beta1(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
