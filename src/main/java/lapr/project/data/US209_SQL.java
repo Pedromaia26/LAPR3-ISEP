@@ -41,13 +41,13 @@ public class US209_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(ocRate);
-            fileOperation.writeToAFile("US209_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US209_" + mmsi, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US209_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US209_" + mmsi, data);
         }
     }
 
