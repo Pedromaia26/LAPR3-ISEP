@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know which ships will be available on Monday next week and their location
+activate S
+PM <-- S: shows the requested data
+deactivate S
+deactivate PM
+@enduml

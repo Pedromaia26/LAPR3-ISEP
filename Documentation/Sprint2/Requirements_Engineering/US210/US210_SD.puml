@@ -1,0 +1,45 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":ShipsAvailableNextMondayUI" as System
+participant ":ShipsAvailableNextMondayController" as SSC
+participant ":US210" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: request to know which ships will be available on Monday next week and their location
+
+activate System
+
+System -> SSC: createUS210
+
+activate SSC
+
+SSC -> us: demo()
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml
