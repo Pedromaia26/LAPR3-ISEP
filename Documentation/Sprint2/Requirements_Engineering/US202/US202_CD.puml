@@ -1,0 +1,23 @@
+@startuml
+NearestPortController ..>BSTShip
+NearestPortController ..>Company
+NearestPortController ..>KdtPort
+NearestPortController ..>BstDynData
+
+
+NearestPortController : +importFromCSV(file)
+
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getKdtPorts()
+
+Company ..>KdtPort
+
+KdtPort : +findNearestNeighbour(lat, long)
+
+BSTShip : +searchShipByCallSign(callsign)
+BSTShip : +inrOrder()
+
+BstDynData : +searchSpecificDate(newDate)
+@enduml

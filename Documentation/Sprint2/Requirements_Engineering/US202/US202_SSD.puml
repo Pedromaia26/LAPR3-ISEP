@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as PM
+participant "System" as S
+activate PM
+
+PM -> S: asks to find the closest port
+activate S
+S --> PM: asks for his call sign and a date time
+deactivate S
+PM -> S: types the path of the file
+activate S
+PM <-- S: shows the closest port
+@enduml

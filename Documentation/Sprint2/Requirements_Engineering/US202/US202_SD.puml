@@ -1,0 +1,59 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":NearestPortUI" as System
+participant ":NearestPortCrontroller" as SSC
+participant ":Company" as c
+participant ":KDTPort" as kdt
+participant "BufferedReader" as mp
+autonumber
+
+activate Adm
+
+Adm -> System: asks to find the closest port
+
+activate System
+
+System --> Adm: asks for his call sign and a date time
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System -> SSC: getClosestPort(file)
+
+activate SSC
+
+SSC -> c: shipList = getBstShips().inOrder()
+
+activate c
+
+deactivate c
+
+SSC -> c: kdt = getKdtPorts()
+
+activate c
+
+deactivate c
+
+SSC -> mp: callSign = readLine()
+
+activate mp
+
+deactivate mp
+
+SSC -> kdt: nearestPort = findNearestNeighbour(lat, lng)
+
+activate kdt
+
+deactivate kdt
+
+deactivate SSC
+
+System --> Adm: shows the closest port
+
+deactivate System
+
+deactivate Adm
+@enduml
