@@ -35,17 +35,15 @@ public class US204_SQL {
 
             this.container_location = statement.getString(2);
 
-            System.out.println(statement.getString(2));
-
             StringBuilder data = new StringBuilder();
             data.append(container_location);
-            fileOperation.writeToAFile("US204_" + containerId, data);
+            fileOperation.writeToAFile("Output/US204_" + containerId, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US204_" + containerId, data);
+            fileOperation.writeToAFile("Output/US204_" + containerId, data);
         }
     }
 
