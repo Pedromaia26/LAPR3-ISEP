@@ -35,17 +35,15 @@ public class US205_SQL {
 
             this.listOfContainers = statement.getString(2);
 
-            System.out.println(statement.getString(2));
-
             StringBuilder data = new StringBuilder();
             data.append(listOfContainers);
-            fileOperation.writeToAFile("US205_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US205_" + mmsi, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US205_" + mmsi, data);
+            fileOperation.writeToAFile("Output/US205_" + mmsi, data);
         }
     }
 
