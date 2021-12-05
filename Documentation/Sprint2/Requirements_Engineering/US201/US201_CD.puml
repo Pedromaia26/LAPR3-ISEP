@@ -1,0 +1,24 @@
+@startuml
+ImportPortsController ..>Company
+ImportPortsController ..>Port
+ImportPortsController ..>KdtPort
+
+
+ImportPortsController : +importFromCSV(file)
+
+
+Company : -bstShips: BSTShip
+Company : +Company()
+Company : +getKdtPorts()
+Company : +setKdtPorts(PortKDT)
+
+Company ..>KdtPort
+
+KdtPort : +insert(ports, latitude, longitude)
+
+Port : -code: int
+Port : -name: String
+Port : -country: Country
+Port : -latitude: float
+Port : -longitude: float
+@enduml
