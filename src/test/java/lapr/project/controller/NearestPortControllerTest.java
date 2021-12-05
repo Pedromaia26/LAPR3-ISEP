@@ -16,6 +16,8 @@ class NearestPortControllerTest {
     void getClosestPort() throws ParseException, IOException {
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
+        ImportPortsController importPortsController = new ImportPortsController();
+        importPortsController.importFromCSV("sports.csv");
         String file = "Input/US202.txt";
         NearestPortController npc = new NearestPortController();
         npc.getClosestPort(file);
