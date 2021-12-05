@@ -105,6 +105,24 @@ public class KDTPort<E> extends KDTree{
             insert(node, currentNode.getRight(), !divX);
     }
 
+    public void buildTree(List<Node<Port>> nodes) {
+        root = buildTree(true, nodes);
+    }
+
+    private Node<Port> buildTree(boolean divX, List<Node<Port>> nodes) {
+        if (nodes == null || nodes.isEmpty()) {
+            return null;
+        }
+        nodes.sort(divX ? compareX : compareY);
+        int median = nodes.size() >> 1;
+        Node<Port> node = new Node<>(nodes.get(median).getPort(), nodes.get(median).getX(), nodes.get(median).getY());
+        node.left = buildTree(!divX, nodes.subList(0, median));
+        if (median + 1 <= nodes.size() - 1)
+            node.right = buildTree(!divX, nodes.subList(median+1, nodes.size()));
+
+        return node;
+    }
+
     public Port findNearestNeighbour(double latitude, double longitude) {
         return findNearestNeighbour(root, latitude, longitude,root, true);
     }

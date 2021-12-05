@@ -33,8 +33,6 @@ public class US210_SQL {
 
             this.listOfShips = statement.getString(1);
 
-            System.out.println(statement.getString(1));
-
             StringBuilder data = new StringBuilder();
             data.append(listOfShips);
             fileOperation.writeToAFile("Output/US210", data);
