@@ -1,19 +1,54 @@
-CREATE OR REPLACE FUNCTION fncCurrentSituationContainer(ID_CONTAINER INT) 
-RETURN sys_refcursor IS 
-	currentSituationContainer sys_refcursor;
-BEGIN
-	OPEN currentSituationContainer FOR
-		SELECT c.id, cml.status, s.name, p.name from Container c
-		INNER JOIN (SELECT c.id,ccm.id, max(ccm.date) AS LastRegist from Container_cargoManifest ccm
-		INNER JOIN Container c on ccm.id = c.id
-		GROUP BY c.id, ccm.id)
-		INNER JOIN Cargo_Manifest_Load cml on cml.id = Container_cargoManifest.cargo_manifest_id
-		INNER JOIN Ship s on cml.ship_mmsi = s.mmsi
-		INNER JOIN Port p on cml.port_id = p.id
-		WHERE c.id = ID_CONTAINER
-		ORDER BY c.id, cml.status, s.name, p.name;
+--US204--
+SET SERVEROUTPUT ON;
+Declare
+    counter integer := 1;
+    c integer;
+    contId container.id%type := 7222282;
+    shipName ship.name%type;
+    stageCounter integer :=0;
+    unloadCounter integer :=0;
+    portId port.id%type;
+    port_name port.name%type;
+begin 
+    
+    select count(*) into c from cargo_manifest_load
+    where id = contId;
+    
+    for cont in (select * from cargo_manifest_load inner join container_cargoManifest on container_cargoManifest.cargo_manifest_id = cargo_manifest_load.id AND container_cargoManifest.container_id = contId) loop
+        IF counter = 1 THEN
+            select port_id into portId from cargo_manifest_load
+            where cargo_manifest_load.id = cont.id;
+        END IF;
+        select count(*) into stageCounter from stage 
+        where stage.cargo_load_id = cont.id;
+            
+        select count(*) into unloadCounter from cargo_manifest_unload 
+        where cargo_manifest_unload.cargo_unload_id = cont.id;
 
-
-	RETURN currentSituationContainer;
-END;
-/
+        IF (stageCounter > unloadCounter AND unloadCounter > 0) THEN
+            select name into shipName from ship
+            where mmsi = cont.ship_mmsi;
+            dbms_output.put_line('Ship: ' || shipName);
+        
+        ELSE IF (counter = (c + 1)) THEN
+            IF (unloadCounter > 0) THEN
+                select port_id into portId from stage
+                where stage.cargo_load_id = cont.id
+                AND stage.id = stageCounter;
+            
+            END IF;    
+            
+            select name into port_name from port
+            where id = portId;
+            
+            dbms_output.put_line('Port: ' || port_name);
+                
+        
+        END IF;
+        
+         counter := counter + 1;
+         
+        END IF;
+    end loop;
+    
+end;
