@@ -37,13 +37,13 @@ public class US210_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(listOfShips);
-            fileOperation.writeToAFile("US210", data);
+            fileOperation.writeToAFile("Output/US210", data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("US210", data);
+            fileOperation.writeToAFile("Output/US210", data);
         }
     }
 
