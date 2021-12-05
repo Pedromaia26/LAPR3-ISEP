@@ -30,18 +30,13 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException, ParseException {
-        String file = "sships.csv";
-        String file2 = "TestFiles/positionalMsg.txt";
         ImportShipsController controller = new ImportShipsController();
-        PairController pController = new PairController();
-        PositionalMessagesController pmController = new PositionalMessagesController();
+        String file = "sships.csv";
         controller.importFromCSV(file);
-        pController.pair();
-        pmController.message(file2);
+        controller.insertIntoDatabase();
         ImportPortsController ipc = new ImportPortsController();
         ipc.importFromCSV("sports.csv");
-        NearestPortController cpc = new NearestPortController();
-        cpc.getClosestPort("Input/US202.txt");
+        ipc.insertIntoDatabase();
     }
 }
 

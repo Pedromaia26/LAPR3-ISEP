@@ -52,6 +52,9 @@ public class ImportShipsController {
             br.close();
         }
         company.setBstShips(shipBST);
+    }
+
+    public void insertIntoDatabase(){
         DatabaseOperations databaseOperations = new DatabaseOperations();
         for(Ship ship : (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder()){
             databaseOperations.saveShip(App.getInstance().getDatabaseConnection(), ship);

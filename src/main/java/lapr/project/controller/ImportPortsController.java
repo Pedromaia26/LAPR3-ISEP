@@ -41,6 +41,9 @@ public class ImportPortsController {
             br.close();
         }
         company.setKdtPorts(portKDT);
+    }
+
+    public void insertIntoDatabase(){
         DatabaseOperations databaseOperations = new DatabaseOperations();
         for (Country country : App.getInstance().getCompany().getCountryStore().getCountries()){
             App.getInstance().getCompany().getCountryStore().save(App.getInstance().getDatabaseConnection(), country);
