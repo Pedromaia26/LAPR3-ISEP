@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Client" as PM
+participant "System" as S
+activate PM
+
+PM -> S: request to know the current situation of a specific container
+activate S
+S --> PM: asks for the container identifier
+deactivate S
+PM -> S: types the data requested
+activate S
+PM <-- S: shows the container details
+deactivate S
+deactivate PM
+@enduml
