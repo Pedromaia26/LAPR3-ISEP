@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as PM
+participant "System" as S
+activate PM
+
+PM -> S: wish to know which places are closest to all other places
+activate S
+PM <-- S: request the number of closeness locals by continent
+deactivate S
+PM -> S: types requested data
+activate S
+PM <-- S: shows the requested data
+deactivate S
+@enduml
