@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as PM
+participant "System" as S
+activate PM
+
+PM -> S: asks to colour the map
+activate S
+PM <-- S: shows the requested data
+deactivate S
+@enduml
