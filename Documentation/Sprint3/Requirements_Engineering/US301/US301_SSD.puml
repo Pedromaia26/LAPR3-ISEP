@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic manager" as TM
+participant "System" as S
+activate TM
+
+TM -> S: request to o import data from countries, ports,\n borders and seadists from the database
+activate S
+TM <-- S: shows the container details
+deactivate S
+deactivate TM
+@enduml
