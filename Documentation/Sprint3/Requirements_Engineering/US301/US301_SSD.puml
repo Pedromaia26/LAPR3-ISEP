@@ -9,7 +9,7 @@ activate TM
 
 TM -> S: request to o import data from countries, ports,\n borders and seadists from the database
 activate S
-TM <-- S: shows the container details
+TM <-- S: shows the operation successful
 deactivate S
 deactivate TM
 @enduml
