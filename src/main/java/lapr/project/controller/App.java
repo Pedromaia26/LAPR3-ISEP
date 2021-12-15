@@ -44,6 +44,10 @@ public class App {
 
     private final Company company;
 
+    private String username;
+
+
+
     private App (){
         company=new Company();
         this.databaseConnection = initializeConnection();
@@ -62,6 +66,14 @@ public class App {
             }
         }
         return singleton;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
