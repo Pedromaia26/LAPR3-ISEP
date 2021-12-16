@@ -30,6 +30,17 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException, ParseException {
+
+        try
+        {
+            Login login = new Login();
+
+            login.run();
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+        }
         ImportShipsController controller = new ImportShipsController();
         String file = "sships.csv";
         controller.importFromCSV(file);
