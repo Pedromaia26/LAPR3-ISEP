@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseOperations {
+    int num_user_id = 1;
     public boolean saveShip(DatabaseConnection databaseConnection, Object object) {
         Ship ship = (Ship) object;
         boolean returnValue = false;
@@ -29,9 +30,9 @@ public class DatabaseOperations {
     }
 
     private void saveShipToDatabase(DatabaseConnection databaseConnection, Ship ship) throws SQLException {
-        if (isShipOnDatabase(databaseConnection, ship))
-            updateShipOnDatabase(databaseConnection, ship);
-        else
+//        if (isShipOnDatabase(databaseConnection, ship))
+//            updateShipOnDatabase(databaseConnection, ship);
+//        else
             insertShipOnDatabase(databaseConnection, ship);
     }
 
@@ -39,7 +40,7 @@ public class DatabaseOperations {
                                          Ship ship) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         String sqlCommand =
-                "insert into ship(mmsi,name,imo,num_energy_gen,gen_pow_out,callsign,vessel,length,width,cap,draft) values (" + ship.getMmsi() + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "insert into ship(mmsi,name,imo,num_energy_gen,gen_pow_out,callsign,vessel,length,width,cap,cap_x,cap_y,cap_z,draft,userid_shipcaptain) values (" + ship.getMmsi() + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         executeShipStatementOnDatabase(databaseConnection, ship,
                 sqlCommand);
@@ -48,6 +49,9 @@ public class DatabaseOperations {
     private void executeShipStatementOnDatabase(DatabaseConnection databaseConnection, Ship ship, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
+        if (num_user_id != 3) num_user_id++;
+        else num_user_id = 1;
+
         saveClientPreparedStatement.setString(1, ship.getShipName());
         saveClientPreparedStatement.setString(2, ship.getImo());
         saveClientPreparedStatement.setInt(3, ship.getGenerators());
@@ -57,7 +61,11 @@ public class DatabaseOperations {
         saveClientPreparedStatement.setFloat(7, ship.getLength());
         saveClientPreparedStatement.setFloat(8, ship.getWidth());
         saveClientPreparedStatement.setInt(9, ship.getCapacity());
-        saveClientPreparedStatement.setFloat(10, ship.getDraft());
+        saveClientPreparedStatement.setInt(10, 20);
+        saveClientPreparedStatement.setInt(11, 5);
+        saveClientPreparedStatement.setInt(12, 10);
+        saveClientPreparedStatement.setFloat(13, ship.getDraft());
+        saveClientPreparedStatement.setString(14, "shipcaptain" + num_user_id);
         try{
             saveClientPreparedStatement.executeUpdate();
         } catch (SQLException e){
@@ -89,7 +97,7 @@ public class DatabaseOperations {
     }
 
     protected void updateShipOnDatabase(DatabaseConnection databaseConnection, Ship ship) throws SQLException {
-        String command = "update ship set name = ?, imo = ?, num_energy_gen = ?, gen_pow_out = ?, callSign = ?, vessel = ?, length = ?, width = ?, cap = ?, draft = ? where mmsi = " + ship.getMmsi();
+        String command = "update ship set name = ?, imo = ?, num_energy_gen = ?, gen_pow_out = ?, callSign = ?, vessel = ?, length = ?, width = ?, cap = ?, cap_x = ?, cap_y = ?, cap_z = ?, draft = ? where mmsi = " + ship.getMmsi();
 
         executeShipStatementOnDatabase(databaseConnection, ship, command);
     }
