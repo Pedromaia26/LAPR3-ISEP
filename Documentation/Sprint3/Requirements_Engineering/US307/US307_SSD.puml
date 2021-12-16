@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Port Manager" as PM
+participant "System" as S
+activate PM
+
+PM -> S: wish to know if the warehouse have available capacity to accommodate the new manifest
+activate S
+PM <-- S: request the cargo manifest id and the warehouse id
+deactivate S
+PM -> S: types requested data
+activate S
+PM <-- S: shows requested data
+deactivate S
+@enduml
