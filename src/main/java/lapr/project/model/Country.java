@@ -6,10 +6,22 @@ public class Country {
 
     private String continent;
     private String name;
+    private String alpha2_code;
+    private String alpha3_code;
+    private float population;
+    private String capital;
+    private float longitude;
+    private float latitude;
 
-    public Country(String continent, String name) {
+    public Country(String continent, String alpha2_code, String alpha3_code,String name, float population, String capital, float latitude, float longitude) {
         this.continent = continent;
         this.name = name;
+        this.alpha2_code = alpha2_code;
+        this.alpha3_code = alpha3_code;
+        this.population = population;
+        this.capital = capital;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getContinent() {
@@ -20,12 +32,42 @@ public class Country {
         return name;
     }
 
+    public String getAlpha2_code() {
+        return alpha2_code;
+    }
+
+    public String getAlpha3_code() {
+        return alpha3_code;
+    }
+
+    public float getPopulation() {
+        return population;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
     @Override
     public String toString() {
-        return "Country:" +
+        return "Country{" +
                 "continent='" + continent + '\'' +
                 ", name='" + name + '\'' +
-                "\n";
+                ", alpha2_code='" + alpha2_code + '\'' +
+                ", alpha3_code='" + alpha3_code + '\'' +
+                ", population=" + population +
+                ", capital='" + capital + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
     }
 
     @Override

@@ -15,6 +15,8 @@ class Demonstration {
 
     @Test
     void Demonstration() throws IOException, ParseException {
+        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        icontroller.importFromCSVCountry("countries.csv");
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
         ImportPortsController importPortsController = new ImportPortsController();

@@ -11,22 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class CountryStoreTest {
 
     CountryStore store = new CountryStore();
-    Country country = new Country("Europe", "Portugal");
+    Country country = new Country("Europe", "Portugal", "PT", "PRT", 10121746, "Lisboa", 20, 40);
 
     @Test
     void addCountry() {
-        assertEquals(country, store.addCountry(country));
+        assertTrue(store.addCountry(country));
     }
 
     @Test
     void addCountryNull() {
-        assertNull(store.addCountry(null));
-    }
-
-    @Test
-    void addCountryContained() {
-        store.addCountry(country);
-        assertEquals(country, store.addCountry(country));
+        assertFalse(store.addCountry(null));
     }
 
     @Test

@@ -14,6 +14,8 @@ class NearestPortControllerTest {
 
     @Test
     void getClosestPort() throws ParseException, IOException {
+        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        icontroller.importFromCSVCountry("countries.csv");
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
         ImportPortsController importPortsController = new ImportPortsController();

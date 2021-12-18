@@ -9,49 +9,48 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CountryStore implements Persistable{
+public class CountryStore{
 
     private List<Country> Countries = new ArrayList<>();
 
-    public boolean validateCountry(Country country){
-        if (country == null)
+    public boolean addCountry(Country country){
+        if (country == null){
             return false;
-        return getCountry(country);
-    }
-
-    public Country addCountry(Country country){
-        if (!validateCountry(country)){
-            return null;
         }
-        else if (!this.Countries.contains(country))
+        if (!this.Countries.contains(country))
             this.Countries.add(country);
-        return country;
+        return true;
     }
 
-    public boolean getCountry(Country country){
+    public Country getCountry(String continent, String name){
         for (Country c : Countries){
-            if (country.equals(c)){
-                return true;
-            }
-            else if (!country.getContinent().equals(c.getContinent()) && country.getName().equals(c.getName())){
-                return false;
+            if (c.getContinent().equals(continent) && c.getName().equals(name)){
+                return c;
             }
         }
-        return true;
+        return null;
+    }
+
+    public Country getCountry(String name){
+        for (Country c : Countries){
+            if (c.getName().equals(name)){
+                return c;
+            }
+        }
+        return null;
     }
 
     public List<Country> getCountries() {
         return Countries;
     }
 
-    @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
         Country country = (Country) object;
         boolean returnValue = false;
 
         try {
             saveCountryToDatabase(databaseConnection, country);
-
+            saveLocationToDatabase(databaseConnection, country);
             //Save changes.
             returnValue = true;
 
@@ -69,6 +68,11 @@ public class CountryStore implements Persistable{
             updateCountryOnDatabase(databaseConnection, country);
         else
         insertCountryOnDatabase(databaseConnection, country);
+    }
+
+    private void saveLocationToDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
+        if (!isLocationOnDatabase(databaseConnection, country))
+            insertLocationOnDatabase(databaseConnection, country);
     }
 
     protected boolean isCountryOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
@@ -89,7 +93,7 @@ public class CountryStore implements Persistable{
     }
 
     protected void updateCountryOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
-        String command = "update country set continent = ? where name = ?";
+        String command = "update country set continent = ?, alpha2_code = ?, alpha3_code = ?, population = ?, capital = ?, latitude = ?, longitude = ? where name = ?";
 
         executeCountryUpdateStatementOnDatabase(databaseConnection, country, command);
     }
@@ -98,16 +102,49 @@ public class CountryStore implements Persistable{
         Connection connection = databaseConnection.getConnection();
         PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
         saveClientPreparedStatement.setString(1, country.getContinent());
-        saveClientPreparedStatement.setString(2, country.getName());
+        saveClientPreparedStatement.setString(2, country.getAlpha2_code());
+        saveClientPreparedStatement.setString(3, country.getAlpha3_code());
+        saveClientPreparedStatement.setFloat(4, country.getPopulation());
+        saveClientPreparedStatement.setString(5, country.getCapital());
+        saveClientPreparedStatement.setFloat(6, country.getLatitude());
+        saveClientPreparedStatement.setFloat(7, country.getLongitude());
+        saveClientPreparedStatement.setString(8, country.getName());
         saveClientPreparedStatement.executeUpdate();
+    }
+
+    protected boolean isLocationOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
+        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from location where latitude = ? AND longitude = ?");
+        preparedStatement.setFloat(1, country.getLatitude());
+        preparedStatement.setFloat(2, country.getLongitude());
+
+        boolean isLocationDynDataOnDatabase;
+
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            isLocationDynDataOnDatabase = resultSet.next();
+            resultSet.close();
+
+        } finally {
+            preparedStatement.close();
+        }
+        return isLocationDynDataOnDatabase;
     }
 
     private void insertCountryOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         String sqlCommand =
-                "insert into country(name, continent) values (?, ?)";
+                "insert into country(name, continent, alpha2_code, alpha3_code, population, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         executeCountryStatementOnDatabase(databaseConnection, country,
+                sqlCommand);
+    }
+
+    private void insertLocationOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+        String sqlCommand =
+                "insert into location(latitude, longitude, country_name) values (?, ?, ?)";
+
+        executeLocationStatementOnDatabase(databaseConnection, country,
                 sqlCommand);
     }
 
@@ -116,16 +153,21 @@ public class CountryStore implements Persistable{
         PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
         saveClientPreparedStatement.setString(1, country.getName());
         saveClientPreparedStatement.setString(2, country.getContinent());
+        saveClientPreparedStatement.setString(3, country.getAlpha2_code());
+        saveClientPreparedStatement.setString(4, country.getAlpha3_code());
+        saveClientPreparedStatement.setFloat(5, country.getPopulation());
+        saveClientPreparedStatement.setString(6, country.getCapital());
+        saveClientPreparedStatement.setFloat(7, country.getLatitude());
+        saveClientPreparedStatement.setFloat(8, country.getLongitude());
         saveClientPreparedStatement.executeUpdate();
     }
 
-    @Override
-    public boolean delete(DatabaseConnection databaseConnection, Object object) {
-        return false;
-    }
-
-    @Override
-    public Object getObject(DatabaseConnection databaseConnection, String id) {
-        return null;
+    private void executeLocationStatementOnDatabase(DatabaseConnection databaseConnection, Country country, String sqlCommand) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
+        saveClientPreparedStatement.setFloat(1, country.getLatitude());
+        saveClientPreparedStatement.setFloat(2, country.getLongitude());
+        saveClientPreparedStatement.setString(3, country.getName());
+        saveClientPreparedStatement.executeUpdate();
     }
 }

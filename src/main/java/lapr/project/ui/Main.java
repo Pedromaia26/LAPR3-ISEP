@@ -31,7 +31,7 @@ class Main {
      */
     public static void main(String[] args) throws IOException, SQLException, ParseException {
 
-        try
+        /*try
         {
             Login login = new Login();
 
@@ -40,14 +40,8 @@ class Main {
         catch( Exception e )
         {
             e.printStackTrace();
-        }
-        ImportShipsController controller = new ImportShipsController();
-        String file = "sships.csv";
-        controller.importFromCSV(file);
-        controller.insertIntoDatabase();
-        ImportPortsController ipc = new ImportPortsController();
-        ipc.importFromCSV("sports.csv");
-        ipc.insertIntoDatabase();
+        }*/
+        ImportDataToDatabaseController controller = new ImportDataToDatabaseController();
     }
 }
 

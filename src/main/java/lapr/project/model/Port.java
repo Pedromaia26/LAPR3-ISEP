@@ -14,7 +14,7 @@ public class Port {
     public Port(String code, String name, String continent, String country, String latitude, String longitude) {
         this.code = Integer.parseInt(code);
         this.name = name;
-        if (!returnCountry(continent, country)) throw new IllegalArgumentException("Invalid Country");
+        this.country = returnCountry(country,continent);
         this.latitude = Float.parseFloat(latitude);
         this.longitude = Float.parseFloat(longitude);
     }
@@ -44,19 +44,14 @@ public class Port {
         return "Port{" +
                 "code=" + code +
                 ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
+                ", country='" + country.getName() + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 "}\n";
     }
 
-    private boolean returnCountry(String continent, String name){
+    private Country returnCountry(String name, String continent){
         CountryStore store = App.getInstance().getCompany().getCountryStore();
-        Country country = new Country(continent, name);
-        if (store.addCountry(country) == null){
-            return false;
-        }
-        this.country = store.addCountry(country);
-        return true;
+        return store.getCountry(continent, name);
     }
 }

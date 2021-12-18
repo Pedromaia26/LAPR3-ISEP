@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PortTest {
-
     Port port = new Port("29002","Liverpool","Europe","United Kingdom","53.46666667","-3.033333333");
 
     @Test
@@ -24,8 +23,11 @@ class PortTest {
 
     @Test
     void getCountry() {
-        Country expected = new Country("Europe", "United Kingdom");
+        App.getInstance().getCompany().getCountryStore().addCountry(new Country("Europe", "UK", "UKG", "United Kingdom", 0.5f, "Londres", 10.0f, 10.0f));
+        Port port = new Port("29002","Liverpool","Europe","United Kingdom","53.46666667","-3.033333333");
+        Country expected = new Country("Europe", "UK", "UKG", "United Kingdom", 0.5f, "Londres", 10.0f, 10.0f);
         assertEquals(expected, port.getCountry());
+
     }
 
     @Test
@@ -42,15 +44,9 @@ class PortTest {
 
     @Test
     void testToString() {
-        String expected = "Port{code=29002, name='Liverpool', country='Country:continent='Europe', name='United Kingdom'\n" + "', latitude=53.466667, longitude=-3.0333333}\n";
+        App.getInstance().getCompany().getCountryStore().addCountry(new Country("Europe", "UK", "UKG", "United Kingdom", 0.5f, "Londres", 10.0f, 10.0f));
+        Port port = new Port("29002","Liverpool","Europe","United Kingdom","53.46666667","-3.033333333");
+        String expected = "Port{code=29002, name='Liverpool', country='United Kingdom', latitude=53.466667, longitude=-3.0333333}\n";
         assertEquals(expected, port.toString());
-    }
-
-    @Test
-    void CountryWithEqualsNameDifferentContinent(){
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Port port1 = new Port("29002","Liverpool","America","United Kingdom","53.46666667","-3.033333333");
-        });
-        assertEquals("Invalid Country", thrown.getMessage());
     }
 }
