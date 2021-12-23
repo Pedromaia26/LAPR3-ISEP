@@ -8,18 +8,18 @@ CREATE OR REPLACE TRIGGER trg_prevent_excess_load
 	BEFORE INSERT ON CARGOMANIFEST_LOAD
 	FOR EACH ROW
 DECLARE
-	available_capacity_ship INT
+	available_capacity_ship INTEGER;
 	
-CURSOR cur_capacity_available() IS
-	    SELECT s.mmsi, (s.cap - (ccm.COUNT(*))) AS CAPACITY_SHIP -- COUNT(*) AS CARGO_MANIFESTS 
+CURSOR cur_capacity_available IS
+	    SELECT s.mmsi, (s.cap - (ccm.COUNT(cargo_manifest_id))) AS CAPACITY_SHIP -- COUNT(*) AS CARGO_MANIFESTS 
 		FROM container_cargoManifest ccm
 		INNER JOIN cargo_manifest_load cml ON ccm.cargo_manifest_id = cml.id
-		INNER JOIN ship s ON cml.mmsi = s.mmsi 
-		-- WHERE CAPACITY_SHIP = available_capacity_ship;
+		INNER JOIN ship s ON cml.mmsi = s.mmsi
+		WHERE CAPACITY_SHIP = available_capacity_ship;
 BEGIN
 	OPEN cur_capacity_available();
         FETCH cur_capacity_available
-        INTO available_capacity_ship
+        INTO available_capacity_ship;
         EXIT WHEN cur_capacity_available%notfound;
 			IF inserting
 			THEN
