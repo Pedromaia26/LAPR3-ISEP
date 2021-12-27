@@ -1,0 +1,123 @@
+package lapr.project.model;
+
+import lapr.project.controller.App;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+
+/**
+ *
+ * @author DEI-ISEP
+ *
+ */
+public abstract class CommonGraph <GraphElement,E> implements Graph<GraphElement,E> {
+    protected int numVerts;
+    protected int numEdges;
+    protected final boolean isDirected;
+    protected ArrayList<GraphElement> vertices;       // Used to maintain a numeric key to each vertex
+
+    public CommonGraph(boolean directed) {
+        numVerts = 0;
+        numEdges = 0;
+        isDirected = directed;
+        vertices = new ArrayList<>();
+    }
+
+    @Override
+    public boolean isDirected() {
+        return isDirected;
+    }
+
+    @Override
+    public int numVertices() {
+        return numVerts;
+    }
+
+    @Override
+    public ArrayList<GraphElement> vertices() {
+        return new ArrayList<>(vertices);
+    }
+
+    @Override
+    public boolean validVertex(GraphElement vert) { return vertices.contains(vert);   }
+
+    @Override
+    public int key(GraphElement vert) {
+        return vertices.indexOf(vert);
+    }
+
+    @Override
+    public GraphElement vertex(int key) {
+        if ((key < 0) || (key>=numVerts)) return null;
+        return vertices.get(key);
+    }
+
+    @Override
+    public GraphElement vertex(Predicate<GraphElement> p) {
+        for (GraphElement v : vertices) {
+            if (p.test(v)) return v;
+        }
+        return null;
+    }
+
+    @Override
+    public int numEdges() {
+        return numEdges;
+    }
+
+    /** Copy graph from to graph to
+     *
+     * @param from graph from which to copy
+     * @param to graph for which to copy
+     */
+    protected void copy(Graph <GraphElement,E> from, Graph <GraphElement,E> to) {
+        //insert all vertices
+        for (GraphElement v : from.vertices()) {
+            to.addVertex(v);
+        }
+
+        //insert all edges
+        for (Edge<GraphElement, E> e : from.edges()) {
+            to.addEdge(e.getVOrig(), e.getVDest(), e.getDistance());
+        }
+    }
+
+    /* equals implementation compares graphs, independently of their representation
+     * @param the other graph to test for equality
+     * @return true if both objects represent the same graph
+     */
+    @Override
+    public boolean equals(Object otherObj) {
+
+        if (this == otherObj)
+            return true;
+
+        if (!(otherObj instanceof Graph<?, ?>))
+            return false;
+
+        @SuppressWarnings("unchecked") Graph<GraphElement, E> otherGraph = (Graph<GraphElement, E>) otherObj;
+
+        if (numVerts != otherGraph.numVertices() || numEdges != otherGraph.numEdges() || isDirected() != otherGraph.isDirected())
+            return false;
+
+        // graph must have same vertices
+        Collection<GraphElement> tvc = this.vertices();
+        tvc.removeAll(otherGraph.vertices());
+        if (tvc.size() > 0 ) return false;
+
+        // graph must have same edges
+        Collection<Edge<GraphElement, E>> tec = this.edges();
+        tec.removeAll(otherGraph.edges());
+        return (tec.size() == 0);
+    }
+
+    public abstract Graph<GraphElement, E> clone();
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numVerts, numEdges, isDirected, vertices);
+    }
+}

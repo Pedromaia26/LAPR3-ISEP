@@ -189,7 +189,7 @@ public abstract class BSTShip<E> {
     }
 
     public Ship searchShipByCallSign(String callsign){
-        List<Ship> shipList = (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder();
+        List<Ship> shipList = (List<Ship>)inOrder();
         for(Ship s: shipList){
             if(s.getCallSign().equals(callsign)){
                 return s;

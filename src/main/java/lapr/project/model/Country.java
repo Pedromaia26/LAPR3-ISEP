@@ -13,7 +13,7 @@ public class Country {
     private float longitude;
     private float latitude;
 
-    public Country(String continent, String alpha2_code, String alpha3_code,String name, float population, String capital, float latitude, float longitude) {
+    public Country(String continent, String alpha2_code, String alpha3_code, String name, float population, String capital, float latitude, float longitude) {
         this.continent = continent;
         this.name = name;
         this.alpha2_code = alpha2_code;
@@ -65,8 +65,8 @@ public class Country {
                 ", alpha3_code='" + alpha3_code + '\'' +
                 ", population=" + population +
                 ", capital='" + capital + '\'' +
-                ", longitude=" + longitude +
                 ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 

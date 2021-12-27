@@ -49,7 +49,7 @@ public class ImportPortsController {
 
     public void insertIntoDatabase(){
         DatabaseOperations databaseOperations = new DatabaseOperations();
-        for(Port port : (List<Port>) App.getInstance().getCompany().getKdtPorts().inOrder()){
+        for(Port port : (List<Port>) company.getKdtPorts().inOrder()){
             databaseOperations.saveLocation(App.getInstance().getDatabaseConnection(), port);
             databaseOperations.savePort(App.getInstance().getDatabaseConnection(), port);
         }

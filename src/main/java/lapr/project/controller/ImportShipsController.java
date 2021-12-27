@@ -56,7 +56,7 @@ public class ImportShipsController {
 
     public void insertIntoDatabase(){
         DatabaseOperations databaseOperations = new DatabaseOperations();
-        for(Ship ship : (List<Ship>) App.getInstance().getCompany().getBstShips().inOrder()){
+        for(Ship ship : (List<Ship>) company.getBstShips().inOrder()){
             databaseOperations.saveShip(App.getInstance().getDatabaseConnection(), ship);
             for (ShipDynData data : (List<ShipDynData>)ship.getBstDynData().inOrder()){
                 databaseOperations.saveShipDynData(App.getInstance().getDatabaseConnection(), data, String.valueOf(ship.getMmsi()));
