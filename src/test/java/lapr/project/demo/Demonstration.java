@@ -70,4 +70,9 @@ class Demonstration {
     void US210() throws IOException, SQLException {
         ShipsAvailableNextMondayController controller = new ShipsAvailableNextMondayController();
     }
+
+    @Test
+    void US306() throws IOException, SQLException {
+        OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
+    }
 }
