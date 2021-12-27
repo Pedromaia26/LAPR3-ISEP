@@ -258,6 +258,7 @@ public class MapGraph<GraphElement, E> extends CommonGraph<GraphElement, E> {
             for (MapVertex<GraphElement, E> mv : mapVertices.values())
                 s += mv + "\n";
         }
+        s = s.replace('.', ',');
         return s;
     }
 }

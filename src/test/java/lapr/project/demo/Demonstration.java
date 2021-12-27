@@ -35,8 +35,7 @@ class Demonstration {
         pairController.pair();
         NearestPortController nearestPortController = new NearestPortController(c);
         nearestPortController.getClosestPort("Input/US202.txt");
-        ImportCountriesBordersSeadistsController controller = new ImportCountriesBordersSeadistsController(c);
-        controller.BuildFreightNetwork(5);
+        icontroller.BuildFreightNetwork(5);
     }
 
     @Test
