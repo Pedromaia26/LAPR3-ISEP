@@ -72,7 +72,7 @@ class Demonstration {
     }
 
     @Test
-    void US307() throws IOException, SQLException {
+    void US306() throws IOException, SQLException {
         OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
     }
 }

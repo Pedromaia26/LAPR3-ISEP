@@ -9,13 +9,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class US307_SQL {
+public class US306_SQL {
 
     private Connection databaseConnection;
     private String occRate;
     private FileOperation fileOperation;
 
-    public US307_SQL() throws SQLException, IOException {
+    public US306_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
         fileOperation = new FileOperation();
     }
@@ -23,7 +23,7 @@ public class US307_SQL {
     public void demo(String portId) throws SQLException, IOException {
         try {
 
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US307(?, ?)}");
+            CallableStatement statement = databaseConnection.prepareCall("{CALL US306(?, ?)}");
 
             statement.setString(1, portId);
 
