@@ -1,11 +1,10 @@
-# Project Report Lapr3 - Sprint 2
+# Project Report Lapr3 - Sprint 3
 
 ## Delivery of Containers ##
 
 ### Teachers/Advisors ###
 
 Ana Isabel Gaspar Freitas - AIF\
-
 
 ### Client ###
 Nuno Bettencourt - NMB
@@ -15,9 +14,6 @@ Nuno Bettencourt - NMB
 1201276 Tiago Marques 1201276\
 1201381	Pedro Alves\
 1201384 Pedro Fernandes\
-1200801 Daniel Braga\
-1180727 Ruben Martins\
-	
 
 ### Abstract ###
 In this report we start by explaining the initial problem that was presented to us, which consists of building a Java application that tracked the fastest routes from one point to another in the world so that the delivery of containers is more efficient.
@@ -28,13 +24,14 @@ All our work was distributed among the seven members of the group and we tried t
 ### Theorical Introduction ###
 In first sprint of the project that was presented to us, it required that we elaborate a product that would support the delivery of containers only by sea. In this service we should be able to import a file that contains a list of ships, and from this list return it to a BST, and basically it should allow the management of ships, dynamic data of ships and containers.
 
-In this second sprint, the previously elaborated product would have to contain a coherent connection between the database and the implementation carried out in Java. In this service we should also be able to import a file that contains a list of ports and be able to find the closest port given its call sign. Then, with the help of the Pl/Sql language, the product should be able to determine some information related to the transport of goods (loading and unloading of containers) and information related to the ship, such as the current weight.
+In second sprint, the previously elaborated product would have to contain a coherent connection between the database and the implementation carried out in Java. In this service we should also be able to import a file that contains a list of ports and be able to find the closest port given its call sign. Then, with the help of the Pl/Sql language, the product should be able to determine some information related to the transport of goods (loading and unloading of containers) and information related to the ship, such as the current weight.
+
+In this third sprint, the product that was requested and that has been developed over the last few weeks should be able to import data related to countries, ports, borders and some data referring to the database so that it would be possible to create a freight network. In this service, in addition to the aforementioned, the product should be able to identify which ports or cities are closest to all other locations and, finally, it should also be able to avoid any invalid data entered or updated within the database.
 
 
 ### Work Organization, Planning and Methodology ###
 The methodology followed by our group is based on Scrum®, so all our work was developed in a certain way, starting with planning who and what each member of the group would do.
-One of the central parts of our team was mutual help, as without it it would be almost impossible to work as a team. In this second sprint, unlike the first sprint, it was already possible to have a more active and more efficient communication and therefore, we believe that over these weeks the spirit of mutual help was much greater and much more consistent.
-To help organize the sprint, we use Jira software.
+One of the central parts of our team was mutual help, as without it it would be almost impossible to work as a team. In this third sprint, in addition to the first and second sprints, the team was much more united in solving the requested problems during these three weeks. We believe that one of the keys to the success of this sprint was being more up-to-date on the pace at which the work was developing, this of course with the help of the daily meetings. To help organize the sprint, we use Jira software.
 
 We first analyze the user stories and then build the Use-Case Diagram shown below.
 After that, and following a Scrum methodology, we gave an estimated value so that we could know how long each use case would take.
@@ -43,18 +40,18 @@ Over the next few days, each member worked on their use case, and whenever someo
 
 Next, we start by elaborating the Use Case diagram, which can be seen below:
 ### Use-case diagram for this current sprint: ###
-![Use-Case](./Documentation/Sprint2/Requirements_Engineering/UseCase.jpg)
+![Use-Case](./Documentation/Sprint3/Requirements_Engineering/UseCase.jpg)
 
 
 With these Use Cases in mind, we strive to build the Software Engineering diagrams.
 
 We created the Domain Model that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-![Domain-Model](./Documentation/Sprint2/Engineering_Analysis/DomainModel.svg)
+![Domain-Model](./Documentation/Sprint3/Engineering_Analysis/DomainModel.svg)
 
 We created the Global Class Diagram that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-![CD_Global](./Documentation/Sprint2/Engineering_Analysis/CD_Global.jpg)
+![CD_Global](./Documentation/Sprint3/Engineering_Analysis/CD_Global.jpg)
 
 
 ### This phase of our report is where all the diagrams referring to the project's user stories are located, whether **SSDs**, **SDs** or **CD**.
@@ -152,5 +149,69 @@ We created the Global Class Diagram that we would follow in the development of o
 
 ![US210_SSD](./Documentation/Sprint2/Requirements_Engineering/US210/US210_SSD.svg)
 ![US210_SD](./Documentation/Sprint2/Requirements_Engineering/US210/US210_SD.svg)
+
+
+### SPRINT 3 ###
+
+### Use Case 301 - I which to import data from countries, ports, borders and seadists from the database to build a freight network. 
+
+![US301_SSD](./Documentation/Sprint3/Requirements_Engineering/US301/US301_SSD.svg)
+![US301_SD](./Documentation/Sprint3/Requirements_Engineering/US301/US301_SD.svg)
+
+### Use Case 302 - I wish to colour the map using as few colours as possible.
+
+![US302_SSD](./Documentation/Sprint3/Requirements_Engineering/US302/US302_SSD.svg)
+![US302_SD](./Documentation/Sprint3/Requirements_Engineering/US302/US302_SD.svg)
+
+### Use Case 303 - I wish to know which places (cities or ports) are closest to all other places (closeness places).
+
+![US303_SSD](./Documentation/Sprint3/Requirements_Engineering/US303/US303_SSD.svg)
+![US303_SD](./Documentation/Sprint3/Requirements_Engineering/US303/US303_SD.svg)
+
+### Use Case 304 -  I want to have access to audit trails for a given container of a given cargo manifest, that is, I want to have access to a list of all operations performed on a given container of a given manifest, in chronological order. For each operation I want to know: the user/login that performed it, the date and time the operation was performed, the type of operation (INSERT, UPDATE, DELETE), the container identifier and the 
+cargo manifest identifier.
+
+![US304_SSD](./Documentation/Sprint3/Requirements_Engineering/US304/US304_SSD.svg)
+![US304_SD](./Documentation/Sprint3/Requirements_Engineering/US304/US304_SD.svg)
+
+### Use Case 305 - I want to know the route of a specific container I am leasing.
+
+![US305_SSD](./Documentation/Sprint3/Requirements_Engineering/US305/US305_SSD.svg)
+![US305_SD](./Documentation/Sprint3/Requirements_Engineering/US305/US305_SD.svg)
+
+### Use Case 306 - I want to know the occupancy rate of each warehouse and an estimate of the containers leaving the warehouse during the next 30 days.
+
+![US306_SSD](./Documentation/Sprint3/Requirements_Engineering/US306/US306_SSD.svg)
+![US306_SD](./Documentation/Sprint3/Requirements_Engineering/US306/US306_SD.svg)
+
+### Use Case 307 -  I intend to get a warning whenever I issue a cargo manifest destined for a warehouse whose available capacity is insufficient to accommodate the new manifest.
+
+![US307_SSD](./Documentation/Sprint3/Requirements_Engineering/US307/US307_SSD.svg)
+![US307_SD](./Documentation/Sprint3/Requirements_Engineering/US307/US307_SD.svg)
+
+### Use Case 308 - I want to have a system that ensures that the number of containers in a manifest does not exceed the ship's available capacity. 
+
+![US308_SSD](./Documentation/Sprint3/Requirements_Engineering/US308/US308_SSD.svg)
+![US308_SD](./Documentation/Sprint3/Requirements_Engineering/US308/US308_SD.svg)
+
+### Use Case 309 - I do not allow a cargo manifest for a particular ship to be registered in the system on a date when the ship is already occupied.
+
+![US309_SSD](./Documentation/Sprint3/Requirements_Engineering/US309/US309_SSD.svg)
+![US309_SD](./Documentation/Sprint3/Requirements_Engineering/US309/US309_SD.svg)
+
+### Use Case 310 - I intend to have a map of the occupation of the existing resources in the port during a given month.
+
+![US310_SSD](./Documentation/Sprint3/Requirements_Engineering/US310/US310_SSD.svg)
+![US310_SD](./Documentation/Sprint3/Requirements_Engineering/US310/US310_SD.svg)
+
+### Use Case 311 - I want to provide a database access account, with login “crew” and password “bd7wd5aF”, which gives access exclusively to the information of the containers that are loaded on my ship. The information about each container to be made available is: identifier, type, position and load.
+
+![US311_SSD](./Documentation/Sprint3/Requirements_Engineering/US311/US311_SSD.svg)
+![US311_SD](./Documentation/Sprint3/Requirements_Engineering/US311/US311_SD.svg)
+
+### Use Case 312 -  I want to know the current situation of a specific container being used to transport my goods – US204.
+
+![US312_SSD](./Documentation/Sprint3/Requirements_Engineering/US312/US312_SSD.svg)
+![US312_SD](./Documentation/Sprint3/Requirements_Engineering/US312/US312_SD.svg)
 
 #################################################################################
