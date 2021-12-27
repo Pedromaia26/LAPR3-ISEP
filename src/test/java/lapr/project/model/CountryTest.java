@@ -22,7 +22,7 @@ class CountryTest {
 
     @Test
     void testToString() {
-        String expected = "Country{continent='America', name='Portugal', alpha2_code='PT', alpha3_code='PRT', population=0.5, capital='Lisboa', longitude=40.0, latitude=20.0}";
+        String expected = "Country{continent='America', name='Portugal', alpha2_code='PT', alpha3_code='PRT', population=0.5, capital='Lisboa', latitude=20.0, longitude=40.0}";
         assertEquals(expected, country.toString());
     }
 
