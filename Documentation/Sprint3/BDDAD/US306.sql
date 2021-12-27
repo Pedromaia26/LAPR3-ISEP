@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE US307 (port in Varchar, output out Varchar)
+CREATE OR REPLACE PROCEDURE US306 (port in Varchar, output out Varchar)
 IS    
     cap warehouse.capacity%type;
     occ warehouse.occupancy%type;
