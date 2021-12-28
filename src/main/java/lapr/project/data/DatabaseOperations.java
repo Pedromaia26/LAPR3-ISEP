@@ -1,10 +1,10 @@
 package lapr.project.data;
 
-import lapr.project.model.Country;
-import lapr.project.model.Port;
-import lapr.project.model.Ship;
-import lapr.project.model.ShipDynData;
+import lapr.project.controller.App;
+import lapr.project.model.*;
+import lapr.project.ui.Login;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -358,5 +358,82 @@ public class DatabaseOperations {
         } finally {
             saveClientPreparedStatement.close();
         }
+    }
+
+    public void importContriesFromDatabase() {
+        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+        try {
+
+            Connection connection = databaseConnection.getConnection();
+
+            String sql = "select * from country";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+
+            while (rs.next()) {
+                Country country = new Country(rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(1) , rs.getFloat(5), rs.getString(6), rs.getFloat(7), rs.getFloat(8));
+                App.getInstance().getCompany().getCountryStore().addCountry(country);
+
+            }
+            rs.close();
+            st.close();
+
+        }catch(Exception e) {
+            System.out.println("Something went wrong!");
+        }
+
+    }
+
+    public void importBordersFromDatabase() {
+        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+        try {
+
+            Connection connection = databaseConnection.getConnection();
+
+            String sql = "select * from border";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+
+            while (rs.next()) {
+                Border border = new Border(rs.getString(1), rs.getString(2));
+                App.getInstance().getCompany().getBorderStore().addBorder(border);
+
+            }
+            rs.close();
+            st.close();
+
+        }catch(Exception e) {
+            System.out.println("Something went wrong!");
+        }
+
+    }
+
+    public void importSeadistsFromDatabase() {
+        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+        try {
+
+            Connection connection = databaseConnection.getConnection();
+
+            String sql = "select * from seadist";
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+
+            while (rs.next()) {
+                Seadist seadist = new Seadist(rs.getString(3), Integer.parseInt(rs.getString(2)), rs.getString(5), rs.getString(4), Integer.parseInt(rs.getString(2)), rs.getString(6), rs.getInt(7));
+                App.getInstance().getCompany().getSeadistStore().addSeadist(seadist);
+            }
+            rs.close();
+            st.close();
+
+        }catch(Exception e) {
+            System.out.println("Something went wrong!");
+        }
+
     }
 }
