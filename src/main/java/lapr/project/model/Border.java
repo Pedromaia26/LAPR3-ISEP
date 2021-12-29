@@ -2,19 +2,19 @@ package lapr.project.model;
 
 public class Border {
 
-    private String countryname1;
-    private String Countryname2;
+    private Country countryname1;
+    private Country Countryname2;
 
-    public Border(String countryname1, String countryname2) {
+    public Border(Country countryname1, Country countryname2) {
         this.countryname1 = countryname1;
         Countryname2 = countryname2;
     }
 
-    public String getCountryname1() {
+    public Country getCountryname1() {
         return countryname1;
     }
 
-    public String getCountryname2() {
+    public Country getCountryname2() {
         return Countryname2;
     }
 }

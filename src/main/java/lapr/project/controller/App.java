@@ -42,7 +42,7 @@ public class App {
 
     private final DatabaseConnection databaseConnection;
 
-    private final Company company;
+    private Company company;
 
     private String username;
 
@@ -55,6 +55,10 @@ public class App {
 
     public Company getCompany(){
         return company;
+    }
+
+    public void setCompany(Company c){
+        company = c;
     }
 
     private static App singleton = null;

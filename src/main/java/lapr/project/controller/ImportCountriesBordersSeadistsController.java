@@ -45,6 +45,8 @@ public class ImportCountriesBordersSeadistsController {
 
     public void importFromCSVBorders(String file) throws IOException {
         String line = "";
+        Country country1 = null;
+        Country country2 = null;
         BufferedReader br = new BufferedReader(new FileReader(file));
         String splitBy = ",";
         try {
@@ -52,7 +54,9 @@ public class ImportCountriesBordersSeadistsController {
             line = br.readLine();
             while (line != null) {
                 String[] borderData = line.split(splitBy);
-                Border border = new Border(borderData[0], borderData[1].trim());
+                country1 = company.getCountryStore().getCountry(borderData[0]);
+                country2 = company.getCountryStore().getCountry(borderData[1].trim());
+                Border border = new Border(country1, country2);
                 company.getBorderStore().addBorder(border);
                 line = br.readLine();
             }
@@ -101,7 +105,7 @@ public class ImportCountriesBordersSeadistsController {
         double minDistance = 0;
         GraphElement elementProx1 = null;
         GraphElement elementProx2 = null;
-        MapGraph graph = new MapGraph(false);
+        MatrixGraph graph = new MatrixGraph(false);
         for (Country country : company.getCountryStore().getCountries()){ //Adiciona capitais
             listCapitals.add(new GraphElement(country));
         }
@@ -158,13 +162,12 @@ public class ImportCountriesBordersSeadistsController {
                 closestsPortesTaken.add(elementProx2);
             }
         }
-        MatrixGraph matrix = new MatrixGraph(graph);
         /*int i = 1;
-        for (GraphElement element : (List<GraphElement>)matrix.vertices()){
+        for (GraphElement element : (List<GraphElement>)graph.vertices()){
             System.out.println(i + "----" + element.getDesignation() + "----");
             i++;
         }
-        System.out.println(matrix);*/
+        System.out.println(graph);*/
     }
 
     public void importFromDatabaseCountries(){
@@ -192,6 +195,7 @@ public class ImportCountriesBordersSeadistsController {
 
     public void insertBordersIntoDatabase(){
         for (Border border : company.getBorderStore().getBorders()){
+            System.out.println(border.getCountryname1().getName());
             company.getBorderStore().save(App.getInstance().getDatabaseConnection(), border);
         }
     }

@@ -399,7 +399,7 @@ public class DatabaseOperations {
 
 
             while (rs.next()) {
-                Border border = new Border(rs.getString(1), rs.getString(2));
+                Border border = new Border(App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(1)), App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(2)));
                 App.getInstance().getCompany().getBorderStore().addBorder(border);
 
             }

@@ -132,4 +132,20 @@ class KDTPortTest {
         expected.add(port3);
         assertEquals(expected, list);
     }
+
+    @Test
+    void buildTree() {
+        Port port1 = new Port("29001","Liverpool","Europe","United Kingdom","53.46666665","-3.033333333");
+        Port port2 = new Port("29003","Liverpool","Europe","United Kingdom","53.46666666","-3.033333334");
+        Port port3 = new Port("29004","Liverpool","Europe","United Kingdom","53.46666668","-3.033333331");
+        Port port4 = new Port("29005","Liverpool","Europe","United Kingdom","53.46666669","-3.033333335");
+        Port port5 = new Port("29006","Liverpool","Europe","United Kingdom","53.46666662","-3.033333332");
+        List<KDTPort.Node<Port>> lista = new ArrayList<>();
+        lista.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        lista.add(new KDTPort.Node<>(port2, port1.getLatitude(), port1.getLongitude()));
+        lista.add(new KDTPort.Node<>(port3, port1.getLatitude(), port1.getLongitude()));
+        lista.add(new KDTPort.Node<>(port4, port1.getLatitude(), port1.getLongitude()));
+        lista.add(new KDTPort.Node<>(port5, port1.getLatitude(), port1.getLongitude()));
+        tree.buildTree(lista);
+    }
 }

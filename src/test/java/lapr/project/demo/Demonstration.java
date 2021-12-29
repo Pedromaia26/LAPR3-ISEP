@@ -15,25 +15,25 @@ class Demonstration {
 
     @Test
     void Demonstration() throws IOException, ParseException {
-        Company c = new Company();
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController(c);
+        App.getInstance().setCompany(new Company());
+        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
         icontroller.importFromCSVCountry("countries.csv");
-        ImportShipsController importShipsController = new ImportShipsController(c);
+        ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
-        ImportPortsController importPortsController = new ImportPortsController(c);
+        ImportPortsController importPortsController = new ImportPortsController();
         importPortsController.importFromCSV("sports.csv");
-        SearchShipController searchShipController = new SearchShipController(c);
+        SearchShipController searchShipController = new SearchShipController();
         searchShipController.searchDetails("Input/US102.txt");
-        PositionalMessagesController positionalMessagesController = new PositionalMessagesController(c);
+        PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
         positionalMessagesController.message("Input/US103.txt");
         searchShipController.makeSummary("Input/US104.txt");
-        PrintingShipsInfoController printingShipsInfoController = new PrintingShipsInfoController(c);
+        PrintingShipsInfoController printingShipsInfoController = new PrintingShipsInfoController();
         printingShipsInfoController.getShips();
-        TopNshipsPerKmController topNshipsPerKmController = new TopNshipsPerKmController(c);
+        TopNshipsPerKmController topNshipsPerKmController = new TopNshipsPerKmController();
         topNshipsPerKmController.printNshipsMostKm("Input/US106.txt");
-        PairController pairController = new PairController(c);
+        PairController pairController = new PairController();
         pairController.pair();
-        NearestPortController nearestPortController = new NearestPortController(c);
+        NearestPortController nearestPortController = new NearestPortController();
         nearestPortController.getClosestPort("Input/US202.txt");
         icontroller.BuildFreightNetwork(5);
     }
