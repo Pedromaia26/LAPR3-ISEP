@@ -28,7 +28,7 @@ class EdgeTest {
     void testToString(){
         Edge edge = new Edge("a","b",3f);
         String expected = "a -> b\nDistance: 3,00";
-        assertEquals(expected, edge.toString());
+        assertEquals(expected, edge.toString().replace('.', ','));
     }
 
 
