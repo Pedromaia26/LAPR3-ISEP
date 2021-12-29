@@ -74,7 +74,14 @@ class Demonstration {
     }
 
     @Test
+    void US304() throws IOException, SQLException {
+        AuditTrailController controller = new AuditTrailController();
+    }
+
+    @Test
     void US306() throws IOException, SQLException {
         OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
     }
+
+
 }

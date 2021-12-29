@@ -35,13 +35,13 @@ public class US306_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(occRate);
-            fileOperation.writeToAFile("Output/US307_" + portId, data);
+            fileOperation.writeToAFile("Output/US306_" + portId, data);
 
             statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US307_" + portId, data);
+            fileOperation.writeToAFile("Output/US306_" + portId, data);
         }
     }
 
