@@ -8,11 +8,13 @@ CREATE OR REPLACE TRIGGER trg_prevent_excess_load
 	BEFORE INSERT OR UPDATE ON container_cargoManifest
 	FOR EACH ROW
 DECLARE
-	available_capacity_ship INTEGER;
-    sh ship.mmsi%TYPE;
+	available_capacity INTEGER;
+    sh ship.mmsi%TYPE; -- passar como parametro
+	ava_cap_ship INTEGER;
+	overloaded EXCEPTION;
 	
 CURSOR cur_capacity_available IS
-	    SELECT (s.cap - (COUNT(ccm.cargo_manifest_id))) INTO available_capacity_ship
+	    SELECT s.cap - COUNT(ccm.cargo_manifest_id) INTO available_capacity
 		FROM container_cargoManifest ccm
 		INNER JOIN cargo_manifest_load cml ON ccm.cargo_manifest_id = cml.id
 		INNER JOIN ship s ON cml.ship_mmsi = s.mmsi
@@ -22,14 +24,25 @@ BEGIN
 	OPEN cur_capacity_available;
         LOOP    
         FETCH cur_capacity_available
-        INTO available_capacity_ship;
+        INTO ava_cap_ship;
         EXIT WHEN cur_capacity_available%notfound;
         END LOOP;
         -- CLOSE cur_capacity_available;
-        dbms_output.put_line(available_capacity_ship);
-				IF(available_capacity_ship < 0) -- The number of cargo manifests is greater than the ship's capacity
-				THEN
-					raise_application_error(-20501, 'The ships capacity has been exceeded.');
-				END IF;           
+
+	    ava_cap_ship := ava_cap_ship - 1;
+
+        dbms_output.put_line('capacity ship:' || ava_cap_ship); -- ship capacity at the moment
+		            				
+			        -- IF(ava_cap_ship > 0) THEN
+				      -- ava_cap_ship := ava_cap_ship - 1;
+			        -- END IF;
+			
+			        IF(ava_cap_ship < 0) THEN -- The number of cargo manifests is greater than the ship's capacity
+				      RAISE overloaded;
+				    END IF;           
          CLOSE cur_capacity_available;
+
+EXCEPTION
+    WHEN overloaded THEN
+      raise_application_error(-20501, 'The ships capacity has been exceeded.');
 END;
