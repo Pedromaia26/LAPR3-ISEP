@@ -46,4 +46,12 @@ public class GraphElement {
         GraphElement that = (GraphElement) o;
         return Objects.equals(designation, that.designation) && Objects.equals(country, that.country);
     }
+
+    @Override
+    public String toString() {
+        return "GraphElement{" +
+                "designation='" + designation + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

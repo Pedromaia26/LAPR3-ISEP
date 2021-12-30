@@ -37,14 +37,4 @@ class ImportCountriesBordersSeadistsControllerTest {
     void importFromDatabaseBorders() {
         icontroller.importFromDatabaseBorders();
     }
-
-    @Test
-    void createGraphn0(){
-        icontroller.createGraph(0);
-    }
-
-    @Test
-    void createGraphn5(){
-        icontroller.createGraph(5);
-    }
 }

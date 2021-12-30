@@ -552,13 +552,63 @@ public class MatrixGraphTest {
         list.add(new GraphElement(country5));
         Object [][] m = {{10f,7f,5f,1f,1f}, {1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f}};
         MatrixGraph matrix = new MatrixGraph(true, list, m);
-        String expected = "\nMatrix:\n" +
+        String expected = "Vertices:\n" +
+                "GraphElement{designation='Lisboa', country='Portugal'}\n" +
+                "GraphElement{designation='Madrid', country='Espanha'}\n" +
+                "GraphElement{designation='Paris', country='Franca'}\n" +
+                "GraphElement{designation='Berna', country='Suica'}\n" +
+                "GraphElement{designation='Berlim', country='Alemanha'}\n" +
+                "\n" +
+                "Matrix:\n" +
                 "   |  0  |  1  |  2  |  3  |  4 \n" +
                 " 0 |     |  X  |  X  |  X  |  X  \n" +
                 " 1 |  X  |     |  X  |  X  |  X  \n" +
                 " 2 |  X  |  X  |     |  X  |  X  \n" +
                 " 3 |  X  |  X  |  X  |     |  X  \n" +
-                " 4 |  X  |  X  |  X  |  X  |     \n";
+                " 4 |  X  |  X  |  X  |  X  |     \n" +
+                "\n" +
+                "Edges:\n" +
+                "From 0 to 1-> GraphElement{designation='Lisboa', country='Portugal'} -> GraphElement{designation='Madrid', country='Espanha'}\n" +
+                "Distance: 7,00\n" +
+                "From 0 to 2-> GraphElement{designation='Lisboa', country='Portugal'} -> GraphElement{designation='Paris', country='Franca'}\n" +
+                "Distance: 5,00\n" +
+                "From 0 to 3-> GraphElement{designation='Lisboa', country='Portugal'} -> GraphElement{designation='Berna', country='Suica'}\n" +
+                "Distance: 1,00\n" +
+                "From 0 to 4-> GraphElement{designation='Lisboa', country='Portugal'} -> GraphElement{designation='Berlim', country='Alemanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 1 to 0-> GraphElement{designation='Madrid', country='Espanha'} -> GraphElement{designation='Lisboa', country='Portugal'}\n" +
+                "Distance: 1,00\n" +
+                "From 1 to 2-> GraphElement{designation='Madrid', country='Espanha'} -> GraphElement{designation='Paris', country='Franca'}\n" +
+                "Distance: 1,00\n" +
+                "From 1 to 3-> GraphElement{designation='Madrid', country='Espanha'} -> GraphElement{designation='Berna', country='Suica'}\n" +
+                "Distance: 1,00\n" +
+                "From 1 to 4-> GraphElement{designation='Madrid', country='Espanha'} -> GraphElement{designation='Berlim', country='Alemanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 2 to 0-> GraphElement{designation='Paris', country='Franca'} -> GraphElement{designation='Lisboa', country='Portugal'}\n" +
+                "Distance: 1,00\n" +
+                "From 2 to 1-> GraphElement{designation='Paris', country='Franca'} -> GraphElement{designation='Madrid', country='Espanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 2 to 3-> GraphElement{designation='Paris', country='Franca'} -> GraphElement{designation='Berna', country='Suica'}\n" +
+                "Distance: 1,00\n" +
+                "From 2 to 4-> GraphElement{designation='Paris', country='Franca'} -> GraphElement{designation='Berlim', country='Alemanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 3 to 0-> GraphElement{designation='Berna', country='Suica'} -> GraphElement{designation='Lisboa', country='Portugal'}\n" +
+                "Distance: 1,00\n" +
+                "From 3 to 1-> GraphElement{designation='Berna', country='Suica'} -> GraphElement{designation='Madrid', country='Espanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 3 to 2-> GraphElement{designation='Berna', country='Suica'} -> GraphElement{designation='Paris', country='Franca'}\n" +
+                "Distance: 1,00\n" +
+                "From 3 to 4-> GraphElement{designation='Berna', country='Suica'} -> GraphElement{designation='Berlim', country='Alemanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 4 to 0-> GraphElement{designation='Berlim', country='Alemanha'} -> GraphElement{designation='Lisboa', country='Portugal'}\n" +
+                "Distance: 1,00\n" +
+                "From 4 to 1-> GraphElement{designation='Berlim', country='Alemanha'} -> GraphElement{designation='Madrid', country='Espanha'}\n" +
+                "Distance: 1,00\n" +
+                "From 4 to 2-> GraphElement{designation='Berlim', country='Alemanha'} -> GraphElement{designation='Paris', country='Franca'}\n" +
+                "Distance: 1,00\n" +
+                "From 4 to 3-> GraphElement{designation='Berlim', country='Alemanha'} -> GraphElement{designation='Berna', country='Suica'}\n" +
+                "Distance: 1,00\n" +
+                "\n";
         assertEquals(expected, matrix.toString());
     }
 }

@@ -11,30 +11,30 @@ import java.util.*;
  * @author DEI-ISEP
  *
  */
-public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
+public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
     public static final int INITIAL_CAPACITY = 10;
     public static final float RESIZE_FACTOR = 1.5F;
 
-    Edge<GraphElement,E> [][] edgeMatrix;
+    Edge<V,E> [][] edgeMatrix;
 
 
     @SuppressWarnings("unchecked")
     public MatrixGraph(boolean directed, int initialCapacity) {
         super(directed);
-        edgeMatrix = (Edge <GraphElement,E> [][])( new Edge<?, ?>[initialCapacity][initialCapacity]);
+        edgeMatrix = (Edge <V,E> [][])( new Edge<?, ?>[initialCapacity][initialCapacity]);
     }
 
     public MatrixGraph(boolean directed) {
         this(directed, INITIAL_CAPACITY);
     }
 
-    public MatrixGraph(Graph <GraphElement,E> g) {
+    public MatrixGraph(Graph <V,E> g) {
         this(g.isDirected(), g.numVertices());
         copy(g, this);
     }
 
-    public MatrixGraph(boolean directed, ArrayList <GraphElement> vs, E [][] m) {
+    public MatrixGraph(boolean directed, ArrayList <V> vs, E [][] m) {
         this(directed, vs.size());
         numVerts = vs.size();
         vertices = new ArrayList<>(vs);
@@ -45,12 +45,12 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Collection<GraphElement> adjVertices(GraphElement vert) {
+    public Collection<V> adjVertices(V vert) {
         int index = key(vert);
         if (index == -1)
             return null;
 
-        ArrayList<GraphElement> outVertices = new ArrayList<>();
+        ArrayList<V> outVertices = new ArrayList<>();
         for (int i = 0; i < numVerts; i++)
             if (edgeMatrix[index][i] != null)
                 outVertices.add(vertices.get(i));
@@ -58,9 +58,9 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Collection<Edge<GraphElement, E>> edges() {
+    public Collection<Edge<V, E>> edges() {
 
-        Collection<Edge<GraphElement, E>> edges = new ArrayList<>();
+        Collection<Edge<V, E>> edges = new ArrayList<>();
         for (int i = 0; i < edgeMatrix.length; i++) {
             for (int j = 0; j < edgeMatrix.length; j++) {
                 if (edgeMatrix[i][j] != null){
@@ -74,7 +74,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Edge<GraphElement, E> edge(GraphElement vOrig, GraphElement vDest) {
+    public Edge<V, E> edge(V vOrig, V vDest) {
         int vOrigKey = key(vOrig);
         int vDestKey = key(vDest);
 
@@ -85,14 +85,14 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Edge<GraphElement, E> edge(int vOrigKey, int vDestKey) {
+    public Edge<V, E> edge(int vOrigKey, int vDestKey) {
         if (vOrigKey >= numVerts && vDestKey >= numVerts)
             return null;
         return edgeMatrix[vOrigKey][vDestKey];
     }
 
     @Override
-    public int outDegree(GraphElement vert) {
+    public int outDegree(V vert) {
         int vertKey = key(vert);
         if (vertKey == -1)
             return -1;
@@ -105,7 +105,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public int inDegree(GraphElement vert) {
+    public int inDegree(V vert) {
         int vertKey = key(vert);
         if (vertKey == -1)
             return -1;
@@ -118,9 +118,9 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Collection<Edge<GraphElement, E>> outgoingEdges(GraphElement vert) {
+    public Collection<Edge<V, E>> outgoingEdges(V vert) {
 
-        Collection<Edge<GraphElement, E>> outgoingEdges = new ArrayList<>();
+        Collection<Edge<V, E>> outgoingEdges = new ArrayList<>();
         for (int i = 0; i < edgeMatrix.length; i++) {
             for (int j = 0; j < edgeMatrix.length; j++) {
                 if (edgeMatrix[i][j] != null && edgeMatrix[i][j].getVOrig() == vert) {
@@ -132,8 +132,8 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public Collection<Edge<GraphElement, E>> incomingEdges(GraphElement vert) {
-        Collection <Edge<GraphElement, E>> ce = new ArrayList<>();
+    public Collection<Edge<V, E>> incomingEdges(V vert) {
+        Collection <Edge<V, E>> ce = new ArrayList<>();
         int vertKey = key(vert);
         if (vertKey == -1)
             return ce;
@@ -145,7 +145,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public boolean addVertex(GraphElement vert) {
+    public boolean addVertex(V vert) {
         int vertKey = key(vert);
         if (vertKey != -1)
             return false;
@@ -164,7 +164,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
             int newSize = (int) (edgeMatrix.length * RESIZE_FACTOR);
 
             @SuppressWarnings("unchecked")
-            Edge <GraphElement,E>[][] temp = (Edge <GraphElement,E>[][]) new Edge<?, ?> [newSize][newSize];
+            Edge <V,E>[][] temp = (Edge <V,E>[][]) new Edge<?, ?> [newSize][newSize];
             for (int i = 0; i < edgeMatrix.length; i++)
                 temp[i] = Arrays.copyOf(edgeMatrix[i], newSize);
             edgeMatrix = temp;
@@ -172,7 +172,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public boolean addEdge(GraphElement vOrig, GraphElement vDest, E weight) {
+    public boolean addEdge(V vOrig, V vDest, E weight) {
         if (vOrig == null || vDest == null) throw new RuntimeException("Vertices cannot be null!");
         if (edge(vOrig, vDest) != null)
             return false;
@@ -196,7 +196,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public boolean removeVertex(GraphElement vert) {
+    public boolean removeVertex(V vert) {
         int vertKey = key(vert);
         if (vertKey == -1)
             return false;
@@ -244,7 +244,7 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public boolean removeEdge(GraphElement vOrig, GraphElement vDest) {
+    public boolean removeEdge(V vOrig, V vDest) {
         int vOrigKey = key(vOrig);
         int vDestKey = key(vDest);
 
@@ -256,8 +256,8 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
     }
 
     @Override
-    public MatrixGraph<GraphElement, E> clone() {
-        MatrixGraph<GraphElement, E> g = new MatrixGraph<>(this.isDirected, this.edgeMatrix.length);
+    public MatrixGraph<V, E> clone() {
+        MatrixGraph<V, E> g = new MatrixGraph<>(this.isDirected, this.edgeMatrix.length);
 
         copy(this,g);
 
@@ -270,6 +270,10 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        sb.append("Vertices:\n");
+        for (int i = 0 ; i < numVerts ; i++)
+            sb.append(vertices.get(i)+"\n");
 
         sb.append("\nMatrix:\n");
 
@@ -291,6 +295,15 @@ public class MatrixGraph<GraphElement,E> extends CommonGraph<GraphElement,E> {
                     sb.append("|     ");
             sb.append("\n");
         }
+
+        sb.append("\nEdges:\n");
+
+        for (int i = 0; i < numVerts ; i++)
+            for (int j = 0 ; j < numVerts; j++)
+                if (edgeMatrix[i][j] != null)
+                    sb.append("From " + i + " to " + j + "-> "+ edgeMatrix[i][j] + "\n");
+
+        sb.append("\n");
 
         return sb.toString();
     }

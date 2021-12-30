@@ -40,6 +40,15 @@ public class CountryStore{
         return null;
     }
 
+    public Country getCountryByCapital(String capital){
+        for (Country c : Countries){
+            if (c.getCapital().equals(capital)){
+                return c;
+            }
+        }
+        return null;
+    }
+
     public List<Country> getCountries() {
         return Countries;
     }

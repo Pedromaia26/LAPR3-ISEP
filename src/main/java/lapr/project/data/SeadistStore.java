@@ -19,9 +19,9 @@ public class SeadistStore {
         return true;
     }
 
-    public Seadist getSeadist(int toPortId, int fromPortId) {
+    public Seadist getSeadist(String toPort, String fromPort) {
         for (Seadist seadist : seadists) {
-            if (seadist.getFromPortId() == fromPortId && seadist.getToPortId() == toPortId) {
+            if (seadist.getToPortName().equals(toPort) && seadist.getFromPortName().equals(fromPort)) {
                 return seadist;
             }
         }

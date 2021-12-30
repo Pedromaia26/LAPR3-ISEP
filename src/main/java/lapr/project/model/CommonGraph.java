@@ -13,11 +13,11 @@ import java.util.function.Predicate;
  * @author DEI-ISEP
  *
  */
-public abstract class CommonGraph <GraphElement,E> implements Graph<GraphElement,E> {
+public abstract class CommonGraph <V,E> implements Graph<V,E> {
     protected int numVerts;
     protected int numEdges;
     protected final boolean isDirected;
-    protected ArrayList<GraphElement> vertices;       // Used to maintain a numeric key to each vertex
+    protected ArrayList<V> vertices;       // Used to maintain a numeric key to each vertex
 
     public CommonGraph(boolean directed) {
         numVerts = 0;
@@ -37,27 +37,27 @@ public abstract class CommonGraph <GraphElement,E> implements Graph<GraphElement
     }
 
     @Override
-    public ArrayList<GraphElement> vertices() {
+    public ArrayList<V> vertices() {
         return new ArrayList<>(vertices);
     }
 
     @Override
-    public boolean validVertex(GraphElement vert) { return vertices.contains(vert);   }
+    public boolean validVertex(V vert) { return vertices.contains(vert);   }
 
     @Override
-    public int key(GraphElement vert) {
+    public int key(V vert) {
         return vertices.indexOf(vert);
     }
 
     @Override
-    public GraphElement vertex(int key) {
+    public V vertex(int key) {
         if ((key < 0) || (key>=numVerts)) return null;
         return vertices.get(key);
     }
 
     @Override
-    public GraphElement vertex(Predicate<GraphElement> p) {
-        for (GraphElement v : vertices) {
+    public V vertex(Predicate<V> p) {
+        for (V v : vertices) {
             if (p.test(v)) return v;
         }
         return null;
@@ -73,14 +73,14 @@ public abstract class CommonGraph <GraphElement,E> implements Graph<GraphElement
      * @param from graph from which to copy
      * @param to graph for which to copy
      */
-    protected void copy(Graph <GraphElement,E> from, Graph <GraphElement,E> to) {
+    protected void copy(Graph <V,E> from, Graph <V,E> to) {
         //insert all vertices
-        for (GraphElement v : from.vertices()) {
+        for (V v : from.vertices()) {
             to.addVertex(v);
         }
 
         //insert all edges
-        for (Edge<GraphElement, E> e : from.edges()) {
+        for (Edge<V, E> e : from.edges()) {
             to.addEdge(e.getVOrig(), e.getVDest(), e.getDistance());
         }
     }
@@ -104,17 +104,17 @@ public abstract class CommonGraph <GraphElement,E> implements Graph<GraphElement
             return false;
 
         // graph must have same vertices
-        Collection<GraphElement> tvc = this.vertices();
+        Collection<V> tvc = this.vertices();
         tvc.removeAll(otherGraph.vertices());
         if (tvc.size() > 0 ) return false;
 
         // graph must have same edges
-        Collection<Edge<GraphElement, E>> tec = this.edges();
+        Collection<Edge<V, E>> tec = this.edges();
         tec.removeAll(otherGraph.edges());
         return (tec.size() == 0);
     }
 
-    public abstract Graph<GraphElement, E> clone();
+    public abstract Graph<V, E> clone();
 
     @Override
     public int hashCode() {

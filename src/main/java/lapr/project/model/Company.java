@@ -12,6 +12,8 @@ public class Company {
 
     private KDTPort kdtPorts;
 
+    private MatrixGraph freightNetwork;
+
     private CountryStore countryStore;
 
     private BorderStore borderStore;
@@ -25,6 +27,7 @@ public class Company {
         this.countryStore = new CountryStore();
         this.borderStore = new BorderStore();
         this.seadistStore = new SeadistStore();
+        this.freightNetwork = new MatrixGraph(false);
     }
 
     /**
@@ -69,5 +72,13 @@ public class Company {
 
     public void setSeadistStore(SeadistStore seadistStore) {
         this.seadistStore = seadistStore;
+    }
+
+    public MatrixGraph getMatrixGraph() {
+        return freightNetwork;
+    }
+
+    public void setMatrixGraph(MatrixGraph matrixGraph) {
+        this.freightNetwork = matrixGraph;
     }
 }

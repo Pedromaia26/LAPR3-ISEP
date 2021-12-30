@@ -3,28 +3,28 @@ package lapr.project.model;
 import java.util.Objects;
 
 /**
- * @param <GraphElement> Vertex value type
+ * @param <V> Vertex value type
  * @param <E> Edge value type
  * @author DEI-ESINF
  */
-public class Edge<GraphElement, E> {
-    final private GraphElement vOrig;        // vertex origin
-    final private GraphElement vDest;        // vertex destination
+public class Edge<V, E> {
+    final private V vOrig;        // vertex origin
+    final private V vDest;        // vertex destination
     private E distance;        // Edge weight
 
 
-    public Edge(GraphElement vOrig, GraphElement vDest, E distance) {
+    public Edge(V vOrig, V vDest, E distance) {
         if ((vOrig == null) || (vDest == null)) throw new RuntimeException("Edge vertices cannot be null!");
         this.vOrig = vOrig;
         this.vDest = vDest;
         this.distance = distance;
     }
 
-    public GraphElement getVOrig() {
+    public V getVOrig() {
         return vOrig;
     }
 
-    public GraphElement getVDest() {
+    public V getVDest() {
         return vDest;
     }
 
