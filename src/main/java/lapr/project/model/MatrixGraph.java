@@ -271,9 +271,9 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Vertices:\n");
+        /*sb.append("Vertices:\n");
         for (int i = 0 ; i < numVerts ; i++)
-            sb.append(vertices.get(i)+"\n");
+            sb.append(vertices.get(i)+"\n");*/
 
         sb.append("\nMatrix:\n");
 
@@ -296,14 +296,14 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
             sb.append("\n");
         }
 
-        sb.append("\nEdges:\n");
+        /*sb.append("\nEdges:\n");
 
         for (int i = 0; i < numVerts ; i++)
             for (int j = 0 ; j < numVerts; j++)
                 if (edgeMatrix[i][j] != null)
                     sb.append("From " + i + " to " + j + "-> "+ edgeMatrix[i][j] + "\n");
 
-        sb.append("\n");
+        sb.append("\n");*/
 
         return sb.toString();
     }
