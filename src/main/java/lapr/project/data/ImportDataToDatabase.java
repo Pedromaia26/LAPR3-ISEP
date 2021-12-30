@@ -1,10 +1,14 @@
-package lapr.project.controller;
+package lapr.project.data;
+
+import lapr.project.controller.ImportCountriesBordersSeadistsController;
+import lapr.project.controller.ImportPortsController;
+import lapr.project.controller.ImportShipsController;
 
 import java.io.IOException;
 
-public class ImportDataToDatabaseController {
+public class ImportDataToDatabase {
 
-    public ImportDataToDatabaseController() throws IOException {
+    public ImportDataToDatabase() throws IOException {
         ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
         ImportShipsController controller = new ImportShipsController();
         ImportPortsController ipc = new ImportPortsController();

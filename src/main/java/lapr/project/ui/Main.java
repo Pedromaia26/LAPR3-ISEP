@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.*;
+import lapr.project.data.ImportDataToDatabase;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ class Main {
         {
             e.printStackTrace();
         }*/
-        ImportDataToDatabaseController controller = new ImportDataToDatabaseController();
+        ImportDataToDatabase controller = new ImportDataToDatabase();
     }
 }
 
