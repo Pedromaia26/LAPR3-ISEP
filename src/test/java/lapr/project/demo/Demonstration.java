@@ -21,7 +21,7 @@ class Demonstration {
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
         ImportPortsController importPortsController = new ImportPortsController();
-        importPortsController.importFromCSV("sports.csv");
+        importPortsController.importFromCSV("bports.csv");
         SearchShipController searchShipController = new SearchShipController();
         searchShipController.searchDetails("Input/US102.txt");
         PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
@@ -35,7 +35,11 @@ class Demonstration {
         pairController.pair();
         NearestPortController nearestPortController = new NearestPortController();
         nearestPortController.getClosestPort("Input/US202.txt");
-        icontroller.BuildFreightNetwork(5);
+        BuildFreightNetworkController bcontroller = new BuildFreightNetworkController();
+        bcontroller.ImportDataFromDatabase();
+        bcontroller.BuildFreightNetwork(3);
+        ColourMapController ccontroller = new ColourMapController();
+        ccontroller.ColourMap();
     }
 
     @Test
