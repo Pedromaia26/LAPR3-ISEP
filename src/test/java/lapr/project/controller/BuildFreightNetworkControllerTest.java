@@ -3,6 +3,7 @@ package lapr.project.controller;
 import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ class BuildFreightNetworkControllerTest {
     Seadist seadist4 = new Seadist("Portugal", 12345, "Port1", "Alemanha", 12346, "Port5", 300);
 
     @Test
-    void BuildFreightNetwork0(){
+    void BuildFreightNetwork0() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
         c.getCountryStore().addCountry(country3);
@@ -59,7 +60,7 @@ class BuildFreightNetworkControllerTest {
     }
 
     @Test
-    void BuildFreightNetwork5(){
+    void BuildFreightNetwork5() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
         c.getCountryStore().addCountry(country3);

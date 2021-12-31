@@ -1,7 +1,9 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
+import lapr.project.utils.FileOperation;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ColourMapController {
@@ -45,7 +47,7 @@ public class ColourMapController {
     }
 
 
-    public Map<GraphElement, Integer> ColourMap(){
+    public Map<GraphElement, Integer> ColourMap() throws IOException {
         MatrixGraph<GraphElement, Double> graph = company.getMatrixGraph();
         ArrayList<GraphElement> elements = getCountriesDegree();
         Map<GraphElement, Integer> map = new HashMap<>();
@@ -65,11 +67,14 @@ public class ColourMapController {
                 listColoured.clear();
             }
         }
-        /*int k = 0;
+        StringBuilder data = new StringBuilder();
+        int k = 0;
+        data.append("---- Map Coloured ----\n");
         for (GraphElement element : map.keySet()){
-            System.out.println(k + " - " + element.getCountry() + " - " + map.get(element));
+            data.append(element.getCountry() + " - " + map.get(element) + "\n");
             k++;
-        }*/
+        }
+        FileOperation.writeToAFile("Output/US302", data);
         return map;
     }
 }

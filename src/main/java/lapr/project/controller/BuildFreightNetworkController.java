@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import lapr.project.utils.Distances;
+import lapr.project.utils.FileOperation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class BuildFreightNetworkController {
         icontroller.importFromDatabaseSeadists();
     }
 
-    public void BuildFreightNetwork(int n){
+    public void BuildFreightNetwork(int n) throws IOException {
         List<GraphElement> listCapitals = new ArrayList<>();
         List<GraphElement> listPorts = new ArrayList<>();
         List<String> closestsPortesTaken = new ArrayList<>();
@@ -69,6 +70,7 @@ public class BuildFreightNetworkController {
 
         for (GraphElement element : listCapitals){ //Liga o porto mais próximo à capital
             minDistance = 0;
+            elementProx2 = null;
             for (GraphElement element2 : listPorts){
                 if ((minDistance > Distances.distFrom(element.getLatitude(), element.getLongitude(), element2.getLatitude(), element2.getLongitude())/1000 || minDistance == 0) && element.getCountry().equals(element2.getCountry())){
                     minDistance = Distances.distFrom(element.getLatitude(), element.getLongitude(), element2.getLatitude(), element2.getLongitude())/1000;
@@ -105,11 +107,13 @@ public class BuildFreightNetworkController {
             }
         }
         company.setMatrixGraph(graph);
-        /*int i = 1;
+        StringBuilder data = new StringBuilder();
+        int i = 1;
         for (GraphElement element : (List<GraphElement>)graph.vertices()){
-            System.out.println(i + "----" + element.getDesignation() + "----");
+            data.append(i + " - " + element.getDesignation() + "\n");
             i++;
         }
-        System.out.println(graph);*/
+        data.append(graph);
+        FileOperation.writeToAFile("Output/US301", data);
     }
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,7 +50,7 @@ class ColourMapControllerTest {
     Seadist seadist4;
 
     @Test
-    void getCountriesDegree() {
+    void getCountriesDegree() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
         c.getCountryStore().addCountry(country3);
@@ -89,7 +90,7 @@ class ColourMapControllerTest {
     }
 
     @Test
-    void colourMap() {
+    void colourMap() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
         c.getCountryStore().addCountry(country3);

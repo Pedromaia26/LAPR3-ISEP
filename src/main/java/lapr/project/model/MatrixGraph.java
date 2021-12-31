@@ -296,14 +296,14 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
             sb.append("\n");
         }
 
-        /*sb.append("\nEdges:\n");
+        sb.append("\nEdges:\n");
 
         for (int i = 0; i < numVerts ; i++)
             for (int j = 0 ; j < numVerts; j++)
                 if (edgeMatrix[i][j] != null)
                     sb.append("From " + i + " to " + j + "-> "+ edgeMatrix[i][j] + "\n");
 
-        sb.append("\n");*/
+        sb.append("\n");
 
         return sb.toString();
     }
