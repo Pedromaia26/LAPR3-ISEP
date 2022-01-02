@@ -45,10 +45,10 @@ public class CheckLogin_SQL {
                 System.out.printf("The typed information is incorrect. Try again!\n");
                 Login newLogin = new Login();
                 newLogin.run();
-            }else
+            }else {
                 App.getInstance().setUsername(username);
+            }
 
-            System.out.println(App.getInstance().getUsername());
             rs.close();
             st.close();
 
