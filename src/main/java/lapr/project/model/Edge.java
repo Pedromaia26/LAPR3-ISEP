@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import java.text.DecimalFormatSymbols;
 import java.util.Objects;
 
 /**
@@ -40,8 +39,6 @@ public class Edge<V, E> {
 
     @Override
     public String toString() {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setDecimalSeparator(',');
         return String.format("%s -> %s\nDistance: %.2f", vOrig, vDest, distance);
     }
 
