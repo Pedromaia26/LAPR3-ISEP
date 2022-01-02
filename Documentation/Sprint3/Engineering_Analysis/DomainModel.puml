@@ -1,0 +1,139 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Company
+class Ship
+class ShipDynData
+class Container
+class Cargo_Manifest_Load
+class Cargo_Manifest_Unload
+class Stage
+class Location
+class Country
+class Truck
+class Port
+class Warehouse
+class Stage
+class User_Role
+class User
+
+Company "1" -- "*" Ship: contains >
+Ship "1" -- "*" ShipDynData: has >
+Ship "1" -- "*" Cargo_Manifest_Load: associated to >
+Truck "1" -- "*" Cargo_Manifest_Load: associated to >
+Container "*" -- "*" Cargo_Manifest_Load: associated to >
+Cargo_Manifest_Load "*" -- "1" Port: assigned to >
+Location "*" -- "1" Country: belongs >
+Port "1" -- "*" Stage: associated to >
+Port "1" -- "*" Cargo_Manifest_Load: associated to >
+Port "1" -- "*" Cargo_Manifest_Unload: associated to >
+Warehouse "1" -- "*" Stage: associated to >
+Warehouse "1" -- "*" Cargo_Manifest_Load: associated to >
+Warehouse "1" -- "*" Cargo_Manifest_Unload: associated to >
+Warehouse "*" -- "0...1" Port: is part of >
+Cargo_Manifest_Load "1" -- "*" Stage: contains >
+Cargo_Manifest_Unload "1" -- "1" Stage: associated with >
+Port "1" -- "*" Cargo_Manifest_Unload: associated to >
+Port "1" -- "1" Location: corresponds to >
+Warehouse "1" -- "1" Location: corresponds to >
+User_Role "1" -- "*" User: associated to >
+User "1" -- "*" Ship: is captain of >
+User "1" -- "*" Truck: is driver of >
+
+
+class Company {
+
+}
+
+class Ship{
+ - mmsi
+ - shipName
+ - imo
+ - num_energy_gen
+ - gen_pow_out
+ - callSign
+ - vesselType
+ - length
+ - width
+ - capacity
+ - draft
+}
+
+class ShipDynData{
+ - baseDateTime
+ - latitude
+ -longitude
+ -sog
+ -cog
+ -heading
+ -position
+ -cargo
+ -transceiver
+}
+
+class Container{
+-id
+-check_digit
+-iso
+-weight
+-max_weight
+-max_weight_incl
+-max_volume
+-refrigerated
+-certificate
+-repair_recomendation
+}
+
+class Cargo_Manifest_Load{
+-container_id
+-container_position
+-container_gross_weight
+-status
+}
+
+class Location{
+-latitude
+-longitude
+-name
+}
+
+class Country{
+-name
+-continent
+}
+
+class Truck{
+-id
+}
+
+class Port{
+-id
+-name
+}
+
+class Warehouse{
+-id
+-name
+}
+
+class Stage{
+-id
+-departure_date
+-arrival_date
+}
+
+class User{
+-username
+-password
+}
+
+class User_Role{
+-id
+-designation
+}
+
+@enduml
