@@ -602,4 +602,27 @@ public class MatrixGraphTest {
                 "\n";
         assertEquals(expected, matrix.toString());
     }
+
+    @Test
+    void transitiveClosure() {
+        Country country1 = new Country("Europa", "PT", "PRT", "Portugal", 0.5f, "Lisboa", 20, 40);
+        Country country2 = new Country("Europa", "ES", "ESP", "Espanha", 0.5f, "Madrid", 30, 20);
+        Country country3 = new Country("Europa", "FR", "FRA", "Franca", 0.5f, "Paris", 40, 30);
+        Country country4 = new Country("Europa", "SU", "SUI", "Suica", 0.5f, "Berna", 50, 10);
+        Country country5 = new Country("Europa", "GE", "GER", "Alemanha", 0.5f, "Berlim", 35, 25);
+        ArrayList<GraphElement> list = new ArrayList<>();
+        list.add(new GraphElement(country1));
+        list.add(new GraphElement(country2));
+        list.add(new GraphElement(country3));
+        list.add(new GraphElement(country4));
+        list.add(new GraphElement(country5));
+        Object [][] m = {{10f,7f,5f,1f,1f}, {1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f},{1f,1f,1f,1f,1f}};
+        MatrixGraph matrix = new MatrixGraph(true, list, m);
+        matrix.transitiveClosure();
+
+    }
+
+    @Test
+    void shortestPath() {
+    }
 }

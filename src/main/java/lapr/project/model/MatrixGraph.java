@@ -308,7 +308,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                 }
             }
         }
-
+        System.out.println(adjMatrix.edgeMatrix);
         shortestPath(adjMatrix.edgeMatrix);
     }
 
@@ -330,10 +330,12 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                     }
                 }
             }
-            ClosenessPlaces cp = new ClosenessPlaces(place, shortestPath/(counter));
-            cps.addClosenessPlaces(cp);
-            shortestPath = 0;
-            counter = 0;
+            if (place != null) {
+                ClosenessPlaces cp = new ClosenessPlaces(place, shortestPath / (counter));
+                cps.addClosenessPlaces(cp);
+                shortestPath = 0;
+                counter = 0;
+            }
         }
     }
 
