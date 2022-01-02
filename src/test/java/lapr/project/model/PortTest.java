@@ -43,6 +43,11 @@ class PortTest {
     }
 
     @Test
+    void getDockingArea(){
+        assertEquals(10, port.getDocking_capacity());
+    }
+
+    @Test
     void testToString() {
         App.getInstance().getCompany().getCountryStore().addCountry(new Country("Europe", "UK", "UKG", "United Kingdom", 0.5f, "Londres", 10.0f, 10.0f));
         Port port = new Port("29002","Liverpool","Europe","United Kingdom","53.46666667","-3.033333333");

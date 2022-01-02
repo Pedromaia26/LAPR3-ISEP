@@ -10,6 +10,8 @@ public class Port {
     private Country country;
     private float latitude;
     private float longitude;
+    private int docking_capacity;
+    private int docking_occupancy;
 
     public Port(String code, String name, String continent, String country, String latitude, String longitude) {
         this.code = Integer.parseInt(code);
@@ -17,6 +19,8 @@ public class Port {
         this.country = returnCountry(country,continent);
         this.latitude = Float.parseFloat(latitude);
         this.longitude = Float.parseFloat(longitude);
+        this.docking_capacity = 10;
+        this.docking_occupancy = 5;
     }
 
     public int getCode() {
@@ -37,6 +41,14 @@ public class Port {
 
     public float getLongitude() {
         return longitude;
+    }
+
+    public int getDocking_capacity(){
+        return docking_capacity;
+    }
+
+    public int getDocking_occupancy(){
+        return docking_occupancy;
     }
 
     @Override

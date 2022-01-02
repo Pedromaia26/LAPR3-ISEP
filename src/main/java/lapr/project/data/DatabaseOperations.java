@@ -236,7 +236,7 @@ public class DatabaseOperations {
     private void insertPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         String sqlCommand =
-                "insert into port(id,name,location_latitude,location_longitude) values (?, ?, ?, ?)";
+                "insert into port(id,name,location_latitude,location_longitude,docking_capacity,docking_occupancy) values (?, ?, ?, ?, ?,?)";
 
         executePortStatementOnDatabase(databaseConnection, port, sqlCommand);
     }
@@ -248,6 +248,8 @@ public class DatabaseOperations {
         saveClientPreparedStatement.setString(2, port.getName());
         saveClientPreparedStatement.setFloat(3, port.getLatitude());
         saveClientPreparedStatement.setFloat(4, port.getLongitude());
+        saveClientPreparedStatement.setInt(5, port.getDocking_capacity());
+        saveClientPreparedStatement.setInt(6, port.getDocking_occupancy());
         try{
             saveClientPreparedStatement.executeUpdate();
         } catch (SQLException e){

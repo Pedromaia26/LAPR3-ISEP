@@ -87,5 +87,10 @@ class Demonstration {
         OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
     }
 
+    @Test
+    void US310() throws IOException, SQLException {
+        DockingAndWarehouseOccupancyRateController controller = new DockingAndWarehouseOccupancyRateController();
+    }
+
 
 }
