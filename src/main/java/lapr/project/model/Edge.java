@@ -50,9 +50,4 @@ public class Edge<V, E> {
         return  vOrig.equals(edge.vOrig) &&
                 vDest.equals(edge.vDest);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vOrig, vDest);
-    }
 }

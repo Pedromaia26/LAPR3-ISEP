@@ -47,7 +47,7 @@ public class CargoManifest_SQL {
                 container_z = rs.getInt(4);
                 data.append(container_id + " " + container_x + " " + container_y + " " + container_z);
             }
-            FileOperation.writeToAFileWithoutLn("Documentation/Sprint3/ARQCP/US313/containers.txt", data);
+            FileOperation.writeToAFile("Documentation/Sprint3/ARQCP/US313/containers.txt", data);
             rs.close();
             st.close();
 

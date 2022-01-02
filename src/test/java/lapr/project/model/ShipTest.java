@@ -98,6 +98,21 @@ class ShipTest {
     }
 
     @Test
+    void getGenerators(){
+        assertEquals(0,ship.getGenerators());
+    }
+
+    @Test
+    void getGenertorPowerOutput(){
+        assertEquals(0,ship.getGenertorPowerOutput());
+    }
+
+    @Test
+    void getCapacity(){
+        assertEquals(1000,ship.getCapacity());
+    }
+
+    @Test
     void testEqualsDifferentClasses(){
         int a = 10;
         assertFalse(ship.equals(a));

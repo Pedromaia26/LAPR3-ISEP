@@ -14,16 +14,9 @@ public class FileOperation {
 
     public static void writeToAFile(String path, StringBuilder data) throws IOException {
         try (PrintWriter pw = new PrintWriter(path)) {
-            pw.println(data);
-        }
-
-    }
-
-
-    public static void writeToAFileWithoutLn(String path, StringBuilder data) throws IOException {
-        try (PrintWriter pw = new PrintWriter(path)) {
             pw.print(data);
         }
+
     }
 
     public static void writeToAFile(String path, String data) throws IOException {

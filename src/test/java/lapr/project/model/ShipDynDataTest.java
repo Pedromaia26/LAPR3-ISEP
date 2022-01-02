@@ -218,4 +218,18 @@ class ShipDynDataTest {
         assertEquals(expected, bst.toString());
     }
 
+    @Test
+    void getPosition() {
+        assertEquals(0, sdd.getPosition());
+    }
+
+    @Test
+    void getCargo() {
+        assertEquals("NA", sdd.getCargo());
+    }
+
+    @Test
+    void getTransceiver() {
+        assertEquals("B", sdd.getTransceiver());
+    }
 }
