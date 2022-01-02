@@ -40,6 +40,8 @@ class Demonstration {
         bcontroller.BuildFreightNetwork(3);
         ColourMapController ccontroller = new ColourMapController();
         ccontroller.ColourMap();
+        ClosenessPlacesController cpc = new ClosenessPlacesController();
+        cpc.closenessPlacesByContinent(5);
     }
 
     @Test
