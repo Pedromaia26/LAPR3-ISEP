@@ -1,6 +1,7 @@
 package lapr.project.demo;
 
 import lapr.project.controller.*;
+import lapr.project.data.CargoManifest_SQL;
 import lapr.project.model.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -94,5 +95,9 @@ class Demonstration {
         DockingAndWarehouseOccupancyRateController controller = new DockingAndWarehouseOccupancyRateController();
     }
 
-
+    @Test
+    void US313() throws IOException, SQLException {
+        CargoManifest_SQL writter = new CargoManifest_SQL();
+        writter.demo(29);
+    }
 }

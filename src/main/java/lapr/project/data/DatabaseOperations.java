@@ -61,8 +61,8 @@ public class DatabaseOperations {
         saveClientPreparedStatement.setFloat(7, ship.getLength());
         saveClientPreparedStatement.setFloat(8, ship.getWidth());
         saveClientPreparedStatement.setInt(9, ship.getCapacity());
-        saveClientPreparedStatement.setInt(10, 20);
-        saveClientPreparedStatement.setInt(11, 5);
+        saveClientPreparedStatement.setInt(10, 10);
+        saveClientPreparedStatement.setInt(11, 10);
         saveClientPreparedStatement.setInt(12, 10);
         saveClientPreparedStatement.setFloat(13, ship.getDraft());
         saveClientPreparedStatement.setString(14, "shipcaptain" + num_user_id);
