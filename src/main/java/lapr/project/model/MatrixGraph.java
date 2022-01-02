@@ -308,7 +308,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                 }
             }
         }
-        System.out.println(adjMatrix.edgeMatrix);
+        //System.out.println(adjMatrix.edgeMatrix);
         shortestPath(adjMatrix.edgeMatrix);
     }
 
