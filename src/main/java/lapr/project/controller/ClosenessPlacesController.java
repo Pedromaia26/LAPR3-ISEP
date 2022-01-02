@@ -31,7 +31,7 @@ public class ClosenessPlacesController {
                 String newData = String.format("%s: %s - %.2f km\n", continent, cp.getPlace(), cp.getDistance());
                 data =  data + newData;
                 counter++;
-                if (counter == n){
+                if (counter == n ||  counter == cps.getMap().get(continent).size()){
                     counter = 0;
                     break;
                 }
