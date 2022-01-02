@@ -115,5 +115,9 @@ public class BuildFreightNetworkController {
         }
         data.append(graph);
         FileOperation.writeToAFile("Output/US301", data);
+        graph.transitiveClosure();
+
     }
+
+
 }
