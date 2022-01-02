@@ -86,6 +86,11 @@ class Demonstration {
     }
 
     @Test
+    void US305() throws IOException, SQLException {
+        ImportPathController controller = new ImportPathController();
+    }
+
+    @Test
     void US306() throws IOException, SQLException {
         OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
     }
