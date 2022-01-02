@@ -19,6 +19,13 @@ public class FileOperation {
 
     }
 
+    public static void writeToAFileWithoutLn(String path, StringBuilder data) throws IOException {
+        try (PrintWriter pw = new PrintWriter(path)) {
+            pw.print(data);
+        }
+
+    }
+
     public static void writeToAFileNearestPort(String path, Port nearestPort) throws IOException {
         try (PrintWriter pw = new PrintWriter(path)) {
             pw.println("Nearest port: \nID: " + nearestPort.getCode() + "\nName: " + nearestPort.getName() + "\nLatitude: " + nearestPort.getLatitude() + "\nLongitude: " + nearestPort.getLongitude() + "\nName of country: " + nearestPort.getCountry().getName() + "\nContinent of country: " + nearestPort.getCountry().getContinent());
