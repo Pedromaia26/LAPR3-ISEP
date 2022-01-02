@@ -1,10 +1,14 @@
 package lapr.project.model;
 
-import lapr.project.model.CommonGraph;
-import lapr.project.model.Edge;
-import lapr.project.model.Graph;
+import lapr.project.controller.App;
+import lapr.project.data.ClosenessPlacesStore;
+import lapr.project.data.CountryStore;
+import lapr.project.utils.Distances;
+import lapr.project.utils.FileOperation;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 /**
  *
@@ -186,10 +190,10 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         int vOrigKey = key(vOrig);
         int vDestKey = key(vDest);
 
-        edgeMatrix[vOrigKey][vDestKey] = new Edge<>(vOrig, vDest, weight );
+        edgeMatrix[vOrigKey][vDestKey] = new Edge<>(vOrig, vDest, weight);
         numEdges++;
         if (!isDirected) {
-            edgeMatrix[vDestKey][vOrigKey] = new Edge<>(vDest, vOrig, weight );
+            edgeMatrix[vDestKey][vOrigKey] = new Edge<>(vDest, vOrig, weight);
             numEdges++;
         }
         return true;
@@ -263,6 +267,76 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
         return g;
     }
+
+    public void transitiveClosure () {
+
+        MatrixGraph matrixGraph = App.getInstance().getCompany().getMatrixGraph();
+
+        MatrixGraph<GraphElement, Double> adjMatrix = matrixGraph.clone();
+
+        GraphElement orig, dest;
+        Edge<V, E> adj1, adj2;
+        double distance, d1, d2;
+
+        for (int k = 0; k < numVerts; k++) {
+            for (int i = 0; i < numVerts; i++) {
+                if (i != k && adjMatrix.edgeMatrix[i][k] != null) {
+                    adj1 = (Edge<V, E>) adjMatrix.edgeMatrix[i][k];
+                    //System.out.println(edgeMatrix[i][k].getDistance());
+                    for (int j = 0; j < adjMatrix.edgeMatrix.length; j++) {
+                        if (i != j && k != j && adjMatrix.edgeMatrix[k][j] != null) {
+                            adj2 = (Edge<V, E>) adjMatrix.edgeMatrix[k][j];
+
+                            orig = (GraphElement) adj1.getVOrig();
+                            dest = (GraphElement) adj2.getVDest();
+
+                            d1 = (Double) adj1.getDistance();
+                            d2 = (Double) adj2.getDistance();
+
+
+                            if (adjMatrix.edgeMatrix[i][j]==null){
+                                distance = d1 + d2;
+                                adjMatrix.addEdge(orig, dest, distance);
+                            }
+
+                            if (adjMatrix.edgeMatrix[i][j] != null && d1 + d2 < adjMatrix.edgeMatrix[i][j].getDistance()) {
+                                distance = d1 + d2;
+                                adjMatrix.addEdge(orig, dest, distance);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        shortestPath(adjMatrix.edgeMatrix);
+    }
+
+
+    public void shortestPath(Edge<GraphElement, Double>[][] edgeMatrix) {
+        double shortestPath = 0, minDistance = Double.MAX_VALUE;
+        CountryStore cs = App.getInstance().getCompany().getCountryStore();
+        GraphElement place = null;
+        int counter = 0;
+        ClosenessPlacesStore cps = App.getInstance().getCompany().getClosenessPlaceStore();
+
+        for (int i = 0; i < numVerts; i++) {
+            for (int j = 0; j < numVerts; j++) {
+                if (edgeMatrix[i][j] != null) {
+                    place = edgeMatrix[i][j].getVOrig();
+                    if (cs.getContinentByCountry(edgeMatrix[i][j].getVOrig().getCountry()).equals(cs.getContinentByCountry(edgeMatrix[i][j].getVDest().getCountry()))) {
+                        shortestPath = shortestPath + edgeMatrix[i][j].getDistance();
+                        counter++;
+                    }
+                }
+            }
+            ClosenessPlaces cp = new ClosenessPlaces(place, shortestPath/(counter));
+            cps.addClosenessPlaces(cp);
+            shortestPath = 0;
+            counter = 0;
+        }
+    }
+
 
     /**
      * Returns a string representation of the graph.

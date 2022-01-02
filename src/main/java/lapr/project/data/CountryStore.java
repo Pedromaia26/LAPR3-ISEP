@@ -49,6 +49,15 @@ public class CountryStore{
         return null;
     }
 
+    public String getContinentByCountry(String country){
+        for (Country c: Countries){
+            if (c.getName().equals(country)){
+                return c.getContinent();
+            }
+        }
+        return null;
+    }
+
     public List<Country> getCountries() {
         return Countries;
     }
