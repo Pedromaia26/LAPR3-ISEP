@@ -1,11 +1,10 @@
-create or replace Trigger US309
 create or replace NONEDITIONABLE TRIGGER US309
 BEFORE INSERT ON cargo_manifest_load 
 for each row
 
 
 DECLARE
-    
+
     currentDate TIMESTAMP;
     manifest INTEGER;
     flag BOOLEAN:=false;
@@ -19,13 +18,9 @@ Cursor cml IS
     and ship.mmsi=:new.ship_mmsi;
 
 BEGIN
-    
-    
-select CURRENT_TIMESTAMP into currentDate from dual;
 
-    SELECT ship_mmsi into ship
-    From cargo_manifest_load
-    Where id=:new.ID;
+
+select CURRENT_TIMESTAMP into currentDate from dual;
 
     open cml;
     Loop
@@ -52,3 +47,17 @@ select CURRENT_TIMESTAMP into currentDate from dual;
     END IF;
 
 END US309;
+
+
+
+insert into cargo_manifest_load (id, ship_mmsi, warehouse_id, status) 
+values (5, '210950000', '63215', 1);
+
+insert into stage(id, cargo_load_id, departure_date, arrival_date, warehouse_id) 
+values (1, 5, '2022/01/02', '2022/01/10', '84932');
+
+insert into cargo_manifest_load (id, ship_mmsi, warehouse_id, status) 
+values (8, '210950000', '63215', 1);
+
+insert into cargo_manifest_load (id, ship_mmsi, warehouse_id, status) 
+values (9, '210950001', '63215', 1);
