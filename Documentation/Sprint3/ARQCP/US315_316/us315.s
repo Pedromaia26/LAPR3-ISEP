@@ -1,5 +1,5 @@
 .section .data
-    .global pointer
+    .global ptr
     .global posx
     .global posy
     .global posz
@@ -18,7 +18,7 @@ containerposition:
 		movq $0, %rcx
 		movq $0, %rdx
 		movq $0, %rsi
-		movq pointer(%rip), %rdi
+		movq ptr(%rip), %rdi
 		movl posx(%rip), %ecx
 		cmpl cap_x(%rip), %ecx
 		jge invalid
