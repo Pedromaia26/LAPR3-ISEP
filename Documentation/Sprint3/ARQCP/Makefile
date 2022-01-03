@@ -1,10 +1,19 @@
-us313: us313.o us315.o
-	gcc us313.o us315.o -o us313
-us313.o: main.c us315.h
-	gcc -Wall -g -c main.c -o us313.o
-us315.o: us315.s
-	gcc -Wall -g -c us315.s -o us315.o
-run: us313
-	./us313
+projeto: us314.o us315.o main.o
+	gcc us314.o us315.o main.o -o projeto
+	
+us314.o: us314.s us314.h
+	gcc -g -Wall -c us314.s -o us314.o
+	
+us315.o: us315.s us315.h
+	gcc -g -Wall -c us315.s -o us315.o
+	
+main.o: main.c
+	gcc -g -Wall -c main.c -o main.o
+	
 clean:
-	rm ∗ . o us313
+	rm -f ∗.o projeto
+	
+run: projeto
+	./projeto
+	
+
