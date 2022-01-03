@@ -1,7 +1,7 @@
 package lapr.project.demo;
 
 import lapr.project.controller.*;
-import lapr.project.data.CargoManifest_SQL;
+import lapr.project.data.*;
 import lapr.project.model.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,57 +45,68 @@ class Demonstration {
 
     @Test
     void US204() throws IOException, SQLException {
-        CurrentSpecificationGivenContainerController controller = new CurrentSpecificationGivenContainerController();
+        US204_SQL sql = new US204_SQL();
+        sql.demo(7222282);
     }
 
     @Test
     void US205() throws IOException, SQLException {
-        ListOfContainersOffloadedController controller = new ListOfContainersOffloadedController();
+        US205_SQL sql = new US205_SQL();
+        sql.demo(212180000);
     }
 
     @Test
     void US206() throws IOException, SQLException {
-        ListOfContainersLoadedController controller = new ListOfContainersLoadedController();
+        US206_SQL sql = new US206_SQL();
+        sql.demo(212180000);
     }
 
     @Test
     void US207() throws IOException, SQLException {
-        NumberCargoManifestAvgContainerController controller = new NumberCargoManifestAvgContainerController();
+        US207_SQL sql = new US207_SQL();
+        sql.demo(212180000, 2021);
     }
 
     @Test
     void US208() throws IOException, SQLException {
-        OccupanceRateGivenShipCargoController controller = new OccupanceRateGivenShipCargoController();
+        US208_SQL sql = new US208_SQL();
+        sql.demo(212180000, 3);
     }
 
     @Test
     void US209() throws IOException, SQLException {
-        OccupanceRateGivenShipDateController controller = new OccupanceRateGivenShipDateController();
+        US209_SQL sql = new US209_SQL();
+        sql.demo(212180000, "2022-03-25 00:00:00");
     }
 
     @Test
     void US210() throws IOException, SQLException {
-        ShipsAvailableNextMondayController controller = new ShipsAvailableNextMondayController();
+        US210_SQL sql = new US210_SQL();
+        sql.demo();
     }
 
     @Test
     void US304() throws IOException, SQLException {
-        AuditTrailController controller = new AuditTrailController();
+        US304_SQL sql = new US304_SQL();
+        sql.demo(6155496, 5);
     }
 
     @Test
     void US305() throws IOException, SQLException {
-        ImportPathController controller = new ImportPathController();
+        US305_SQL sql = new US305_SQL();
+        sql.demo("client1", 3058855);
     }
 
     @Test
     void US306() throws IOException, SQLException {
-        OccupancyOfEachWarehouseController controller = new OccupancyOfEachWarehouseController();
+        US306_SQL sql = new US306_SQL();
+        sql.demo("27248");
     }
 
     @Test
     void US310() throws IOException, SQLException {
-        DockingAndWarehouseOccupancyRateController controller = new DockingAndWarehouseOccupancyRateController();
+        US310_SQL sql = new US310_SQL();
+        sql.demo("27248", 1, 2022);
     }
 
     @Test

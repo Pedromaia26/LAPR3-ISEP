@@ -23,10 +23,7 @@ public class US204_SQL {
     }
 
     public void demo(int containerId) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US204(?,?)}");
-
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US204(?,?)}")){
             statement.setInt(1, containerId);
 
             statement.registerOutParameter(2, Types.LONGVARCHAR);
@@ -39,7 +36,6 @@ public class US204_SQL {
             data.append(container_location);
             fileOperation.writeToAFile("Output/US204_" + containerId, data);
 
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
