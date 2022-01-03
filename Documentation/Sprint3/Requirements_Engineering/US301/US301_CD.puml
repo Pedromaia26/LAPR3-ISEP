@@ -1,0 +1,64 @@
+@startuml
+BuildFreightNetworkController ..>Company
+BuildFreightNetworkController ..>Port
+BuildFreightNetworkController ..>KdtPort
+BuildFreightNetworkController ..>CountryStore
+BuildFreightNetworkController ..>BorderStore
+BuildFreightNetworkController ..>SeadistStore
+BuildFreightNetworkController ..>Country
+BuildFreightNetworkController ..>Border
+BuildFreightNetworkController ..>Seadist
+BuildFreightNetworkController ..>MatrixGraph
+MatrixGraph ..>Edge
+
+
+BuildFreightNetworkController : +ImportDataFromDatabase()
+BuildFreightNetworkController : +BuildFreightNetwork()
+
+
+Company : +Company()
+Company : +getKdtPorts()
+Company : +setKdtPorts(PortKDT)
+Company : +getCountryStore()
+Company : +getBorderStore()
+Company : +getSeadistStore()
+
+Company ..>KdtPort
+Company ..>CountryStore
+Company ..>BorderStore
+Company ..>SeadistStore
+
+KdtPort : +inOrder()
+
+MatrixGraph : +addEdge(graphElement, graphElement, weight)
+
+CountryStore : +getCountries()
+BorderStore : +getBordersCountry()
+SeadistStore : +getSeadist()
+
+Port : -code: int
+Port : -name: String
+Port : -country: Country
+Port : -latitude: float
+Port : -longitude: float
+
+Country : -continent: String
+Country : -name: String
+Country : -alpha2_code: String
+Country : -alpha3_code: String
+Country : -capital: String
+Country : -latitude: float
+Country : -longitude: float
+Country : -population: float
+
+Border : -countryName1: Country
+Border : -countryName2: Country
+
+Seadist : -fromCountryName: String
+Seadist : -fromPortId: int
+Seadist : -toPortId: int
+Seadist : -fromPortName: String
+Seadist : -toCountryName: String
+Seadist : -toPortName: String
+Seadist : -seaDistance: int
+@enduml

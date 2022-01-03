@@ -1,0 +1,262 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":BuildFreightNetworkUI" as UI
+participant ":BuildFreightNetworkCrontroller" as controller
+participant ":ImportCountryBorderSeadistCrontroller" as icontroller
+participant ":Company" as c
+participant ":CountryStore" as cs
+participant ":BorderStore" as bs
+participant ":SeadistStore" as ss
+participant ":Portkdt" as kdt
+participant "listCapitals\n:List" as lc
+participant "listPorts\n:List" as lp
+participant "GraphElement" as graphe
+participant "MatrixGraph" as mgraph
+participant "Edge" as edge
+participant "FileOperation" as fo
+
+autonumber
+
+activate Adm
+
+Adm -> UI: asks to build a freight network
+
+activate UI
+
+UI -> controller: ImportDataFromDatabase()
+
+activate controller
+
+controller -> icontroller: importCountriesFromDatabase()
+
+activate icontroller
+
+icontroller --> controller: data
+
+deactivate icontroller
+
+controller -> icontroller: importBordersFromDatabase()
+
+activate icontroller
+
+icontroller --> controller: data
+
+deactivate icontroller
+
+controller -> icontroller: importSeadistsFromDatabase()
+
+activate icontroller
+
+icontroller --> controller: data
+
+deactivate icontroller
+
+controller --> UI: data
+
+deactivate controller
+
+UI -> controller: BuildFreightNetwork(n)
+
+activate controller
+
+controller -> c: getCountries()
+
+loop
+
+controller -> graphe: new GraphElement(country)
+
+activate graphe
+
+graphe --> controller: graphElement
+
+deactivate graphe
+
+controller -> lc: add(graphElement)
+
+activate lc
+
+deactivate lc
+
+end
+
+controller -> c: getPorts()
+
+loop
+
+controller -> graphe: new GraphElement(port)
+
+activate graphe
+
+graphe --> controller: graphElement
+
+deactivate graphe
+
+controller -> lp: add(graphElement)
+
+activate lp
+
+deactivate lp
+
+end
+
+loop
+
+controller -> lc: graphElement
+
+activate lc
+
+deactivate lc
+
+controller -> c: getSeadistStore
+
+loop
+
+controller -> ss: getBordersCountry(graphElement)
+
+controller -> mgraph: addEdge()
+
+activate mgraph
+
+end
+
+mgraph -> edge: new Edge()
+
+activate edge
+
+deactivate edge
+
+deactivate mgraph
+
+end
+
+loop
+
+controller -> lp: graphElement
+
+activate lp
+
+deactivate lp
+
+controller -> c: getPortKdt
+
+activate c
+
+deactivate c
+
+loop
+
+controller -> kdt: getPort()
+
+activate kdt
+
+deactivate kdt
+
+controller -> mgraph: addEdge()
+
+activate mgraph
+
+end
+
+mgraph -> edge: new Edge()
+
+activate edge
+
+deactivate edge
+
+deactivate mgraph
+
+end
+
+loop
+
+controller -> lc: graphElement
+
+activate lc
+
+deactivate lc
+
+loop
+
+controller -> lp: graphElement2
+
+activate lp
+
+deactivate lp
+
+controller -> mgraph: addEdge()
+
+activate mgraph
+
+mgraph -> edge: new Edge()
+
+activate edge
+
+deactivate edge
+
+deactivate mgraph
+
+end
+
+end
+
+loop
+
+controller -> lp: graphElement
+
+activate lp
+
+deactivate lp
+
+loop i < n
+
+loop
+
+controller -> lp: graphElement2
+
+activate lp
+
+deactivate lp
+
+end
+
+controller -> mgraph: addEdge()
+
+activate mgraph
+
+mgraph -> edge: new Edge()
+
+activate edge
+
+deactivate edge
+
+deactivate mgraph
+
+end
+
+end
+
+controller -> c: setMatrixGraph(graph)
+
+activate c
+
+deactivate c
+
+controller -> fo: writeToAFile()
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml
