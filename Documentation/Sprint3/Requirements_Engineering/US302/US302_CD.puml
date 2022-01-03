@@ -1,0 +1,38 @@
+@startuml
+ColourMapController ..>Company
+ColourMapController ..>CountryStore
+ColourMapController ..>Country
+ColourMapController ..>MatrixGraph
+ColourMapController ..>GraphElement
+MatrixGraph ..>Edge
+Edge ..>GraphElement
+
+
+ColourMapController : +getCountriesDegree()
+ColourMapController : +colourMap()
+
+
+Company : +Company()
+Company : +getCountryStore()
+
+Company ..>CountryStore
+
+MatrixGraph : +adjVertices(graphElement)
+
+CountryStore : +getCountryByCapital(designation)
+
+Country : -continent: String
+Country : -name: String
+Country : -alpha2_code: String
+Country : -alpha3_code: String
+Country : -capital: String
+Country : -latitude: float
+Country : -longitude: float
+Country : -population: float
+
+GraphElement : -designation: String
+GraphElement : -country: String
+GraphElement : -latitude: float
+GraphElement : -longitude: float
+GraphElement : +getDesignation()
+@enduml

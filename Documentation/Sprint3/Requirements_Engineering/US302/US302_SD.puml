@@ -1,0 +1,163 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":ColourMapUI" as UI
+participant ":ColourMapController" as controller
+participant ":Company" as c
+participant "countryStore\n:CountryStore" as cs
+participant "element\n:GraphElement" as graphe
+participant "graph\n:MatrixGraph" as mgraph
+participant "FileOperation" as fo
+participant "degrees\n:ArrayList<Integer>" as degrees
+participant "elements\n:ArrayList<GraphElement>" as elements
+participant "map\n:Map<GraphElement, Integer>" as map
+participant "listColoured\n:ArrayList<GraphElement>" as listColoured
+participant ":GraphElement" as graphe
+participant "colour\n:Integer" as colour
+
+autonumber
+
+activate Adm
+
+Adm -> UI: asks to colour the map using as few colours as possible
+
+activate UI
+
+UI -> controller: ColourMap()
+
+activate controller
+
+controller -> controller: getCountriesDegree()
+
+activate controller
+
+controller -> c: graph = getMatrixGraph()
+
+activate c
+
+c --> controller: graph
+
+deactivate c
+
+controller -> c: getCountryStore
+
+activate c
+
+c --> controller: countryStore
+
+deactivate c
+
+loop i < graph.vertices()
+
+controller -> cs: getCountryByCapital()
+
+activate cs
+
+deactivate cs
+
+controller -> graph: adjVertices(graphElement)
+
+activate graph
+
+graph --> controller: size
+
+deactivate graph
+
+controller -> degrees: add(size)
+
+activate degrees
+
+deactivate degrees
+
+controller -> elements: add(element)
+
+activate elements
+
+deactivate elements
+
+end
+
+controller -> degrees: sort()
+
+activate degrees
+
+deactivate degrees
+
+controller -> elements: sort()
+
+activate elements
+
+deactivate elements
+
+deactivate controller
+
+controller -> controller: colour = 1
+
+activate controller
+
+deactivate controller
+
+loop i < elements.size()
+
+controller -> map: put(elements(i), colour)
+
+activate map
+
+deactivate map
+
+controller -> listColoured: add(elements(i))
+
+activate listColoured
+
+deactivate listColoured
+
+loop element : elements
+
+alt element not in listColoured
+
+controller -> map: put(elements(i), colour)
+
+activate map
+
+deactivate map
+
+controller -> listColoured: add(elements(i))
+
+activate listColoured
+
+deactivate listColoured
+
+end
+
+controller -> controller: colour++
+
+activate controller
+
+deactivate controller
+
+controller -> listColoured: clear()
+
+activate listColoured
+
+deactivate listColoured
+
+end
+
+controller -> fo: writeToAFile()
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml
