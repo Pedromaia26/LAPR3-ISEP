@@ -51,7 +51,7 @@ We created the Domain Model that we would follow in the development of our sprin
 
 We created the Global Class Diagram that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-![CD_Global](./Documentation/Sprint3/Engineering_Analysis/CD_Global.jpg)
+![CD_Global](./Documentation/Sprint3/Engineering_Analysis/CD_Global.svg)
 
 
 ### This phase of our report is where all the diagrams referring to the project's user stories are located, whether **SSDs**, **SDs** or **CD**.
