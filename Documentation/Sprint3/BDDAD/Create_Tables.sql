@@ -130,6 +130,8 @@ id varchar(6) constraint nn_port_id not null,
 name varchar(255) constraint nn_port_name not null,
 location_latitude float constraint nn_port_latitude not null,
 location_longitude float constraint nn_port_longitude not null,
+docking_capacity integer constraint nn_port_docking_capacity not null,
+docking_occupancy integer constraint nn_port_docking_occupancy not null,
 
 constraint pk_port primary key (id),
 constraint fk_port foreign key(location_latitude, location_longitude) references location(latitude,longitude)
@@ -159,10 +161,13 @@ name varchar(255) constraint nn_warehouse_name not null,
 location_latitude float constraint nn_warehouse_latitude not null,
 location_longitude float constraint nn_warehouse_longitude not null,
 capacity integer constraint nn_warehouse_capacity not null,
+occupancy integer constraint n_warehouse_occupancy null,
+port_id varchar(6) constraint nn_port_id null,
 
 constraint pk_warehouse primary key (id),
 constraint fk_warehouse foreign key(location_latitude, location_longitude) references location(latitude,longitude)
 );
+
 
 
 create table cargo_manifest_load(
@@ -244,7 +249,7 @@ typeofoperation varchar(255) constraint nn_audittrail_type_of_operation not null
 audit_date timestamp constraint nn_audittrail_date not null,
 userid varchar(255) constraint nn_audittrail_userid not null,
 
-constraint pk_audit_trail primary key (containerid, cargomanifestloadid, userid),
+constraint pk_audit_trail primary key (containerid, cargomanifestloadid, userid, audit_date),
 constraint fk_audit_trail foreign key (containerid) references container(id),
 constraint fk_audit_trail2 foreign key (cargomanifestloadid) references cargo_manifest_load(id),
 constraint fk_audit_trail3 foreign key (userid) references usertable(username)
