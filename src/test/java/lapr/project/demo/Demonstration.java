@@ -28,6 +28,8 @@ class Demonstration {
         PositionalMessagesController positionalMessagesController = new PositionalMessagesController();
         positionalMessagesController.message("Input/US103.txt");
         searchShipController.makeSummary("Input/US104.txt");
+        PrintingShipsInfoController printingShipsInfoController = new PrintingShipsInfoController();
+        printingShipsInfoController.getShips();
         TopNshipsPerKmController topNshipsPerKmController = new TopNshipsPerKmController();
         topNshipsPerKmController.printNshipsMostKm("Input/US106.txt");
         PairController pairController = new PairController();
