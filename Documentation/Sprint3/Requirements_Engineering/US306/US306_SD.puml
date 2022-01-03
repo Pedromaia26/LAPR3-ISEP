@@ -1,0 +1,53 @@
+@startuml
+actor "Port Manager" as Adm
+participant ":OccupancyOfEachWarehouseUI" as System
+participant ":OccupancyOfEachWarehouseController" as SSC
+participant ":US306" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: wish to know the occupancy rate and an estimate of the containers
+
+activate System
+
+System --> Adm: request the data to search
+
+deactivate System
+
+Adm -> System: types the port identifier
+
+activate System
+
+System -> SSC: createUS306
+
+activate SSC
+
+SSC -> us: demo(port_id)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml
