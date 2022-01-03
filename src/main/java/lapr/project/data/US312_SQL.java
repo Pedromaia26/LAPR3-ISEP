@@ -32,7 +32,7 @@ public class US312_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(container_location);
-            fileOperation.writeToAFile("Output/US312_" + containerId, data);
+            fileOperation.writeToAFile("Output/US312" + containerId, data);
 
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
