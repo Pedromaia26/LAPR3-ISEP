@@ -28,18 +28,14 @@ BEGIN
         EXIT WHEN cur_capacity_available%notfound;
         END LOOP;
         -- CLOSE cur_capacity_available;
-
-	    ava_cap_ship := ava_cap_ship - 1;
-
+    
         dbms_output.put_line('capacity ship:' || ava_cap_ship); -- ship capacity at the moment
 		            				
-			        -- IF(ava_cap_ship > 0) THEN
-				      -- ava_cap_ship := ava_cap_ship - 1;
-			        -- END IF;
-			
+			        		
 			        IF(ava_cap_ship < 0) THEN -- The number of cargo manifests is greater than the ship's capacity
 				      RAISE overloaded;
-				    END IF;           
+				    END IF;   
+        			ava_cap_ship := ava_cap_ship - 1;
          CLOSE cur_capacity_available;
 
 EXCEPTION
