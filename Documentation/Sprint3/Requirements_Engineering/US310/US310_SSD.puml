@@ -1,0 +1,26 @@
+@startuml
+actor "Port Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: wish to have a map of the occupation of the existing resources in the port
+
+activate System
+
+System --> Adm: request the data to search
+
+deactivate System
+
+Adm -> System: types the port identifier, the month and the year
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
