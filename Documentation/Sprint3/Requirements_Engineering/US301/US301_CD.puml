@@ -10,6 +10,10 @@ BuildFreightNetworkController ..>Border
 BuildFreightNetworkController ..>Seadist
 BuildFreightNetworkController ..>MatrixGraph
 MatrixGraph ..>Edge
+BuildFreightNetworkController ..>GraphElement
+GraphElement ..>Country
+GraphElement ..>Port
+Edge ..>GraphElement
 
 
 BuildFreightNetworkController : +ImportDataFromDatabase()
@@ -61,4 +65,9 @@ Seadist : -fromPortName: String
 Seadist : -toCountryName: String
 Seadist : -toPortName: String
 Seadist : -seaDistance: int
+
+GraphElement : -designation: String
+GraphElement : -country: String
+GraphElement : -latitude: float
+GraphElement : -longitude: float
 @enduml
