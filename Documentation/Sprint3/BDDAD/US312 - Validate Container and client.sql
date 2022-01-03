@@ -64,7 +64,7 @@ END IF;
 end loop;
 
 EXCEPTION
-        WHEN no_data_found THEN
+        WHEN id_invalid THEN
             dbms_output.put_line('10 - The id is invalid');
         WHEN cont_not_rented THEN
             dbms_output.put_line('11 - The container is not rented by the client');
