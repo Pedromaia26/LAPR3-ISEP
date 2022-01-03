@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":ClosenessPlacesUI" as UI
+participant ":ClosenessPlacesController" as CTRL
+participant "cp\n:ClosenessPlaces" as CP
+participant ":ClosenessPlacesStore" as CPS
+participant "n\n:Integer"
+participant "continent\n:String"
+participant "data\n:String"
+participant ":FileOperation" as FILE
+
+activate TM
+TM -> UI: wishes to know which places are closest to all other places
+activate UI
+UI --> TM: requests the number of places by continent
+deactivate UI
+TM -> UI: types the requested data
+activate UI
+UI -> CTRL: closenessPlacesByContinent(n)
+activate CTRL
+loop times = map keys size
+CTRL -> CPS: continent = getMap().getKeySet()
+activate CPS
+deactivate CPS
+loop n times || times = map values size
+CTRL -> CPS: cp = getMap().get(continent)
+activate CPS
+deactivate CPS
+CTRL -> CP: data = data + continent + getPlace() + getDistance()
+activate CP
+deactivate CP
+end
+end
+CTRL -> FILE: writeToAFile()
+activate FILE
+FILE --> CTRL: file
+deactivate FILE
+CTRL --> UI: file
+deactivate CTRL
+UI --> TM: shows the list of n closeness places by continent
+deactivate UI
+
+deactivate TM
+
+
+
+
+@enduml

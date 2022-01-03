@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+ClosenessPlaceController ..> MatrixGraph
+ClosenessPlaceController ..> Company
+Company ..> ClosenessPlacesStore
+Company ..> CountryStore
+ClosenessPlaceController ..> Edge
+ClosenessPlaceController ..> ClosenessPlacesStore
+ClosenessPlaceController ..> ClosenessPlaces
+ClosenessPlaceController ..> CountryStore
+MatrixGraph ..> Edge
+MatrixGraph ..> ClosenessPlacesStore
+MatrixGraph ..> ClosenessPlaces
+ClosenessPlacesStore ..> ClosenessPlaces
+MatrixGraph ..> CountryStore
+
+
+ClosenessPlaceController : +closenessPlacesByContinent(int n)
+
+MatrixGraph : +transitiveClosure()
+MatrixGraph : +shortestPath(Edge<V, E>[][] matrix)
+MatrixGraph : +addEdge(V orig, V dest, E distance)
+MatrixGraph : -GraphElement orig
+MatrixGraph : -GraphElement dest
+MatrixGraph : -double distance
+MatrixGraph : -Edge<V,E> [][] matrix
+
+
+Edge : +getVOrig()
+Edge : +getVDest()
+Edge : +getDistance()
+Edge : +setDistance(distance)
+
+CountryStore : +getCountryStore()
+CountryStore : +getContinentByCountry(String country)
+
+ClosenessPlacesStore : +getClosenessPlacesStore()
+ClosenessPlacesStore : +addClosenessPlaces(ClosenessPlaces cp)
+
+Company : +getClosenessPlaceStore()
+Company : +getCountryStore()
+
+ClosenessPlaces : -String place
+ClosenessPlaces : -String country
+ClosenessPlaces : -double distance
+
+@enduml

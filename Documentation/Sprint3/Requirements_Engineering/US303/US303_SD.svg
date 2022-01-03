@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="853.75px" preserveAspectRatio="none" style="width:2008px;height:853px;" version="1.1" viewBox="0 0 2008 853" width="2008.75px" zoomAndPan="magnify"><defs><filter height="300%" id="frgihx0pvvl6z" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.5"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.0" dy="5.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="600.7129" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="66.25" y="124.5117"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="545" y="152.4512"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="496.8945" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="545" y="228.3301"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="421.0156" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="826.25" y="266.2695"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1255" y="518.4668"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1451.25" y="335.8984"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1451.25" y="443.0273"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1922.5" y="611.4063"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="289.6973" style="stroke:#000000;stroke-width:2.5;" width="897.5" x="687.5" y="285.0195"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="173.8184" style="stroke:#000000;stroke-width:2.5;" width="872.5" x="700" y="392.1484"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="72.5" x2="72.5" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="551.25" x2="551.25" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="832.5" x2="832.5" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1261.25" x2="1261.25" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1457.5" x2="1457.5" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1613.75" x2="1613.75" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1715" x2="1715" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1811.25" x2="1811.25" y1="112.0117" y2="747.7246"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="1928.75" x2="1928.75" y1="112.0117" y2="747.7246"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="125" x="6.25" y="108.1665">Traffic Manager</text><ellipse cx="72.5" cy="18.75" fill="#FEFECE" filter="url(#frgihx0pvvl6z)" rx="10" ry="10" style="stroke:#A80036;stroke-width:2.5;"/><path d="M72.5,28.75 L72.5,62.5 M56.25,38.75 L88.75,38.75 M72.5,62.5 L56.25,81.25 M72.5,62.5 L88.75,81.25 " fill="none" filter="url(#frgihx0pvvl6z)" style="stroke:#A80036;stroke-width:2.5;"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="125" x="6.25" y="764.6411">Traffic Manager</text><ellipse cx="72.5" cy="780.9863" fill="#FEFECE" filter="url(#frgihx0pvvl6z)" rx="10" ry="10" style="stroke:#A80036;stroke-width:2.5;"/><path d="M72.5,790.9863 L72.5,824.7363 M56.25,800.9863 L88.75,800.9863 M72.5,824.7363 L56.25,843.4863 M72.5,824.7363 L88.75,843.4863 " fill="none" filter="url(#frgihx0pvvl6z)" style="stroke:#A80036;stroke-width:2.5;"/><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="172.5" x="462.5" y="66.25"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="155" x="471.25" y="93.1665">:ClosenessPlacesUI</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="172.5" x="462.5" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="155" x="471.25" y="773.3911">:ClosenessPlacesUI</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="235" x="712.5" y="66.25"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="217.5" x="721.25" y="93.1665">:ClosenessPlacesController</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="235" x="712.5" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="217.5" x="721.25" y="773.3911">:ClosenessPlacesController</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="157.5" x="1180" y="44.2383"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="18.75" x="1249.375" y="71.1548">cp</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="140" x="1188.75" y="93.1665">:ClosenessPlaces</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="157.5" x="1180" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="18.75" x="1249.375" y="773.3911">cp</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="140" x="1188.75" y="795.4028">:ClosenessPlaces</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="200" x="1355" y="66.25"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="182.5" x="1363.75" y="93.1665">:ClosenessPlacesStore</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="200" x="1355" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="182.5" x="1363.75" y="773.3911">:ClosenessPlacesStore</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="77.5" x="1572.5" y="44.2383"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="10" x="1606.25" y="71.1548">n</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="60" x="1581.25" y="93.1665">:Integer</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="77.5" x="1572.5" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="10" x="1606.25" y="773.3911">n</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="60" x="1581.25" y="795.4028">:Integer</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="90" x="1667.5" y="44.2383"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="72.5" x="1676.25" y="71.1548">continent</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="51.25" x="1686.875" y="93.1665">:String</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="90" x="1667.5" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="72.5" x="1676.25" y="773.3911">continent</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="51.25" x="1686.875" y="795.4028">:String</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="68.75" x="1775" y="44.2383"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="35" x="1791.875" y="71.1548">data</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="51.25" x="1783.75" y="93.1665">:String</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="61.5234" style="stroke:#A80036;stroke-width:1.875;" width="68.75" x="1775" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="35" x="1791.875" y="773.3911">data</text><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="51.25" x="1783.75" y="795.4028">:String</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="130" x="1861.25" y="66.25"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="112.5" x="1870" y="93.1665">:FileOperation</text><rect fill="#FEFECE" filter="url(#frgihx0pvvl6z)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="130" x="1861.25" y="746.4746"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="112.5" x="1870" y="773.3911">:FileOperation</text><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="600.7129" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="66.25" y="124.5117"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="545" y="152.4512"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="496.8945" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="545" y="228.3301"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="421.0156" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="826.25" y="266.2695"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1255" y="518.4668"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1451.25" y="335.8984"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.5" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1451.25" y="443.0273"/><rect fill="#FFFFFF" filter="url(#frgihx0pvvl6z)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="1922.5" y="611.4063"/><polygon fill="#A80036" points="530,147.4512,542.5,152.4512,530,157.4512,535,152.4512" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="78.75" x2="537.5" y1="152.4512" y2="152.4512"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="87.5" y="146.3806">1</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="428.75" x="101.25" y="146.3806">wishes to know which places are closest to all other places</text><polygon fill="#A80036" points="92.5,185.3906,80,190.3906,92.5,195.3906,87.5,190.3906" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="85" x2="550" y1="190.3906" y2="190.3906"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="100" y="184.3201">2</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="312.5" x="113.75" y="184.3201">requests the number of places by continent</text><polygon fill="#A80036" points="530,223.3301,542.5,228.3301,530,233.3301,535,228.3301" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="78.75" x2="537.5" y1="228.3301" y2="228.3301"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="87.5" y="222.2595">3</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="180" x="101.25" y="222.2595">types the requested data</text><polygon fill="#A80036" points="811.25,261.2695,823.75,266.2695,811.25,271.2695,816.25,266.2695" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="557.5" x2="818.75" y1="266.2695" y2="266.2695"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="566.25" y="260.199">4</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="231.25" x="580" y="260.199">closenessPlacesByContinent(n)</text><path d="M687.5,285.0195 L778.75,285.0195 L778.75,295.0195 L766.25,307.5195 L687.5,307.5195 L687.5,285.0195 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.25;"/><rect fill="none" height="289.6973" style="stroke:#000000;stroke-width:2.5;" width="897.5" x="687.5" y="285.0195"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="35" x="706.25" y="303.1384">loop</text><text fill="#000000" font-family="sans-serif" font-size="13.75" font-weight="bold" lengthAdjust="spacing" textLength="165" x="797.5" y="301.7932">[times = map keys size]</text><polygon fill="#A80036" points="1436.25,330.8984,1448.75,335.8984,1436.25,340.8984,1441.25,335.8984" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="838.75" x2="1443.75" y1="335.8984" y2="335.8984"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="847.5" y="329.8279">5</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="241.25" x="861.25" y="329.8279">continent = getMap().getKeySet()</text><path d="M700,392.1484 L791.25,392.1484 L791.25,402.1484 L778.75,414.6484 L700,414.6484 L700,392.1484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.25;"/><rect fill="none" height="173.8184" style="stroke:#000000;stroke-width:2.5;" width="872.5" x="700" y="392.1484"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="35" x="718.75" y="410.2673">loop</text><text fill="#000000" font-family="sans-serif" font-size="13.75" font-weight="bold" lengthAdjust="spacing" textLength="243.75" x="810" y="408.9221">[n times || times = map values size]</text><polygon fill="#A80036" points="1436.25,438.0273,1448.75,443.0273,1436.25,448.0273,1441.25,443.0273" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="838.75" x2="1443.75" y1="443.0273" y2="443.0273"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="847.5" y="436.9568">6</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="205" x="861.25" y="436.9568">cp = getMap().get(continent)</text><polygon fill="#A80036" points="1240,513.4668,1252.5,518.4668,1240,523.4668,1245,518.4668" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="838.75" x2="1247.5" y1="518.4668" y2="518.4668"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="847.5" y="512.3962">7</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="378.75" x="861.25" y="512.3962">data = data + continent + getPlace() + getDistance()</text><polygon fill="#A80036" points="1907.5,606.4063,1920,611.4063,1907.5,616.4063,1912.5,611.4063" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="838.75" x2="1915" y1="611.4063" y2="611.4063"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="847.5" y="605.3357">8</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="98.75" x="861.25" y="605.3357">writeToAFile()</text><polygon fill="#A80036" points="852.5,644.3457,840,649.3457,852.5,654.3457,847.5,649.3457" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="845" x2="1927.5" y1="649.3457" y2="649.3457"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="860" y="643.2751">9</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="20" x="873.75" y="643.2751">file</text><polygon fill="#A80036" points="571.25,682.2852,558.75,687.2852,571.25,692.2852,566.25,687.2852" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="563.75" x2="831.25" y1="687.2852" y2="687.2852"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="17.5" x="578.75" y="681.2146">10</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="20" x="601.25" y="681.2146">file</text><polygon fill="#A80036" points="86.25,720.2246,73.75,725.2246,86.25,730.2246,81.25,725.2246" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="78.75" x2="550" y1="725.2246" y2="725.2246"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="17.5" x="93.75" y="719.1541">11</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="356.25" x="116.25" y="719.1541">shows the list of n closeness places by continent</text><!--MD5=[5d770d71a58b4ba58c3396748ecd0fe3]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":ClosenessPlacesUI" as UI
+participant ":ClosenessPlacesController" as CTRL
+participant "cp\n:ClosenessPlaces" as CP
+participant ":ClosenessPlacesStore" as CPS
+participant "n\n:Integer"
+participant "continent\n:String"
+participant "data\n:String"
+participant ":FileOperation" as FILE
+
+activate TM
+TM -> UI: wishes to know which places are closest to all other places
+activate UI
+UI - -> TM: requests the number of places by continent
+deactivate UI
+TM -> UI: types the requested data
+activate UI
+UI -> CTRL: closenessPlacesByContinent(n)
+activate CTRL
+loop times = map keys size
+CTRL -> CPS: continent = getMap().getKeySet()
+activate CPS
+deactivate CPS
+loop n times || times = map values size
+CTRL -> CPS: cp = getMap().get(continent)
+activate CPS
+deactivate CPS
+CTRL -> CP: data = data + continent + getPlace() + getDistance()
+activate CP
+deactivate CP
+end
+end
+CTRL -> FILE: writeToAFile()
+activate FILE
+FILE - -> CTRL: file
+deactivate FILE
+CTRL - -> UI: file
+deactivate CTRL
+UI - -> TM: shows the list of n closeness places by continent
+deactivate UI
+
+deactivate TM
+
+
+
+
+@enduml
+
+@startuml
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":ClosenessPlacesUI" as UI
+participant ":ClosenessPlacesController" as CTRL
+participant "cp\n:ClosenessPlaces" as CP
+participant ":ClosenessPlacesStore" as CPS
+participant "n\n:Integer"
+participant "continent\n:String"
+participant "data\n:String"
+participant ":FileOperation" as FILE
+
+activate TM
+TM -> UI: wishes to know which places are closest to all other places
+activate UI
+UI - -> TM: requests the number of places by continent
+deactivate UI
+TM -> UI: types the requested data
+activate UI
+UI -> CTRL: closenessPlacesByContinent(n)
+activate CTRL
+loop times = map keys size
+CTRL -> CPS: continent = getMap().getKeySet()
+activate CPS
+deactivate CPS
+loop n times || times = map values size
+CTRL -> CPS: cp = getMap().get(continent)
+activate CPS
+deactivate CPS
+CTRL -> CP: data = data + continent + getPlace() + getDistance()
+activate CP
+deactivate CP
+end
+end
+CTRL -> FILE: writeToAFile()
+activate FILE
+FILE - -> CTRL: file
+deactivate FILE
+CTRL - -> UI: file
+deactivate CTRL
+UI - -> TM: shows the list of n closeness places by continent
+deactivate UI
+
+deactivate TM
+
+
+
+
+@enduml
+
+PlantUML version 1.2021.4(Sun Apr 04 09:49:39 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
