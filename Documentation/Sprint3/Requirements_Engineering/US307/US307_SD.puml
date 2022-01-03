@@ -1,7 +1,7 @@
 @startuml
 actor "Port Manager" as Adm
-participant ":WarningWarehouseCapacityUI" as System
-participant ":WarningWarehouseCapacityController" as SSC
+participant ":WarningCapacityUI" as System
+participant ":WarningCapacityController" as SSC
 participant ":US307" as us
 participant ":FileOperation" as f
 
@@ -9,29 +9,29 @@ autonumber
 
 activate Adm
 
-Adm -> System: wish to know if the warehouse have available capacity to accommodate the new manifest
+Adm -> System: wish to  have access to audit trails for a given container and to a list of all operations performed on a container
 
 activate System
 
-System --> Adm: request the cargo manifest id and the warehouse id
+System --> Adm: request the data to search
 
 deactivate System
 
-Adm -> System: types requested data
+Adm -> System: types the container identifier and the cargo manifest identifier
 
 activate System
 
-System -> SSC: createUS307
+System -> SSC: createUS304
 
 activate SSC
 
-SSC -> us: demo(cargo_manifest_id, warehouse_id)
+SSC -> us: demo(INSERT)
 
 activate us
 
 us -> us: initialize
 
-us -> f: WriteToAFile(path, data)
+us -> f: WriteToAFile(e.getMessage)
 
 deactivate us
 
