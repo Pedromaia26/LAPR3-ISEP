@@ -1,0 +1,26 @@
+@startuml
+actor "Ship Captain" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: wish to  have access to audit trails for a given container and to a list of all operations performed on a container
+
+activate System
+
+System --> Adm: request the data to search
+
+deactivate System
+
+Adm -> System: types the container identifier and the cargo manifest identifier
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":AuditTrailUI" as System
+participant ":AuditTrailController" as SSC
+participant ":US304" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: wish to  have access to audit trails for a given container and to a list of all operations performed on a container
+
+activate System
+
+System --> Adm: request the data to search
+
+deactivate System
+
+Adm -> System: types the container identifier and the cargo manifest identifier
+
+activate System
+
+System -> SSC: createUS304
+
+activate SSC
+
+SSC -> us: demo(container, cargo_manifest)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(path, data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml
