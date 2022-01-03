@@ -1,0 +1,26 @@
+@startuml
+actor "Port Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: wish to know the occupancy rate and an estimate of the containers
+
+activate System
+
+System --> Adm: request the data to search
+
+deactivate System
+
+Adm -> System: types the port identifier
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
