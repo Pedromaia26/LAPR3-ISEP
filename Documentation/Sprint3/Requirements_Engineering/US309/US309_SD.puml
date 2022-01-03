@@ -1,19 +1,19 @@
 @startuml
 actor "Port Manager" as Adm
-participant ":WarningCapacityUI" as System
-participant ":WarningCapacityController" as SSC
-participant ":US307" as us
+participant ":WarningShipUI" as System
+participant ":WarningShipController" as SSC
+participant ":US309" as us
 participant ":FileOperation" as f
 
 autonumber
 
 activate Adm
 
-Adm -> System: Port manager issues a cargo manifest destined for a warehouse whose available capacity is insufficient to accommodate the new manifest
+Adm -> System: regist a cargo manifest for a particular ship on a date when the ship is already occupied
 
 activate System
 
-System -> SSC: createUS307
+System -> SSC: createUS309
 
 activate SSC
 
