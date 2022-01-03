@@ -301,20 +301,21 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
                             if (adjMatrix.edgeMatrix[i][j] != null && d1 + d2 < adjMatrix.edgeMatrix[i][j].getDistance()) {
                                 distance = d1 + d2;
-                                adjMatrix.addEdge(orig, dest, distance);
+                                adjMatrix.edgeMatrix[i][j].setDistance(distance);
                             }
                         }
                     }
                 }
             }
         }
+
         //System.out.println(adjMatrix.edgeMatrix);
         shortestPath(adjMatrix.edgeMatrix);
     }
 
 
     public void shortestPath(Edge<GraphElement, Double>[][] edgeMatrix) {
-        double shortestPath = 0, minDistance = Double.MAX_VALUE;
+        double shortestPath = 0;
         CountryStore cs = App.getInstance().getCompany().getCountryStore();
         GraphElement place = null;
         int counter = 0;
