@@ -48,7 +48,7 @@ class Demonstration {
     @Test
     void US204() throws IOException, SQLException {
         US204_SQL sql = new US204_SQL();
-        sql.demo(7222282);
+        sql.demo(3058855);
     }
 
     @Test
@@ -90,7 +90,7 @@ class Demonstration {
     @Test
     void US304() throws IOException, SQLException {
         US304_SQL sql = new US304_SQL();
-        sql.demo(6155496, 5);
+        sql.demo(5984631, 2);
     }
 
     @Test
@@ -102,15 +102,25 @@ class Demonstration {
     @Test
     void US306() throws IOException, SQLException {
         US306_SQL sql = new US306_SQL();
-        sql.demo("27248");
+        sql.demo("18476");
     }
 
     @Test
     void US310() throws IOException, SQLException {
         US310_SQL sql = new US310_SQL();
-        sql.demo("27248", 1, 2022);
+        sql.demo("27248", 2, 2022);
     }
 
+    @Test
+    void US309() throws IOException, SQLException {
+        US309_SQL sql = new US309_SQL();
+        sql.demo(6, "210950000", "63215", 1);
+    }
+    @Test
+    void US312() throws IOException, SQLException {
+        US312_SQL sql = new US312_SQL();
+        sql.demo(5323205, "client1");
+    }
     @Test
     void US313() throws IOException, SQLException {
         CargoManifest_SQL writter = new CargoManifest_SQL();
