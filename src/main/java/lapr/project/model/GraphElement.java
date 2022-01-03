@@ -25,6 +25,7 @@ public class GraphElement {
 
     public String getDesignation() {
         return designation;
+        
     }
 
     public float getLatitude() {
