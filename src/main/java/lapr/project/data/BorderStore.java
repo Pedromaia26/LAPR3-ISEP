@@ -66,10 +66,11 @@ public class BorderStore {
             preparedStatement.setString(1, border.getCountryname1().getName());
             preparedStatement.setString(2, border.getCountryname2().getName());
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            isBorderDynDataOnDatabase = resultSet.next();
-            resultSet.close();
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isBorderDynDataOnDatabase = resultSet.next();
+            } catch (SQLException exception){
+                exception.printStackTrace();
+            }
         } catch (SQLException exception){
             exception.printStackTrace();
         }
