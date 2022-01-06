@@ -607,8 +607,11 @@ public class MatrixGraphTest {
 
     @Test
     void transitiveClosure() throws IOException {
+        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
         BuildFreightNetworkController bfnc = new BuildFreightNetworkController();
-        bfnc.ImportDataFromDatabase();
+        icontroller.importFromDatabaseCountries();
+        icontroller.importFromDatabaseBorders();
+        icontroller.importFromDatabaseSeadists();
         bfnc.BuildFreightNetwork(3);
     }
 
