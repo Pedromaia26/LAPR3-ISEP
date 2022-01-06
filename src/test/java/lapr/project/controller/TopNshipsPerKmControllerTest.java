@@ -113,13 +113,4 @@ class TopNshipsPerKmControllerTest {
         map2.put("70", orderedlist);
         assertEquals(map2, TopNshipsPerKmController.sortByValue(map));
     }
-
-    @Test
-    public void ExceptionLineNull() throws IOException {
-        FileNotFoundException thrown = Assertions.assertThrows(FileNotFoundException.class, () -> {
-            TopNshipsPerKmController controller = new TopNshipsPerKmController();
-            controller.printNshipsMostKm("Input/null.txt");
-        });
-        Assertions.assertEquals("Input\\null.txt (O sistema não conseguiu localizar o ficheiro especificado)", thrown.getMessage());
-    }
 }
