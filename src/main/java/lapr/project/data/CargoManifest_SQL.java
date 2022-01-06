@@ -33,23 +33,27 @@ public class CargoManifest_SQL {
 
             String sql = "select container_id, container_x, container_y, container_z from container_cargoManifest where cargo_manifest_id = ? AND stage_id = 1";
 
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, cargo_id);
-            ResultSet rs = st.executeQuery();
+            try (PreparedStatement st = connection.prepareStatement(sql)) {
+                st.setInt(1, cargo_id);
+                try (ResultSet rs = st.executeQuery()) {
 
-            while (rs.next()) {
-                if (container_id != 0){
-                    data.append("\n");
+                    while (rs.next()) {
+                        if (container_id != 0) {
+                            data.append("\n");
+                        }
+                        container_id = rs.getInt(1);
+                        container_x = rs.getInt(2);
+                        container_y = rs.getInt(3);
+                        container_z = rs.getInt(4);
+                        data.append(container_id + " " + container_x + " " + container_y + " " + container_z);
+                    }
+                    FileOperation.writeToAFile("Documentation/Sprint3/ARQCP/US313/containers.txt", data);
+                }catch (SQLException exception){
+                    exception.printStackTrace();
                 }
-                container_id = rs.getInt(1);
-                container_x = rs.getInt(2);
-                container_y = rs.getInt(3);
-                container_z = rs.getInt(4);
-                data.append(container_id + " " + container_x + " " + container_y + " " + container_z);
+            }catch (SQLException exception){
+                exception.printStackTrace();
             }
-            FileOperation.writeToAFile("Documentation/Sprint3/ARQCP/US313/containers.txt", data);
-            rs.close();
-            st.close();
 
         }catch(Exception e) {
             System.out.println("Something went wrong!");

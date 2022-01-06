@@ -23,10 +23,7 @@ public class US205_SQL {
     }
 
     public void demo(int mmsi) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US205(?, ?)}");
-
-
+        try(CallableStatement statement = databaseConnection.prepareCall("{CALL US205(?, ?)}")){
             statement.setString(1, String.valueOf(mmsi));
 
             statement.registerOutParameter(2, Types.LONGVARCHAR);
@@ -38,8 +35,6 @@ public class US205_SQL {
             StringBuilder data = new StringBuilder();
             data.append(listOfContainers);
             fileOperation.writeToAFile("Output/US205_" + mmsi, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

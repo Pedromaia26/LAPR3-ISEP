@@ -19,8 +19,7 @@ public class US309_SQL {
     }
 
     public void demo(int id, String ship_mmsi, String warehouse_id, int status) throws SQLException, IOException {
-
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US309(?, ?, ?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US309(?, ?, ?, ?)}")) {
 
             statement.setInt(1, id);
             statement.setString(2, ship_mmsi);
@@ -29,6 +28,10 @@ public class US309_SQL {
 
             statement.executeUpdate();
 
-            statement.close();
+        }catch (Exception e){
+            StringBuilder data = new StringBuilder();
+            data.append(e.getMessage());
+            fileOperation.writeToAFile("Output/US309", data);
+        }
     }
 }

@@ -57,19 +57,20 @@ public class SeadistStore {
     }
 
     protected boolean isSeadistOnDatabase(DatabaseConnection databaseConnection, Seadist seadist) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from seadist where from_Portid = ? AND to_Portid = ?");
-        preparedStatement.setInt(1, seadist.getFromPortId());
-        preparedStatement.setInt(2, seadist.getToPortId());
+        boolean isSeadistDynDataOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from seadist where from_Portid = ? AND to_Portid = ?")) {
+            preparedStatement.setInt(1, seadist.getFromPortId());
+            preparedStatement.setInt(2, seadist.getToPortId());
 
-        boolean isSeadistDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isSeadistDynDataOnDatabase = resultSet.next();
 
-            isSeadistDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isSeadistDynDataOnDatabase;
     }
@@ -85,22 +86,25 @@ public class SeadistStore {
 
     private void executeSeadistStatementOnDatabase(DatabaseConnection databaseConnection, Seadist seadist, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, String.valueOf(seadist.getFromPortId()));
-        saveClientPreparedStatement.setString(2, String.valueOf(seadist.getToPortId()));
-        saveClientPreparedStatement.setString(3, seadist.getFromCountryName());
-        saveClientPreparedStatement.setString(4, seadist.getToCountryName());
-        saveClientPreparedStatement.setString(5, seadist.getFromPortName());
-        saveClientPreparedStatement.setString(6, seadist.getToPortName());
-        saveClientPreparedStatement.setInt(7, seadist.getSeaDistance());
-        try{
-            saveClientPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The Seadist of the " + seadist.getToPortId() + " was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveClientPreparedStatement.close();
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, String.valueOf(seadist.getFromPortId()));
+            saveClientPreparedStatement.setString(2, String.valueOf(seadist.getToPortId()));
+            saveClientPreparedStatement.setString(3, seadist.getFromCountryName());
+            saveClientPreparedStatement.setString(4, seadist.getToCountryName());
+            saveClientPreparedStatement.setString(5, seadist.getFromPortName());
+            saveClientPreparedStatement.setString(6, seadist.getToPortName());
+            saveClientPreparedStatement.setInt(7, seadist.getSeaDistance());
+            try {
+                saveClientPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The Seadist of the " + seadist.getToPortId() + " was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveClientPreparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 }

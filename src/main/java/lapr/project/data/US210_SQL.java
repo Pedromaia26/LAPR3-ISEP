@@ -23,10 +23,7 @@ public class US210_SQL {
     }
 
     public void demo() throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US210(?)}");
-
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US210(?)}")){
             statement.registerOutParameter(1, Types.LONGVARCHAR);
 
             statement.executeUpdate();
@@ -36,8 +33,6 @@ public class US210_SQL {
             StringBuilder data = new StringBuilder();
             data.append(listOfShips);
             fileOperation.writeToAFile("Output/US210", data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

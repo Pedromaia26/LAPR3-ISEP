@@ -21,9 +21,7 @@ public class US304_SQL {
     }
 
     public void demo(int container, int cargoManifest) throws SQLException, IOException {
-        try {
-
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US304(?, ?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US304(?, ?, ?)}")){
 
             statement.setString(1, String.valueOf(container));
 
@@ -38,8 +36,6 @@ public class US304_SQL {
             StringBuilder data = new StringBuilder();
             data.append(auditTrail);
             fileOperation.writeToAFile("Output/US304_" + container + "_" +  cargoManifest, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

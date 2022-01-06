@@ -21,9 +21,7 @@ public class US310_SQL {
     }
 
     public void demo(String portId, int month, int year) throws SQLException, IOException {
-        try {
-
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US310(?, ?, ?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US310(?, ?, ?, ?)}")){
 
             statement.setString(1, portId);
             statement.setInt(2, month);
@@ -38,8 +36,6 @@ public class US310_SQL {
             StringBuilder data = new StringBuilder();
             data.append(occRate);
             fileOperation.writeToAFile("Output/US310_" + portId, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

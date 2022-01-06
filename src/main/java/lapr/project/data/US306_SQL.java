@@ -21,9 +21,7 @@ public class US306_SQL {
     }
 
     public void demo(String portId) throws SQLException, IOException {
-        try {
-
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US306(?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US306(?, ?)}")){
 
             statement.setString(1, portId);
 
@@ -36,8 +34,6 @@ public class US306_SQL {
             StringBuilder data = new StringBuilder();
             data.append(occRate);
             fileOperation.writeToAFile("Output/US306_" + portId, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

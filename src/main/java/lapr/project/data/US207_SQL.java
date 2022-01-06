@@ -24,10 +24,7 @@ public class US207_SQL {
     }
 
     public void demo(int mmsi, int year) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US207(?, ?, ?, ?)}");
-
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US207(?, ?, ?, ?)}")){
             statement.setString(1, String.valueOf(mmsi));
 
             statement.setInt(2, year);
@@ -46,8 +43,6 @@ public class US207_SQL {
             data.append("Number of cargo manifests: " + numberOfCargoManifest + "\n");
             data.append("Number of containers per cargo manifest: " + avgContainer + "\n");
             fileOperation.writeToAFile("Output/US207_" + mmsi, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

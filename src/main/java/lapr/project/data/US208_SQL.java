@@ -23,10 +23,7 @@ public class US208_SQL {
     }
 
     public void demo(int mmsi, int cargoid) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US208(?, ?, ?)}");
-
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US208(?, ?, ?)}")){
             statement.setString(1, String.valueOf(mmsi));
 
             statement.setInt(2, cargoid);
@@ -40,8 +37,6 @@ public class US208_SQL {
             StringBuilder data = new StringBuilder();
             data.append(ocRate);
             fileOperation.writeToAFile("Output/US208_" + mmsi, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

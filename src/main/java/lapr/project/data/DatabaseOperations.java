@@ -48,50 +48,54 @@ public class DatabaseOperations {
 
     private void executeShipStatementOnDatabase(DatabaseConnection databaseConnection, Ship ship, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        if (num_user_id != 3) num_user_id++;
-        else num_user_id = 1;
+         try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+             if (num_user_id != 3) num_user_id++;
+             else num_user_id = 1;
 
-        saveClientPreparedStatement.setString(1, ship.getShipName());
-        saveClientPreparedStatement.setString(2, ship.getImo());
-        saveClientPreparedStatement.setInt(3, ship.getGenerators());
-        saveClientPreparedStatement.setInt(4, ship.getGenertorPowerOutput());
-        saveClientPreparedStatement.setString(5, ship.getCallSign());
-        saveClientPreparedStatement.setString(6, ship.getVesselType());
-        saveClientPreparedStatement.setFloat(7, ship.getLength());
-        saveClientPreparedStatement.setFloat(8, ship.getWidth());
-        saveClientPreparedStatement.setInt(9, ship.getCapacity());
-        saveClientPreparedStatement.setInt(10, 10);
-        saveClientPreparedStatement.setInt(11, 10);
-        saveClientPreparedStatement.setInt(12, 10);
-        saveClientPreparedStatement.setFloat(13, ship.getDraft());
-        saveClientPreparedStatement.setString(14, "shipcaptain" + num_user_id);
-        try{
-            saveClientPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The Ship with the " + ship.getMmsi() + " MMSI code was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveClientPreparedStatement.close();
-        }
+             saveClientPreparedStatement.setString(1, ship.getShipName());
+             saveClientPreparedStatement.setString(2, ship.getImo());
+             saveClientPreparedStatement.setInt(3, ship.getGenerators());
+             saveClientPreparedStatement.setInt(4, ship.getGenertorPowerOutput());
+             saveClientPreparedStatement.setString(5, ship.getCallSign());
+             saveClientPreparedStatement.setString(6, ship.getVesselType());
+             saveClientPreparedStatement.setFloat(7, ship.getLength());
+             saveClientPreparedStatement.setFloat(8, ship.getWidth());
+             saveClientPreparedStatement.setInt(9, ship.getCapacity());
+             saveClientPreparedStatement.setInt(10, 10);
+             saveClientPreparedStatement.setInt(11, 10);
+             saveClientPreparedStatement.setInt(12, 10);
+             saveClientPreparedStatement.setFloat(13, ship.getDraft());
+             saveClientPreparedStatement.setString(14, "shipcaptain" + num_user_id);
+             try {
+                 saveClientPreparedStatement.executeUpdate();
+             } catch (SQLException e) {
+                 e.printStackTrace();
+                 System.out.println("The Ship with the " + ship.getMmsi() + " MMSI code was not imported/updated.");
+                 databaseConnection.registerError(e);
+             } finally {
+                 saveClientPreparedStatement.close();
+             }
+         } catch (SQLException exception){
+             exception.printStackTrace();
+         }
     }
 
     protected boolean isShipOnDatabase(DatabaseConnection databaseConnection, Ship ship) throws SQLException {
-        PreparedStatement preparedStatement =
-                databaseConnection.getConnection().prepareStatement("select * from ship where mmsi = ?");
+        boolean isShipOnDatabase = false;
+        try( PreparedStatement preparedStatement =  databaseConnection.getConnection().prepareStatement("select * from ship where mmsi = ?")) {
 
-        preparedStatement.setString(1, String.valueOf(ship.getMmsi()));
+            preparedStatement.setString(1, String.valueOf(ship.getMmsi()));
 
-        boolean isShipOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isShipOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isShipOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isShipOnDatabase;
     }
@@ -128,19 +132,21 @@ public class DatabaseOperations {
     }
 
     protected boolean isShipDynDataOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String shipMmsi) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from ship_positioning_data where base_date_time = ?");
-        Timestamp ts = new Timestamp(shipDynData.getBaseDateTime().getTime());
-        preparedStatement.setTimestamp(1, ts);
+        boolean isShipDynDataOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from ship_positioning_data where base_date_time = ?")) {
+            Timestamp ts = new Timestamp(shipDynData.getBaseDateTime().getTime());
+            preparedStatement.setTimestamp(1, ts);
 
-        boolean isShipDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isShipDynDataOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isShipDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isShipDynDataOnDatabase;
     }
@@ -154,25 +160,28 @@ public class DatabaseOperations {
     private void executeShipDynDataUpdateStatementOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String sqlCommand, String shipMmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         Timestamp ts = new Timestamp(shipDynData.getBaseDateTime().getTime());
-        PreparedStatement saveShipDynDataPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveShipDynDataPreparedStatement.setFloat(1, Float.parseFloat(shipDynData.getLatitude()));
-        saveShipDynDataPreparedStatement.setFloat(2, Float.parseFloat(shipDynData.getLongitude()));
-        saveShipDynDataPreparedStatement.setFloat(3, shipDynData.getSog());
-        saveShipDynDataPreparedStatement.setFloat(4, shipDynData.getCog());
-        saveShipDynDataPreparedStatement.setString(5, shipDynData.getHeading());
-        saveShipDynDataPreparedStatement.setFloat(6, shipDynData.getPosition());
-        saveShipDynDataPreparedStatement.setString(7, shipDynData.getTransceiver());
-        saveShipDynDataPreparedStatement.setString(8, shipDynData.getCargo());
-        saveShipDynDataPreparedStatement.setString(9, shipMmsi);
-        saveShipDynDataPreparedStatement.setTimestamp(10, ts);
-        try{
-            saveShipDynDataPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveShipDynDataPreparedStatement.close();
+        try (PreparedStatement saveShipDynDataPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveShipDynDataPreparedStatement.setFloat(1, Float.parseFloat(shipDynData.getLatitude()));
+            saveShipDynDataPreparedStatement.setFloat(2, Float.parseFloat(shipDynData.getLongitude()));
+            saveShipDynDataPreparedStatement.setFloat(3, shipDynData.getSog());
+            saveShipDynDataPreparedStatement.setFloat(4, shipDynData.getCog());
+            saveShipDynDataPreparedStatement.setString(5, shipDynData.getHeading());
+            saveShipDynDataPreparedStatement.setFloat(6, shipDynData.getPosition());
+            saveShipDynDataPreparedStatement.setString(7, shipDynData.getTransceiver());
+            saveShipDynDataPreparedStatement.setString(8, shipDynData.getCargo());
+            saveShipDynDataPreparedStatement.setString(9, shipMmsi);
+            saveShipDynDataPreparedStatement.setTimestamp(10, ts);
+            try {
+                saveShipDynDataPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveShipDynDataPreparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 
@@ -186,25 +195,28 @@ public class DatabaseOperations {
     private void executeShipDynDataStatementOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String sqlCommand, String shipMmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
         Timestamp ts = new Timestamp(shipDynData.getBaseDateTime().getTime());
-        PreparedStatement saveShipDynDataPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveShipDynDataPreparedStatement.setTimestamp(1, ts);
-        saveShipDynDataPreparedStatement.setFloat(2, Float.parseFloat(shipDynData.getLatitude()));
-        saveShipDynDataPreparedStatement.setFloat(3, Float.parseFloat(shipDynData.getLongitude()));
-        saveShipDynDataPreparedStatement.setFloat(4, shipDynData.getSog());
-        saveShipDynDataPreparedStatement.setFloat(5, shipDynData.getCog());
-        saveShipDynDataPreparedStatement.setString(6, shipDynData.getHeading());
-        saveShipDynDataPreparedStatement.setFloat(7, shipDynData.getPosition());
-        saveShipDynDataPreparedStatement.setString(8, shipDynData.getTransceiver());
-        saveShipDynDataPreparedStatement.setString(9, shipDynData.getCargo());
-        saveShipDynDataPreparedStatement.setString(10, shipMmsi);
-        try{
-            saveShipDynDataPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveShipDynDataPreparedStatement.close();
+        try (PreparedStatement saveShipDynDataPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveShipDynDataPreparedStatement.setTimestamp(1, ts);
+            saveShipDynDataPreparedStatement.setFloat(2, Float.parseFloat(shipDynData.getLatitude()));
+            saveShipDynDataPreparedStatement.setFloat(3, Float.parseFloat(shipDynData.getLongitude()));
+            saveShipDynDataPreparedStatement.setFloat(4, shipDynData.getSog());
+            saveShipDynDataPreparedStatement.setFloat(5, shipDynData.getCog());
+            saveShipDynDataPreparedStatement.setString(6, shipDynData.getHeading());
+            saveShipDynDataPreparedStatement.setFloat(7, shipDynData.getPosition());
+            saveShipDynDataPreparedStatement.setString(8, shipDynData.getTransceiver());
+            saveShipDynDataPreparedStatement.setString(9, shipDynData.getCargo());
+            saveShipDynDataPreparedStatement.setString(10, shipMmsi);
+            try {
+                saveShipDynDataPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveShipDynDataPreparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 
@@ -243,39 +255,42 @@ public class DatabaseOperations {
 
     private void executePortStatementOnDatabase(DatabaseConnection databaseConnection, Port port, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, String.valueOf(port.getCode()));
-        saveClientPreparedStatement.setString(2, port.getName());
-        saveClientPreparedStatement.setFloat(3, port.getLatitude());
-        saveClientPreparedStatement.setFloat(4, port.getLongitude());
-        saveClientPreparedStatement.setInt(5, port.getDocking_capacity());
-        saveClientPreparedStatement.setInt(6, port.getDocking_occupancy());
-        try{
-            saveClientPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The Port with the name of " + port.getName() + " was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveClientPreparedStatement.close();
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, String.valueOf(port.getCode()));
+            saveClientPreparedStatement.setString(2, port.getName());
+            saveClientPreparedStatement.setFloat(3, port.getLatitude());
+            saveClientPreparedStatement.setFloat(4, port.getLongitude());
+            saveClientPreparedStatement.setInt(5, port.getDocking_capacity());
+            saveClientPreparedStatement.setInt(6, port.getDocking_occupancy());
+            try {
+                saveClientPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The Port with the name of " + port.getName() + " was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveClientPreparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 
     protected boolean isPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        PreparedStatement preparedStatement =
-                databaseConnection.getConnection().prepareStatement("select * from port where id = ?");
+        boolean isPortOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from port where id = ?")) {
 
-        preparedStatement.setString(1, String.valueOf(port.getCode()));
+            preparedStatement.setString(1, String.valueOf(port.getCode()));
 
-        boolean isPortOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isPortOnDatabase = resultSet.next();
 
-            isPortOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isPortOnDatabase;
     }
@@ -312,21 +327,21 @@ public class DatabaseOperations {
     }
 
     protected boolean isLocationOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        PreparedStatement preparedStatement =
-                databaseConnection.getConnection().prepareStatement("select * from location where latitude = ? and longitude = ?");
+        boolean isPortOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from location where latitude = ? and longitude = ?")) {
 
-        preparedStatement.setFloat(1, port.getLatitude());
-        preparedStatement.setFloat(2, port.getLongitude());
+            preparedStatement.setFloat(1, port.getLatitude());
+            preparedStatement.setFloat(2, port.getLongitude());
 
-        boolean isPortOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isPortOnDatabase = resultSet.next();
 
-            isPortOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isPortOnDatabase;
     }
@@ -346,19 +361,22 @@ public class DatabaseOperations {
 
     private void executeLocationStatementOnDatabase(DatabaseConnection databaseConnection, Port port, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, port.getCountry().getName());
-        saveClientPreparedStatement.setFloat(2, port.getLatitude());
-        saveClientPreparedStatement.setFloat(3, port.getLongitude());
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, port.getCountry().getName());
+            saveClientPreparedStatement.setFloat(2, port.getLatitude());
+            saveClientPreparedStatement.setFloat(3, port.getLongitude());
 
-        try{
-            saveClientPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The Location of the " + port.getName() + " was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveClientPreparedStatement.close();
+            try {
+                saveClientPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The Location of the " + port.getName() + " was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveClientPreparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 
@@ -370,18 +388,17 @@ public class DatabaseOperations {
 
             String sql = "select * from country";
 
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            try (ResultSet rs = connection.prepareStatement(sql).executeQuery()) {
 
 
-            while (rs.next()) {
-                Country country = new Country(rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(1) , rs.getFloat(5), rs.getString(6), rs.getFloat(7), rs.getFloat(8));
-                App.getInstance().getCompany().getCountryStore().addCountry(country);
+                while (rs.next()) {
+                    Country country = new Country(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(1), rs.getFloat(5), rs.getString(6), rs.getFloat(7), rs.getFloat(8));
+                    App.getInstance().getCompany().getCountryStore().addCountry(country);
 
+                }
+            } catch (SQLException exception){
+                exception.printStackTrace();
             }
-            rs.close();
-            st.close();
-
         }catch(Exception e) {
             System.out.println("Something went wrong!");
         }
@@ -396,18 +413,15 @@ public class DatabaseOperations {
 
             String sql = "select * from border";
 
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            try (ResultSet rs = connection.prepareStatement(sql).executeQuery()) {
+                while (rs.next()) {
+                    Border border = new Border(App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(1)), App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(2)));
+                    App.getInstance().getCompany().getBorderStore().addBorder(border);
 
-
-            while (rs.next()) {
-                Border border = new Border(App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(1)), App.getInstance().getCompany().getCountryStore().getCountry(rs.getString(2)));
-                App.getInstance().getCompany().getBorderStore().addBorder(border);
-
+                }
+            } catch (SQLException exception){
+                exception.printStackTrace();
             }
-            rs.close();
-            st.close();
-
         }catch(Exception e) {
             System.out.println("Something went wrong!");
         }
@@ -422,17 +436,16 @@ public class DatabaseOperations {
 
             String sql = "select * from seadist";
 
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            try (ResultSet rs = connection.prepareStatement(sql).executeQuery()) {
 
 
-            while (rs.next()) {
-                Seadist seadist = new Seadist(rs.getString(3), Integer.parseInt(rs.getString(2)), rs.getString(5), rs.getString(4), Integer.parseInt(rs.getString(2)), rs.getString(6), rs.getInt(7));
-                App.getInstance().getCompany().getSeadistStore().addSeadist(seadist);
+                while (rs.next()) {
+                    Seadist seadist = new Seadist(rs.getString(3), Integer.parseInt(rs.getString(2)), rs.getString(5), rs.getString(4), Integer.parseInt(rs.getString(2)), rs.getString(6), rs.getInt(7));
+                    App.getInstance().getCompany().getSeadistStore().addSeadist(seadist);
+                }
+            } catch (SQLException exception){
+                exception.printStackTrace();
             }
-            rs.close();
-            st.close();
-
         }catch(Exception e) {
             System.out.println("Something went wrong!");
         }

@@ -94,18 +94,20 @@ public class CountryStore{
     }
 
     protected boolean isCountryOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?");
-        preparedStatement.setString(1, country.getName());
+        boolean isShipDynDataOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?")) {
+            preparedStatement.setString(1, country.getName());
 
-        boolean isShipDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isShipDynDataOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isShipDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isShipDynDataOnDatabase;
     }
@@ -118,32 +120,37 @@ public class CountryStore{
 
     private void executeCountryUpdateStatementOnDatabase(DatabaseConnection databaseConnection, Country country, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, country.getContinent());
-        saveClientPreparedStatement.setString(2, country.getAlpha2_code());
-        saveClientPreparedStatement.setString(3, country.getAlpha3_code());
-        saveClientPreparedStatement.setFloat(4, country.getPopulation());
-        saveClientPreparedStatement.setString(5, country.getCapital());
-        saveClientPreparedStatement.setFloat(6, country.getLatitude());
-        saveClientPreparedStatement.setFloat(7, country.getLongitude());
-        saveClientPreparedStatement.setString(8, country.getName());
-        saveClientPreparedStatement.executeUpdate();
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, country.getContinent());
+            saveClientPreparedStatement.setString(2, country.getAlpha2_code());
+            saveClientPreparedStatement.setString(3, country.getAlpha3_code());
+            saveClientPreparedStatement.setFloat(4, country.getPopulation());
+            saveClientPreparedStatement.setString(5, country.getCapital());
+            saveClientPreparedStatement.setFloat(6, country.getLatitude());
+            saveClientPreparedStatement.setFloat(7, country.getLongitude());
+            saveClientPreparedStatement.setString(8, country.getName());
+            saveClientPreparedStatement.executeUpdate();
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     protected boolean isLocationOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from location where latitude = ? AND longitude = ?");
-        preparedStatement.setFloat(1, country.getLatitude());
-        preparedStatement.setFloat(2, country.getLongitude());
+        boolean isLocationDynDataOnDatabase = false;
+        try(PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from location where latitude = ? AND longitude = ?")) {
+            preparedStatement.setFloat(1, country.getLatitude());
+            preparedStatement.setFloat(2, country.getLongitude());
 
-        boolean isLocationDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isLocationDynDataOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isLocationDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } finally {
+                preparedStatement.close();
+            }
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isLocationDynDataOnDatabase;
     }
@@ -168,24 +175,30 @@ public class CountryStore{
 
     private void executeCountryStatementOnDatabase(DatabaseConnection databaseConnection, Country country, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, country.getName());
-        saveClientPreparedStatement.setString(2, country.getContinent());
-        saveClientPreparedStatement.setString(3, country.getAlpha2_code());
-        saveClientPreparedStatement.setString(4, country.getAlpha3_code());
-        saveClientPreparedStatement.setFloat(5, country.getPopulation());
-        saveClientPreparedStatement.setString(6, country.getCapital());
-        saveClientPreparedStatement.setFloat(7, country.getLatitude());
-        saveClientPreparedStatement.setFloat(8, country.getLongitude());
-        saveClientPreparedStatement.executeUpdate();
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, country.getName());
+            saveClientPreparedStatement.setString(2, country.getContinent());
+            saveClientPreparedStatement.setString(3, country.getAlpha2_code());
+            saveClientPreparedStatement.setString(4, country.getAlpha3_code());
+            saveClientPreparedStatement.setFloat(5, country.getPopulation());
+            saveClientPreparedStatement.setString(6, country.getCapital());
+            saveClientPreparedStatement.setFloat(7, country.getLatitude());
+            saveClientPreparedStatement.setFloat(8, country.getLongitude());
+            saveClientPreparedStatement.executeUpdate();
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     private void executeLocationStatementOnDatabase(DatabaseConnection databaseConnection, Country country, String sqlCommand) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setFloat(1, country.getLatitude());
-        saveClientPreparedStatement.setFloat(2, country.getLongitude());
-        saveClientPreparedStatement.setString(3, country.getName());
-        saveClientPreparedStatement.executeUpdate();
+        try (PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setFloat(1, country.getLatitude());
+            saveClientPreparedStatement.setFloat(2, country.getLongitude());
+            saveClientPreparedStatement.setString(3, country.getName());
+            saveClientPreparedStatement.executeUpdate();
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 }

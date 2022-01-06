@@ -23,10 +23,7 @@ public class US209_SQL {
     }
 
     public void demo(int mmsi, String date) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US209(?, ?, ?)}");
-
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US209(?, ?, ?)}")){
             statement.setString(1, String.valueOf(mmsi));
 
             statement.setString(2, date);
@@ -42,8 +39,6 @@ public class US209_SQL {
             StringBuilder data = new StringBuilder();
             data.append(ocRate);
             fileOperation.writeToAFile("Output/US209_" + mmsi, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

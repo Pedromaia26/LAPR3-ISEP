@@ -27,30 +27,27 @@ public class CheckLogin_SQL {
 
             String sql = "select * from usertable";
 
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-
-
-            while (rs.next()) {
-                if (rs.getString(1).equals(username)) {
-                    exists = true;
-                    if (!rs.getString(2).equals(password)) {
-                        exists = false;
-                        break;
+            try (ResultSet rs = connection.prepareStatement(sql).executeQuery()) {
+                while (rs.next()) {
+                    if (rs.getString(1).equals(username)) {
+                        exists = true;
+                        if (!rs.getString(2).equals(password)) {
+                            exists = false;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (exists == false){
-                System.out.printf("The typed information is incorrect. Try again!\n");
-                Login newLogin = new Login();
-                newLogin.run();
-            }else {
-                App.getInstance().setUsername(username);
+                if (exists == false) {
+                    System.out.printf("The typed information is incorrect. Try again!\n");
+                    Login newLogin = new Login();
+                    newLogin.run();
+                } else {
+                    App.getInstance().setUsername(username);
+                }
+            } catch (SQLException exception){
+                exception.printStackTrace();
             }
-
-            rs.close();
-            st.close();
 
         }catch(Exception e) {
             System.out.println("Something went wrong!");

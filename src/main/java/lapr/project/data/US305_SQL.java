@@ -23,9 +23,7 @@ public class US305_SQL {
     }
 
     public void demo(String client__id, int container__id) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US305(?, ? ,?)}");
-
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US305(?, ? ,?)}")){
 
             statement.setString(1, client__id);
 
@@ -40,8 +38,6 @@ public class US305_SQL {
             StringBuilder data = new StringBuilder();
             data.append(listOfPaths);
             fileOperation.writeToAFile("Output/US305_" + client__id, data);
-
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");

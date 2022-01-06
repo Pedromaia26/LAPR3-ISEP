@@ -61,53 +61,57 @@ public class BorderStore {
     }
 
     protected boolean isBorderOnDatabase(DatabaseConnection databaseConnection, Border border) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from border where countryName1 = ? AND countryName2 = ?");
-        preparedStatement.setString(1, border.getCountryname1().getName());
-        preparedStatement.setString(2, border.getCountryname2().getName());
+        boolean isBorderDynDataOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from border where countryName1 = ? AND countryName2 = ?")) {
+            preparedStatement.setString(1, border.getCountryname1().getName());
+            preparedStatement.setString(2, border.getCountryname2().getName());
 
-        boolean isBorderDynDataOnDatabase;
-
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             isBorderDynDataOnDatabase = resultSet.next();
             resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+        } catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isBorderDynDataOnDatabase;
     }
 
     protected boolean isCountry1OnDatabase(DatabaseConnection databaseConnection, Border border) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?");
-        preparedStatement.setString(1, border.getCountryname1().getName());
+        boolean isBorderDynDataOnDatabase = false;
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?")) {
+            preparedStatement.setString(1, border.getCountryname1().getName());
 
-        boolean isBorderDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isBorderDynDataOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isBorderDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            } catch (SQLException exception){
+                exception.printStackTrace();
+            } finally {
+                preparedStatement.close();
+            }
         }
         return isBorderDynDataOnDatabase;
     }
 
     protected boolean isCountry2OnDatabase(DatabaseConnection databaseConnection, Border border) throws SQLException {
-        PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?");
-        preparedStatement.setString(1, border.getCountryname2().getName());
+        boolean isBorderDynDataOnDatabase = false;
+        try(PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from country where name = ?")) {
+            preparedStatement.setString(1, border.getCountryname2().getName());
 
-        boolean isBorderDynDataOnDatabase;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                isBorderDynDataOnDatabase = resultSet.next();
+                resultSet.close();
 
-            isBorderDynDataOnDatabase = resultSet.next();
-            resultSet.close();
-
-        } finally {
-            preparedStatement.close();
+            }catch (SQLException exception){
+                exception.printStackTrace();
+            } finally {
+                preparedStatement.close();
+            }
+        }catch (SQLException exception){
+            exception.printStackTrace();
         }
         return isBorderDynDataOnDatabase;
     }
@@ -122,20 +126,22 @@ public class BorderStore {
     }
 
     private void executeLocationStatementOnDatabase(DatabaseConnection databaseConnection, Border border, String sqlCommand) throws SQLException {
-        System.out.println(border.getCountryname1() + border.getCountryname2().getName());
         Connection connection = databaseConnection.getConnection();
-        PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand);
-        saveClientPreparedStatement.setString(1, border.getCountryname1().getName());
-        saveClientPreparedStatement.setString(2, border.getCountryname2().getName());
+        try(PreparedStatement saveClientPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveClientPreparedStatement.setString(1, border.getCountryname1().getName());
+            saveClientPreparedStatement.setString(2, border.getCountryname2().getName());
 
-        try{
-            saveClientPreparedStatement.executeUpdate();
-        } catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("The Border of the " + border.getCountryname1() + " was not imported/updated.");
-            databaseConnection.registerError(e);
-        } finally {
-            saveClientPreparedStatement.close();
+            try {
+                saveClientPreparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("The Border of the " + border.getCountryname1() + " was not imported/updated.");
+                databaseConnection.registerError(e);
+            } finally {
+                saveClientPreparedStatement.close();
+            }
+        }catch (SQLException exception){
+            exception.printStackTrace();
         }
     }
 }
