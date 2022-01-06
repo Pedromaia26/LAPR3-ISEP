@@ -1,9 +1,14 @@
-package lapr.project.data;
+package lapr.project.model;
 
 import lapr.project.controller.App;
-import lapr.project.model.*;
+import lapr.project.data.ClosenessPlacesStore;
+import lapr.project.data.CountryStore;
+import lapr.project.utils.Distances;
+import lapr.project.utils.FileOperation;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 /**
  *
@@ -15,7 +20,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
     public static final int INITIAL_CAPACITY = 10;
     public static final float RESIZE_FACTOR = 1.5F;
 
-    Edge<V,E>[][] edgeMatrix;
+    Edge<V,E> [][] edgeMatrix;
 
 
     @SuppressWarnings("unchecked")
@@ -28,7 +33,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         this(directed, INITIAL_CAPACITY);
     }
 
-    public MatrixGraph(Graph<V,E> g) {
+    public MatrixGraph(Graph <V,E> g) {
         this(g.isDirected(), g.numVertices());
         copy(g, this);
     }

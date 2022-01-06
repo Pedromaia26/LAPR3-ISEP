@@ -2,9 +2,11 @@ package lapr.project.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lapr.project.controller.App;
 import lapr.project.controller.BuildFreightNetworkController;
 import lapr.project.controller.ImportCountriesBordersSeadistsController;
-import lapr.project.data.MatrixGraph;
+import lapr.project.model.Edge;
+import lapr.project.model.Graph;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
