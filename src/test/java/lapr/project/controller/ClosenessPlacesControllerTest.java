@@ -45,6 +45,6 @@ class ClosenessPlacesControllerTest {
             }
         }
         String expected = "Europe: Leixões - 1300,00 km\nEurope: Vigo - 1500,00 km\n";
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual.replace(".", ","));
     }
 }
