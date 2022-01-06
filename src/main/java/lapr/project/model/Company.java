@@ -1,9 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.data.BorderStore;
-import lapr.project.data.ClosenessPlacesStore;
-import lapr.project.data.CountryStore;
-import lapr.project.data.SeadistStore;
+import lapr.project.data.*;
 
 public class Company {
     /**
