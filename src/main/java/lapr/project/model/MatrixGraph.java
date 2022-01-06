@@ -331,7 +331,7 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                     }
                 }
             }
-            if (place != null) {
+            if (place != null && counter != 0) {
                 ClosenessPlaces cp = new ClosenessPlaces(place, shortestPath / (counter));
                 cps.addClosenessPlaces(cp);
                 shortestPath = 0;
