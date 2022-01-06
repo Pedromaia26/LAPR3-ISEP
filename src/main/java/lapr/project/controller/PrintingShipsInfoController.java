@@ -35,15 +35,19 @@ public class PrintingShipsInfoController {
 
         data.append("----Order by number of movements ascending----\n\n");
 
-        organizeAsc();
+        printShipsInfos = organizeAsc(printShipsInfos);
 
-        printInformation();
+        for (PrintShipsInfo info : printShipsInfos){
+            data.append("MMSI: " + info.getMmsi() + " - Number of movements: " + info.getNumberofMovements() + " - Travelled distance: " + String.format("%.2f", info.getRealdistance()) + "m - Delta distance: " + String.format("%.2f", info.getDeltadistance()) + "m\n");
+        }
 
         data.append("\n----Order by travelled distance descending----\n\n");
 
-        organizeDesc();
+        printShipsInfos = organizeDesc(printShipsInfos);
 
-        printInformation();
+        for (PrintShipsInfo info : printShipsInfos){
+            data.append("MMSI: " + info.getMmsi() + " - Number of movements: " + info.getNumberofMovements() + " - Travelled distance: " + String.format("%.2f", info.getRealdistance()) + "m - Delta distance: " + String.format("%.2f", info.getDeltadistance()) + "m\n");
+        }
 
         FileOperation.writeToAFile("Output/listAllShips.txt", data);
     }
@@ -63,8 +67,8 @@ public class PrintingShipsInfoController {
         }
     }
 
-    public void organizeAsc(){
-        Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
+    public List<PrintShipsInfo> organizeAsc(List<PrintShipsInfo> list){
+        Collections.sort(list, new Comparator<PrintShipsInfo>() {
             @Override
             public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
                 if(p1.getNumberofMovements() > p2.getNumberofMovements()){
@@ -80,10 +84,11 @@ public class PrintingShipsInfoController {
                 }
             }
         });
+        return list;
     }
 
-    public void organizeDesc(){
-        Collections.sort(printShipsInfos, new Comparator<PrintShipsInfo>() {
+    public List<PrintShipsInfo> organizeDesc(List<PrintShipsInfo> list){
+        Collections.sort(list, new Comparator<PrintShipsInfo>() {
             @Override
             public int compare(PrintShipsInfo p1, PrintShipsInfo p2){
                 if(p1.getRealdistance() < p2.getRealdistance()){
@@ -99,12 +104,7 @@ public class PrintingShipsInfoController {
                 }
             }
         });
-    }
-
-    public void printInformation(){
-        for (PrintShipsInfo info : printShipsInfos){
-            data.append("MMSI: " + info.getMmsi() + " - Number of movements: " + info.getNumberofMovements() + " - Travelled distance: " + String.format("%.2f", info.getRealdistance()) + "m - Delta distance: " + String.format("%.2f", info.getDeltadistance()) + "m\n");
-        }
+        return list;
     }
 }
 

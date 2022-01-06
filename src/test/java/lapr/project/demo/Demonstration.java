@@ -37,7 +37,9 @@ class Demonstration {
         NearestPortController nearestPortController = new NearestPortController();
         nearestPortController.getClosestPort("Input/US202.txt");
         BuildFreightNetworkController bcontroller = new BuildFreightNetworkController();
-        bcontroller.ImportDataFromDatabase();
+        icontroller.importFromDatabaseCountries();
+        icontroller.importFromDatabaseBorders();
+        icontroller.importFromDatabaseSeadists();
         bcontroller.BuildFreightNetwork(3);
         ColourMapController ccontroller = new ColourMapController();
         ccontroller.ColourMap();
@@ -124,6 +126,6 @@ class Demonstration {
     @Test
     void US313() throws IOException, SQLException {
         CargoManifest_SQL writter = new CargoManifest_SQL();
-        writter.demo(29);
+        writter.demo(3);
     }
 }

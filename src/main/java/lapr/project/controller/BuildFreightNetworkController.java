@@ -20,15 +20,6 @@ public class BuildFreightNetworkController {
         this.company = App.getInstance().getCompany();
     }
 
-    public void ImportDataFromDatabase() throws IOException {
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController(company);
-        icontroller.importFromDatabaseCountries();
-        ImportPortsController importPortsController = new ImportPortsController();
-        importPortsController.importFromCSV("bports.csv");
-        icontroller.importFromDatabaseBorders();
-        icontroller.importFromDatabaseSeadists();
-    }
-
     public void BuildFreightNetwork(int n) throws IOException {
         List<GraphElement> listCapitals = new ArrayList<>();
         List<GraphElement> listPorts = new ArrayList<>();
