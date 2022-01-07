@@ -3,7 +3,7 @@ package lapr.project.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lapr.project.data.BuildFreightNetworkController;
-import lapr.project.data.ImportCountriesBordersSeadistsController;
+import lapr.project.controller.ImportCountriesBordersSeadistsController;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
