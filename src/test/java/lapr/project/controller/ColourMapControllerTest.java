@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
-import lapr.project.data.BuildFreightNetworkController;
 import lapr.project.model.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

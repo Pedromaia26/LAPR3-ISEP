@@ -1,6 +1,5 @@
-package lapr.project.data;
+package lapr.project.controller;
 
-import lapr.project.controller.App;
 import lapr.project.model.*;
 import lapr.project.utils.Distances;
 import lapr.project.utils.FileOperation;
