@@ -23,9 +23,6 @@ public class BuildFreightNetworkController {
     public void BuildFreightNetwork(int n) throws IOException {
         List<GraphElement> listCapitals = new ArrayList<>();
         List<GraphElement> listPorts = new ArrayList<>();
-        List<String> closestsPortesTaken = new ArrayList<>();
-        double minDistance = 0;
-        GraphElement elementProx2 = null;
         MatrixGraph<GraphElement, Double> graph = new MatrixGraph<>(true);
         for (Country country : company.getCountryStore().getCountries()){ //Adiciona capitais
             listCapitals.add(new GraphElement(country));
@@ -34,6 +31,28 @@ public class BuildFreightNetworkController {
             listPorts.add(new GraphElement(port));
         }
 
+        CapitalsConnection(listCapitals, graph);
+
+        PortsConnection(listPorts, graph);
+
+        PortCapitalConnection(listCapitals, listPorts, graph);
+
+        nClostestPorts(listPorts, graph, n);
+
+        company.setMatrixGraph(graph);
+        StringBuilder data = new StringBuilder();
+        int i = 1;
+        for (GraphElement element : (List<GraphElement>)graph.vertices()){
+            data.append(i + " - " + element.getDesignation() + "\n");
+            i++;
+        }
+        data.append(graph);
+        FileOperation.writeToAFile("Output/US301", data);
+        graph.transitiveClosure();
+
+    }
+
+    public void CapitalsConnection(List<GraphElement> listCapitals, MatrixGraph<GraphElement, Double> graph){
         for (GraphElement element: listCapitals){ //Liga todas as capitais cujos países fazem fronteiras
             for (Country country : company.getBorderStore().getBordersCountry(element.getCountry())){
                 GraphElement element2 = new GraphElement(country);
@@ -41,7 +60,9 @@ public class BuildFreightNetworkController {
                 graph.addEdge(element2, element, Distances.distFrom(element.getLatitude(), element.getLongitude(), element2.getLatitude(), element2.getLongitude())/1000);
             }
         }
+    }
 
+    public void PortsConnection(List<GraphElement> listPorts, MatrixGraph<GraphElement, Double> graph){
         for (GraphElement element: listPorts) { //Liga os portos do mesmo país
             for (Port port : (List<Port>) company.getKdtPorts().inOrder()) {
                 if (element.getCountry().equals(port.getCountry().getName()) && !element.getDesignation().equals(port.getName())) {
@@ -58,7 +79,11 @@ public class BuildFreightNetworkController {
                 }
             }
         }
+    }
 
+    public void PortCapitalConnection(List<GraphElement> listCapitals, List<GraphElement> listPorts, MatrixGraph<GraphElement, Double> graph){
+        double minDistance = 0;
+        GraphElement elementProx2 = null;
         for (GraphElement element : listCapitals){ //Liga o porto mais próximo à capital
             minDistance = 0;
             elementProx2 = null;
@@ -73,8 +98,12 @@ public class BuildFreightNetworkController {
                 graph.addEdge(elementProx2, element, minDistance);
             }
         }
-
-        for (GraphElement element: listPorts) { //Liga os n portos mais próximos de um porto de qualquer país
+    }
+    public void nClostestPorts(List<GraphElement> listPorts, MatrixGraph<GraphElement, Double> graph, int n) {
+        List<String> closestsPortesTaken = new ArrayList<>();
+        double minDistance = 0;
+        GraphElement elementProx2 = null;
+        for (GraphElement element : listPorts) { //Liga os n portos mais próximos de um porto de qualquer país
             closestsPortesTaken = new ArrayList<>();
             for (int i = 0; i < n; i++) {
                 minDistance = 0;
@@ -97,18 +126,6 @@ public class BuildFreightNetworkController {
                 closestsPortesTaken.add(elementProx2.getDesignation());
             }
         }
-        company.setMatrixGraph(graph);
-        StringBuilder data = new StringBuilder();
-        int i = 1;
-        for (GraphElement element : (List<GraphElement>)graph.vertices()){
-            data.append(i + " - " + element.getDesignation() + "\n");
-            i++;
-        }
-        data.append(graph);
-        FileOperation.writeToAFile("Output/US301", data);
-        graph.transitiveClosure();
-
     }
-
 
 }
