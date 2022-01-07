@@ -60,37 +60,6 @@ class BuildFreightNetworkControllerTest {
     }
 
     @Test
-    void BuildFreightNetwork5() throws IOException {
-        c.getCountryStore().addCountry(country1);
-        c.getCountryStore().addCountry(country2);
-        c.getCountryStore().addCountry(country3);
-        c.getCountryStore().addCountry(country4);
-        c.getCountryStore().addCountry(country5);
-        c.getBorderStore().addBorder(border1);
-        c.getBorderStore().addBorder(border2);
-        c.getBorderStore().addBorder(border3);
-        c.getBorderStore().addBorder(border4);
-        c.getBorderStore().addBorder(border5);
-        Port port1 = new Port("12345", "Port1", "Europa", "Portugal", "21", "25");
-        Port port2 = new Port("12346", "Port2", "Europa", "Portugal", "23", "26");
-        Port port3 = new Port("12347", "Port3", "Europa", "Portugal", "21", "27");
-        Port port4 = new Port("12348", "Port4", "Europa", "Portugal", "22", "28");
-        Port port5 = new Port("12349", "Port5", "Europa", "Portugal", "24", "25");
-        List<KDTPort.Node<Port>> lista = new ArrayList<>();
-        lista.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
-        lista.add(new KDTPort.Node<>(port2, port2.getLatitude(), port2.getLongitude()));
-        lista.add(new KDTPort.Node<>(port3, port3.getLatitude(), port3.getLongitude()));
-        lista.add(new KDTPort.Node<>(port4, port4.getLatitude(), port4.getLongitude()));
-        lista.add(new KDTPort.Node<>(port5, port5.getLatitude(), port5.getLongitude()));
-        c.getKdtPorts().buildTree(lista);
-        c.getSeadistStore().addSeadist(seadist1);
-        c.getSeadistStore().addSeadist(seadist2);
-        c.getSeadistStore().addSeadist(seadist3);
-        c.getSeadistStore().addSeadist(seadist4);
-        controller.BuildFreightNetwork(5);
-    }
-
-    @Test
     void CapitalsConnection() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
@@ -214,11 +183,11 @@ class BuildFreightNetworkControllerTest {
         c.getBorderStore().addBorder(border3);
         c.getBorderStore().addBorder(border4);
         c.getBorderStore().addBorder(border5);
-        Port port1 = new Port("12345", "Port1", "Europa", "Portugal", "21", "25");
-        Port port2 = new Port("12346", "Port2", "Europa", "Portugal", "23", "26");
-        Port port3 = new Port("12347", "Port3", "Europa", "Portugal", "21", "27");
-        Port port4 = new Port("12348", "Port4", "Europa", "Portugal", "22", "28");
-        Port port5 = new Port("12349", "Port5", "Europa", "Portugal", "24", "25");
+        Port port1 = new Port("12345", "Port1", "Europa", "Portugal", "25", "25");
+        Port port2 = new Port("12346", "Port2", "Europa", "Espanha", "22", "26");
+        Port port3 = new Port("12347", "Port3", "Europa", "Franca", "23", "22");
+        Port port4 = new Port("12348", "Port4", "Europa", "Suica", "30", "28");
+        Port port5 = new Port("12349", "Port5", "Europa", "Alemanha", "21", "29");
         List<KDTPort.Node<Port>> lista = new ArrayList<>();
         lista.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
         lista.add(new KDTPort.Node<>(port2, port2.getLatitude(), port2.getLongitude()));
