@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class BorderStore {
 
-    private List<Border> borders = new ArrayList<>();
+    private final List<Border> borders = new ArrayList<>();
 
     public boolean addBorder(Border border) {
         if (!this.borders.contains(border))
@@ -118,7 +118,6 @@ public class BorderStore {
     }
 
     private void insertBorderOnDatabase(DatabaseConnection databaseConnection, Border border) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into border(countryName1, countryName2) values (?, ?)";
 
@@ -136,7 +135,6 @@ public class BorderStore {
                 saveClientPreparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("The Border of the " + border.getCountryname1() + " was not imported/updated.");
                 databaseConnection.registerError(e);
             } finally {
                 saveClientPreparedStatement.close();

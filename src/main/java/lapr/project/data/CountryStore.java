@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class CountryStore{
 
-    private List<Country> Countries = new ArrayList<>();
+    private final List<Country> Countries = new ArrayList<>();
 
     public boolean addCountry(Country country){
         if (country == null){
@@ -85,7 +85,7 @@ public class CountryStore{
         if (isCountryOnDatabase(databaseConnection, country))
             updateCountryOnDatabase(databaseConnection, country);
         else
-        insertCountryOnDatabase(databaseConnection, country);
+            insertCountryOnDatabase(databaseConnection, country);
     }
 
     private void saveLocationToDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
@@ -156,7 +156,6 @@ public class CountryStore{
     }
 
     private void insertCountryOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into country(name, continent, alpha2_code, alpha3_code, population, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -165,7 +164,6 @@ public class CountryStore{
     }
 
     private void insertLocationOnDatabase(DatabaseConnection databaseConnection, Country country) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into location(latitude, longitude, country_name) values (?, ?, ?)";
 

@@ -10,10 +10,7 @@ import java.sql.*;
 
 public class CargoManifest_SQL {
 
-    private DatabaseConnection databaseConnection;
-    private String container_location;
-    private FileOperation fileOperation;
-    private boolean exists = false;
+    private final DatabaseConnection databaseConnection;
 
     public CargoManifest_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection();

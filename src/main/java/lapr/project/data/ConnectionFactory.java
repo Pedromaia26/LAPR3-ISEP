@@ -16,10 +16,6 @@ import java.util.logging.Logger;
  * @author nunocastro
  */
 public class ConnectionFactory {
-    /**
-     * Logger class.
-     */
-    private static final Logger LOGGER = Logger.getLogger("MainLog");
 
     private static ConnectionFactory instance = null;
 

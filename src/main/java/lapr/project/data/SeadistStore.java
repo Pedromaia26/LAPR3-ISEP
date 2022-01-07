@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class SeadistStore {
 
-    private List<Seadist> seadists = new ArrayList<>();
+    private final List<Seadist> seadists = new ArrayList<>();
 
     public boolean addSeadist(Seadist seadist) {
         if (!this.seadists.contains(seadist))
@@ -42,7 +42,6 @@ public class SeadistStore {
             returnValue = true;
 
         } catch (SQLException ex) {
-            System.out.println(seadist.getFromPortId() + ":" + seadist.getToPortId());
             Logger.getLogger(CountryStore.class.getName())
                     .log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
@@ -76,7 +75,6 @@ public class SeadistStore {
     }
 
     private void insertSeadistOnDatabase(DatabaseConnection databaseConnection, Seadist seadist) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into seadist(from_Portid, to_Portid, from_Countryname, to_Countryname, from_Port, to_Port, sea_distance) values (?, ?, ?, ?, ?, ?, ?)";
 
