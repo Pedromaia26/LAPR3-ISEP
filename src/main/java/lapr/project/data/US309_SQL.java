@@ -10,12 +10,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class US309_SQL {
-    private Connection databaseConnection;
-    private FileOperation fileOperation;
+    private final Connection databaseConnection;
 
     public US309_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(int id, String ship_mmsi, String warehouse_id, int status) throws SQLException, IOException {
@@ -31,7 +29,7 @@ public class US309_SQL {
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append(e.getMessage());
-            fileOperation.writeToAFile("Output/US309", data);
+            FileOperation.writeToAFile("Output/US309", data);
         }
     }
 }

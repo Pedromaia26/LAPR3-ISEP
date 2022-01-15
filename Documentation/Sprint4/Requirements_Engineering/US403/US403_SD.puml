@@ -1,0 +1,150 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":ShortestDistanceGreatestLocationCircuitUI" as UI
+participant ":ShortestDistanceGreatestLocationCircuitController" as controller
+participant ":Company" as c
+participant "orig\n:GraphElement" as origElement
+participant "dest\n:GraphElement" as destElement
+participant "MatrixGraph" as mgraph
+participant "FileOperation" as fo
+participant "circuit\nArrayList<Edge>" as circuit
+participant "actualElement\n:GraphElement" as actualElement
+participant "takenElement\n:GraphElement" as takenElement
+participant "element\n:GraphElement" as Element
+participant "minDistance\n:Double" as minDistance
+participant "verticesTaken\n:ArrayList<GraphElement>" as minDistance
+participant "flag\n:Boolean" as flag
+participant "data\n:StringBuilder" as data
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to show the most efficient circuit
+
+activate UI
+
+UI -> controller: getCircuit(sourceDesignation)
+
+activate controller
+
+controller -> c: getMatrixGraph()
+
+activate c
+
+deactivate c
+
+controller -> mgraph: element = getElement(sourceDesignation)
+
+activate mgraph
+
+deactivate mgraph
+
+controller -> controller: calculateCircuit(element)
+
+activate controller
+
+controller -> takenElement**: takenElement = null
+
+controller -> actualElement**: actualElement = element
+
+controller -> takenElement**: takenElement = new Arraylist()
+
+loop !flag
+
+controller -> controller: minDistance = psitive_infinity
+
+controller -> mgraph: adjVertices(actualElement)
+
+activate mgraph
+
+deactivate mgraph
+
+loop e : adjVertices(actualElement)
+
+alt edge.distance < minDistance
+
+controller -> minDistance: mindist = edge.getDistance()
+
+activate minDistance
+
+deactivate minDistance
+
+controller -> takenElement: takenElement = e
+
+activate takenElement
+
+deactivate takenElement
+
+end
+
+end
+
+controller -> verticesTaken: add(takenElement)
+
+activate verticesTaken
+
+deactivate verticesTaken
+
+controller -> circuit: add(edge)
+
+activate circuit
+
+deactivate circuit
+
+controller -> actualElement: actualElement = takenElement
+
+activate actualElement
+
+deactivate actualElement
+
+alt takenElement = element
+
+controller -> controller: flag = true
+
+end
+
+end
+
+deactivate controller
+
+loop edge : circuit
+
+controller -> orig: orig = edge.getVOrig
+
+activate orig
+
+deactivate orig
+
+controller -> dest: dest = edge.getVDest
+
+activate dest
+
+deactivate dest
+
+controller -> data: append(orig, dest)
+
+activate data
+
+deactivate data
+
+end
+
+controller -> fo: writeToAFile(data)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml

@@ -13,14 +13,12 @@ import java.sql.Types;
 
 public class US207_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private int numberOfCargoManifest;
     private float avgContainer;
-    private FileOperation fileOperation;
 
     public US207_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(int mmsi, int year) throws SQLException, IOException {
@@ -42,11 +40,11 @@ public class US207_SQL {
             StringBuilder data = new StringBuilder();
             data.append("Number of cargo manifests: " + numberOfCargoManifest + "\n");
             data.append("Number of containers per cargo manifest: " + avgContainer + "\n");
-            fileOperation.writeToAFile("Output/US207_" + mmsi, data);
+            FileOperation.writeToAFile("Output/US207_" + mmsi, data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US207_" + mmsi, data);
+            FileOperation.writeToAFile("Output/US207_" + mmsi, data);
         }
     }
 

@@ -11,13 +11,11 @@ import java.sql.Types;
 
 public class US310_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String occRate;
-    private FileOperation fileOperation;
 
     public US310_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(String portId, int month, int year) throws SQLException, IOException {
@@ -35,11 +33,11 @@ public class US310_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(occRate);
-            fileOperation.writeToAFile("Output/US310_" + portId, data);
+            FileOperation.writeToAFile("Output/US310_" + portId, data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US310_" + portId, data);
+            FileOperation.writeToAFile("Output/US310_" + portId, data);
         }
     }
 

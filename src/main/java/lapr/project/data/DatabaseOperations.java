@@ -38,7 +38,6 @@ public class DatabaseOperations {
 
     private void insertShipOnDatabase(DatabaseConnection databaseConnection,
                                          Ship ship) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into ship(mmsi,name,imo,num_energy_gen,gen_pow_out,callsign,vessel,length,width,cap,cap_x,cap_y,cap_z,draft,userid_shipcaptain) values (" + ship.getMmsi() + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -70,7 +69,6 @@ public class DatabaseOperations {
                  saveClientPreparedStatement.executeUpdate();
              } catch (SQLException e) {
                  e.printStackTrace();
-                 System.out.println("The Ship with the " + ship.getMmsi() + " MMSI code was not imported/updated.");
                  databaseConnection.registerError(e);
              } finally {
                  saveClientPreparedStatement.close();
@@ -125,13 +123,13 @@ public class DatabaseOperations {
     }
 
     private void saveShipDynDataToDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String shipMmsi) throws SQLException {
-        if (isShipDynDataOnDatabase(databaseConnection, shipDynData, shipMmsi))
+        if (isShipDynDataOnDatabase(databaseConnection, shipDynData))
             updateShipDynDataOnDatabase(databaseConnection, shipDynData, shipMmsi);
         else
-        insertShipDynDataOnDatabase(databaseConnection, shipDynData, shipMmsi);
+            insertShipDynDataOnDatabase(databaseConnection, shipDynData, shipMmsi);
     }
 
-    protected boolean isShipDynDataOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String shipMmsi) throws SQLException {
+    protected boolean isShipDynDataOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData) throws SQLException {
         boolean isShipDynDataOnDatabase = false;
         try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement("select * from ship_positioning_data where base_date_time = ?")) {
             Timestamp ts = new Timestamp(shipDynData.getBaseDateTime().getTime());
@@ -175,7 +173,6 @@ public class DatabaseOperations {
                 saveShipDynDataPreparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
                 databaseConnection.registerError(e);
             } finally {
                 saveShipDynDataPreparedStatement.close();
@@ -186,7 +183,6 @@ public class DatabaseOperations {
     }
 
     private void insertShipDynDataOnDatabase(DatabaseConnection databaseConnection, ShipDynData shipDynData, String shipMmsi) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand = "insert into ship_positioning_data(base_date_time,latitude,longitude,sog,cog,ship_heading,ship_position,transceiver_class,cargo,ship_mmsi) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         executeShipDynDataStatementOnDatabase(databaseConnection, shipDynData, sqlCommand, shipMmsi);
@@ -210,7 +206,6 @@ public class DatabaseOperations {
                 saveShipDynDataPreparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("The ShipDynData of the ship with the " + shipMmsi + " MMSI code was not imported/updated.");
                 databaseConnection.registerError(e);
             } finally {
                 saveShipDynDataPreparedStatement.close();
@@ -246,7 +241,6 @@ public class DatabaseOperations {
     }
 
     private void insertPortOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =
                 "insert into port(id,name,location_latitude,location_longitude,docking_capacity,docking_occupancy) values (?, ?, ?, ?, ?,?)";
 
@@ -266,7 +260,6 @@ public class DatabaseOperations {
                 saveClientPreparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("The Port with the name of " + port.getName() + " was not imported/updated.");
                 databaseConnection.registerError(e);
             } finally {
                 saveClientPreparedStatement.close();
@@ -323,7 +316,7 @@ public class DatabaseOperations {
         if (isLocationOnDatabase(databaseConnection, port))
             updateLocationOnDatabase(databaseConnection, port);
         else
-        insertLocationOnDatabase(databaseConnection, port);
+            insertLocationOnDatabase(databaseConnection, port);
     }
 
     protected boolean isLocationOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
@@ -353,7 +346,6 @@ public class DatabaseOperations {
     }
 
     private void insertLocationOnDatabase(DatabaseConnection databaseConnection, Port port) throws SQLException {
-        Connection connection = databaseConnection.getConnection();
         String sqlCommand =  "insert into location(country_name,latitude,longitude) values (?, ?, ?)";
 
         executeLocationStatementOnDatabase(databaseConnection, port, sqlCommand);
@@ -370,7 +362,6 @@ public class DatabaseOperations {
                 saveClientPreparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("The Location of the " + port.getName() + " was not imported/updated.");
                 databaseConnection.registerError(e);
             } finally {
                 saveClientPreparedStatement.close();

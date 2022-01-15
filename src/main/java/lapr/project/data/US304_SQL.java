@@ -11,13 +11,11 @@ import java.sql.Types;
 
 public class US304_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String auditTrail;
-    private FileOperation fileOperation;
 
     public US304_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(int container, int cargoManifest) throws SQLException, IOException {
@@ -35,11 +33,11 @@ public class US304_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(auditTrail);
-            fileOperation.writeToAFile("Output/US304_" + container + "_" +  cargoManifest, data);
+            FileOperation.writeToAFile("Output/US304_" + container + "_" +  cargoManifest, data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US304_" + container + "_" +  cargoManifest, data);
+            FileOperation.writeToAFile("Output/US304_" + container + "_" +  cargoManifest, data);
         }
     }
 

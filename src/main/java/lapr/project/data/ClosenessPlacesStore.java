@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ClosenessPlacesStore {
 
-    private Map<String, List<ClosenessPlaces>> map = new HashMap<>();
+    private final Map<String, List<ClosenessPlaces>> map = new HashMap<>();
     private List<ClosenessPlaces> list;
     private String continent;
 

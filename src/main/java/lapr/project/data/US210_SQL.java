@@ -13,13 +13,11 @@ import java.sql.Types;
 
 public class US210_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String listOfShips;
-    private FileOperation fileOperation;
 
     public US210_SQL() throws SQLException, IOException {
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo() throws SQLException, IOException {
@@ -32,11 +30,11 @@ public class US210_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(listOfShips);
-            fileOperation.writeToAFile("Output/US210", data);
+            FileOperation.writeToAFile("Output/US210", data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US210", data);
+            FileOperation.writeToAFile("Output/US210", data);
         }
     }
 

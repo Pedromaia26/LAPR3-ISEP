@@ -10,9 +10,7 @@ import java.sql.*;
 
 public class CheckLogin_SQL {
 
-    private DatabaseConnection databaseConnection;
-    private String container_location;
-    private FileOperation fileOperation;
+    private final DatabaseConnection databaseConnection;
     private boolean exists = false;
 
     public CheckLogin_SQL() throws SQLException, IOException {
@@ -39,7 +37,7 @@ public class CheckLogin_SQL {
                 }
 
                 if (exists == false) {
-                    System.out.printf("The typed information is incorrect. Try again!\n");
+                    System.out.println("The typed information is incorrect. Try again!\n");
                     Login newLogin = new Login();
                     newLogin.run();
                 } else {

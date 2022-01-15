@@ -13,11 +13,6 @@ import java.util.logging.Logger;
 class Main {
 
     /**
-     * Logger class.
-     */
-    private static final Logger LOGGER = Logger.getLogger("MainLog");
-
-    /**
      * Private constructor to hide implicit public one.
      */
     private Main() {
