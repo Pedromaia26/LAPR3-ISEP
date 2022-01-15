@@ -66,13 +66,13 @@ class ColourMapControllerTest {
         Port port3 = new Port("12347", "Port3", "Europa", "Franca", "23", "27");
         Port port4 = new Port("12348", "Port4", "Europa", "Suica", "24", "28");
         Port port5 = new Port("12349", "Port5", "Europa", "Alemanha", "25", "29");
-        List<KDTPort.Node<Port>> lista = new ArrayList<>();
-        lista.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
-        lista.add(new KDTPort.Node<>(port2, port2.getLatitude(), port2.getLongitude()));
-        lista.add(new KDTPort.Node<>(port3, port3.getLatitude(), port3.getLongitude()));
-        lista.add(new KDTPort.Node<>(port4, port4.getLatitude(), port4.getLongitude()));
-        lista.add(new KDTPort.Node<>(port5, port5.getLatitude(), port5.getLongitude()));
-        c.getKdtPorts().buildTree(lista);
+        List<KDTPort.Node<Port>> listaa = new ArrayList<>();
+        listaa.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        listaa.add(new KDTPort.Node<>(port2, port2.getLatitude(), port2.getLongitude()));
+        listaa.add(new KDTPort.Node<>(port3, port3.getLatitude(), port3.getLongitude()));
+        listaa.add(new KDTPort.Node<>(port4, port4.getLatitude(), port4.getLongitude()));
+        listaa.add(new KDTPort.Node<>(port5, port5.getLatitude(), port5.getLongitude()));
+        c.getKdtPorts().buildTree(listaa);
         c.getSeadistStore().addSeadist(seadist1);
         c.getSeadistStore().addSeadist(seadist2);
         c.getSeadistStore().addSeadist(seadist3);
@@ -80,13 +80,13 @@ class ColourMapControllerTest {
         BuildFreightNetworkController controller = new BuildFreightNetworkController(c);
         controller.BuildFreightNetwork(0);
         ColourMapController ccontroller = new ColourMapController(c);
-        ArrayList<GraphElement> list = new ArrayList<>();
-        list.add(new GraphElement(country3));
-        list.add(new GraphElement(country2));
-        list.add(new GraphElement(country4));
-        list.add(new GraphElement(country5));
-        list.add(new GraphElement(country1));
-        assertEquals(list, ccontroller.getCountriesDegree());
+        ArrayList<GraphElement> lista = new ArrayList<>();
+        lista.add(new GraphElement(country3));
+        lista.add(new GraphElement(country2));
+        lista.add(new GraphElement(country4));
+        lista.add(new GraphElement(country5));
+        lista.add(new GraphElement(country1));
+        assertEquals(lista, ccontroller.getCountriesDegree());
     }
 
     @Test
