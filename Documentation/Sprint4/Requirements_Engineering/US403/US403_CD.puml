@@ -1,0 +1,25 @@
+@startuml
+ShortestDistanceGreatestLocationCircuitController ..>Company
+ShortestDistanceGreatestLocationCircuitController ..>MatrixGraph
+Company ..>MatrixGraph
+MatrixGraph ..>Edge
+ShortestDistanceGreatestLocationCircuitController ..>GraphElement
+Edge ..>GraphElement
+
+
+ShortestDistanceGreatestLocationCircuitController : +getCircuit(String sourceDesignation)
+ShortestDistanceGreatestLocationCircuitController : +calculateCircuit(GraphElement element)
+
+
+Company : +Company()
+Company : +getMatrixGraph()
+
+MatrixGraph : +vertices()
+MatrixGraph : +adjVertices(GraphElement element)
+
+
+GraphElement : -designation: String
+GraphElement : -country: String
+GraphElement : -latitude: float
+GraphElement : -longitude: float
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic manager" as TM
+participant ":System" as S
+activate TM
+activate S
+TM -> S: request to show the most efficient circuit
+TM <-- S: request the source of the circuit
+TM -> S: introduces the source of the circuit
+TM <-- S: shows the most efficient circuit starting\n from the source location
+deactivate S
+deactivate TM
+@enduml
