@@ -3,21 +3,18 @@ package lapr.project.demo;
 import lapr.project.controller.*;
 import lapr.project.data.*;
 import lapr.project.model.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class Demonstration {
 
     @Test
     void Demonstration() throws IOException, ParseException {
         App.getInstance().setCompany(new Company());
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromCSVCountry("countries.csv");
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");
@@ -134,4 +131,5 @@ class Demonstration {
         CargoManifest_SQL writter = new CargoManifest_SQL();
         writter.demo(3);
     }
+
 }
