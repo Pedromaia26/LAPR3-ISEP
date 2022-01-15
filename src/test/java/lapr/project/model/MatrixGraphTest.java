@@ -696,4 +696,24 @@ public class MatrixGraphTest {
         list2.add(0);
         assertEquals(list, list2);
     }
+
+    @Test
+    void shortestPath() throws IOException {
+        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        icontroller.importFromCSVCountry("countries.csv");
+        Country country1 = new Country("Europa", "PT", "PRT", "Portugal", 0.5f, "Lisboa", 20, 40);
+        Country country2 = new Country("Europa", "ES", "ESP", "Spain", 0.5f, "Madrid", 30, 20);
+        Country country3 = new Country("Europa", "FR", "FRA", "France", 0.5f, "Paris", 40, 30);
+        Country country4 = new Country("Europa", "SU", "SUI", "Switzerland", 0.5f, "Berna", 50, 10);
+        Country country5 = new Country("Europa", "GE", "GER", "Germany", 0.5f, "Berlim", 35, 25);
+        ArrayList<GraphElement> listGraph = new ArrayList<>();
+        listGraph.add(new GraphElement(country1));
+        listGraph.add(new GraphElement(country2));
+        listGraph.add(new GraphElement(country3));
+        listGraph.add(new GraphElement(country4));
+        listGraph.add(new GraphElement(country5));
+        Object[][] m = {{10d, 7d, 5d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}};
+        MatrixGraph matrix = new MatrixGraph(true, listGraph, m);
+        matrix.shortestPath(matrix.edgeMatrix);
+    }
 }

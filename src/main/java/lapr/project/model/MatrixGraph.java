@@ -316,7 +316,6 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         GraphElement place = null;
         int counter = 0;
         ClosenessPlacesStore cps = App.getInstance().getCompany().getClosenessPlaceStore();
-
         for (int i = 0; i < numVerts; i++) {
             for (int j = 0; j < numVerts; j++) {
                 if (edgeMatrix[i][j] != null) {
@@ -391,7 +390,6 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                     vertex = (GraphElement) vOrig;
                     for (Port kdt : (List<Port>) kdtPort.inOrder()) {
                         if (kdt.getName().equals(vertex.getDesignation())) {
-                            System.out.println(kdt.getName());
                             for (V vDest : graph.adjVertices(vOrig)) {
                                 keyDest = graph.key(vDest);
                                         if (!visited[keyDest] && dist[keyDest] > dist[key] + (Double) edge(vOrig, vDest).getDistance()) {
