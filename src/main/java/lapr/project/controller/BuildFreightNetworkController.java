@@ -48,7 +48,7 @@ public class BuildFreightNetworkController {
         }
         data.append(graph);
         FileOperation.writeToAFile("Output/US301", data);
-        graph.transitiveClosure();
+        graph.transitiveClosure(graph);
 
     }
 
@@ -99,7 +99,7 @@ public class BuildFreightNetworkController {
             }
         }
     }
-    public void nClostestPorts(List<GraphElement> listPorts, MatrixGraph<GraphElement, Double> graph, int n) {
+    public void nClostestPorts(List<GraphElement> listPorts, MatrixGraph<GraphElement, Double> graph, int n) throws IOException {
         List<String> closestsPortesTaken = new ArrayList<>();
         double minDistance = 0;
         GraphElement elementProx2 = null;
@@ -126,6 +126,17 @@ public class BuildFreightNetworkController {
                 closestsPortesTaken.add(elementProx2.getDesignation());
             }
         }
+
+        company.setMatrixGraph(graph);
+        StringBuilder data = new StringBuilder();
+        int i = 1;
+        for (GraphElement element : (List<GraphElement>)graph.vertices()){
+            data.append(i + " - " + element.getDesignation() + "\n");
+            i++;
+        }
+        data.append(graph);
+        FileOperation.writeToAFile("Output/US301", data);
+        graph.transitiveClosure(graph);
     }
 
 }
