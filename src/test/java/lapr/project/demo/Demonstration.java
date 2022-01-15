@@ -40,11 +40,17 @@ class Demonstration {
         icontroller.importFromDatabaseCountries();
         icontroller.importFromDatabaseBorders();
         icontroller.importFromDatabaseSeadists();
-        bcontroller.BuildFreightNetwork(3);
+        bcontroller.BuildFreightNetwork(1);
         ColourMapController ccontroller = new ColourMapController();
         ccontroller.ColourMap();
         ClosenessPlacesController cpc = new ClosenessPlacesController();
-        cpc.closenessPlacesByContinent(5);
+        cpc.closenessPlacesByContinent(3);
+        CriticalPortsController criticalPortsController = new CriticalPortsController();
+        criticalPortsController.centrality(6);
+        ShortestPathController shortestPathController = new ShortestPathController();
+        shortestPathController.shortestPath("Athens", "Paris", 3);
+        ShortestDistanceGreatestLocationCircuitController sdlccontroller = new ShortestDistanceGreatestLocationCircuitController();
+        sdlccontroller.getCircuit("Madrid");
     }
 
     @Test
