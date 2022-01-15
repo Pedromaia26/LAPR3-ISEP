@@ -2,11 +2,7 @@ package lapr.project.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lapr.project.controller.App;
-import lapr.project.controller.BuildFreightNetworkController;
-import lapr.project.controller.ImportCountriesBordersSeadistsController;
-import lapr.project.model.Edge;
-import lapr.project.model.Graph;
+import lapr.project.data.ImportCountriesBordersSeadists;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -622,7 +616,7 @@ public class MatrixGraphTest {
         listGraph.add(new GraphElement(country6));
         Object[][] m = {{10d, 7d, 5d, 1d, 1d, 2d}, {1d, 1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d, 1d}};
         MatrixGraph matrix = new MatrixGraph(true, listGraph, m);
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromDatabaseCountries();
         icontroller.importFromDatabaseBorders();
         icontroller.importFromDatabaseSeadists();
@@ -699,7 +693,7 @@ public class MatrixGraphTest {
 
     @Test
     void shortestPath() throws IOException {
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromCSVCountry("countries.csv");
         Country country1 = new Country("Europa", "PT", "PRT", "Portugal", 0.5f, "Lisboa", 20, 40);
         Country country2 = new Country("Europa", "ES", "ESP", "Spain", 0.5f, "Madrid", 30, 20);

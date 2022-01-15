@@ -1,6 +1,5 @@
 package lapr.project.data;
 
-import lapr.project.controller.ImportCountriesBordersSeadistsController;
 import lapr.project.controller.ImportPortsController;
 import lapr.project.controller.ImportShipsController;
 
@@ -9,7 +8,7 @@ import java.io.IOException;
 public class ImportDataToDatabase {
 
     public ImportDataToDatabase() throws IOException {
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         ImportShipsController controller = new ImportShipsController();
         ImportPortsController ipc = new ImportPortsController();
         icontroller.importFromCSVCountry("countries.csv");

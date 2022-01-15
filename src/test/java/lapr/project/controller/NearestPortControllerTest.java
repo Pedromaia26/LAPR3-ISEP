@@ -1,12 +1,10 @@
 package lapr.project.controller;
 
-import lapr.project.model.Company;
+import lapr.project.data.ImportCountriesBordersSeadists;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class NearestPortControllerTest {
 
@@ -14,7 +12,7 @@ class NearestPortControllerTest {
 
     @Test
     void getClosestPort() throws ParseException, IOException {
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromCSVCountry("countries.csv");
         ImportShipsController importShipsController = new ImportShipsController();
         importShipsController.importFromCSV("sships.csv");

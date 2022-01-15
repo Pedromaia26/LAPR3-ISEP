@@ -1,18 +1,15 @@
 package lapr.project.controller;
 
+import lapr.project.data.ImportCountriesBordersSeadists;
 import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ImportCountriesBordersSeadistsControllerTest {
+class ImportCountriesBordersSeadistsTest {
 
     Company c = App.getInstance().getCompany();
-    ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController(c);
+    ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists(c);
     Country country1 = new Country("Europa", "PT", "PRT", "Portugal", 0.5f, "Lisboa", 20, 40);
     Country country2 = new Country("Europa", "ES", "ESP", "Espanha", 0.5f, "Madrid", 30, 20);
     Country country3 = new Country("Europa", "FR", "FRA", "Franca", 0.5f, "Paris", 40, 30);
@@ -21,7 +18,7 @@ class ImportCountriesBordersSeadistsControllerTest {
 
     @Test
     void importFromCSV() throws IOException {
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromCSVCountry("countries.csv");
         icontroller.importFromCSVBorders("borders.csv");
         icontroller.importFromCSVSeadist("seadists.csv");

@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.data.ImportCountriesBordersSeadists;
 import lapr.project.model.Country;
 import lapr.project.model.GraphElement;
 import lapr.project.model.MatrixGraph;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CriticalPortsControllerTest {
 
@@ -28,7 +27,7 @@ class CriticalPortsControllerTest {
         Object[][] m = {{10d, 7d, 5d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}, {1d, 1d, 1d, 1d, 1d}};
         MatrixGraph matrix = new MatrixGraph(true, listGraph, m);
         App.getInstance().getCompany().setMatrixGraph(matrix);
-        ImportCountriesBordersSeadistsController icontroller = new ImportCountriesBordersSeadistsController();
+        ImportCountriesBordersSeadists icontroller = new ImportCountriesBordersSeadists();
         icontroller.importFromCSVCountry("countries.csv");
         ImportPortsController importPortsController = new ImportPortsController();
         importPortsController.importFromCSV("bports.csv");

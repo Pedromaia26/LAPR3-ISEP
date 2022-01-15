@@ -1,5 +1,6 @@
-package lapr.project.controller;
+package lapr.project.data;
 
+import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.DatabaseOperations;
 import lapr.project.model.*;
@@ -12,13 +13,13 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportCountriesBordersSeadistsController {
+public class ImportCountriesBordersSeadists {
     private Company company;
-    public ImportCountriesBordersSeadistsController(Company company){
+    public ImportCountriesBordersSeadists(Company company){
         this.company = company;
     }
 
-    public ImportCountriesBordersSeadistsController(){
+    public ImportCountriesBordersSeadists(){
         this.company = App.getInstance().getCompany();
     }
 

@@ -15,7 +15,7 @@ class ImportShipsControllerTest {
 
     @Test
     void importFromCSV() throws IOException {
-        String file = "sships.csv";
+        String file = "bships.csv";
         controller.importFromCSV(file);
     }
 
