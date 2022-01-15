@@ -25,29 +25,34 @@ public class ShortestDistanceGreatestLocationCircuitController {
     public void getCircuit(String sourceDesignation) throws IOException {
         StringBuilder data = new StringBuilder();
         GraphElement element = null;
+        GraphElement orig;
+        GraphElement dest;
+        double totalDistance = 0;
         for (GraphElement o : (List<GraphElement>) company.getMatrixGraph().vertices()){
             if (o.getDesignation().equals(sourceDesignation)){
                 element = o;
             }
         }
-
-        GraphElement orig;
-        GraphElement dest;
-        double totalDistance = 0;
-        ArrayList<Edge> circuit = calculateCircuit(element);
-        if (circuit != null){
-            data.append("--- Circuit of " + element.getDesignation() + " ---\n");
-            for (Edge edge : circuit){
-                orig = (GraphElement)edge.getVOrig();
-                dest = (GraphElement)edge.getVDest();
-                data.append(orig.getDesignation() + " -> " + dest.getDesignation() + "\n");
-                totalDistance += (double)edge.getDistance();
-            }
-            data.append("Total distance: " + String.format("%.2f", totalDistance) + "km\n");
+        if (element == null){
+            data.append("No element found with the designation.");
         }
         else{
-            data.append("Is not possible to calculate the circuit.");
+            ArrayList<Edge> circuit = calculateCircuit(element);
+            if (circuit != null){
+                data.append("--- Circuit of " + element.getDesignation() + " ---\n");
+                for (Edge edge : circuit){
+                    orig = (GraphElement)edge.getVOrig();
+                    dest = (GraphElement)edge.getVDest();
+                    data.append(orig.getDesignation() + " -> " + dest.getDesignation() + "\n");
+                    totalDistance += (double)edge.getDistance();
+                }
+                data.append("Total distance: " + String.format("%.2f", totalDistance) + "km\n");
+            }
+            else{
+                data.append("Is not possible to calculate the circuit.");
+            }
         }
+
         FileOperation.writeToAFile("Output/US403.txt", data);
     }
 

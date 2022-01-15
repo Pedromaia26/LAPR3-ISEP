@@ -85,7 +85,7 @@ class ShortestDistanceGreatestLocationCircuitControllerTest {
     }
 
     @Test
-    void calculateCircuit() throws IOException {
+    void calculateCircuitPort() throws IOException {
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
         c.getCountryStore().addCountry(country3);
@@ -121,5 +121,34 @@ class ShortestDistanceGreatestLocationCircuitControllerTest {
         expected.add(new Edge(new GraphElement(port2), new GraphElement(country2), 1072.30));
         expected.add(new Edge(new GraphElement(country2), new GraphElement(port1), 1172.30));
         assertEquals(expected, listaEdge);
+    }
+
+    @Test
+    void calculateCircuitNull() throws IOException {
+        c.getCountryStore().addCountry(country1);
+        Port port1 = new Port("12345", "Port1", "Europa", "Portugal", "21", "25");
+        List<KDTPort.Node<Port>> listaa = new ArrayList<>();
+        listaa.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        c.getKdtPorts().buildTree(listaa);
+        listaa.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        BuildFreightNetworkController controller = new BuildFreightNetworkController(c);
+        controller.BuildFreightNetwork(0);
+        ShortestDistanceGreatestLocationCircuitController sdglcontroller = new ShortestDistanceGreatestLocationCircuitController(c);
+        List<Edge> listaEdge = sdglcontroller.calculateCircuit(new GraphElement(country1));
+        assertNull(listaEdge);
+    }
+
+    @Test
+    void getCircuitNoElement() throws IOException {
+        c.getCountryStore().addCountry(country1);
+        Port port1 = new Port("12345", "Port1", "Europa", "Portugal", "21", "25");
+        List<KDTPort.Node<Port>> listaa = new ArrayList<>();
+        listaa.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        c.getKdtPorts().buildTree(listaa);
+        listaa.add(new KDTPort.Node<>(port1, port1.getLatitude(), port1.getLongitude()));
+        BuildFreightNetworkController controller = new BuildFreightNetworkController(c);
+        controller.BuildFreightNetwork(0);
+        ShortestDistanceGreatestLocationCircuitController sdglcontroller = new ShortestDistanceGreatestLocationCircuitController(c);
+        sdglcontroller.getCircuit("ElementoInexistente");
     }
 }
