@@ -268,11 +268,8 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         return g;
     }
 
-    public void transitiveClosure () {
+    public void transitiveClosure (MatrixGraph<GraphElement, Double> adjMatrix) {
 
-        MatrixGraph matrixGraph = App.getInstance().getCompany().getMatrixGraph();
-
-        MatrixGraph<GraphElement, Double> adjMatrix = matrixGraph.clone();
 
         GraphElement orig, dest;
         Edge<V, E> adj1, adj2;
@@ -313,7 +310,6 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         shortestPath(adjMatrix.edgeMatrix);
     }
 
-
     public void shortestPath(Edge<GraphElement, Double>[][] edgeMatrix) {
         double shortestPath = 0;
         CountryStore cs = App.getInstance().getCompany().getCountryStore();
@@ -340,6 +336,133 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         }
     }
 
+    public List<Integer> dijkstra(Graph<V,E> graph, String o, String d, int opt){
+        int key = -1;
+        int key2 = -1;
+        for (int i = 0; i < graph.numVertices(); i++){
+            GraphElement g = (GraphElement) graph.vertex(i);
+            if (g.getDesignation().equals(o)){
+                key = i;
+            }else if (g.getDesignation().equals(d)){
+                key2 = i;
+            }
+        }
+        V vOrig;
+        int keyDest;
+        int orig = key;
+        GraphElement vertex;
+        CountryStore cs = App.getInstance().getCompany().getCountryStore();
+        KDTPort kdtPort = App.getInstance().getCompany().getKdtPorts();
+        double inf = Double.POSITIVE_INFINITY;
+        Map <V, List<Integer>> path = new HashMap<>();
+        List <Integer> list = new ArrayList<>();
+        boolean visited[] = new boolean[graph.numVertices()];
+        double [] dist = new double[graph.numVertices()];
+        int [] path_array = new int[graph.numVertices()];
+        for (int i = 0; i < graph.numVertices(); i++) {
+            dist[i] = inf;
+            visited[i] = false;
+        }
+        dist[key] = 0;
+
+
+        switch (opt) {
+            case 1:
+                int selected = key;
+                while (key != -1) {
+                    visited[key] = true;
+                    vOrig = graph.vertex(key);
+                    vertex = (GraphElement) vOrig;
+                    if (cs.getCountryByCapital(vertex.getDesignation()) != null || key == orig || selected == key2) {
+                        for (V vDest : graph.adjVertices(vOrig)) {
+                            keyDest = graph.key(vDest);
+                            if (!visited[keyDest] && dist[keyDest] > dist[key] + (Double) edge(vOrig, vDest).getDistance()) {
+                                dist[keyDest] = dist[key] + (Double) edge(vOrig, vDest).getDistance();
+                                path_array[keyDest] = key;
+                            }
+                        }
+                    }
+                    key = getVertMinDist(dist, visited);
+                }
+            case 2:
+                while (key != -1) {
+                    visited[key] = true;
+                    vOrig = graph.vertex(key);
+                    vertex = (GraphElement) vOrig;
+                    for (Port kdt : (List<Port>) kdtPort.inOrder()) {
+                        if (kdt.getName().equals(vertex.getDesignation())) {
+                            System.out.println(kdt.getName());
+                            for (V vDest : graph.adjVertices(vOrig)) {
+                                keyDest = graph.key(vDest);
+                                        if (!visited[keyDest] && dist[keyDest] > dist[key] + (Double) edge(vOrig, vDest).getDistance()) {
+                                            dist[keyDest] = dist[key] + (Double) edge(vOrig, vDest).getDistance();
+                                            path_array[keyDest] = key;
+                                        }
+                            }
+                            break;
+                        }
+                    }
+                    key = getVertMinDist(dist, visited);
+                }
+            case 3:
+                while (key != -1){
+                    if (key == key2){
+                        break;
+                    }
+                    visited[key] = true;
+                    vOrig = graph.vertex(key);
+                    for (V vDest : graph.adjVertices(vOrig)) {
+                        keyDest = graph.key(vDest);
+                        if (!visited[keyDest] && dist[keyDest] > dist[key] + (Double) edge(vOrig, vDest).getDistance()) {
+                            dist[keyDest] = dist[key] + (Double) edge(vOrig, vDest).getDistance();
+                            path_array[keyDest] = key;
+                            }
+                        }
+
+                    key = getVertMinDist(dist, visited);
+                    }
+        }
+                GraphElement source = (GraphElement) graph.vertex(orig);
+                GraphElement destination = (GraphElement) graph.vertex(key2);
+                if (dist[key2]==inf){
+                    //System.out.println("Could not reach the destination by the selected path!");
+                }else {
+                    //System.out.printf("Distance from %s to %s: %.2f km.\n", source.getDesignation(), destination.getDesignation(), dist[key2]);
+                    //System.out.print("\nSHORTEST PATH: ");
+                    int local = key2;
+                    do {
+                        list.add(local);
+                        local = path_array[local];
+
+                    } while (local != orig);
+                   list.add(orig);
+
+                   Collections.reverse(list);
+                    for (int i: list) {
+                        GraphElement pl = (GraphElement) graph.vertex(i);
+                       if (pl.getDesignation().equals(destination.getDesignation())){
+                            //System.out.println(pl.getDesignation());
+                       }else {
+                           //System.out.print(pl.getDesignation() + " -> ");
+                       }
+                    }
+                }
+                return list;
+    }
+
+    public int getVertMinDist(double dist[], boolean visited[])   {
+        // Initialize min value
+        double min = Integer.MAX_VALUE;
+        int min_index = -1;
+        for (int v = 0; v < numVerts; v++) {
+            if (visited[v] == false && dist[v] <= min) {
+                min = dist[v];
+                min_index = v;
+            }
+        }
+
+        return min_index;
+    }
 
     /**
      * Returns a string representation of the graph.
