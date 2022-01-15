@@ -21,10 +21,10 @@ class ColourMapControllerTest {
         country3 = new Country("Europa", "FR", "FRA", "Franca", 0.5f, "Paris", 40, 30);
         country4 = new Country("Europa", "SU", "SUI", "Suica", 0.5f, "Berna", 50, 10);
         country5 = new Country("Europa", "GE", "GER", "Alemanha", 0.5f, "Berlim", 35, 25);
-        border1 = new Border(country1, country2);
-        border2 = new Border(country2, country3);
-        border3 = new Border(country3, country4);
-        border4 = new Border(country3, country5);
+        border1 = new Border(country1, country4);
+        border2 = new Border(country2, country1);
+        border3 = new Border(country3, country2);
+        border4 = new Border(country1, country5);
         border5 = new Border(country4, country5);
         seadist1 = new Seadist("Portugal", 12345, "Port1", "Espanha", 12346, "Port2", 100);
         seadist2 = new Seadist("Portugal", 12345, "Port1", "Franca", 12346, "Port3", 200);
@@ -81,11 +81,11 @@ class ColourMapControllerTest {
         controller.BuildFreightNetwork(0);
         ColourMapController ccontroller = new ColourMapController(c);
         ArrayList<GraphElement> lista = new ArrayList<>();
-        lista.add(new GraphElement(country3));
-        lista.add(new GraphElement(country2));
+        lista.add(new GraphElement(country1));
         lista.add(new GraphElement(country4));
         lista.add(new GraphElement(country5));
-        lista.add(new GraphElement(country1));
+        lista.add(new GraphElement(country2));
+        lista.add(new GraphElement(country3));
         assertEquals(lista, ccontroller.getCountriesDegree());
     }
 
