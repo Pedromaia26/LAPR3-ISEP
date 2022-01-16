@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.data.Algorithms;
 import lapr.project.model.Company;
 import lapr.project.model.GraphElement;
 import lapr.project.model.MatrixGraph;
@@ -29,7 +30,7 @@ public class ShortestPathController {
         String out = "";
         List<Integer> shortestPathList;
 
-        shortestPathList = mg.dijkstra(mg, departure, arrival, path);
+        shortestPathList = Algorithms.dijkstra(mg, departure, arrival, path);
 
 
         out += "Shortest path from " + departure + " to " + arrival + ":\n\n";
@@ -53,7 +54,7 @@ public class ShortestPathController {
 
 
 
-        FileOperation.writeToAFile("Output/US402", out);
+        FileOperation.writeToAFile("Output/US402.txt", out);
 
 
     }

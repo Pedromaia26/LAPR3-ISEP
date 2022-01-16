@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.data.Algorithms;
 import lapr.project.model.*;
 import lapr.project.utils.FileOperation;
 
@@ -29,6 +30,7 @@ public class CriticalPortsController {
         int c;
         int count [] = new int[mg.numVertices()];
         List<Integer> places;
+        List<String> printed = new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
         Map<String, Integer> sortedMap = new LinkedHashMap<>();
         String o = null, d = null;
@@ -39,7 +41,7 @@ public class CriticalPortsController {
                     GraphElement ge2 = (GraphElement) mg.vertex(j);
                     o = ge1.getDesignation();
                     d = ge2.getDesignation();
-                    places = mg.dijkstra(mg, o, d, 3);
+                    places = Algorithms.dijkstra(mg, o, d, 3);
                     for (int k = 0; k < places.size(); k++) {
                         GraphElement ge3 = (GraphElement) mg.vertex(places.get(k));
                         c = mg.key(ge3);
@@ -55,18 +57,18 @@ public class CriticalPortsController {
         out += String.format("Ports with greater centrality (number of shortest paths that pass through it): \n\n");
 
         for (String key : sortedMap.keySet()) {
+            System.out.println(kdtPort.inOrder());
             for (Port port: (List<Port> )kdtPort.inOrder()){
-                if (key.equals(port.getName())) {
+                if (key.equals(port.getName()) && !printed.contains(key)) {
                     num++;
                     out += (num + ". " + key + ": " + sortedMap.get(key) + "\n");
-
-
+                    printed.add(key);
                 }
             }
             if (num == n || num == sortedMap.size())
             break;
         }
 
-        FileOperation.writeToAFile("Output/US401", out);
+        FileOperation.writeToAFile("Output/US401.txt", out);
     }
 }

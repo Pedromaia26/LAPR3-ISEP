@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.data.Algorithms;
 import lapr.project.model.*;
 import lapr.project.utils.Distances;
 import lapr.project.utils.FileOperation;
@@ -46,11 +47,11 @@ public class BuildFreightNetworkController {
             i++;
         }
         data.append(graph);
-        FileOperation.writeToAFile("Output/US301", data);
+        FileOperation.writeToAFile("Output/US301.txt", data);
 
         company.setMatrixGraph(graph);
 
-        graph.transitiveClosure(graph);
+        Algorithms.transitiveClosure(graph);
 
 
     }
@@ -137,7 +138,7 @@ public class BuildFreightNetworkController {
             i++;
         }
         data.append(graph);
-        FileOperation.writeToAFile("Output/US301", data);
+        FileOperation.writeToAFile("Output/US301.txt", data);
 
     }
 
