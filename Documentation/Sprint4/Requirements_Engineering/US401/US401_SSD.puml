@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic manager" as TM
+participant ":System" as S
+activate TM
+activate S
+TM -> S: request to show the ports that are more critical
+TM <-- S: request the number of ports to be shown
+TM -> S: introduces the number of ports to be showns
+TM <-- S: shows the n most ports with greater centrality
+deactivate S
+deactivate TM
+@enduml

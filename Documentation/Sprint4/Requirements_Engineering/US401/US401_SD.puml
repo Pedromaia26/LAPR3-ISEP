@@ -1,0 +1,155 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":CriticalPortsUI" as UI
+participant ":CriticalPortsController" as controller
+participant ":Company" as c
+participant "kdtPort\n:KDTPort" as kdt
+participant "MatrixGraph" as mgraph
+participant "FileOperation" as fo
+participant "count\n:Integer[]" as count
+participant "places\n:List<Integer>" as places
+participant "map\n:Map<String, Integer>" as map
+participant "sortedMap\n:LinkedHashMap<String, Integer>" as sortedMap
+participant "n\n:int" as n
+participant "out\n:String" as data
+participant "o\n:StringBuilder" as o
+participant "d\n:StringBuilder" as d
+participant "ge1\n:GraphElement" as ge1
+participant "ge2\n:GraphElement" as ge2
+participant "ge3\n:GraphElement" as ge3
+participant "c\n:Integer" as cvar
+participant "key\n:String" as key
+participant "port\n:Port" as key
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to show the ports that are more critical
+
+activate UI
+
+UI --> Adm: request the number of ports to be shown
+
+deactivate UI
+
+Adm -> UI: introduces the number of ports to be showns
+
+activate UI
+
+UI -> controller: centrality(n)
+
+activate controller
+
+controller -> c: kdtPort = getKdtPorts()
+
+activate c
+
+deactivate c
+
+loop i < mg.numVertices()
+
+loop j < mg.numVertices()
+
+controller -> ge1: o = getDesignation()
+
+activate ge1
+
+deactivate ge1
+
+controller -> ge2: d = getDesignation()
+
+activate ge2
+
+deactivate ge2
+
+controller -> mgraph: dijkstra(mg, o, d, 3)
+
+activate mgraph
+
+deactivate mgraph
+
+loop k < places.size()
+
+controller -> mgraph: ge3 = vertex(places(k))
+
+activate mgraph
+
+deactivate mgraph
+
+controller -> mgraph: cvar = key(ge3)
+
+activate mgraph
+
+deactivate mgraph
+
+controller -> count: count[c] = count[c] + 1
+
+activate count
+
+deactivate count
+
+controller -> map: put(ge3.getDesignation(), count[c])
+
+activate map
+
+deactivate map
+
+end
+
+end
+
+end
+
+controller -> map: sortedMap = sort()
+
+activate map
+
+deactivate map
+
+loop key : sortedMap.keySet()
+
+loop port : kdtPort.inOrder()
+
+alt key = port.getName()
+
+controller -> num: num = num + 1
+
+activate num
+
+deactivate num
+
+controller -> data: out = out + info
+
+activate data
+
+deactivate data
+
+end
+
+alt num = num || num = sortedMap.size()
+
+controller -> controller: break
+
+end
+
+end
+
+controller -> fo: writeToAFile(out)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml

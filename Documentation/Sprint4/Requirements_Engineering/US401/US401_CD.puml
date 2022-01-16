@@ -1,0 +1,34 @@
+@startuml
+CriticalPortsController ..>Company
+CriticalPortsController ..>MatrixGraph
+Company ..>MatrixGraph
+CriticalPortsController ..>GraphElement
+CriticalPortsController ..>Port
+CriticalPortsController ..>KdtPort
+Company ..>KdtPort
+GraphElement ..>Port
+
+
+CriticalPortsController : +centrality(int n)
+
+
+Company : +Company()
+Company : +getMatrixGraph()
+Company : +getKdtPorts()
+
+KdtPort : +inOrder()
+
+Port : -code: int
+Port : -name: String
+Port : -country: Country
+Port : -latitude: float
+Port : -longitude: float
+
+MatrixGraph : +numVertices()
+MatrixGraph : +vertex(int i)
+
+GraphElement : -designation: String
+GraphElement : -country: String
+GraphElement : -latitude: float
+GraphElement : -longitude: float
+@enduml
