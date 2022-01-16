@@ -1,6 +1,5 @@
-package lapr.project.data;
+package lapr.project.controller;
 
-import lapr.project.controller.App;
 import lapr.project.model.BSTDynData;
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
