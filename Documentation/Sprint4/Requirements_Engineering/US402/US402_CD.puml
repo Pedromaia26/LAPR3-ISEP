@@ -1,0 +1,50 @@
+@startuml
+ShortestPathController ..>Company
+ShortestPathController ..>MatrixGraph
+Company ..>MatrixGraph
+ShortestPathController ..>GraphElement
+ShortestPathController ..>Port
+ShortestPathController ..>KdtPort
+ShortestPathController ..>CountryStore
+Company ..>KdtPort
+GraphElement ..>Port
+ShortestPathController ..>Country
+GraphElement ..>Country
+
+
+ShortestPathController : +shortestPath(String departure, String arrival, int path)
+
+
+Company : +Company()
+Company : +getMatrixGraph()
+Company : +getCountryStore()
+Company : +getKdtPorts()
+
+KdtPort : +inOrder()
+
+CountryStore : +getCountries()
+
+Port : -code: int
+Port : -name: String
+Port : -country: Country
+Port : -latitude: float
+Port : -longitude: float
+
+MatrixGraph : +numVertices()
+MatrixGraph : +vertex(int i)
+MatrixGraph : +adjVertices()
+
+GraphElement : -designation: String
+GraphElement : -country: String
+GraphElement : -latitude: float
+GraphElement : -longitude: float
+
+Country : -continent: String
+Country : -name: String
+Country : -alpha2_code: String
+Country : -alpha3_code: String
+Country : -capital: String
+Country : -latitude: float
+Country : -longitude: float
+Country : -population: float
+@enduml

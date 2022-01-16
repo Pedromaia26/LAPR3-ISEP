@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Traffic manager" as TM
+participant ":System" as S
+activate TM
+activate S
+TM -> S: request to show the shortest\n path between two locals
+TM <-- S: request the path type
+TM -> S: introduces the number \nof the path type
+TM <-- S: shows the shortest path\n between the two locals
+deactivate S
+deactivate TM
+@enduml

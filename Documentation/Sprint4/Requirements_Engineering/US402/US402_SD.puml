@@ -1,0 +1,80 @@
+@startuml
+actor "Traffic Manager" as Adm
+participant ":ShortestPathUI" as UI
+participant ":ShortestPathController" as controller
+participant ":Company" as c
+participant "kdtPort\n:KDTPort" as kdt
+participant "mg\n:MatrixGraph" as mgraph
+participant "FileOperation" as fo
+participant "shortestPathList\nList<Integer>" as fo
+participant "pl\n:GraphElement" as pl
+participant "out\n:String" as out
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to show the shortest\n path between two locals
+
+activate UI
+
+UI --> Adm: request the path type
+
+deactivate UI
+
+Adm -> UI: introduces the number of the path type
+
+activate UI
+
+UI -> controller: shortestPath(String departure, String arrival, int path)
+
+activate controller
+
+controller -> c: mg = getMatrixGraph()
+
+activate c
+
+deactivate c
+
+controller -> mgraph: shortestPathList = dijkstra(mg, departure, arrival, path)
+
+activate mgraph
+
+deactivate mgraph
+
+alt shortestPathList != empty
+
+controller -> mgraph: pl = vertex(i)
+
+activate mgraph
+
+deactivate mgraph
+
+loop i : shortestPathList
+
+controller -> out : out = out + pl.getDesignation()
+
+activate out
+
+deactivate out
+
+end
+
+controller -> fo: writeToAFile(out)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml
