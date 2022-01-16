@@ -39,7 +39,6 @@ public class BuildFreightNetworkController {
 
         nClostestPorts(listPorts, graph, n);
 
-        company.setMatrixGraph(graph);
         StringBuilder data = new StringBuilder();
         int i = 1;
         for (GraphElement element : (List<GraphElement>)graph.vertices()){
@@ -48,7 +47,11 @@ public class BuildFreightNetworkController {
         }
         data.append(graph);
         FileOperation.writeToAFile("Output/US301", data);
+
+        company.setMatrixGraph(graph);
+
         graph.transitiveClosure(graph);
+
 
     }
 
@@ -127,7 +130,6 @@ public class BuildFreightNetworkController {
             }
         }
 
-        company.setMatrixGraph(graph);
         StringBuilder data = new StringBuilder();
         int i = 1;
         for (GraphElement element : (List<GraphElement>)graph.vertices()){
@@ -136,7 +138,7 @@ public class BuildFreightNetworkController {
         }
         data.append(graph);
         FileOperation.writeToAFile("Output/US301", data);
-        graph.transitiveClosure(graph);
+
     }
 
 }

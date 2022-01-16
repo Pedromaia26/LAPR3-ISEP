@@ -1,9 +1,7 @@
 package lapr.project.data;
 
 import lapr.project.controller.App;
-import lapr.project.ui.Login;
 import lapr.project.utils.FileOperation;
-import oracle.ucp.proxy.annotation.Pre;
 
 import java.io.IOException;
 import java.sql.*;

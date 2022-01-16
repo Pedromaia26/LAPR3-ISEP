@@ -2,9 +2,7 @@ package lapr.project.data;
 
 import lapr.project.controller.App;
 import lapr.project.model.*;
-import lapr.project.ui.Login;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

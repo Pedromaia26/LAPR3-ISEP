@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class KDTPort<E> extends KDTree{
+public class KDTPort<E>{
     public static class Node<Port> {
         private Port element;
         private KDTPort.Node<Port> left;

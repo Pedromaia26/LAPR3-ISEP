@@ -119,7 +119,10 @@ class ShortestDistanceGreatestLocationCircuitControllerTest {
         List<Edge> expected = new ArrayList<>();
         expected.add(new Edge(new GraphElement(port1), new GraphElement(port2), 100.00));
         expected.add(new Edge(new GraphElement(port2), new GraphElement(country2), 1072.30));
-        expected.add(new Edge(new GraphElement(country2), new GraphElement(port1), 1172.30));
+        expected.add(new Edge(new GraphElement(country2), new GraphElement(country3), 1435.33));
+        expected.add(new Edge(new GraphElement(country3), new GraphElement(port3), 1911.26));
+        expected.add(new Edge(new GraphElement(port3), new GraphElement(port1), 200.00));
+
         assertEquals(expected, listaEdge);
     }
 

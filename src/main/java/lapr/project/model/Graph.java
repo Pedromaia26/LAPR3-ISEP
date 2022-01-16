@@ -50,22 +50,6 @@ public interface Graph<V, E> extends Cloneable {
      */
     V vertex(int key);
 
-    /** Find the first vertex for which Predicate is true.
-     *  An example to get the Person vertex with a particular name:
-     *  <pre>
-     *      Graph<Person, Integer> g = new ...;
-     *      g.vertex( p -> p.getName().equals(name) );
-     * </pre>
-     * @param p predicate (should be given in lambda form)
-     * @return the first vertex for which predicate p is true, null if not found
-     */
-    V vertex(Predicate<V> p);
-
-    /** Find all adjacent vertices of a vertex
-     *
-     * @param vert the vertex for which to find adjacent vertices
-     * @return a collection of all the adjacent vertices of vert
-     */
     Collection<V> adjVertices(V vert);
 
     /** The total number of edges of the graph

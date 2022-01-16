@@ -270,19 +270,19 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
 
     public void transitiveClosure (MatrixGraph<GraphElement, Double> adjMatrix) {
 
-
+        MatrixGraph<GraphElement, Double> cloneAdjMatrix = new MatrixGraph(adjMatrix);
         GraphElement orig, dest;
         Edge<V, E> adj1, adj2;
         double distance, d1, d2;
 
-        for (int k = 0; k < numVerts; k++) {
-            for (int i = 0; i < numVerts; i++) {
-                if (i != k && adjMatrix.edgeMatrix[i][k] != null) {
-                    adj1 = (Edge<V, E>) adjMatrix.edgeMatrix[i][k];
+        for (int k = 0; k < adjMatrix.numVertices(); k++) {
+            for (int i = 0; i < adjMatrix.numVertices(); i++) {
+                if (i != k && cloneAdjMatrix.edgeMatrix[i][k] != null) {
+                    adj1 = (Edge<V, E>) cloneAdjMatrix.edgeMatrix[i][k];
                     //System.out.println(edgeMatrix[i][k].getDistance());
-                    for (int j = 0; j < adjMatrix.edgeMatrix.length; j++) {
-                        if (i != j && k != j && adjMatrix.edgeMatrix[k][j] != null) {
-                            adj2 = (Edge<V, E>) adjMatrix.edgeMatrix[k][j];
+                    for (int j = 0; j < cloneAdjMatrix.edgeMatrix.length; j++) {
+                        if (i != j && k != j && cloneAdjMatrix.edgeMatrix[k][j] != null) {
+                            adj2 = (Edge<V, E>) cloneAdjMatrix.edgeMatrix[k][j];
 
                             orig = (GraphElement) adj1.getVOrig();
                             dest = (GraphElement) adj2.getVDest();
@@ -291,14 +291,14 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                             d2 = (Double) adj2.getDistance();
 
 
-                            if (adjMatrix.edgeMatrix[i][j]==null){
+                            if (cloneAdjMatrix.edgeMatrix[i][j]==null){
                                 distance = d1 + d2;
-                                adjMatrix.addEdge(orig, dest, distance);
+                                cloneAdjMatrix.addEdge(orig, dest, distance);
                             }
 
-                            if (adjMatrix.edgeMatrix[i][j] != null && d1 + d2 < adjMatrix.edgeMatrix[i][j].getDistance()) {
+                            if (cloneAdjMatrix.edgeMatrix[i][j] != null && d1 + d2 < cloneAdjMatrix.edgeMatrix[i][j].getDistance()) {
                                 distance = d1 + d2;
-                                adjMatrix.edgeMatrix[i][j].setDistance(distance);
+                                cloneAdjMatrix.edgeMatrix[i][j].setDistance(distance);
                             }
                         }
                     }
@@ -306,8 +306,8 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
             }
         }
 
-        //System.out.println(adjMatrix.edgeMatrix);
-        shortestPath(adjMatrix.edgeMatrix);
+        //System.out.println(cloneAdjMatrix.edgeMatrix);
+        shortestPath(cloneAdjMatrix.edgeMatrix);
     }
 
     public void shortestPath(Edge<GraphElement, Double>[][] edgeMatrix) {
@@ -316,8 +316,8 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         GraphElement place = null;
         int counter = 0;
         ClosenessPlacesStore cps = App.getInstance().getCompany().getClosenessPlaceStore();
-        for (int i = 0; i < numVerts; i++) {
-            for (int j = 0; j < numVerts; j++) {
+        for (int i = 0; i < edgeMatrix.length; i++) {
+            for (int j = 0; j < edgeMatrix.length; j++) {
                 if (edgeMatrix[i][j] != null) {
                     place = edgeMatrix[i][j].getVOrig();
                     if (cs.getContinentByCountry(edgeMatrix[i][j].getVOrig().getCountry()).equals(cs.getContinentByCountry(edgeMatrix[i][j].getVDest().getCountry()))) {
@@ -353,7 +353,6 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
         CountryStore cs = App.getInstance().getCompany().getCountryStore();
         KDTPort kdtPort = App.getInstance().getCompany().getKdtPorts();
         double inf = Double.POSITIVE_INFINITY;
-        Map <V, List<Integer>> path = new HashMap<>();
         List <Integer> list = new ArrayList<>();
         boolean visited[] = new boolean[graph.numVertices()];
         double [] dist = new double[graph.numVertices()];
@@ -436,20 +435,19 @@ public class MatrixGraph<V,E> extends CommonGraph<V,E> {
                    list.add(orig);
 
                    Collections.reverse(list);
-                    for (int i: list) {
+                    /*for (int i: list) {
                         GraphElement pl = (GraphElement) graph.vertex(i);
                        if (pl.getDesignation().equals(destination.getDesignation())){
-                            //System.out.println(pl.getDesignation());
+                            System.out.println(pl.getDesignation());
                        }else {
-                           //System.out.print(pl.getDesignation() + " -> ");
+                           System.out.print(pl.getDesignation() + " -> ");
                        }
-                    }
+                    }*/
                 }
                 return list;
     }
 
     public int getVertMinDist(double dist[], boolean visited[])   {
-        // Initialize min value
         double min = Integer.MAX_VALUE;
         int min_index = -1;
         for (int v = 0; v < numVerts; v++) {
