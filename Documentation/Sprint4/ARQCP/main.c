@@ -5,13 +5,7 @@
 
 #define current_temp 20
 
-typedef struct {
-	int id;
-	char pos_x, pos_y, pos_z, refrigerated;
-	float dim_x, dim_y, dim_z;
-	char outer[20], middle[20], interior[20];
-	float k_out, k_mid, k_int, out_th, mid_th, int_th, temp_req;
-} cont;
+
 
 float calculate_energy(float x, float y, float z, float out_th, float mid_th, float int_th, float k_out, float k_mid, float k_int, float temp_req);
 int main(void) {
@@ -37,11 +31,11 @@ int main(void) {
 	cont *ptr=NULL, *aux=NULL;
 	ptr=(cont *) malloc(sizeof(cont));
 	aux=ptr;
-	char *ptr2=(char*)ptr; 
-	int size=1;
+	int size=0;
 	char *ref;
 	while(!feof(file)){
-		ptr=(cont *)realloc(aux, size*sizeof(cont));
+		ptr=(cont *)realloc(aux, (size+1)*sizeof(cont));
+		ptr+=size;
 		
 		fscanf(file, "%d %hhd %hhd %hhd %hhd %f %f %f %s %s %s %f %f %f %f %f %f %f", &id, &pos_x, &pos_y, &pos_z, &refrigerated, &dim_x, &dim_y, &dim_z, outer, middle, interior, &k_out, &k_mid, &k_int, &out_th, &mid_th, &int_th, &temp_req);
 		ptr -> id = id;
@@ -73,9 +67,8 @@ int main(void) {
 		}
 		fprintf(out_file1, "\n");
 		
-		size++;
-		ptr+=size;
 		aux=ptr-size;
+		size++;
 	}
 	
 	fclose(file);
@@ -96,14 +89,19 @@ int main(void) {
 	
 	out_file2=fopen("us410.txt","w");
 	
+	ptr=(cont *)realloc(aux, (size-1)*sizeof(cont));
+	
 	float heat;
-	if(us410(ptr2, x, y, z)==1){
+	int res=us410(ptr, x, y, z, (size-1));
+	if(res==1){
 		fprintf(out_file2, "The container is refrigerated.\n");
 		heat=calculate_energy(ptr->dim_x, ptr->dim_y, ptr->dim_z, ptr->out_th, ptr->mid_th, ptr->int_th, ptr->k_out, ptr->k_mid, ptr->k_int, ptr->temp_req);
 		fprintf(out_file2, "It will be necessary to provide the container %f J (%f W*s).\n",heat, heat);
 		
-	}else{
+	}else if(res==0){
 		fprintf(out_file2, "The container is not refrigerated.\n");
+	}else{
+		fprintf(out_file2, "There is no container in the desired position.\n");
 	}
 	
 	fclose(file1);
