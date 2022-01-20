@@ -13,6 +13,7 @@ typedef struct {
 	float k_out, k_mid, k_int, out_th, mid_th, int_th, temp_req;
 } cont;
 
+float calculate_energy(float x, float y, float z, float out_th, float mid_th, float int_th, float k_out, float k_mid, float k_int, float temp_req);
 int main(void) {
 	int id;
 	char pos_x, pos_y, pos_z, refrigerated;
@@ -95,26 +96,11 @@ int main(void) {
 	
 	out_file2=fopen("us410.txt","w");
 	
-	int area;
-	int R_out;
-	int R_mid;
-	int R_int;
-	int Rt;
-	int heat;
-	
+	float heat;
 	if(us410(ptr2, x, y, z)==1){
 		fprintf(out_file2, "The container is refrigerated.\n");
-		
-		area=(ptr->dim_x)*(ptr->dim_y)*(ptr->dim_z);
-		area=((ptr->dim_x)*(ptr->dim_y)*2)+((ptr->dim_x)*(ptr->dim_z)*2)+((ptr->dim_y)*(ptr->dim_z)*2);
-		R_out=(ptr->out_th)/(ptr->k_out*area);
-		R_mid=(ptr->mid_th)/(ptr->k_mid*area);
-		R_int=(ptr->int_th)/(ptr->k_int*area);
-		Rt=R_out+R_mid+R_int;
-		
-		heat=(current_temp-temp_req)/Rt;
-		
-		fprintf(out_file2, "It will be necessary to provide the container %d J (%d W*s).\n",heat, heat);
+		heat=calculate_energy(ptr->dim_x, ptr->dim_y, ptr->dim_z, ptr->out_th, ptr->mid_th, ptr->int_th, ptr->k_out, ptr->k_mid, ptr->k_int, ptr->temp_req);
+		fprintf(out_file2, "It will be necessary to provide the container %f J (%f W*s).\n",heat, heat);
 		
 	}else{
 		fprintf(out_file2, "The container is not refrigerated.\n");
@@ -127,4 +113,22 @@ int main(void) {
 	
 	free(ptr);
 	return 0;
+}
+
+float calculate_energy(float x, float y, float z, float out_th, float mid_th, float int_th, float k_out, float k_mid, float k_int, float temp_req){
+	float area;
+	float R_out;
+	float R_mid;
+	float R_int;
+	float Rt;
+	float heat;
+	
+	area=((x*y)*2)+((x*z)*2)+((y*z)*2);
+	R_out=(out_th)/(k_out*area);
+	R_mid=(mid_th)/(k_mid*area);
+	R_int=(int_th)/(k_int*area);
+	Rt=R_out+R_mid+R_int;
+	heat=(current_temp-temp_req)/Rt;
+	
+	return heat;
 }
