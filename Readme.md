@@ -1,17 +1,18 @@
-# Project Report Lapr3 - Sprint 3
+# Project Report Lapr3 - Sprint 4
 
 ## Delivery of Containers ##
 
 ### Teachers/Advisors ###
 
 Ana Isabel Gaspar Freitas - AIF\
+João Lima Lopes - JLL\
 
 ### Client ###
 Nuno Bettencourt - NMB
 
 ## Classes DE_DF – Group 041 ##
 1170504 Hugo Nogueira\
-1201276 Tiago Marques 1201276\
+1201276 Tiago Marques\
 1201381	Pedro Alves\
 1201384 Pedro Fernandes\
 
@@ -19,39 +20,50 @@ Nuno Bettencourt - NMB
 In this report we start by explaining the initial problem that was presented to us, which consists of building a Java application that tracked the fastest routes from one point to another in the world so that the delivery of containers is more efficient.
 The application must follow a Test Driven Development approach using SonarQube® and Jenkins® servers.
 Before coding development, we focused our work on the engineering software artifacts that would be relevant during coding.
-All our work was distributed among the seven members of the group and we tried to follow an even distribution, however imperfect.
+All our work was distributed amongst the five members of the group and we have tried to follow an equal distribution, however imperfect it may have been.
+In this report we aim to give a brief description of our work and what our application is capable of doing.
 
 ### Theorical Introduction ###
 In first sprint of the project that was presented to us, it required that we elaborate a product that would support the delivery of containers only by sea. In this service we should be able to import a file that contains a list of ships, and from this list return it to a BST, and basically it should allow the management of ships, dynamic data of ships and containers.
 
 In second sprint, the previously elaborated product would have to contain a coherent connection between the database and the implementation carried out in Java. In this service we should also be able to import a file that contains a list of ports and be able to find the closest port given its call sign. Then, with the help of the Pl/Sql language, the product should be able to determine some information related to the transport of goods (loading and unloading of containers) and information related to the ship, such as the current weight.
 
-In this third sprint, the product that was requested and that has been developed over the last few weeks should be able to import data related to countries, ports, borders and some data referring to the database so that it would be possible to create a freight network. In this service, in addition to the aforementioned, the product should be able to identify which ports or cities are closest to all other locations and, finally, it should also be able to avoid any invalid data entered or updated within the database.
+In third sprint, the product that was requested and that has been developed over the last few weeks should be able to import data related to countries, ports, borders and some data referring to the database so that it would be possible to create a freight network. In this service, in addition to the aforementioned, the product should be able to identify which ports or cities are closest to all other locations and, finally, it should also be able to avoid any invalid data entered or updated within the database.
+
+In this fourth sprint, after all the features already created and implemented in the previous sprints, the application/product should be able to know which ports are more central in the cargo network and should also be able to identify which are the most efficient circuits between the locations (cities and/or ports). In addition to these features, this sprint was very dedicated to the support of the ship in navigation, for example the energy management on the ship to maintain the temperature of the containers or even the simple planning of containers inside the ship ready to sail.
 
 
 ### Work Organization, Planning and Methodology ###
 The methodology followed by our group is based on Scrum®, so all our work was developed in a certain way, starting with planning who and what each member of the group would do.
-One of the central parts of our team was mutual help, as without it it would be almost impossible to work as a team. In this third sprint, in addition to the first and second sprints, the team was much more united in solving the requested problems during these three weeks. We believe that one of the keys to the success of this sprint was being more up-to-date on the pace at which the work was developing, this of course with the help of the daily meetings. To help organize the sprint, we use Jira software.
+One of the central parts of our team was mutual help, as without it it would be almost impossible to work as a team. In this fourth sprint, in addition to the first, second and third sprints, the team was much more united and more solid in solving the problems requested during these three weeks. As expected, this project had the transparency and adaptation of each of the members of the group, as there was a constant analysis of what was done and how it was done. We believe that one of the keys to the success of this sprint was being more up to date with the pace at which the work was being developed, naturally with the help of daily meetings. To help organize the sprint, we use Jira software.
 
-We first analyze the user stories and then build the Use-Case Diagram shown below.
-After that, and following a Scrum methodology, we gave an estimated value so that we could know how long each use case would take.
+We first analyzed the user stories and then built the Use Case Diagram shown below.
+After that, and following a Scrum methodology, we gave an estimated value, using the "Planning Poker" estimation technique so that we could know how long each use case would take.
 In the next step, the use cases were distributed among the group members.
-Over the next few days, each member worked on their use case, and whenever someone needed to ask a question or needed help with something, the group would try to help.
+Over the next few days, each member worked on their use case, and whenever someone needed to ask a question or needed help with something, the group tried to help.
+
+The way our group chose to estimate sprint 4 user stories was using a technique called planning poker. This estimation technique has as its keyword the consensus among the team and, basically, consists of each member of the group assigning a value of a card, on a defined scale (fibonacci), to the user story that we would be estimating its development time. The values assigned to each task correspond to the size/complexity that our group thought would lead to the development of the user story. Next, we present an example related to our estimation technique.
+
+
+### Plannning Poker example
+
+![Planning-Poker](./Documentation/Sprint4/Planning_Poker/Planning_Poker_1.png)
+![Planning-Poker](./Documentation/Sprint4/Planning_Poker/Planning_Poker_2.png)
 
 Next, we start by elaborating the Use Case diagram, which can be seen below:
 ### Use-case diagram for this current sprint: ###
-![Use-Case](./Documentation/Sprint3/Requirements_Engineering/UseCase.jpg)
+![Use-Case](./Documentation/Sprint4/Requirements_Engineering/UseCase.svg)
 
 
 With these Use Cases in mind, we strive to build the Software Engineering diagrams.
 
 We created the Domain Model that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-![Domain-Model](./Documentation/Sprint3/Engineering_Analysis/DomainModel.svg)
+![Domain-Model](./Documentation/Sprint4/Engineering_Analysis/DomainModel.svg)
 
 We created the Global Class Diagram that we would follow in the development of our sprint, which can be seen below:
 ### Domain template for this current sprint: ###
-![CD_Global](./Documentation/Sprint3/Engineering_Analysis/CD_Global.svg)
+![CD_Global](./Documentation/Sprint4/Engineering_Analysis/CD_Global.svg)
 
 
 ### This phase of our report is where all the diagrams referring to the project's user stories are located, whether **SSDs**, **SDs** or **CD**.
@@ -213,5 +225,51 @@ cargo manifest identifier.
 
 ![US312_SSD](./Documentation/Sprint3/Requirements_Engineering/US312/US312_SSD.svg)
 ![US312_SD](./Documentation/Sprint3/Requirements_Engineering/US312/US312_SD.svg)
+
+
+### SPRINT 4 ###
+
+### Use Case 401 - I wish to know which ports are more critical (have greater centrality) in this freight network.
+
+![US401_SSD](./Documentation/Sprint4/Requirements_Engineering/US401/US401_SSD.svg)
+![US401_SD](./Documentation/Sprint4/Requirements_Engineering/US401/US401_SD.svg)
+![US401_CD](./Documentation/Sprint4/Engineering_Design/US401/US401_CD.svg)
+
+### Use Case 402 - I wish to know the shortest path between two locals (city and/or port). 
+
+![US402_SSD](./Documentation/Sprint4/Requirements_Engineering/US402/US402_SSD.svg)
+![US402_SD](./Documentation/Sprint4/Requirements_Engineering/US402/US402_SD.svg)
+![US402_CD](./Documentation/Sprint4/Engineering_Design/US402/US402_CD.svg)
+
+### Use Case 403 -  I wish to know the most efficient circuit that starts from a source location and visits the greatest number of other locations once, returning to the starting location and with the shortest total distance.
+ 
+![US403_SSD](./Documentation/Sprint4/Requirements_Engineering/US403/US403_SSD.svg)
+![US403_SD](./Documentation/Sprint4/Requirements_Engineering/US403/US403_SD.svg)
+![US403_CD](./Documentation/Sprint4/Engineering_Design/US403/US403_CD.svg)
+
+### Use Case 404 - I want to know the number of days each ship has been idle since the beginning of the current year. 
+
+![US404_SSD](./Documentation/Sprint4/Requirements_Engineering/US404/US404_SSD.svg)
+![US404_SD](./Documentation/Sprint4/Requirements_Engineering/US404/US404_SD.svg)
+
+### Use Case 405 - I want to know the average occupancy rate per manifest of a given ship during a given period.
+ 
+![US405_SSD](./Documentation/Sprint4/Requirements_Engineering/US405/US405_SSD.svg)
+![US405_SD](./Documentation/Sprint4/Requirements_Engineering/US405/US405_SD.svg)
+
+### Use Case 406 - I want to know which ship voyages – place and date of origin and destination – had an occupancy rate below a certain threshold; by default, consider an occupancy rate threshold of 66%. Only the trips already concluded are to be considered. 
+
+![US406_SSD](./Documentation/Sprint4/Requirements_Engineering/US406/US406_SSD.svg)
+![US406_SD](./Documentation/Sprint4/Requirements_Engineering/US406/US406_SD.svg)
+
+### Use Case 407 - I intend to generate, a week in advance, the loading and unloading map based on ships and trucks load manifests and corresponding travel plans, to anticipate the level of sufficient and necessary resources (loading and unloading staff, warehouse staff, ...).
+
+![US407_SSD](./Documentation/Sprint4/Requirements_Engineering/US407/US407_SSD.svg)
+![US407_SD](./Documentation/Sprint4/Requirements_Engineering/US407/US407_SD.svg)
+
+### Use Case 408 - I intend to develop a data model to build a Data Warehouse to analyse the volume of maritime traffic between any two ports. The fact to be analysed is the traffic volume measured by the indicators “number of containers”, “accumulated number of containers” and “target number of containers”. These indicators refer to the number of containers that are in transit between two ports/locations on the first day of each month. The dimensions to consider are Time, Port of origin and Port of destination. The Time dimension has a hierarchy with the following levels: Year, Month. The location/Port is subject to the following hierarchy: Continent,Country, Port. An estimate of the upper cardinality of the dimension and fact tables must be indicated.
+ 
+![US408_SSD](./Documentation/Sprint4/Requirements_Engineering/US408/US408_SSD.svg)
+![US408_SD](./Documentation/Sprint4/Requirements_Engineering/US408/US408_SD.svg)
 
 #################################################################################
