@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Port staff" as PS
+participant ":System" as S
+activate PS
+activate S
+PS -> S: fill a dynamically reserved matrix array in\n memory with all the container's information given a cargo manifest
+PS <-- S: shows the container's information
+deactivate S
+deactivate PS
+@enduml
