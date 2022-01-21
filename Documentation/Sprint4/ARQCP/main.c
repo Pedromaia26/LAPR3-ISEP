@@ -89,14 +89,13 @@ int main(void) {
 	
 	out_file2=fopen("us410.txt","w");
 	
-	ptr=(cont *)realloc(aux, (size-1)*sizeof(cont));
-	
+	ptr-=size;
 	float heat;
 	int res=us410(ptr, x, y, z, (size-1));
 	if(res==1){
 		fprintf(out_file2, "The container is refrigerated.\n");
 		heat=calculate_energy(ptr->dim_x, ptr->dim_y, ptr->dim_z, ptr->out_th, ptr->mid_th, ptr->int_th, ptr->k_out, ptr->k_mid, ptr->k_int, ptr->temp_req);
-		fprintf(out_file2, "It will be necessary to provide the container %f J (%f W*s).\n",heat, heat);
+		fprintf(out_file2, "It will be necessary to provide the container %.2f J (%.2f W*s).\n",heat, heat);
 		
 	}else if(res==0){
 		fprintf(out_file2, "The container is not refrigerated.\n");
@@ -108,7 +107,7 @@ int main(void) {
 	fclose(out_file2);
 	
 	
-	
+	ptr=(cont *)realloc(aux, (size-1)*sizeof(cont));
 	free(ptr);
 	return 0;
 }
