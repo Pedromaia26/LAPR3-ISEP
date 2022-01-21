@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor " Ship Chief Electrical Engineer" as SCEE
+participant ":System" as S
+activate SCEE
+activate S
+SCEE -> S: requests the amount of needed energy to keep the\ncontainer at its required temperature
+SCEE <-- S: request the position of the container
+SCEE -> S: introduces the position of the container
+SCEE <-- S: shows the amount of needed energy \nto keep the container at its required temperature
+deactivate S
+deactivate SCEE
+@enduml
