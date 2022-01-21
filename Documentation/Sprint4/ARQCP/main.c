@@ -192,7 +192,7 @@ int main(void) {
 
 	float heat;
 
-	int res=us410(ptr, x, y, z, (size-1));
+	int res=us410(ptr, x, y, z, size);
 
 	if(res==1){
 
