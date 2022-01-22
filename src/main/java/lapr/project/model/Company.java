@@ -1,9 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.data.BorderStore;
-import lapr.project.data.ClosenessPlacesStore;
-import lapr.project.data.CountryStore;
-import lapr.project.data.SeadistStore;
+import lapr.project.data.*;
 
 public class Company {
     /**
@@ -23,6 +20,8 @@ public class Company {
 
     private ClosenessPlacesStore closenessPlacesStore;
 
+    private ContainerStore containerStore;
+
     public Company()
     {
         this.bstShips = new AVLShip();
@@ -32,6 +31,7 @@ public class Company {
         this.seadistStore = new SeadistStore();
         this.freightNetwork = new MatrixGraph(false);
         this.closenessPlacesStore = new ClosenessPlacesStore();
+        this.containerStore = new ContainerStore();
     }
 
     /**
@@ -60,6 +60,14 @@ public class Company {
 
     public void setCountryStore(CountryStore countryStore) {
         this.countryStore = countryStore;
+    }
+
+    public ContainerStore getContainerStore() {
+        return containerStore;
+    }
+
+    public void setContainerStore(ContainerStore containerStore) {
+        this.containerStore = containerStore;
     }
 
     public BorderStore getBorderStore() {

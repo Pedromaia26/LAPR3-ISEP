@@ -57,7 +57,6 @@ public class CriticalPortsController {
         out += String.format("Ports with greater centrality (number of shortest paths that pass through it): \n\n");
 
         for (String key : sortedMap.keySet()) {
-            System.out.println(kdtPort.inOrder());
             for (Port port: (List<Port> )kdtPort.inOrder()){
                 if (key.equals(port.getName()) && !printed.contains(key)) {
                     num++;

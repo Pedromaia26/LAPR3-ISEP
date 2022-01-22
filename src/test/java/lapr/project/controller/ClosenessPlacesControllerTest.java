@@ -24,7 +24,6 @@ class ClosenessPlacesControllerTest {
         Country country2 = new Country("Europe", "ES", "ESP", "Spain", 0.5f, "Madrid", 30, 20);
         c.getCountryStore().addCountry(country1);
         c.getCountryStore().addCountry(country2);
-        System.out.println(App.getInstance().getCompany().getCountryStore().getCountry("Portugal"));
         String actual = "";
         Port p1 = new Port("13131", "Leixões", "Europe", "Portugal", "41.182648", "-8.702905f");
         Port p2 = new Port("11411", "Vigo", "Europe", "Spain", "41.15", "-8.61024");;
