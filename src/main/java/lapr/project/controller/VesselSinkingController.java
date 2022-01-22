@@ -17,7 +17,6 @@ public class VesselSinkingController {
 
     public void getVesselSank(String typeOfShip, int numberOfContainers) throws IOException {
         VesselSinking vesselSinking = new VesselSinking(typeOfShip, numberOfContainers);
-        vesselSinking.calculateVesselSinking();
         data.append("--- " + typeOfShip + " Sinking - " + numberOfContainers + " containers ---\n");
         data.append("Container Mass: " + String.format("%.2f",vesselSinking.getContainerMass()) + "kg\n" +
                 "Sea water density considered: " + String.format("%.2f",vesselSinking.getSeaWaterDensity()) + "g/cm3\n" +

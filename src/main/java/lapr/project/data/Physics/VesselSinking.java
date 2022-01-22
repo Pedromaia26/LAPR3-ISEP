@@ -30,9 +30,6 @@ public class VesselSinking {
         vesselLenght = centerOfMass.getVesselLength();
         vesselWidth = centerOfMass.getVesselWidth();
         this.numberOfContainers = numberOfContainers;
-    }
-
-    public void calculateVesselSinking(){
         vesselPlacedMass = getVesselPlacedMass();
         forceWOCargo = getForceWithoutCargo();
         vesselBaseArea = getVesselBaseArea();
