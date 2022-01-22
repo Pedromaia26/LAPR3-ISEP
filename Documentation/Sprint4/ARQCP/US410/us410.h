@@ -7,5 +7,5 @@ typedef struct {
 	char outer[20], middle[20], interior[20];
 	float k_out, k_mid, k_int, out_th, mid_th, int_th, temp_req;
 } cont;
-char us410(cont *ptr, char x, char y, char z, int size);
+char us410(cont *ptr, char x, char y, char z, int size, int *i);
 #endif
