@@ -233,19 +233,19 @@ cargo manifest identifier.
 
 ![US401_SSD](./Documentation/Sprint4/Requirements_Engineering/US401/US401_SSD.svg)
 ![US401_SD](./Documentation/Sprint4/Requirements_Engineering/US401/US401_SD.svg)
-![US401_CD](./Documentation/Sprint4/Engineering_Design/US401/US401_CD.svg)
+![US401_CD](./Documentation/Sprint4/Requirements_Engineering/US401/US401_CD.svg)
 
 ### Use Case 402 - I wish to know the shortest path between two locals (city and/or port). 
 
 ![US402_SSD](./Documentation/Sprint4/Requirements_Engineering/US402/US402_SSD.svg)
 ![US402_SD](./Documentation/Sprint4/Requirements_Engineering/US402/US402_SD.svg)
-![US402_CD](./Documentation/Sprint4/Engineering_Design/US402/US402_CD.svg)
+![US402_CD](./Documentation/Sprint4/Requirements_Engineering/US402/US402_CD.svg)
 
 ### Use Case 403 -  I wish to know the most efficient circuit that starts from a source location and visits the greatest number of other locations once, returning to the starting location and with the shortest total distance.
  
 ![US403_SSD](./Documentation/Sprint4/Requirements_Engineering/US403/US403_SSD.svg)
 ![US403_SD](./Documentation/Sprint4/Requirements_Engineering/US403/US403_SD.svg)
-![US403_CD](./Documentation/Sprint4/Engineering_Design/US403/US403_CD.svg)
+![US403_CD](./Documentation/Sprint4/Requirements_Engineering/US403/US403_CD.svg)
 
 ### Use Case 404 - I want to know the number of days each ship has been idle since the beginning of the current year. 
 
@@ -275,17 +275,17 @@ cargo manifest identifier.
 ### Use Case 409 - I wish to fill a dynamically reserved matrixarray in memory with all the container's information in its respective place.
 
 ![US409_SSD](./Documentation/Sprint4/Requirements_Engineering/US409/US409_SSD.svg)
-![US409_SD](./Documentation/Sprint4/Requirements_Engineering/US409/US409_SD.svg)
+![US409_DM](./Documentation/Sprint4/Requirements_Engineering/US409/US409_DM.svg)
 
 ### Use Case 410 - I want to know the amount of needed energy to keep the container at its required temperature.
 
 ![US410_SSD](./Documentation/Sprint4/Requirements_Engineering/US410/US410_SSD.svg)
-![US410_SD](./Documentation/Sprint4/Requirements_Engineering/US410/US410_SD.svg)
+![US410_DM](./Documentation/Sprint4/Requirements_Engineering/US410/US410_DM.svg)
 
 ### Use Case 411 - I want to receive an alert when the current energy generation units are not enough to provide energy to all refrigerated containers at once.
 
 ![US411_SSD](./Documentation/Sprint4/Requirements_Engineering/US411/US411_SSD.svg)
-![US411_SD](./Documentation/Sprint4/Requirements_Engineering/US411/US411_SD.svg)
+![US411_DM](./Documentation/Sprint4/Requirements_Engineering/US411/US411_DM.svg)
 
 ### Use Case 412 - We intend to know how much energy to supply, for each container, in a determined trip, with an exterior temperature of 20 ºC, and a travel time of 2h30. 
 
