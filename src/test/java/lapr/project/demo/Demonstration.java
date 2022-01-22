@@ -2,6 +2,8 @@ package lapr.project.demo;
 
 import lapr.project.controller.*;
 import lapr.project.data.*;
+import lapr.project.data.FSIAP.Energy;
+import lapr.project.data.FSIAP.ImportContainersController;
 import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -131,6 +133,38 @@ class Demonstration {
     void US313() throws IOException, SQLException {
         CargoManifest_SQL writter = new CargoManifest_SQL();
         writter.demo(3);
+    }
+
+    @Test
+    void US412() throws IOException{
+        ImportContainersController icc =  new ImportContainersController();
+        icc.importFromTXT("Input/ContainerInfo");
+        Energy energy = new Energy();
+        energy.energyToSupply("Input/US412.txt");
+    }
+
+    @Test
+    void US413() throws IOException{
+        ImportContainersController icc =  new ImportContainersController();
+        icc.importFromTXT("Input/ContainerInfo");
+        Energy energy = new Energy(20, "2:30:00");
+        energy.energyToSupply("Input/US413.txt");
+    }
+
+    @Test
+    void US414() throws IOException{
+        ImportContainersController icc =  new ImportContainersController();
+        icc.importFromTXT("Input/ContainerInfo");
+        Energy energy = new Energy(20, "2:30:00", 2, 1);
+        energy.exposedSidesEnergy();
+    }
+
+    @Test
+    void US415() throws IOException{
+        ImportContainersController icc =  new ImportContainersController();
+        icc.importFromTXT("Input/ContainerInfo");
+        Energy energy = new Energy(20, "2:30:00", 2, 2);
+        energy.auxiliaryPowerEquipment();
     }
 
     @Test
