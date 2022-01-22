@@ -2,8 +2,7 @@ package lapr.project.demo;
 
 import lapr.project.controller.*;
 import lapr.project.data.*;
-import lapr.project.data.FSIAP.Energy;
-import lapr.project.data.FSIAP.ImportContainersController;
+import lapr.project.data.FSIAP.*;
 import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -139,32 +138,32 @@ class Demonstration {
     void US412() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-        Energy energy = new Energy();
-        energy.energyToSupply("Input/US412.txt");
+        US412Controller us412Controller = new US412Controller();
+        us412Controller.energyToSupply("Input/US412.txt");
     }
 
     @Test
     void US413() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-        Energy energy = new Energy(20, "2:30:00");
-        energy.energyToSupply("Input/US413.txt");
+        US413Controller us413Controller = new US413Controller(20, "2:30:00");
+        us413Controller.energyToSupply("Input/US413.txt");
     }
 
     @Test
     void US414() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-        Energy energy = new Energy(20, "2:30:00", 2, 1);
-        energy.exposedSidesEnergy();
+        US414Controller us414Controller = new US414Controller(20, "2:30:00", 2, 1);
+        us414Controller.exposedSidesEnergy();
     }
 
-    @Test
+   @Test
     void US415() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-        Energy energy = new Energy(20, "2:30:00", 2, 2);
-        energy.auxiliaryPowerEquipment();
+       US415Controller us415Controller = new US415Controller(20, "2:30:00", 2, 2);
+       us415Controller.auxiliaryPowerEquipment();
     }
 
     @Test
