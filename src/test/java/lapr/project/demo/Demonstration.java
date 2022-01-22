@@ -37,17 +37,17 @@ class Demonstration {
         icontroller.importFromDatabaseCountries();
         icontroller.importFromDatabaseBorders();
         icontroller.importFromDatabaseSeadists();
-        bcontroller.BuildFreightNetwork(1);
+        bcontroller.BuildFreightNetwork(3);
         ColourMapController ccontroller = new ColourMapController();
         ccontroller.ColourMap();
         ClosenessPlacesController cpc = new ClosenessPlacesController();
-        cpc.closenessPlacesByContinent(3);
+        cpc.closenessPlacesByContinent(10);
         CriticalPortsController criticalPortsController = new CriticalPortsController();
-        criticalPortsController.centrality(6);
+        criticalPortsController.centrality(60);
         ShortestPathController shortestPathController = new ShortestPathController();
         shortestPathController.shortestPath("Athens", "Paris", 3);
         ShortestDistanceGreatestLocationCircuitController sdlccontroller = new ShortestDistanceGreatestLocationCircuitController();
-        sdlccontroller.getCircuit("Madrid");
+        sdlccontroller.getCircuit("Halifax");
     }
 
     @Test
@@ -126,10 +126,28 @@ class Demonstration {
         US312_SQL sql = new US312_SQL();
         sql.demo(5323205, "client1");
     }
+
     @Test
     void US313() throws IOException, SQLException {
         CargoManifest_SQL writter = new CargoManifest_SQL();
         writter.demo(3);
     }
 
+    @Test
+    void US418() throws IOException {
+        VesselCenterOfMassController controller = new VesselCenterOfMassController();
+        controller.getCenterOfMass("Container Ship");
+    }
+
+    @Test
+    void US419() throws IOException {
+        VesselContainersPositionController controller = new VesselContainersPositionController();
+        controller.getPositionContainers(2000);
+    }
+
+    @Test
+    void US420() throws IOException {
+        VesselSinkingController controller = new VesselSinkingController();
+        controller.getVesselSank("Container Ship", 1000);
+    }
 }
