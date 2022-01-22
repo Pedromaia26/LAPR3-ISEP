@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor " Ship Chief Electrical Engineer" as SCEE
+participant ":US412UI" as UI
+participant ":US412Controller" as CTRL
+participant ":Energy" as E
+participant "containerList\n:Container"
+participant ":FileOperation" as FILE
+participant "data\n:String"
+participant "heatFlow\n:double"
+participant "energy\n:double"
+participant "tripTime\n:String"
+participant "containerId\n:String"
+
+
+
+activate SCEE
+SCEE -> UI: requests how much energy is needed to supply,\nfor each container, in a determined trip,\nwith an exterior temperature of 20 ºC, and a travel time of 2h30.
+activate UI
+UI --> CTRL: energyToSupply()
+activate CTRL
+CTRL -> E: energyToSupply()
+activate E
+loop (Every container from the ship)
+E -> E: energy = heatFlow/tripTime
+E -> E: data+= containerId + energy
+end
+E -> FILE: writeToAFile(data)
+activate FILE
+FILE --> E: file
+deactivate FILE
+E --> CTRL: file
+deactivate E
+CTRL --> UI: file
+deactivate CTRL
+UI --> SCEE: shows file
+deactivate UI
+
+deactivate SCEE
+
+
+
+@enduml

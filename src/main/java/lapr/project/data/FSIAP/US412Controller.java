@@ -23,8 +23,8 @@ public class US412Controller {
         energy = new Energy();
     }
 
-    public void energyToSupply(String file) throws IOException {
-        data = energy.energyToSupply(file);
+    public void energyToSupply() throws IOException {
+        data = energy.energyToSupply(12);
         FileOperation.writeToAFile("Output/US412.txt", data);
     }
 }
