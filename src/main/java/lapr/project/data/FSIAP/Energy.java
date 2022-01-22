@@ -2,7 +2,7 @@ package lapr.project.data.FSIAP;
 
 import lapr.project.controller.App;
 import lapr.project.model.Container;
-import lapr.project.utils.FileOperation;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +14,6 @@ public class Energy {
 
 
     private final int EXT_TEMP;
-    private final double AREA = 1;
     private final String tripTime;
     private double heatFlow, energy, totalEnergy = 0, pot = 75;
     private int seconds;
@@ -45,35 +44,22 @@ public class Energy {
         this.sun2 = sun2;
     }
 
-    public String energyToSupply(String file) throws IOException {
+    public String energyToSupply(int us){
         String [] time = tripTime.split(":");
         seconds = Integer.parseInt(time[0])*3600 + Integer.parseInt(time[1])*60 + Integer.parseInt(time[2]);
 
-        int counter = 0;
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String container = br.readLine();
-
-        while (container != null){
-            String info[] = container.split(" ");
-            counter++;
             for (Container c: containerList){
-                if (c.getContainerId().equals(info[0])){
-                    heatFlow = AREA * (EXT_TEMP - c.getTemp()) / ((c.getL1()/c.getK1())+(c.getL2()/c.getK2())+(c.getL3()/c.getK3()));
-
+                    heatFlow = c.getArea() * (EXT_TEMP - c.getTemp()) / ((c.getL1()/c.getK1())+(c.getL2()/c.getK2())+(c.getL3()/c.getK3()));
 
                     energy = heatFlow * seconds;
                     totalEnergy += energy;
                     data+=String.format("Energy needed to supply for container %s: %.2f J\n", c.getContainerId(), energy);
                 }
-            }
-            container = br.readLine();
-        }
-        if (counter == 1){
-            return data;
-        }else{
+
+        if (us == 13){
             data+=String.format("\nTotal energy to be supplied to the set of containers: %.2f J\n", totalEnergy);
-            return data;
         }
+        return data;
     }
 
     public String exposedSidesEnergy() throws IOException {
@@ -127,7 +113,7 @@ public class Energy {
                 }
             }
 
-            heatFlow = exposedSides * AREA * (EXT_TEMP - c.getTemp()) / ((c.getL1() / c.getK1()) + (c.getL2() / c.getK2()) + (c.getL3() / c.getK3()));
+            heatFlow = exposedSides * c.getArea() * (EXT_TEMP - c.getTemp()) / ((c.getL1() / c.getK1()) + (c.getL2() / c.getK2()) + (c.getL3() / c.getK3()));
 
 
             energy = heatFlow * seconds;

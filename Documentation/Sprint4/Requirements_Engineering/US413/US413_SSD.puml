@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor " Ship Chief Electrical Engineer" as SCEE
+participant ":System" as S
+
+activate SCEE
+SCEE -> S: wants to know the total energy to be supplied\nto the set of containers in a certain established trip
+activate S
+S --> SCEE: asks for the journey time and temperature of the trip
+deactivate S
+SCEE -> S: types the solicited data
+activate S
+S --> SCEE: shows requested data
+
+
+deactivate SCEE
+@enduml

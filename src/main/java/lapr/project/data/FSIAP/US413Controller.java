@@ -18,13 +18,13 @@ public class US413Controller {
         energy = new Energy(temp, tripTime);
     }
 
-    public US413Controller(Company c, int temp, String tripTime){
+    public US413Controller(Company c, int temp, String tripTime, double area){
         this.c = c;
         energy = new Energy(temp, tripTime);
     }
 
-    public void energyToSupply(String file) throws IOException {
-        data = energy.energyToSupply(file);
+    public void energyToSupply() throws IOException {
+        data = energy.energyToSupply(13);
         FileOperation.writeToAFile("Output/US413.txt", data);
     }
 }
