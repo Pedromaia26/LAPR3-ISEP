@@ -59,7 +59,7 @@ public class VesselCenterOfMass {
         centerOfMassY = calculateCenterOfMassY();
     }
 
-    private double calculateCenterOfMassX(double towerP){
+    public double calculateCenterOfMassX(double towerP){
         double tipVolume = getTipVolume();
         double bodyVolume = getBodyVolume();
         double towerVolume = getTowerVolume();
@@ -70,7 +70,7 @@ public class VesselCenterOfMass {
         return centerOfMassX;
     }
 
-    private double calculateCenterOfMassY(){
+    public double calculateCenterOfMassY(){
         double tipVolume = getTipVolume();
         double bodyVolume = getBodyVolume();
         double towerVolume = getTowerVolume();

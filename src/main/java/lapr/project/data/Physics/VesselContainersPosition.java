@@ -39,7 +39,7 @@ public class VesselContainersPosition {
         vesselCenterOfMassY = calculateCenterOfMassY();
     }
 
-    private double calculateCenterOfMassX(){
+    public double calculateCenterOfMassX(){
         double tipVolume = centerOfMass.getTipVolume();
         double bodyVolume = centerOfMass.getBodyVolume();
         double towerVolume = centerOfMass.getTowerVolume();
@@ -50,7 +50,7 @@ public class VesselContainersPosition {
         return centerOfMassX;
     }
 
-    private double calculateCenterOfMassY(){
+    public double calculateCenterOfMassY(){
         double tipVolume = centerOfMass.getTipVolume();
         double bodyVolume = centerOfMass.getBodyVolume();
         double towerVolume = centerOfMass.getTowerVolume();
