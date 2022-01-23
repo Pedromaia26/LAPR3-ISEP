@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportContainersController {
-    private Company company;
+    private final Company company;
 
     public ImportContainersController(Company company) {
         this.company = company;

@@ -47,7 +47,6 @@ public class Algorithms {
             for (int i = 0; i < adjMatrix.numVertices(); i++) {
                 if (i != k && edgeMatrix[i][k] != null) {
                     adj1 = edgeMatrix[i][k];
-                    //System.out.println(edgeMatrix[i][k].getDistance());
                     for (int j = 0; j < edgeMatrix.length; j++) {
                         if (i != j && k != j && edgeMatrix[k][j] != null) {
                             adj2 = edgeMatrix[k][j];
@@ -73,8 +72,6 @@ public class Algorithms {
                 }
             }
         }
-
-        //System.out.println(cloneAdjMatrix.edgeMatrix);
         Algorithms.shortestPath(edgeMatrix);
     }
 
@@ -162,13 +159,8 @@ public class Algorithms {
                     key = getVertMinDist(dist, visited, graph.numVertices());
                 }
         }
-        GraphElement source = (GraphElement) graph.vertex(orig);
-        GraphElement destination = (GraphElement) graph.vertex(key2);
         if (dist[key2]==inf){
-            //System.out.println("Could not reach the destination by the selected path!");
         }else {
-            //System.out.printf("Distance from %s to %s: %.2f km.\n", source.getDesignation(), destination.getDesignation(), dist[key2]);
-            //System.out.print("\nSHORTEST PATH: ");
             int local = key2;
             do {
                 list.add(local);
@@ -178,14 +170,6 @@ public class Algorithms {
             list.add(orig);
 
             Collections.reverse(list);
-                    /*for (int i: list) {
-                        GraphElement pl = (GraphElement) graph.vertex(i);
-                       if (pl.getDesignation().equals(destination.getDesignation())){
-                            System.out.println(pl.getDesignation());
-                       }else {
-                           System.out.print(pl.getDesignation() + " -> ");
-                       }
-                    }*/
         }
         return list;
     }

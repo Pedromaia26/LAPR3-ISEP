@@ -2,13 +2,13 @@ package lapr.project.model;
 
 public class Seadist {
 
-    private String fromCountryName;
-    private int fromPortId;
-    private String fromPortName;
-    private String toCountryName;
-    private int toPortId;
-    private String toPortName;
-    private int seaDistance;
+    private final String fromCountryName;
+    private final int fromPortId;
+    private final String fromPortName;
+    private final String toCountryName;
+    private final int toPortId;
+    private final String toPortName;
+    private final int seaDistance;
 
     public Seadist(String fromCountry, int fromPortId, String fromPortName, String toCountryName, int toPortId, String toPortString, int seaDistance) {
         this.fromCountryName = fromCountry;

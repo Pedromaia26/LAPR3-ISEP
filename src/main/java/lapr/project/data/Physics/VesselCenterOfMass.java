@@ -2,18 +2,18 @@ package lapr.project.data.Physics;
 
 public class VesselCenterOfMass {
 
-    private double vesselLength;
-    private double vesselWidth;
-    private double vesselHeight;
-    private double vesselTipLength;
-    private double vesselTipHeight;
-    private double vesselBodyLength;
-    private double vesselBodyHeight;
-    private double vesselTowerLength;
-    private double vesselTowerHeight;
+    private final double vesselLength;
+    private final double vesselWidth;
+    private final double vesselHeight;
+    private final double vesselTipLength;
+    private final double vesselTipHeight;
+    private final double vesselBodyLength;
+    private final double vesselBodyHeight;
+    private final double vesselTowerLength;
+    private final double vesselTowerHeight;
     private final double MATERIAL_DENSITY=7800d;
-    private double centerOfMassX;
-    private double centerOfMassY;
+    private final double centerOfMassX;
+    private final double centerOfMassY;
 
     public VesselCenterOfMass(String typeOfVessel){
         switch(typeOfVessel){

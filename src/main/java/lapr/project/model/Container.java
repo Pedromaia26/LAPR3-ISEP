@@ -3,9 +3,22 @@ package lapr.project.model;
 public class Container {
 
 
-    private String containerId, outerMat, middleMat, innerMat, refrigerated;
-    private int x, y, z, temp;
-    private double k1, k2, k3, l1, l2, l3, area;
+    private final String containerId;
+    private final String outerMat;
+    private final String middleMat;
+    private final String innerMat;
+    private String refrigerated;
+    private final int x;
+    private final int y;
+    private final int z;
+    private final int temp;
+    private final double k1;
+    private final double k2;
+    private final double k3;
+    private final double l1;
+    private final double l2;
+    private final double l3;
+    private final double area;
 
     public Container(String containerId, int x, int y, int z, int refrigerated, String outerMat, String middleMat, String innerMat,
                      double k1, double k2, double k3,

@@ -15,7 +15,10 @@ public class Energy {
 
     private final int EXT_TEMP;
     private final String tripTime;
-    private double heatFlow, energy, totalEnergy = 0, pot = 75;
+    private double heatFlow;
+    private double energy;
+    private double totalEnergy = 0;
+    private double pot = 75;
     private int seconds;
     private List<Container> containerList;
     private String data = "";
@@ -62,7 +65,7 @@ public class Energy {
         return data;
     }
 
-    public String exposedSidesEnergy() throws IOException {
+    public String exposedSidesEnergy() {
         String [] time = tripTime.split(":");
         seconds = Integer.parseInt(time[0])*3600 + Integer.parseInt(time[1])*60 + Integer.parseInt(time[2]);
         int exposedSides = 3;
@@ -128,7 +131,7 @@ public class Energy {
     }
 
 
-    public String auxiliaryPowerEquipment() throws IOException {
+    public String auxiliaryPowerEquipment(){
         String data2 = "";
         exposedSidesEnergy();
         heatFlow = totalEnergy/seconds;

@@ -5,13 +5,13 @@ import lapr.project.data.CountryStore;
 
 public class Port {
 
-    private int code;
-    private String name;
+    private final int code;
+    private final String name;
     private Country country;
-    private float latitude;
-    private float longitude;
-    private int docking_capacity;
-    private int docking_occupancy;
+    private final float latitude;
+    private final float longitude;
+    private final int docking_capacity;
+    private final int docking_occupancy;
 
     public Port(String code, String name, String continent, String country, String latitude, String longitude) {
         this.code = Integer.parseInt(code);

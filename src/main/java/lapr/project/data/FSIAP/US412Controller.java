@@ -9,17 +9,10 @@ import java.io.IOException;
 
 public class US412Controller {
 
-    private Company c;
     private String data = "";
-    private Energy energy;
+    private final Energy energy;
 
     public US412Controller(){
-        c = App.getInstance().getCompany();
-        energy = new Energy();
-    }
-
-    public US412Controller(Company c){
-        this.c = c;
         energy = new Energy();
     }
 

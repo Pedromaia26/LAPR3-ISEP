@@ -2,25 +2,25 @@ package lapr.project.data.Physics;
 
 public class VesselContainersPosition {
 
-    private double vesselLength;
-    private double vesselWidth;
-    private double vesselHeight;
-    private double vesselTipLength;
-    private double vesselTipHeight;
-    private double vesselBodyLength;
-    private double vesselBodyHeight;
-    private double vesselTowerLength;
-    private double vesselTowerHeight;
+    private final double vesselLength;
+    private final double vesselWidth;
+    private final double vesselHeight;
+    private final double vesselTipLength;
+    private final double vesselTipHeight;
+    private final double vesselBodyLength;
+    private final double vesselBodyHeight;
+    private final double vesselTowerLength;
+    private final double vesselTowerHeight;
     private final double MATERIAL_DENSITY=7800d;
     private final double containerLenght = 6.06d;
     private final double containerWidth = 2.44d;
     private final double containerHeight = 2.59d;
     private final double containerMass = 298.74d;
-    private double numberOfContainers;
+    private final double numberOfContainers;
     private final double containersBodyCenterOfMassX = 45d;
     private final double containersBodyCenterOfMassY = 16.5d;
-    private double vesselCenterOfMassX;
-    private double vesselCenterOfMassY;
+    private final double vesselCenterOfMassX;
+    private final double vesselCenterOfMassY;
     VesselCenterOfMass centerOfMass;
 
     public VesselContainersPosition(int numberOfContainers) {

@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class Country {
 
-    private String continent;
-    private String name;
-    private String alpha2_code;
-    private String alpha3_code;
-    private float population;
-    private String capital;
-    private float longitude;
-    private float latitude;
+    private final String continent;
+    private final String name;
+    private final String alpha2_code;
+    private final String alpha3_code;
+    private final float population;
+    private final String capital;
+    private final float longitude;
+    private final float latitude;
 
     public Country(String continent, String alpha2_code, String alpha3_code, String name, float population, String capital, float latitude, float longitude) {
         this.continent = continent;

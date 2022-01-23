@@ -2,24 +2,24 @@ package lapr.project.data.Physics;
 
 public class VesselSinking {
 
-    private double vesselLenght;
-    private double vesselWidth;
-    private double tipMass;
-    private double bodyMass;
-    private double towerMass;
-    private double forceWOCargo;
-    private double forceWCargo;
-    private double pressureWOCargo;
-    private double pressureWCargo;
-    private double vesselBaseArea;
-    private double vesselPlacedMass;
-    private int numberOfContainers;
+    private final double vesselLenght;
+    private final double vesselWidth;
+    private final double tipMass;
+    private final double bodyMass;
+    private final double towerMass;
+    private final double forceWOCargo;
+    private final double forceWCargo;
+    private final double pressureWOCargo;
+    private final double pressureWCargo;
+    private final double vesselBaseArea;
+    private final double vesselPlacedMass;
+    private final int numberOfContainers;
     private final double SEAWATER_DENSITY=1030d;
     private final double draft = 15d;
     private final double containerMass = 500d;
     private final double GRAVITATIONAL_FORCE = 10d;
-    private double vesselHeightBeforerSink;
-    private double vesselSinking;
+    private final double vesselHeightBeforerSink;
+    private final double vesselSinking;
     VesselCenterOfMass centerOfMass;
 
     public VesselSinking(String typeOfVessel, int numberOfContainers) {

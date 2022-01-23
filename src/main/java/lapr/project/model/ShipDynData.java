@@ -9,15 +9,15 @@ import java.util.Date;
 
 public class ShipDynData implements Comparable<ShipDynData> {
 
-    private Date baseDateTime;
-    private String latitude;
-    private String longitude;
-    private float sog;
-    private float cog;
-    private String heading;
+    private final Date baseDateTime;
+    private final String latitude;
+    private final String longitude;
+    private final float sog;
+    private final float cog;
+    private final String heading;
     private int position;
-    private String cargo;
-    private String transceiver;
+    private final String cargo;
+    private final String transceiver;
 
     public String getLatitude() {
         return latitude;

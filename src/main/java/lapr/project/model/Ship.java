@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ship implements Comparable<Ship> {
-    private int mmsi;
-    private String shipName;
-    private String imo;
+    private final int mmsi;
+    private final String shipName;
+    private final String imo;
     private int generators;
     private int genertorPowerOutput;
-    private String callSign;
-    private String vesselType;
-    private int length;
-    private int width;
-    private int capacity;
+    private final String callSign;
+    private final String vesselType;
+    private final int length;
+    private final int width;
+    private final int capacity;
     private final float draft;
     private BSTDynData bstDynData;
 
@@ -25,8 +25,6 @@ public class Ship implements Comparable<Ship> {
         this.shipName = shipName;
         if (imo.length() != 10) throw new IllegalArgumentException("Invalid imo: should be imo more 7 characters");
         this.imo = imo;
-        //this.generators = generators;
-        //this.genertorPowerOutput = genertorPowerOutput;
         this.callSign = callSign;
         this.vesselType = vesselType;
         this.length = Integer.parseInt(length);
