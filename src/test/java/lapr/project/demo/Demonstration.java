@@ -135,6 +135,27 @@ class Demonstration {
     }
 
     @Test
+    void US404() throws IOException, SQLException {
+        US404_SQL sql = new US404_SQL();
+        sql.demo();
+    }
+    @Test
+    void US405() throws IOException, SQLException {
+        US405_SQL sql = new US405_SQL();
+        sql.demo("636092932", "2022-01-30 00:00:00", "2022-10-30 00:00:00");
+    }
+    @Test
+    void US406() throws IOException, SQLException {
+        US406_SQL sql = new US406_SQL();
+        sql.demo("636091400", 0.66F);
+    }
+    @Test
+    void US407() throws IOException, SQLException {
+        US407_SQL sql = new US407_SQL();
+        sql.demo("25350");
+    }
+    
+    @Test
     void US412() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
