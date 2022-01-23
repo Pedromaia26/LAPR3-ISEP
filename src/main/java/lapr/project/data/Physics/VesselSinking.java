@@ -14,7 +14,7 @@ public class VesselSinking {
     private double vesselBaseArea;
     private double vesselPlacedMass;
     private int numberOfContainers;
-    private final double SEAWATER_DENSITY=1.03d;
+    private final double SEAWATER_DENSITY=1030d;
     private final double draft = 15d;
     private final double containerMass = 500d;
     private final double GRAVITATIONAL_FORCE = 10d;

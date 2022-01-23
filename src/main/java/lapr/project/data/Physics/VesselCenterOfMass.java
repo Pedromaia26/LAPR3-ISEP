@@ -11,7 +11,7 @@ public class VesselCenterOfMass {
     private double vesselBodyHeight;
     private double vesselTowerLength;
     private double vesselTowerHeight;
-    private final double MATERIAL_DENSITY=7.8d;
+    private final double MATERIAL_DENSITY=7800d;
     private double centerOfMassX;
     private double centerOfMassY;
 
@@ -27,7 +27,7 @@ public class VesselCenterOfMass {
                 vesselBodyHeight = 30;
                 vesselTowerLength = 20;
                 vesselTowerHeight = 5;
-                centerOfMassX = calculateCenterOfMassXContainer();
+                centerOfMassX = calculateCenterOfMassX(vesselLength/2);
                 break;
             case "Oil Tanker":
                 vesselLength = 250;
@@ -39,7 +39,7 @@ public class VesselCenterOfMass {
                 vesselBodyHeight = 25;
                 vesselTowerLength = 20;
                 vesselTowerHeight = 5;
-                centerOfMassX = calculateCenterOfMassXOil();
+                centerOfMassX = calculateCenterOfMassX(20);
                 break;
             case "Bulk Carrier":
                 vesselLength = 362;
@@ -51,7 +51,7 @@ public class VesselCenterOfMass {
                 vesselBodyHeight = 56;
                 vesselTowerLength = 20;
                 vesselTowerHeight = 5;
-                centerOfMassX = calculateCenterOfMassXBulk();
+                centerOfMassX = calculateCenterOfMassX(330);
                 break;
             default:
                 throw new IllegalArgumentException("The vessel type is not valid");
@@ -59,36 +59,14 @@ public class VesselCenterOfMass {
         centerOfMassY = calculateCenterOfMassY();
     }
 
-    private double calculateCenterOfMassXContainer(){
+    private double calculateCenterOfMassX(double towerP){
         double tipVolume = getTipVolume();
         double bodyVolume = getBodyVolume();
         double towerVolume = getTowerVolume();
         double tipMass = getMass(tipVolume);
         double bodyMass = getMass(bodyVolume);
         double towerMass = getMass(towerVolume);
-        double centerOfMassX = (tipMass*(vesselHeight/3) + bodyMass*(vesselLength/2) + tipMass*(vesselLength-vesselHeight/3) + towerMass*(vesselLength/2))/(tipMass*2 + bodyMass + towerMass);
-        return centerOfMassX;
-    }
-
-    private double calculateCenterOfMassXOil(){
-        double tipVolume = getTipVolume();
-        double bodyVolume = getBodyVolume();
-        double towerVolume = getTowerVolume();
-        double tipMass = getMass(tipVolume);
-        double bodyMass = getMass(bodyVolume);
-        double towerMass = getMass(towerVolume);
-        double centerOfMassX = (tipMass*(vesselHeight/3) + bodyMass*(vesselLength/2) + tipMass*(vesselLength-vesselHeight/3) + towerMass*(20))/(tipMass*2 + bodyMass + towerMass);
-        return centerOfMassX;
-    }
-
-    private double calculateCenterOfMassXBulk(){
-        double tipVolume = getTipVolume();
-        double bodyVolume = getBodyVolume();
-        double towerVolume = getTowerVolume();
-        double tipMass = getMass(tipVolume);
-        double bodyMass = getMass(bodyVolume);
-        double towerMass = getMass(towerVolume);
-        double centerOfMassX = (tipMass*(vesselHeight/3) + bodyMass*(vesselLength/2) + tipMass*(vesselLength-vesselHeight/3) + towerMass*(330))/(tipMass*2 + bodyMass + towerMass);
+        double centerOfMassX = (tipMass*(2*vesselHeight/3) + bodyMass*(vesselLength/2) + tipMass*(vesselLength-2*vesselHeight/3) + towerMass*towerP)/(tipMass*2 + bodyMass + towerMass);
         return centerOfMassX;
     }
 
