@@ -13,18 +13,15 @@ import java.sql.Types;
 
 public class US406_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String listOfPaths;
-    private FileOperation fileOperation;
 
-    public US406_SQL() throws SQLException, IOException {
+    public US406_SQL(){
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(String mmsi, float limite) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US406(?, ?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US406(?, ?, ?)}")){
 
             statement.setString(1, mmsi);
 
@@ -40,13 +37,12 @@ public class US406_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(listOfPaths);
-            fileOperation.writeToAFile("Output/US406_" + mmsi, data);
+            FileOperation.writeToAFile("Output/US406_" + mmsi, data);
 
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US406_" + mmsi, data);
+            FileOperation.writeToAFile("Output/US406_" + mmsi, data);
         }
     }
 

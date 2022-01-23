@@ -13,18 +13,15 @@ import java.sql.Types;
 
 public class US407_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String listOfPaths;
-    private FileOperation fileOperation;
 
-    public US407_SQL() throws SQLException, IOException {
+    public US407_SQL(){
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(String port) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US407(?, ?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US407(?, ?)}")){
 
             statement.setString(1, port);
 
@@ -38,13 +35,12 @@ public class US407_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(listOfPaths);
-            fileOperation.writeToAFile("Output/US407_" + port, data);
+            FileOperation.writeToAFile("Output/US407_" + port, data);
 
-            statement.close();
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US407_" + port, data);
+            FileOperation.writeToAFile("Output/US407_" + port, data);
         }
     }
 

@@ -13,20 +13,15 @@ import java.sql.Types;
 
 public class US405_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String ocRate;
-    private FileOperation fileOperation;
 
-    public US405_SQL() throws SQLException, IOException {
+    public US405_SQL(){
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo(String mmsi, String date1, String date2) throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US405(?, ?, ?, ?)}");
-
-
+        try(CallableStatement statement = databaseConnection.prepareCall("{CALL US405(?, ?, ?, ?)}")) {
             statement.setString(1, mmsi);
 
             statement.setString(2, date1);
@@ -43,13 +38,11 @@ public class US405_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(ocRate);
-            fileOperation.writeToAFile("Output/US405_" + mmsi, data);
-
-            statement.close();
+            FileOperation.writeToAFile("Output/US405_" + mmsi, data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US405_" + mmsi, data);
+            FileOperation.writeToAFile("Output/US405_" + mmsi, data);
         }
     }
 

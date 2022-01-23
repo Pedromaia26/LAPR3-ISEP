@@ -13,18 +13,15 @@ import java.sql.Types;
 
 public class US404_SQL {
 
-    private Connection databaseConnection;
+    private final Connection databaseConnection;
     private String listOfPaths;
-    private FileOperation fileOperation;
 
-    public US404_SQL() throws SQLException, IOException {
+    public US404_SQL(){
         databaseConnection = App.getInstance().getDatabaseConnection().getConnection();
-        fileOperation = new FileOperation();
     }
 
     public void demo() throws SQLException, IOException {
-        try {
-            CallableStatement statement = databaseConnection.prepareCall("{CALL US404(?)}");
+        try (CallableStatement statement = databaseConnection.prepareCall("{CALL US404(?)}")){
 
             statement.registerOutParameter(1, Types.LONGVARCHAR);
 
@@ -34,13 +31,11 @@ public class US404_SQL {
 
             StringBuilder data = new StringBuilder();
             data.append(listOfPaths);
-            fileOperation.writeToAFile("Output/US404", data);
-
-            statement.close();
+            FileOperation.writeToAFile("Output/US404", data);
         }catch (Exception e){
             StringBuilder data = new StringBuilder();
             data.append("No results.");
-            fileOperation.writeToAFile("Output/US404", data);
+            FileOperation.writeToAFile("Output/US404", data);
         }
     }
 
