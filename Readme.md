@@ -291,40 +291,46 @@ cargo manifest identifier.
 
 ![US412_SSD](./Documentation/Sprint4/Requirements_Engineering/US412/US412_SSD.svg)
 ![US412_SD](./Documentation/Sprint4/Requirements_Engineering/US412/US412_SD.svg)
+![US412_CD](./Documentation/Sprint4/Requirements_Engineering/US412/US412_CD.svg)
 
 ### Use Case 413 - The objective is to know the total energy to be supplied to the set of containers in a certain established trip, assuming that all the containers have the same behaviour.
 
 ![US413_SSD](./Documentation/Sprint4/Requirements_Engineering/US413/US413_SSD.svg)
 ![US413_SD](./Documentation/Sprint4/Requirements_Engineering/US413/US413_SD.svg)
+![US413_CD](./Documentation/Sprint4/Requirements_Engineering/US413/US413_CD.svg)
 
 ### Use Case 414 - We want to know how much energy to supply to the container cargo, in a voyage (or route), depending on the position of the containers on the ship. Admitting that the interior containers, or the sides not exposed directly to the "sun", maintain the initial temperature, or of departure. However, the exposed sides may present temperature variations during the trip.
 
 ![US414_SSD](./Documentation/Sprint4/Requirements_Engineering/US414/US414_SSD.svg)
 ![US414_SD](./Documentation/Sprint4/Requirements_Engineering/US414/US414_SD.svg)
+![US414_CD](./Documentation/Sprint4/Requirements_Engineering/US414/US414_CD.svg)
 
 ### Use Case 415 - I need to know how many auxiliary power equipment are needed for the voyage, knowing that each one supplies a maximum of 75 KW.
 
 ![US415_SSD](./Documentation/Sprint4/Requirements_Engineering/US415/US415_SSD.svg)
 ![US415_SD](./Documentation/Sprint4/Requirements_Engineering/US415/US415_SD.svg)
+![US415_CD](./Documentation/Sprint4/Requirements_Engineering/US415/US415_CD.svg)
 
 ### Use Case 417 -  I want the technical team to search for at least three types of ship/vessels that are better suited to the task (e.g., depending on the type of cargo), in which the “control” bridge can assume three positions, one in the bow, one in the stern, and finally in the midship.
 
-![US417_SSD](./Documentation/Sprint4/Requirements_Engineering/US417/US417_SSD.svg)
-![US417_SD](./Documentation/Sprint4/Requirements_Engineering/US417/US417_SD.svg)
+![US417_DM](./Documentation/Sprint4/Requirements_Engineering/US417/US417_DM.svg)
 
 ### Use Case 418 - I want the determine the unladen center of mass for each vessel (if different) according to its characteristics. For calculation purposes, consider known geometric figures.
 
 ![US418_SSD](./Documentation/Sprint4/Requirements_Engineering/US418/US418_SSD.svg)
 ![US418_SD](./Documentation/Sprint4/Requirements_Engineering/US418/US418_SD.svg)
+![US418_CD](./Documentation/Sprint4/Requirements_Engineering/US418/US418_CD.svg)
 
 ### Use Case 419 - I want to know where to position, for example, one hundred (100) containers on the vessel, such that the center of mass remains at xx and yy,determined in the previous point. 
 
 ![US419_SSD](./Documentation/Sprint4/Requirements_Engineering/US419/US419_SSD.svg)
 ![US419_SD](./Documentation/Sprint4/Requirements_Engineering/US419/US419_SD.svg)
+![US419_CD](./Documentation/Sprint4/Requirements_Engineering/US419/US419_CD.svg)
 
 ### Use Case 420 - I want to know for a specific vessel, how much did the vessel sink, assuming that each container has half a ton of mass. 
 
 ![US420_SSD](./Documentation/Sprint4/Requirements_Engineering/US420/US420_SSD.svg)
 ![US420_SD](./Documentation/Sprint4/Requirements_Engineering/US420/US420_SD.svg)
+![US420_CD](./Documentation/Sprint4/Requirements_Engineering/US420/US420_CD.svg)
 
 #################################################################################

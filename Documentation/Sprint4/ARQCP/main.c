@@ -62,7 +62,7 @@ int main(void) {
 			ref="Yes";
 		}else ref="No";
 		
-		fprintf(out_file1, "Container id: %d\nX coordinate: %d\nY coordinate: %d\nZ coordinate: %d\nLength: %.2f m\nWidth: %.2f m\nHeight: %.2f m\nRefrigerated: %s\nOuter walls material: %s\nMiddle layers material: %s\nInterior walls material: %s\nOuter walls thickness: %.2f mm\nMiddle layers thickness: %.2f mm\nInterior walls thickness: %.2f mm\n",ptr -> id, ptr -> pos_x, ptr -> pos_y, ptr -> pos_z, ptr -> dim_x, ptr -> dim_y, ptr -> dim_z, ref, ptr -> outer, ptr -> middle, ptr -> interior, ptr -> out_th, ptr -> mid_th, ptr -> int_th);
+		fprintf(out_file1, "Container id: %d\nX coordinate: %d\nY coordinate: %d\nZ coordinate: %d\nLength: %.2fm\nWidth: %.2fm\nHeight: %.2fm\nRefrigerated: %s\nOuter walls material: %s\nMiddle layers material: %s\nInterior walls material: %s\nOuter walls thickness: %.2fm\nMiddle layers thickness: %.2fm\nInterior walls thickness: %.2fm\n",ptr -> id, ptr -> pos_x, ptr -> pos_y, ptr -> pos_z, ptr -> dim_x, ptr -> dim_y, ptr -> dim_z, ref, ptr -> outer, ptr -> middle, ptr -> interior, ptr -> out_th, ptr -> mid_th, ptr -> int_th);
 		if(strcmp(ref,"Yes")==0){
 			fprintf(out_file1, "Required temperature inside the container: %.2f ºC\n", ptr -> temp_req);
 		}
@@ -99,7 +99,7 @@ int main(void) {
 		fprintf(out_file2, "The container is refrigerated.\n");
 		ptr+=size2;
 		energy=calculate_energy(ptr->dim_x, ptr->dim_y, ptr->dim_z, ptr->out_th, ptr->mid_th, ptr->int_th, ptr->k_out, ptr->k_mid, ptr->k_int, ptr->temp_req);
-		fprintf(out_file2, "It will be necessary to provide the container %.2f J for each hour of the trip.\n",energy);
+		fprintf(out_file2, "It will be necessary to provide the container %.2fJ for each hour of the trip.\n",energy);
 		
 	}else if(res==0){
 		fprintf(out_file2, "The container is not refrigerated.\n");
@@ -121,7 +121,7 @@ int main(void) {
 		}
 		ptr++;
 	}
-
+	
 	out_file3=fopen("us411.txt","w");
 
 	float energy_generated = NUMBER_OF_GENERATORS * ENERGY_GENERATED_PER_UNIT;
@@ -132,8 +132,8 @@ int main(void) {
 	else{
 		fprintf(out_file3, "The current energy generation units are enough to provide energy to all refrigerated containers.\n");
 	}
-	fprintf(out_file3, "Energy needed by the containers: %.2f J\n",sum);
-	fprintf(out_file3, "Energy provided by the generation units: %.2f J\n",energy_generated);
+	fprintf(out_file3, "Energy needed by the containers: %.2fJ\n",sum);
+	fprintf(out_file3, "Energy provided by the generation units: %.2fJ\n",energy_generated);
 
 	fclose(out_file3);
 	
