@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="250px" preserveAspectRatio="none" style="width:772px;height:250px;background:#FFFFFF;" version="1.1" viewBox="0 0 772 250" width="772px" zoomAndPan="magnify"><defs><filter height="300%" id="f11gp6pj7cnitf" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f11gp6pj7cnitf)" height="50.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="54" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f11gp6pj7cnitf)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="721" y="119.4297"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="59" x2="59" y1="88.2969" y2="166.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="726" x2="726" y1="88.2969" y2="166.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="5" y="84.9951">Fleet Manager</text><ellipse cx="59" cy="15" fill="#FEFECE" filter="url(#f11gp6pj7cnitf)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M59,23 L59,50 M46,31 L72,31 M59,50 L46,65 M59,50 L72,65 " fill="none" filter="url(#f11gp6pj7cnitf)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="5" y="178.5576">Fleet Manager</text><ellipse cx="59" cy="191.8594" fill="#FEFECE" filter="url(#f11gp6pj7cnitf)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M59,199.8594 L59,226.8594 M46,207.8594 L72,207.8594 M59,226.8594 L46,241.8594 M59,226.8594 L72,241.8594 " fill="none" filter="url(#f11gp6pj7cnitf)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f11gp6pj7cnitf)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="68" x="690" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="697" y="72.9951">System</text><rect fill="#FEFECE" filter="url(#f11gp6pj7cnitf)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="68" x="690" y="165.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="697" y="185.5576">System</text><rect fill="#FFFFFF" filter="url(#f11gp6pj7cnitf)" height="50.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="54" y="98.2969"/><rect fill="#FFFFFF" filter="url(#f11gp6pj7cnitf)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="721" y="119.4297"/><polygon fill="#A80036" points="709,115.4297,719,119.4297,709,123.4297,713,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="64" x2="715" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="71" y="114.3638">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="625" x="84" y="114.3638">want to know the number of days each ship has been idle since the beginning of the current year</text><polygon fill="#A80036" points="70,144.5625,60,148.5625,70,152.5625,66,148.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="64" x2="725" y1="148.5625" y2="148.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="76" y="143.4966">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168" x="89" y="143.4966">shows the requested data</text><!--MD5=[04ed484c1086b03554b5aa2d5a029904]
+@startuml
+actor "Fleet Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to know the number of days each ship has been idle since the beginning of the current year
+activate System
+
+System - -> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
+
+PlantUML version 1.2021.17beta9(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
