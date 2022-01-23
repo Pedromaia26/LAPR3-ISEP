@@ -1,0 +1,28 @@
+@startuml
+US413Controller ..> Company
+US413Controller ..> Energy
+US413Controller ..> ContainerStore
+US413Controller ..> Container
+Company ..> ContainerStore
+
+US413Controller : +energyToSupply()
+
+Energy : -heatFlow
+Energy : -energy
+Energy : -totalEnergy
+Energy : +energyToSupply()
+
+Company : +getContainerStore()
+
+Container : +getArea()
+Container : +getL1()
+Container : +getL2()
+Container : +getL3()
+Container : +getK1()
+Container : +getK2()
+Container : +getK3()
+
+ContainerStore : +getContainerList()
+
+
+@enduml
