@@ -1,0 +1,95 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":VesselCenterOfMassUI" as UI
+participant ":VesselCenterOfMassController" as controller
+participant ":Company" as c
+participant "centerOfMass\n:VesselCenterOfMass" as com
+participant "FileOperation" as fo
+participant "vesselLength\n:double" as vesselLength
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to show the center of mass of a determined ship
+
+activate UI
+
+Adm <-- UI: request the type of the ship
+
+deactivate UI
+
+Adm -> UI: introduces the type of the ship
+
+activate UI
+
+UI -> controller: getCenterOfMass(String typeOfShip)
+
+activate controller
+
+controller -> com: new VesselCenterOfMass(String typeOfShip)
+
+activate com
+
+alt typeOfShip = "Container Ship"
+
+com -> com: calculateCenterOfMassX(vesselLength/2)
+
+activate com
+
+deactivate com
+
+else typeOfShip = "Oil Tunker"
+
+com -> com: calculateCenterOfMassX(20)
+
+activate com
+
+deactivate com
+
+else typeOfShip = "Bulk Carrier"
+
+com -> com: calculateCenterOfMassX(330)
+
+activate com
+
+deactivate com
+
+end
+
+com -> com: calculateCenterOfMassY()
+
+activate com
+
+deactivate com
+
+com --> controller: centerOfMass
+
+deactivate com
+
+controller -> com: data = info
+
+activate com
+
+com --> controller: info
+
+deactivate com
+
+controller -> fo: writeToAFile(data)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml

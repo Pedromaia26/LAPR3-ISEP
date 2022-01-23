@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as SC
+participant ":System" as S
+activate SC
+activate S
+SC -> S: request to show the center of mass of a determined ship
+SC <-- S: request the type of the ship
+SC -> S: introduces the type of the ship
+SC <-- S: shows the center of mass of the ship
+deactivate S
+deactivate SC
+@enduml

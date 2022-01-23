@@ -1,0 +1,28 @@
+@startuml
+VesselCenterOfMassController ..>Company
+VesselCenterOfMassController ..>VesselCenterOfMass
+
+
+VesselCenterOfMassController : +getCenterOfMass(String typeOfShip)
+
+
+Company : +Company()
+VesselCenterOfMass : -vesselLength
+VesselCenterOfMass : -vesselWidth
+VesselCenterOfMass : -vesselHeight
+VesselCenterOfMass : -vesselTipLength
+VesselCenterOfMass : -vesselTipHeight
+VesselCenterOfMass : -vesselBodyLength
+VesselCenterOfMass : -vesselBodyHeight
+VesselCenterOfMass : -vesselTowerLength
+VesselCenterOfMass : -vesselTowerHeight
+VesselCenterOfMass : -MATERIAL_DENSITY=7800d
+VesselCenterOfMass : -centerOfMassX
+VesselCenterOfMass : -centerOfMassY
+VesselCenterOfMass : +calculateCenterOfMassX()
+VesselCenterOfMass : +calculateCenterOfMassY()
+VesselCenterOfMass : +getMass(double volume)
+VesselCenterOfMass : +getTipVolume()
+VesselCenterOfMass : +getBodyVolume()
+VesselCenterOfMass : +getTowerVolume()
+@enduml
