@@ -1,0 +1,26 @@
+@startuml
+actor "Fleet Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to know which ship voyages had an occupancy rate below a certain threshold
+
+activate System
+
+System --> Adm: asks for the ship mmsi and the time threshold
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
