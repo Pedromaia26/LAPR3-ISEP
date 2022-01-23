@@ -1,0 +1,53 @@
+@startuml
+actor "Port Manager" as Adm
+participant ":CreateMapUI" as System
+participant ":CreateMapController" as SSC
+participant ":US407" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to generate, a week in advance, the loading and unloading map
+
+activate System
+
+System --> Adm: asks for the port id
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System -> SSC: createUS407
+
+activate SSC
+
+SSC -> us: demo(port_id)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml

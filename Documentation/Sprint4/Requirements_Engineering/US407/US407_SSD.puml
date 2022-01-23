@@ -1,0 +1,26 @@
+@startuml
+actor "Port Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to generate, a week in advance, the loading and unloading map
+
+activate System
+
+System --> Adm: asks for the port id
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
