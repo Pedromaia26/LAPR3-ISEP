@@ -202,6 +202,6 @@ class Demonstration {
     @Test
     void US420() throws IOException {
         VesselSinkingController controller = new VesselSinkingController();
-        controller.getVesselSank("Container Ship", 1000);
+        controller.getVesselSank("Container Ship", 2000);
     }
 }

@@ -45,7 +45,7 @@ public class VesselSinking {
     }
 
     public double getForceWithCargo(){
-        return (tipMass*2 + bodyMass + towerMass + vesselPlacedMass/10)*GRAVITATIONAL_FORCE*1000;
+        return (tipMass*2 + bodyMass + towerMass + vesselPlacedMass)*GRAVITATIONAL_FORCE*1000;
     }
 
     public double getVesselPlacedMass(){
