@@ -175,7 +175,7 @@ class Demonstration {
     void US414() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-        US414Controller us414Controller = new US414Controller(20, "2:30:00", 2, 1);
+        US414Controller us414Controller = new US414Controller(20, "2:30:00", 1, 2);
         us414Controller.exposedSidesEnergy();
     }
 
@@ -183,7 +183,7 @@ class Demonstration {
     void US415() throws IOException{
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
-       US415Controller us415Controller = new US415Controller(20, "2:30:00", 2, 1);
+       US415Controller us415Controller = new US415Controller(20, "2:30:00", 1, 2);
        us415Controller.auxiliaryPowerEquipment();
     }
 

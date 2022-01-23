@@ -18,7 +18,7 @@ public class Energy {
     private double heatFlow;
     private double energy;
     private double totalEnergy = 0;
-    private double pot = 75;
+    private double pot = 75000;
     private int seconds;
     private List<Container> containerList;
     private String data = "";
@@ -36,7 +36,6 @@ public class Energy {
         EXT_TEMP = temp;
         this.tripTime = tripTime;
         containerList = App.getInstance().getCompany().getContainerStore().getContainerList();
-        this.pot = 1000*pot;
     }
 
     public Energy(int temp, String tripTime, int sun1, int sun2){
@@ -80,37 +79,37 @@ public class Energy {
                     if (c.getY() > 0 && disp[c.getX()][c.getY() - 1][c.getZ()] != null) {
                         exposedSides--;
                     }
-                    if (c.getZ() < disp.length && (disp[c.getX()][c.getY()][c.getZ() + 1] != null)) {
+                    if (c.getZ() < disp.length - 1 && (disp[c.getX()][c.getY()][c.getZ() + 1] != null)) {
                         exposedSides--;
                     }
                 } else if (sun1 == 1 && sun2 == 2) {
                     if (c.getX() > 0 && disp[c.getX() - 1][c.getY()][c.getZ()] != null) {
                         exposedSides--;
                     }
-                    if (c.getY() < disp.length && disp[c.getX()][c.getY() + 1][c.getZ()] != null) {
+                    if (c.getY() < disp.length - 1 && disp[c.getX()][c.getY() + 1][c.getZ()] != null) {
                         exposedSides--;
                     }
-                    if (c.getZ() < disp.length && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
-                        exposedSides--;
-                    }
-                } else if (sun1 == 2 && sun2 == 1) {
-                    if (disp[c.getX() + 1][c.getY()][c.getZ()] != null) {
-                        exposedSides--;
-                    }
-                    if (c.getY() < disp.length && disp[c.getX()][c.getY() + 1][c.getZ()] != null) {
-                        exposedSides--;
-                    }
-                    if (c.getZ() < disp.length && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
+                    if (c.getZ() < disp.length - 1 && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
                         exposedSides--;
                     }
                 } else if (sun1 == 2 && sun2 == 2) {
-                    if (c.getX() < disp.length && disp[c.getX() + 1][c.getY()][c.getZ()] != null) {
+                    if (c.getX() < disp.length - 1 && disp[c.getX() + 1][c.getY()][c.getZ()] != null) {
+                        exposedSides--;
+                    }
+                    if (c.getY() < disp.length - 1 && disp[c.getX()][c.getY() + 1][c.getZ()] != null) {
+                        exposedSides--;
+                    }
+                    if (c.getZ() < disp.length - 1 && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
+                        exposedSides--;
+                    }
+                } else if (sun1 == 2 && sun2 == 1) {
+                    if (c.getX() < disp.length - 1 && disp[c.getX() + 1][c.getY()][c.getZ()] != null) {
                         exposedSides--;
                     }
                     if (c.getY() > 0 && disp[c.getX()][c.getY() - 1][c.getZ()] != null) {
                         exposedSides--;
                     }
-                    if (c.getZ() < disp.length && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
+                    if (c.getZ() < disp.length - 1 && disp[c.getX()][c.getY()][c.getZ() + 1] != null) {
                         exposedSides--;
                     }
                 }
