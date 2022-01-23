@@ -2,8 +2,8 @@ package lapr.project.model;
 
 public class Border {
 
-    private Country countryname1;
-    private Country Countryname2;
+    private final Country countryname1;
+    private final Country Countryname2;
 
     public Border(Country countryname1, Country countryname2) {
         this.countryname1 = countryname1;

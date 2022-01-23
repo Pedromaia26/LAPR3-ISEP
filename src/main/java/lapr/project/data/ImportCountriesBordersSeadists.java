@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportCountriesBordersSeadists {
-    private Company company;
+    private final Company company;
     public ImportCountriesBordersSeadists(Company company){
         this.company = company;
     }
@@ -115,7 +115,6 @@ public class ImportCountriesBordersSeadists {
 
     public void insertBordersIntoDatabase(){
         for (Border border : company.getBorderStore().getBorders()){
-            System.out.println(border.getCountryname1().getName());
             company.getBorderStore().save(App.getInstance().getDatabaseConnection(), border);
         }
     }

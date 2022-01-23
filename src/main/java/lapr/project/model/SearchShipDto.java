@@ -7,13 +7,10 @@ public class SearchShipDto {
     private int mmsi;
     private String shipName;
     private String imo;
-    //private int generators;
-    //private int genertorPowerOutput;
     private String callSign;
     private String vesselType;
     private int lenght;
     private int width;
-    //private int capacity;
     private float draft;
 
 
@@ -21,13 +18,10 @@ public class SearchShipDto {
         this.mmsi = ship.getMmsi();
         this.shipName = ship.getShipName();
         this.imo = ship.getImo();
-        /*this.generators = ship.getGenerators();
-        this.genertorPowerOutput = ship.getGenertorPowerOutput();          */
         this.callSign = ship.getCallSign();
         this.vesselType = ship.getVesselType();
         this.lenght = ship.getLength();
         this.width = ship.getWidth();
-        //this.capacity = ship.getCapacity();
         this.draft = ship.getDraft();
 
     }
@@ -65,22 +59,6 @@ public class SearchShipDto {
         this.imo = imo;
     }
 
-    /*public int getGenerators() {
-        return generators;
-    }
-
-    public void setGenerators(int generators) {
-        this.generators = generators;
-    }
-
-    public int getGenertorPowerOutput() {
-        return genertorPowerOutput;
-    }
-
-    public void setGenertorPowerOutput(int genertorPowerOutput) {
-        this.genertorPowerOutput = genertorPowerOutput;
-    }           */
-
     public String getCallSign() {
         return callSign;
     }
@@ -112,14 +90,6 @@ public class SearchShipDto {
     public void setWidth(int width) {
         this.width = width;
     }
-
-    /*public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }        */
 
     public float getDraft() {
         return draft;
