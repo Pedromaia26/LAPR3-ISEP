@@ -29,7 +29,7 @@ public class VesselCenterOfMassController {
                     "Vessel Body Height: " + String.format("%.2f",centerOfMass.getVesselBodyHeight()) + "m\n" +
                     "Vessel Tower Length: " + String.format("%.2f",centerOfMass.getVesselTowerLength()) + "m\n" +
                     "Vessel Tower Height: " + String.format("%.2f",centerOfMass.getVesselTowerHeight()) + "m\n" +
-                    "Vessel Material Density: " + String.format("%.2f",centerOfMass.getMATERIAL_DENSITY()) + "g/cm3\n");
+                    "Vessel Material Density: " + String.format("%.2f",centerOfMass.getMATERIAL_DENSITY()) + "g/m3\n");
         }
         catch (IllegalArgumentException e){
             data.append("The vessel type is invalid.\n");

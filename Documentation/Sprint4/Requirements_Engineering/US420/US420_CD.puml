@@ -1,0 +1,37 @@
+@startuml
+VesselSinkingController ..>Company
+VesselSinkingController ..>VesselSinking
+
+
+VesselSinkingController : +getVesselSank(String typeOfShip, int numberOfContainers)
+
+
+Company : +Company()
+VesselSinking : - vesselLenght
+VesselSinking : - vesselWidth
+VesselSinking : - tipMass
+VesselSinking : - bodyMass
+VesselSinking : - towerMass
+VesselSinking : - forceWOCargo
+VesselSinking : - forceWCargo
+VesselSinking : - pressureWOCargo
+VesselSinking : - pressureWCargo
+VesselSinking : - vesselBaseArea
+VesselSinking : - vesselPlacedMass
+VesselSinking : - numberOfContainers
+VesselSinking : - SEAWATER_DENSITY=1030d
+VesselSinking : - draft = 15d
+VesselSinking : - containerMass = 500d
+VesselSinking : - GRAVITATIONAL_FORCE = 10d
+VesselSinking : - vesselHeightBeforerSink
+VesselSinking : - vesselSinking
+VesselSinking : - centerOfMass
+VesselSinking : + VesselSinking(String typeOfVessel, int numberOfContainers)
+VesselSinking : + getForceWithoutCargo()
+VesselSinking : + getForceWithCargo()
+VesselSinking : + getVesselPlacedMass()
+VesselSinking : + getVesselBaseArea()
+VesselSinking : + getPressureWOCargo()
+VesselSinking : + getPressureWCargo()
+VesselSinking : + getVesselHeightBeforerSink()
+@enduml

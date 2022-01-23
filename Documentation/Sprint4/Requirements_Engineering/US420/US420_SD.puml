@@ -1,0 +1,118 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":VesselSinkingUI" as UI
+participant ":VesselSinkingController" as controller
+participant ":Company" as c
+participant "vesselSinking\n:VesselSinking" as com
+participant "FileOperation" as fo
+participant "forceWOCargo\n:double" as forceWOCargo
+participant "forceWCargo\n:double" as forceWCargo
+participant "pressureWOCargo\n:double" as pressureWOCargo
+participant "pressureWCargo\n:double" as pressureWCargo
+participant "vesselBaseArea\n:double" as vesselBaseArea
+participant "vesselPlacedMass\n:double" as vesselPlacedMass
+participant "vesselHeightBeforerSink\n:double" as vesselHeightBeforerSink
+participant "vesselSinking\n:double" as vesselSinking
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to know how much did the vessel sink
+
+activate UI
+
+Adm <-- UI: request the type of vessel and the number of containers
+
+deactivate UI
+
+Adm -> UI: introduces the type of vessel and the number of containers
+
+activate UI
+
+UI -> controller: getVesselSank(String typeOfShip, int numberOfContainers)
+
+activate controller
+
+controller -> com: new VesselSinking(typeOfShip, numberOfContainers)
+
+activate com
+
+com -> com: vesselPlacedMass = getVesselPlacedMass()
+
+activate com
+
+deactivate com
+
+com -> com: forceWOCargo = getForceWithoutCargo()
+
+activate com
+
+deactivate com
+
+com -> com: vesselBaseArea = getVesselBaseArea()
+
+activate com
+
+deactivate com
+
+com -> com: pressureWOCargo = getPressureWOCargo()
+
+activate com
+
+deactivate com
+
+com -> com: pressureWOCargo = getForceWithCargo()
+
+activate com
+
+deactivate com
+
+com -> com: pressureWCargo = getPressureWCargo()
+
+activate com
+
+deactivate com
+
+com -> com: vesselHeightBeforerSink = getVesselHeightBeforerSink()
+
+activate com
+
+deactivate com
+
+com -> com: vesselSinking = vesselHeightBeforerSink - draft
+
+activate com
+
+deactivate com
+
+com --> controller: vesselContainersPosition
+
+deactivate com
+
+controller -> com: data = info
+
+activate com
+
+com --> controller: info
+
+deactivate com
+
+controller -> fo: writeToAFile(data)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml

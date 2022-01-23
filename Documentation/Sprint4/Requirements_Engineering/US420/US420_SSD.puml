@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as SC
+participant ":System" as S
+activate SC
+activate S
+SC -> S: request to know how much did the vessel sink
+SC <-- S: request the type of vessel and the number of containers
+SC -> S: introduces the type of vessel and the number of containers
+SC <-- S: shows the difference in height that the vessel has suffered
+deactivate S
+deactivate SC
+@enduml

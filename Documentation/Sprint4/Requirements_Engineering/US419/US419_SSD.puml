@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as SC
+participant ":System" as S
+activate SC
+activate S
+SC -> S: request to know where to position the\n containers without changing the center of mass
+SC <-- S: request the number of containers
+SC -> S: introduces the number of containers
+SC <-- S: shows the unchanged value for the center of mass
+deactivate S
+deactivate SC
+@enduml

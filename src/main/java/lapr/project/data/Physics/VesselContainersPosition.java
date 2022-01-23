@@ -11,7 +11,7 @@ public class VesselContainersPosition {
     private double vesselBodyHeight;
     private double vesselTowerLength;
     private double vesselTowerHeight;
-    private final double MATERIAL_DENSITY=7.8d;
+    private final double MATERIAL_DENSITY=7800d;
     private final double containerLenght = 6.06d;
     private final double containerWidth = 2.44d;
     private final double containerHeight = 2.59d;
