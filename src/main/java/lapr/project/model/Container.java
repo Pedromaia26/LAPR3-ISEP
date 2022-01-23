@@ -5,11 +5,11 @@ public class Container {
 
     private String containerId, outerMat, middleMat, innerMat, refrigerated;
     private int x, y, z, temp;
-    private double k1, k2, k3, l1, l2, l3;
+    private double k1, k2, k3, l1, l2, l3, area;
 
     public Container(String containerId, int x, int y, int z, int refrigerated, String outerMat, String middleMat, String innerMat,
                      double k1, double k2, double k3,
-                     double l1, double l2, double l3, int temp){
+                     double l1, double l2, double l3, int temp, double area){
         this.containerId = containerId;
         this.x = x;
         this.y = y;
@@ -29,7 +29,12 @@ public class Container {
         this.l2 = l2;
         this.l3 = l3;
         this.temp = temp;
+        this.area = area;
 
+    }
+
+    public double getArea() {
+        return area;
     }
 
     public int getTemp() {

@@ -139,7 +139,7 @@ class Demonstration {
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
         US412Controller us412Controller = new US412Controller();
-        us412Controller.energyToSupply("Input/US412.txt");
+        us412Controller.energyToSupply();
     }
 
     @Test
@@ -147,7 +147,7 @@ class Demonstration {
         ImportContainersController icc =  new ImportContainersController();
         icc.importFromTXT("Input/ContainerInfo");
         US413Controller us413Controller = new US413Controller(20, "2:30:00");
-        us413Controller.energyToSupply("Input/US413.txt");
+        us413Controller.energyToSupply();
     }
 
     @Test
