@@ -1,0 +1,37 @@
+@startuml
+VesselContainersPositionController ..>Company
+VesselContainersPositionController ..>VesselContainersPosition
+
+
+VesselContainersPositionController : +getPositionContainers(int numberOfContainers)
+
+
+Company : +Company()
+VesselContainersPosition : -vesselLength
+VesselContainersPosition : -vesselWidth
+VesselContainersPosition : -vesselHeight
+VesselContainersPosition : -vesselTipLength
+VesselContainersPosition : -vesselTipHeight
+VesselContainersPosition : -vesselBodyLength
+VesselContainersPosition : -vesselBodyHeight
+VesselContainersPosition : -vesselTowerLength
+VesselContainersPosition : -vesselTowerHeight
+VesselContainersPosition : -MATERIAL_DENSITY=7800d
+VesselContainersPosition : -containerLenght = 6.06d
+VesselContainersPosition : -containerWidth = 2.44d
+VesselContainersPosition : -containerHeight = 2.59d
+VesselContainersPosition : -containerMass = 298.74d
+VesselContainersPosition : -numberOfContainers
+VesselContainersPosition : -containersBodyCenterOfMassX = 45d
+VesselContainersPosition : -containersBodyCenterOfMassY = 16.5d
+VesselContainersPosition : -vesselCenterOfMassX
+VesselContainersPosition : -vesselCenterOfMassY
+VesselContainersPosition : -centerOfMass
+VesselContainersPosition : +getContainerArea()
+VesselContainersPosition : +calculateCenterOfMassY()
+VesselContainersPosition : +getMass(double volume)
+VesselContainersPosition : +getContainerVolume()
+VesselContainersPosition : +getCenterOfMassContainerX()
+VesselContainersPosition : +getCenterOfMassContainerY()
+VesselContainersPosition : +getCenterOfMassContainerZ()
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":VesselContainersPositionUI" as UI
+participant ":VesselContainersPositionController" as controller
+participant ":Company" as c
+participant "vesselContainersPosition\n:VesselContainersPosition" as com
+participant "FileOperation" as fo
+
+autonumber
+
+activate Adm
+
+Adm -> UI: request to know where to position the\n containers without changing the center of mass
+
+activate UI
+
+Adm <-- UI: request the number of containers
+
+deactivate UI
+
+Adm -> UI: introduces the number of containers
+
+activate UI
+
+UI -> controller: getPositionContainers(int numberOfContainers)
+
+activate controller
+
+controller -> com: new VesselContainersPosition(numberOfContainers)
+
+activate com
+
+com -> com: calculateCenterOfMassX()
+
+activate com
+
+deactivate com
+
+com -> com: calculateCenterOfMassY()
+
+activate com
+
+deactivate com
+
+com --> controller: vesselContainersPosition
+
+deactivate com
+
+controller -> com: data = info
+
+activate com
+
+com --> controller: info
+
+deactivate com
+
+controller -> fo: writeToAFile(data)
+
+activate fo
+
+fo --> controller: file
+
+deactivate fo
+
+controller --> UI: file
+
+deactivate controller
+
+UI --> Adm: shows file
+
+deactivate UI
+
+deactivate Adm
+@enduml
