@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerTest {
 
-    Container c = new Container("1025637", 1, 1, 1, 1, "iron", "wood", "iron", 80.4, 0.11, 80.4, 3, 2, 3, 7, 1);
+    Container c = new Container("1025637", 1, 1, 1, 1, "iron", "wood", "iron", 80.4d, 0.11d, 80.4d, 3d, 2d, 3d, 7, 1d);
 
     @Test
     void getTemp() {
