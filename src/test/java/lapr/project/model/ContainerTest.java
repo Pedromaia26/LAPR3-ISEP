@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerTest {
 
-    Container c = new Container("1025637", 1, 1, 1, 1, "iron", "wood", "iron", 80.4, 0.11, 80.4, 3, 2, 3, 7);
+    Container c = new Container("1025637", 1, 1, 1, 1, "iron", "wood", "iron", 80.4, 0.11, 80.4, 3, 2, 3, 7, 1);
 
     @Test
     void getTemp() {
@@ -94,6 +94,14 @@ class ContainerTest {
     void getL3() {
         double actual = c.getL3();
         double expected = 3;
+
+        Assert.assertEquals(expected, actual, 0);
+    }
+
+    @Test
+    void getArea() {
+        double actual = c.getArea();
+        double expected = 1;
 
         Assert.assertEquals(expected, actual, 0);
     }
