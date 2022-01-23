@@ -16,7 +16,7 @@ class VesselSinkingTest {
 
     @Test
     void getForceWithCargo() {
-        double expected = 3.914045E13;
+        double expected = 3.91409E13;
         assertEquals(expected, vesselSinking.getForceWithCargo());
     }
 
@@ -40,7 +40,7 @@ class VesselSinkingTest {
 
     @Test
     void getPressureWCargo() {
-        int expected = 2007202;
+        int expected = 2007225;
         assertEquals(expected, (int)vesselSinking.getPressureWCargo());
     }
 
@@ -94,7 +94,7 @@ class VesselSinkingTest {
 
     @Test
     void getPressureCargo() {
-        int expected = 2007202;
+        int expected = 2007225;
         assertEquals(expected, (int)vesselSinking.getPressureCargo());
     }
 

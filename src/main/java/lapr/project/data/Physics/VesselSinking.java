@@ -107,4 +107,5 @@ public class VesselSinking {
     public double getVesselHeight(){
         return vesselHeightBeforerSink;
     }
+    
 }
