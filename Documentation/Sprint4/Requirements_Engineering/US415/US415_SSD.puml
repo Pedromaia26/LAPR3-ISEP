@@ -1,0 +1,18 @@
+@startuml
+actor "Ship captain" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: wants to know how many auxiliary power equipment are needed for the voyage
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml

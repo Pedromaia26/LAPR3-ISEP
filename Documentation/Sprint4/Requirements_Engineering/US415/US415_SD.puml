@@ -1,0 +1,51 @@
+@startuml
+actor "Ship Captain" as Adm
+participant ":US415UI" as System
+participant ":US415Controller" as SSC
+participant ":Energy" as us
+participant ":FileOperation" as f
+participant "heatflow :double"
+participant "x :double"
+
+autonumber
+
+activate Adm
+
+Adm -> System: wants to know how many auxiliary power equipment are needed for the voyage
+
+activate System
+
+System -> SSC: auxiliaryPowerEquipment();
+
+activate SSC
+
+SSC -> us: exposedSidesEnergy();
+
+activate us
+
+us -> us: heatFlow = totalEnergy/seconds
+
+us -> us: double x = heatFlow/pot
+
+us -> f: WriteToAFile(data2)
+
+activate f
+
+f --> us: data2
+
+deactivate f
+
+us --> SSC: data2
+
+deactivate us
+
+SSC --> System: data2
+
+deactivate SSC
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
