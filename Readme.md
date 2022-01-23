@@ -267,11 +267,6 @@ cargo manifest identifier.
 ![US407_SSD](./Documentation/Sprint4/Requirements_Engineering/US407/US407_SSD.svg)
 ![US407_SD](./Documentation/Sprint4/Requirements_Engineering/US407/US407_SD.svg)
 
-### Use Case 408 - I intend to develop a data model to build a Data Warehouse to analyse the volume of maritime traffic between any two ports. The fact to be analysed is the traffic volume measured by the indicators “number of containers”, “accumulated number of containers” and “target number of containers”. These indicators refer to the number of containers that are in transit between two ports/locations on the first day of each month. The dimensions to consider are Time, Port of origin and Port of destination. The Time dimension has a hierarchy with the following levels: Year, Month. The location/Port is subject to the following hierarchy: Continent,Country, Port. An estimate of the upper cardinality of the dimension and fact tables must be indicated.
- 
-![US408_SSD](./Documentation/Sprint4/Requirements_Engineering/US408/US408_SSD.svg)
-![US408_SD](./Documentation/Sprint4/Requirements_Engineering/US408/US408_SD.svg)
-
 ### Use Case 409 - I wish to fill a dynamically reserved matrixarray in memory with all the container's information in its respective place.
 
 ![US409_SSD](./Documentation/Sprint4/Requirements_Engineering/US409/US409_SSD.svg)
