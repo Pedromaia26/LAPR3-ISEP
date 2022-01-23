@@ -1,0 +1,53 @@
+@startuml
+actor "Fleet Manager" as Adm
+participant ":AverageOccupancyUI" as System
+participant ":AverageOccupancyController" as SSC
+participant ":US405" as us
+participant ":FileOperation" as f
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to know the average occupancy rate per manifest of a given ship during a given period
+
+activate System
+
+System --> Adm: asks for the ship mmsi and the time period
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System -> SSC: createUS405
+
+activate SSC
+
+SSC -> us: demo(mmsi, date1, date2)
+
+activate us
+
+us -> us: initialize
+
+us -> f: WriteToAFile(data)
+
+deactivate us
+
+activate f
+
+f --> SSC: file
+
+deactivate f
+
+SSC --> System: file
+
+System --> Adm: shows the requested data
+
+deactivate SSC
+
+deactivate System
+
+deactivate Adm
+@enduml

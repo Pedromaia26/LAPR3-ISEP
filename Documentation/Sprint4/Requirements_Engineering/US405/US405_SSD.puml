@@ -1,0 +1,26 @@
+@startuml
+actor "Fleet Manager" as Adm
+participant "System" as System
+
+autonumber
+
+activate Adm
+
+Adm -> System: want to know the average occupancy rate per manifest of a given ship during a given period
+
+activate System
+
+System --> Adm: asks for the ship mmsi and the time period
+
+deactivate System
+
+Adm -> System: types requested data
+
+activate System
+
+System --> Adm: shows the requested data
+
+deactivate System
+
+deactivate Adm
+@enduml
